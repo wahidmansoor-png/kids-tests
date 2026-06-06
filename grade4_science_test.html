@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 4 Science Test – Chapters 4, 8 & 10</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; min-height: 100vh; }
+
+  .hero { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 2rem 1rem 3rem; text-align: center; }
+  .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .hero p { font-size: 1rem; opacity: 0.85; }
+  .stars { font-size: 1.5rem; margin-top: 0.5rem; letter-spacing: 4px; }
+
+  .container { max-width: 800px; margin: -1.5rem auto 2rem; padding: 0 1rem; }
+
+  .card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.5rem; }
+  .info-grid label { font-size: 0.85rem; font-weight: 600; color: #6b7280; display: block; margin-bottom: 4px; }
+  .info-grid input { width: 100%; padding: 10px 14px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s; outline: none; }
+  .info-grid input:focus { border-color: #4f46e5; }
+
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; }
+  .section-badge { background: #4f46e5; color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+  .section-header h2 { font-size: 1.15rem; font-weight: 700; color: #1f2937; }
+  .section-header .chapter-tag { background: #ede9fe; color: #4f46e5; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+
+  .q-block { margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid #f3f4f6; }
+  .q-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .q-num { font-size: 0.75rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .q-text { font-size: 1rem; color: #1f2937; font-weight: 500; line-height: 1.5; margin-bottom: 10px; }
+
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option-btn { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 2px solid #e5e7eb; border-radius: 10px; cursor: pointer; transition: all 0.2s; background: white; font-size: 0.95rem; color: #374151; text-align: left; }
+  .option-btn:hover { border-color: #a5b4fc; background: #f5f3ff; }
+  .option-btn.selected { border-color: #4f46e5; background: #ede9fe; color: #3730a3; }
+  .option-letter { font-weight: 700; font-size: 0.85rem; color: #9ca3af; width: 20px; flex-shrink: 0; }
+  .option-btn.selected .option-letter { color: #4f46e5; }
+
+  .tf-row { display: flex; gap: 12px; }
+  .tf-btn { flex: 1; padding: 10px; border: 2px solid #e5e7eb; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; background: white; }
+  .tf-btn:hover { border-color: #a5b4fc; background: #f5f3ff; }
+  .tf-btn.selected-true { border-color: #059669; background: #ecfdf5; color: #065f46; }
+  .tf-btn.selected-false { border-color: #dc2626; background: #fef2f2; color: #7f1d1d; }
+
+  .fill-input { width: 100%; padding: 10px 14px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; outline: none; transition: border-color 0.2s; }
+  .fill-input:focus { border-color: #4f46e5; }
+  .fill-blank { display: inline-block; border-bottom: 2px solid #4f46e5; min-width: 120px; padding: 2px 4px; font-style: italic; color: #9ca3af; }
+
+  .submit-area { text-align: center; margin-top: 0.5rem; }
+  .submit-btn { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border: none; padding: 14px 40px; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 14px rgba(79,70,229,0.4); }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,70,229,0.5); }
+  .submit-btn:active { transform: translateY(0); }
+
+  #results { display: none; }
+  .score-hero { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border-radius: 16px; padding: 2rem; text-align: center; margin-bottom: 1.5rem; }
+  .score-circle { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .score-num { font-size: 2rem; font-weight: 800; }
+  .score-total { font-size: 0.9rem; opacity: 0.8; }
+  .score-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .score-msg { font-size: 1rem; opacity: 0.9; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+  .stat-card { background: white; border-radius: 12px; padding: 1rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .stat-num { font-size: 1.8rem; font-weight: 800; }
+  .stat-label { font-size: 0.8rem; color: #6b7280; font-weight: 500; margin-top: 2px; }
+  .correct-stat { color: #059669; }
+  .wrong-stat { color: #dc2626; }
+  .skip-stat { color: #f59e0b; }
+
+  .review-card { background: white; border-radius: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 1rem; overflow: hidden; }
+  .review-header { padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+  .review-correct .review-header { background: #ecfdf5; }
+  .review-wrong .review-header { background: #fef2f2; }
+  .review-skip .review-header { background: #fffbeb; }
+  .review-icon { font-size: 1.1rem; }
+  .review-q { font-weight: 600; font-size: 0.95rem; color: #1f2937; flex: 1; }
+  .review-body { padding: 12px 16px; font-size: 0.9rem; line-height: 1.6; }
+  .answer-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .your-ans { color: #dc2626; }
+  .correct-ans { color: #059669; font-weight: 600; }
+  .explanation { color: #6b7280; border-left: 3px solid #a5b4fc; padding-left: 10px; margin-top: 6px; }
+  
+  .retry-btn { display: block; margin: 1rem auto 0; background: white; border: 2px solid #4f46e5; color: #4f46e5; padding: 12px 32px; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .retry-btn:hover { background: #ede9fe; }
+
+  .progress-bar { background: #e5e7eb; border-radius: 20px; height: 8px; margin-bottom: 1rem; overflow: hidden; }
+  .progress-fill { background: linear-gradient(90deg, #4f46e5, #7c3aed); height: 100%; border-radius: 20px; transition: width 0.3s; }
+
+  @media (max-width: 500px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="stars">⭐ ⭐ ⭐</div>
+  <h1>Grade 4 Science Test</h1>
+  <p>Chapters 4 · 8 · 10 &nbsp;|&nbsp; Habitats · Circuits · Earth's Structure</p>
+</div>
+
+<div class="container">
+
+<div id="test-form">
+
+  <!-- Student Info -->
+  <div class="card">
+    <div class="section-header" style="margin-bottom:1rem;">
+      <div class="section-badge"><i class="ti ti-user" style="font-size:1rem;"></i></div>
+      <h2>Your Details</h2>
+    </div>
+    <div class="info-grid">
+      <div>
+        <label>Your Name</label>
+        <input type="text" id="student-name" placeholder="e.g. Sara Ahmed">
+      </div>
+      <div>
+        <label>Class / Section</label>
+        <input type="text" id="student-class" placeholder="e.g. Grade 4 – Red">
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: MCQ -->
+  <div class="card">
+    <div class="section-header">
+      <div class="section-badge">A</div>
+      <h2>Multiple Choice Questions</h2>
+      <span class="chapter-tag">All Chapters</span>
+    </div>
+    <div id="mcq-container"></div>
+  </div>
+
+  <!-- SECTION 2: TRUE/FALSE -->
+  <div class="card">
+    <div class="section-header">
+      <div class="section-badge">B</div>
+      <h2>True or False</h2>
+      <span class="chapter-tag">All Chapters</span>
+    </div>
+    <div id="tf-container"></div>
+  </div>
+
+  <!-- SECTION 3: FILL IN BLANKS -->
+  <div class="card">
+    <div class="section-header">
+      <div class="section-badge">C</div>
+      <h2>Fill in the Blanks</h2>
+      <span class="chapter-tag">All Chapters</span>
+    </div>
+    <div id="fill-container"></div>
+  </div>
+
+  <div class="card">
+    <div class="submit-area">
+      <p style="color:#6b7280;font-size:0.9rem;margin-bottom:1rem;">Make sure you have answered all questions before submitting!</p>
+      <button class="submit-btn" onclick="submitTest()">
+        <i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- RESULTS PAGE -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-circle">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total" id="res-total">/20</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div class="score-msg" id="res-msg"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num correct-stat" id="res-correct">0</div>
+      <div class="stat-label">✅ Correct</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num wrong-stat" id="res-wrong">0</div>
+      <div class="stat-label">❌ Incorrect</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num skip-stat" id="res-skip">0</div>
+      <div class="stat-label">⏭ Skipped</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.1rem;font-weight:700;color:#1f2937;margin-bottom:1rem;">📝 Review All Questions</h2>
+    <div id="review-container"></div>
+  </div>
+
+  <button class="retry-btn" onclick="retryTest()">
+    <i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again
+  </button>
+</div>
+
+</div>
+
+<script>
+const mcqData = [
+  {
+    q: "What is a habitat?",
+    options: ["A food animals eat", "A place where an animal lives and gets food, water and shelter", "A type of weather", "A name for ocean water"],
+    answer: 1,
+    exp: "A habitat is the natural place where a plant or animal lives. It provides food, water, and shelter."
+  },
+  {
+    q: "Which animal is suited to live in a polar region?",
+    options: ["Camel", "Tiger", "Polar bear", "Dolphin"],
+    answer: 2,
+    exp: "Polar bears have thick fur and fat to survive very cold temperatures in the polar regions."
+  },
+  {
+    q: "Which habitat is hot, dry and has very little rainfall?",
+    options: ["Ocean", "Desert", "Rainforest", "Grassland"],
+    answer: 1,
+    exp: "Deserts are hot and have dry soil with very little rainfall. Animals there must be suited to the heat."
+  },
+  {
+    q: "In a closed circuit, a lamp will:",
+    options: ["Stay off because there is no battery", "Light up because electricity can flow", "Explode", "Make a sound"],
+    answer: 1,
+    exp: "In a closed circuit there are no breaks, so electric current flows continuously and the lamp lights up."
+  },
+  {
+    q: "What does a switch do in a circuit?",
+    options: ["It makes the lamp brighter", "It adds more batteries", "It opens or closes the circuit to turn a device on or off", "It changes the wire length"],
+    answer: 2,
+    exp: "A switch controls the flow of electric current. When it's closed, the circuit is complete; when open, there's a break and the device turns off."
+  },
+  {
+    q: "What happens to a lamp's brightness when you add MORE lamps to the circuit?",
+    options: ["It gets brighter", "It gets dimmer", "Nothing changes", "The battery explodes"],
+    answer: 1,
+    exp: "Adding more lamps to a circuit shares the electrical energy among them, so each lamp becomes dimmer."
+  },
+  {
+    q: "Which material is a good electrical conductor?",
+    options: ["Rubber", "Plastic", "Wood", "Copper"],
+    answer: 3,
+    exp: "Copper is a metal and the most common material used for electrical wires because it allows electric current to flow easily."
+  },
+  {
+    q: "The Earth's thinnest layer is called the:",
+    options: ["Mantle", "Inner core", "Crust", "Outer core"],
+    answer: 2,
+    exp: "The crust is the outermost and thinnest layer of the Earth. It is the surface layer where we live."
+  },
+  {
+    q: "When magma comes OUT of a volcano onto the Earth's surface, it is called:",
+    options: ["Magma", "Steam", "Lava", "Ash"],
+    answer: 2,
+    exp: "Magma is molten rock inside the Earth. Once it exits through the vent onto the surface during an eruption, it is called lava."
+  },
+  {
+    q: "What causes an earthquake?",
+    options: ["Heavy rainfall", "The movement of tectonic plates", "Eruption of volcanoes only", "Wind erosion"],
+    answer: 1,
+    exp: "Earthquakes are caused by the movement of tectonic plates — large slabs of solid rock that make up the Earth's crust."
+  }
+];
+
+const tfData = [
+  {
+    q: "Animals that live in a habitat are suited to that habitat.",
+    answer: true,
+    exp: "Correct! Animals have special features (adaptations) that make them well-suited to survive in their particular habitat."
+  },
+  {
+    q: "Polar bears and orangutans are found in the same habitat.",
+    answer: false,
+    exp: "False. Polar bears live in cold polar regions while orangutans live in warm, humid tropical rainforests."
+  },
+  {
+    q: "Grass can survive in deserts, grasslands and forests.",
+    answer: true,
+    exp: "True! Grass is adaptable and can grow in areas with much or little rainfall, including grasslands, forests, and even deserts."
+  },
+  {
+    q: "When you turn a switch OFF, the circuit is closed and current can flow.",
+    answer: false,
+    exp: "False. When a switch is turned OFF, the circuit is OPEN (there is a break), and electric current CANNOT flow."
+  },
+  {
+    q: "Electrical insulators allow electric current to flow easily.",
+    answer: false,
+    exp: "False. Insulators do NOT allow electric current to flow easily. Conductors (like metals) allow current to flow."
+  },
+  {
+    q: "The inner core of the Earth is the hottest layer.",
+    answer: true,
+    exp: "True! The inner core has temperatures ranging from 5,000°C to 6,000°C, making it the hottest part of the Earth."
+  },
+  {
+    q: "Volcanoes are usually found in breaks in the Earth's crust.",
+    answer: true,
+    exp: "True! Volcanoes form at breaks or weak points in the Earth's crust where magma can escape to the surface."
+  },
+  {
+    q: "Plants cannot survive in environments different from their own habitat.",
+    answer: false,
+    exp: "False. Many plants can survive in other environments. For example, cacti usually live in deserts but can also survive in humid environments."
+  }
+];
+
+const fillData = [
+  {
+    q: "The mantle is the layer found ________ the crust.",
+    answer: "beneath",
+    alt: ["below", "under"],
+    exp: "The mantle is directly beneath (below) the crust. Its temperature ranges from 1,000°C to 3,700°C and it contains magma."
+  },
+  {
+    q: "Electricity travels from a power source through ________ in a circuit.",
+    answer: "wires",
+    alt: ["wire"],
+    exp: "Electric current flows through wires around the circuit and back to the cell (battery)."
+  },
+  {
+    q: "Animals that live in tropical rainforests are suited to the warm, humid environment and live among ________ and plants.",
+    answer: "trees",
+    alt: [],
+    exp: "Tropical rainforests are warm and humid with many tall trees. Animals like tigers, orangutans, and toucans live among the trees."
+  },
+  {
+    q: "A ________ is used to measure the movements of the Earth's surface caused by earthquakes.",
+    answer: "seismograph",
+    alt: ["seismometer"],
+    exp: "A seismograph is an instrument that records waves caused by movement or shaking of the ground, especially earthquakes."
+  },
+  {
+    q: "When more ________ (batteries) are added to a circuit, the lamp becomes brighter.",
+    answer: "cells",
+    alt: ["batteries", "battery", "cell"],
+    exp: "More cells in a circuit provide more electrical energy, which makes the lamp brighter."
+  },
+  {
+    q: "The Earth's crust is made up of large pieces called ________ plates.",
+    answer: "tectonic",
+    alt: [],
+    exp: "Tectonic plates are large slabs of solid rock that form the Earth's crust. Their movement can cause earthquakes."
+  }
+];
+
+const userAnswers = { mcq: {}, tf: {}, fill: {} };
+
+function buildMCQ() {
+  const container = document.getElementById('mcq-container');
+  mcqData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-block';
+    div.innerHTML = `
+      <div class="q-num">Question ${i+1} of ${mcqData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="mcq-opts-${i}">
+        ${q.options.map((o, j) => `
+          <button class="option-btn" onclick="selectMCQ(${i}, ${j})">
+            <span class="option-letter">${String.fromCharCode(65+j)}</span> ${o}
+          </button>
+        `).join('')}
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function selectMCQ(qi, oi) {
+  userAnswers.mcq[qi] = oi;
+  const opts = document.querySelectorAll(`#mcq-opts-${qi} .option-btn`);
+  opts.forEach((b, j) => b.classList.toggle('selected', j === oi));
+}
+
+function buildTF() {
+  const container = document.getElementById('tf-container');
+  tfData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-block';
+    div.innerHTML = `
+      <div class="q-num">Statement ${i+1} of ${tfData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="tf-row">
+        <button class="tf-btn" id="tf-t-${i}" onclick="selectTF(${i}, true)">✅ True</button>
+        <button class="tf-btn" id="tf-f-${i}" onclick="selectTF(${i}, false)">❌ False</button>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function selectTF(qi, val) {
+  userAnswers.tf[qi] = val;
+  document.getElementById(`tf-t-${qi}`).className = 'tf-btn' + (val === true ? ' selected-true' : '');
+  document.getElementById(`tf-f-${qi}`).className = 'tf-btn' + (val === false ? ' selected-false' : '');
+}
+
+function buildFill() {
+  const container = document.getElementById('fill-container');
+  fillData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-block';
+    div.innerHTML = `
+      <div class="q-num">Blank ${i+1} of ${fillData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <input class="fill-input" type="text" placeholder="Type your answer here..." id="fill-inp-${i}" oninput="userAnswers.fill[${i}]=this.value">`;
+    container.appendChild(div);
+  });
+}
+
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'Student';
+  const cls = document.getElementById('student-class').value.trim() || '';
+
+  let correct = 0, wrong = 0, skip = 0;
+  const total = mcqData.length + tfData.length + fillData.length;
+  const reviews = [];
+
+  mcqData.forEach((q, i) => {
+    const ua = userAnswers.mcq[i];
+    if (ua === undefined || ua === null) {
+      skip++;
+      reviews.push({ status: 'skip', q: q.q, your: 'Not answered', correct: q.options[q.answer], exp: q.exp });
+    } else if (ua === q.answer) {
+      correct++;
+      reviews.push({ status: 'correct', q: q.q, your: q.options[ua], correct: q.options[q.answer], exp: q.exp });
+    } else {
+      wrong++;
+      reviews.push({ status: 'wrong', q: q.q, your: q.options[ua], correct: q.options[q.answer], exp: q.exp });
+    }
+  });
+
+  tfData.forEach((q, i) => {
+    const ua = userAnswers.tf[i];
+    if (ua === undefined || ua === null) {
+      skip++;
+      reviews.push({ status: 'skip', q: q.q, your: 'Not answered', correct: q.answer ? 'True' : 'False', exp: q.exp });
+    } else if (ua === q.answer) {
+      correct++;
+      reviews.push({ status: 'correct', q: q.q, your: ua ? 'True' : 'False', correct: q.answer ? 'True' : 'False', exp: q.exp });
+    } else {
+      wrong++;
+      reviews.push({ status: 'wrong', q: q.q, your: ua ? 'True' : 'False', correct: q.answer ? 'True' : 'False', exp: q.exp });
+    }
+  });
+
+  fillData.forEach((q, i) => {
+    const ua = (userAnswers.fill[i] || '').trim().toLowerCase();
+    const correctAnswers = [q.answer.toLowerCase(), ...q.alt.map(a => a.toLowerCase())];
+    if (!ua) {
+      skip++;
+      reviews.push({ status: 'skip', q: q.q, your: 'Not answered', correct: q.answer, exp: q.exp });
+    } else if (correctAnswers.includes(ua)) {
+      correct++;
+      reviews.push({ status: 'correct', q: q.q, your: userAnswers.fill[i], correct: q.answer, exp: q.exp });
+    } else {
+      wrong++;
+      reviews.push({ status: 'wrong', q: q.q, your: userAnswers.fill[i], correct: q.answer, exp: q.exp });
+    }
+  });
+
+  const pct = Math.round((correct / total) * 100);
+  let msg = pct >= 90 ? "🏆 Outstanding! You're a science superstar!" :
+            pct >= 70 ? "🌟 Great job! Keep up the good work!" :
+            pct >= 50 ? "👍 Good effort! Review the topics and try again!" :
+                        "💪 Keep studying! You'll do better next time!";
+
+  document.getElementById('res-score').textContent = correct;
+  document.getElementById('res-total').textContent = '/' + total;
+  document.getElementById('res-name').textContent = name + (cls ? ' · ' + cls : '');
+  document.getElementById('res-msg').textContent = msg + '  (' + pct + '%)';
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
+  document.getElementById('res-skip').textContent = skip;
+
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  reviews.forEach((r, i) => {
+    const icon = r.status === 'correct' ? '✅' : r.status === 'wrong' ? '❌' : '⏭';
+    const cls2 = 'review-' + r.status;
+    rc.innerHTML += `
+      <div class="review-card ${cls2}">
+        <div class="review-header">
+          <span class="review-icon">${icon}</span>
+          <span class="review-q">Q${i+1}: ${r.q}</span>
+        </div>
+        <div class="review-body">
+          <div class="answer-row">
+            ${r.status !== 'correct' ? `<span class="your-ans">Your answer: ${r.your}</span>` : ''}
+            <span class="correct-ans">Correct answer: ${r.correct}</span>
+          </div>
+          <div class="explanation">💡 ${r.exp}</div>
+        </div>
+      </div>`;
+  });
+
+  document.getElementById('test-form').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retryTest() {
+  Object.keys(userAnswers.mcq).forEach(k => delete userAnswers.mcq[k]);
+  Object.keys(userAnswers.tf).forEach(k => delete userAnswers.tf[k]);
+  Object.keys(userAnswers.fill).forEach(k => delete userAnswers.fill[k]);
+  document.getElementById('mcq-container').innerHTML = '';
+  document.getElementById('tf-container').innerHTML = '';
+  document.getElementById('fill-container').innerHTML = '';
+  buildMCQ(); buildTF(); buildFill();
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildMCQ();
+buildTF();
+buildFill();
+</script>
+</body>
+</html>
