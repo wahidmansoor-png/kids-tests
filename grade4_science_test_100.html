@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 4 Science – 100 Question Test</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);color:white;padding:2rem 1rem 3rem;text-align:center;}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;}
+.hero p{font-size:.95rem;opacity:.85;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;}
+.hero-badge{background:rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:600;}
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem;margin-bottom:1.5rem;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#4f46e5;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{background:#4f46e5;color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.chapter-tag{background:#ede9fe;color:#4f46e5;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:all .2s;background:white;font-size:.93rem;color:#374151;text-align:left;}
+.option-btn:hover{border-color:#a5b4fc;background:#f5f3ff;}
+.option-btn.selected{border-color:#4f46e5;background:#ede9fe;color:#3730a3;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#4f46e5;}
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#a5b4fc;background:#f5f3ff;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#4f46e5;}
+/* Match question */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;cursor:pointer;width:100%;background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#4f46e5;}
+/* Sort/order */
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-label{font-size:.85rem;color:#6b7280;font-weight:600;min-width:60px;}
+.sort-select{flex:1;padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;background:white;cursor:pointer;}
+.sort-select:focus{border-color:#4f46e5;}
+/* Error correction */
+.error-text{font-style:italic;color:#374151;background:#fef9c3;padding:10px 14px;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:8px;font-size:.95rem;line-height:1.5;}
+.submit-area{text-align:center;}
+.submit-btn{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border:none;padding:14px 44px;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(79,70,229,.4);transition:transform .15s,box-shadow .15s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(79,70,229,.5);}
+/* Results */
+#results{display:none;}
+.score-hero{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#4f46e5;}
+/* Filter bar */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#4f46e5;background:#ede9fe;color:#4f46e5;}
+.review-card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong .review-header{background:#fef2f2;}
+.review-skip .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #a5b4fc;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#ede9fe;color:#4f46e5;flex-shrink:0;}
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;border:2px solid #4f46e5;color:#4f46e5;padding:12px 36px;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#ede9fe;}
+.progress-note{text-align:center;font-size:.85rem;color:#6b7280;margin-bottom:1rem;}
+.chapter-section-label{font-size:.8rem;font-weight:700;color:#4f46e5;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid #ede9fe;}
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;">🔬 🌍 ⚡</div>
+  <h1>Grade 4 Science – Mega Test</h1>
+  <p>Cambridge Primary Science · Chapters 4, 8 & 10</p>
+  <div class="hero-badges">
+    <span class="hero-badge">100 Questions</span>
+    <span class="hero-badge">6 Question Types</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div><label>Your Name</label><input type="text" id="student-name" placeholder="e.g. Sara Ahmed"></div>
+    <div><label>Class / Section</label><input type="text" id="student-class" placeholder="e.g. Grade 4 – Red"></div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">Answer all 100 questions then submit to see your results!</p>
+    <button class="submit-btn" onclick="submitTest()"><i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test</button>
+  </div>
+</div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total">/100</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat">100</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All (100)</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+  <button class="retry-btn" onclick="retryTest()"><i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again</button>
+</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// ALL 100 QUESTIONS
+// Types: mcq | tf | fill | match | order | error
+// ═══════════════════════════════════════════════════════
+
+const sections = [
+  {
+    title: "Section A – Multiple Choice",
+    badge: "A",
+    typeLabel: "Choose the best answer",
+    questions: [
+      // CH4 – Habitats
+      {type:"mcq",ch:"Chapter 4",q:"What is a habitat?",opts:["A type of food","A place where an animal lives and gets food, water and shelter","A weather pattern","An ocean current"],ans:1,exp:"A habitat is the natural place where a plant or animal lives. It provides food, water, and shelter for the animals there."},
+      {type:"mcq",ch:"Chapter 4",q:"Which habitat has cold temperatures and ice all around?",opts:["Desert","Grassland","Polar region","Tropical rainforest"],ans:2,exp:"Polar regions are very cold with ice all around. Animals there are suited to live in very low temperatures."},
+      {type:"mcq",ch:"Chapter 4",q:"Which of these animals lives in the desert?",opts:["Dolphin","Polar bear","Camel","Tiger"],ans:2,exp:"Camels are well suited to the desert. They can survive with little water and tolerate the intense heat."},
+      {type:"mcq",ch:"Chapter 4",q:"Tropical rainforests are described as:",opts:["Cold and dry","Warm, very humid and wet","Freezing and snowy","Hot and very dry"],ans:1,exp:"Tropical rainforests are usually warm, very humid, and wet. Animals there are suited to live among the trees and plants."},
+      {type:"mcq",ch:"Chapter 4",q:"Which animals live in grasslands?",opts:["Dolphins and sharks","Camels and rattlesnakes","Zebras and hyenas","Tigers and orangutans"],ans:2,exp:"Grasslands are wide, open areas where mostly grass and flowers grow. Zebras and hyenas are among the animals suited to live in these large open spaces."},
+      {type:"mcq",ch:"Chapter 4",q:"Oceans are aquatic habitats that contain a lot of:",opts:["Freshwater","Salt","Sand only","Ice"],ans:1,exp:"Oceans have water that contains a lot of salt. Most ocean animals are suited to breathe underwater."},
+      {type:"mcq",ch:"Chapter 4",q:"What does 'suited to a habitat' mean?",opts:["The animal was born there","The animal has special features that help it survive there","The animal visits sometimes","The animal is the biggest there"],ans:1,exp:"When we say an animal is suited to its habitat, we mean it has special features (adaptations) that help it survive in that environment."},
+      {type:"mcq",ch:"Chapter 4",q:"Which animals are found in tropical rainforests?",opts:["Tigers, tree frogs and orangutans","Polar bears and penguins","Camels and fennec foxes","Dolphins and octopuses"],ans:0,exp:"Tigers, tree frogs, orangutans, toucans, snakes and leaf insects live in rainforests which are warm, humid environments."},
+      {type:"mcq",ch:"Chapter 4",q:"What is special about cacti that helps them survive in deserts?",opts:["They need lots of water","They are found only in rainforests","They can survive in hot, dry environments","They live underwater"],ans:2,exp:"Cacti are usually found in hot and dry environments. They store water and can survive with very little rainfall."},
+      {type:"mcq",ch:"Chapter 4",q:"Why do animals move to a different place when their habitat changes?",opts:["They get bored","Because there is no more food or water or it gets too cold","Because they want to explore","They follow the sun"],ans:1,exp:"Some animals move to a different environment when it gets cold or when there is no more food or water in their habitat."},
+      // CH8 – Circuits
+      {type:"mcq",ch:"Chapter 8",q:"What flows through the wires in an electrical circuit?",opts:["Water","Heat","Electric current","Air"],ans:2,exp:"Electric current flows through wires in a circuit. Electricity travels from the power source, around the circuit, and back to the cell."},
+      {type:"mcq",ch:"Chapter 8",q:"What happens when there is a break in a circuit?",opts:["The lamp gets brighter","Electric current cannot flow and the lamp will not light up","More current flows","The battery charges faster"],ans:1,exp:"If there is a break in the circuit, electric current cannot flow around the circuit. As a result, the lamp will not light up."},
+      {type:"mcq",ch:"Chapter 8",q:"What is the purpose of a switch in a circuit?",opts:["To make wires longer","To store electricity","To open or close the circuit and turn devices on or off","To measure current"],ans:2,exp:"A switch is used to control the flow of electric current. It can be used to turn an electrical device on (closed circuit) or off (open circuit)."},
+      {type:"mcq",ch:"Chapter 8",q:"Which material is the best electrical conductor?",opts:["Rubber","Plastic","Wood","Copper"],ans:3,exp:"Copper is a metal and is the most common material used for electrical wires because it allows electric current to flow easily."},
+      {type:"mcq",ch:"Chapter 8",q:"What happens to the brightness of a lamp when you add MORE cells to the circuit?",opts:["It gets dimmer","It stays the same","It gets brighter","It goes off completely"],ans:2,exp:"The more cells (batteries) in a circuit, the brighter the lamp will be, because more electrical energy is provided."},
+      {type:"mcq",ch:"Chapter 8",q:"What happens to the brightness of a lamp when you add MORE lamps to the same circuit?",opts:["All lamps get brighter","All lamps get dimmer","The first lamp gets brighter","Nothing changes"],ans:1,exp:"The more lamps in a circuit, the dimmer each lamp will be, because the electrical energy is shared among more lamps."},
+      {type:"mcq",ch:"Chapter 8",q:"Why are electrical wires covered in plastic?",opts:["To make them colourful","To make them heavier","To prevent electric shocks because plastic is an insulator","To conduct electricity better"],ans:2,exp:"Plastic is a good electrical insulator that does not allow electric current to flow easily. It protects us from electric shocks."},
+      {type:"mcq",ch:"Chapter 8",q:"Which of these is an electrical insulator?",opts:["Copper","Iron","Rubber","Aluminium"],ans:2,exp:"Rubber is an electrical insulator — it does not allow electric current to flow through it. This is why rubber boots protect electricians."},
+      {type:"mcq",ch:"Chapter 8",q:"Solar-powered lamps use energy from the:",opts:["Moon","Stars","Wind","Sun"],ans:3,exp:"Solar-powered lamps use energy from the Sun to light up. The cells get energy from sunlight in the daytime to charge the battery."},
+      {type:"mcq",ch:"Chapter 8",q:"In a circuit with two switches, what must happen for a lamp to light up?",opts:["Only one switch must be closed","Both switches must be closed","Both switches must be open","It does not matter"],ans:1,exp:"In a circuit with two switches in series, BOTH switches must be closed for the circuit to be complete and the lamp to light up."},
+      // CH10 – Earth
+      {type:"mcq",ch:"Chapter 10",q:"How many main layers does the Earth have?",opts:["Two","Three","Four","Five"],ans:2,exp:"The Earth is made up of four different layers: the crust, the mantle, the outer core, and the inner core."},
+      {type:"mcq",ch:"Chapter 10",q:"Which is the thinnest layer of the Earth?",opts:["Inner core","Outer core","Mantle","Crust"],ans:3,exp:"The crust is the Earth's surface layer and is the thinnest among the four layers. It is the layer we live on."},
+      {type:"mcq",ch:"Chapter 10",q:"What is the temperature range of the inner core?",opts:["100°C to 200°C","1,000°C to 2,000°C","5,000°C to 6,000°C","10°C to 50°C"],ans:2,exp:"The inner core has the highest temperature of all layers, ranging from 5,000°C to 6,000°C. It is made mainly of iron."},
+      {type:"mcq",ch:"Chapter 10",q:"What is magma?",opts:["Frozen water underground","Melted rock inside the Earth","A type of gas","The outer crust layer"],ans:1,exp:"Magma is melted rock found inside the Earth. It is contained in the mantle. When it comes out of a volcano it is called lava."},
+      {type:"mcq",ch:"Chapter 10",q:"A volcano is a mountain that has an opening for:",opts:["Water and steam only","Magma and gas to escape","Wind to pass through","Earthquakes to happen"],ans:1,exp:"A volcano is a mountain that has an opening (vent) for magma and gas beneath the Earth to escape. Volcanoes are found in breaks in the Earth's crust."},
+      {type:"mcq",ch:"Chapter 10",q:"What causes an earthquake?",opts:["Heavy rain","Volcanic eruptions only","Movement of tectonic plates","Strong wind"],ans:2,exp:"The Earth's crust is made up of large pieces called tectonic plates. Their movement can cause the ground to shake suddenly and violently — this is an earthquake."},
+      {type:"mcq",ch:"Chapter 10",q:"What is a seismograph used for?",opts:["Measuring rainfall","Predicting weather","Measuring movements of the Earth's surface","Drilling into the crust"],ans:2,exp:"A seismograph is an instrument that measures the movements of the Earth's surface, especially those caused by earthquakes and volcanoes."},
+      {type:"mcq",ch:"Chapter 10",q:"When magma reaches the Earth's surface, it is called:",opts:["Magma","Ash","Lava","Steam"],ans:2,exp:"Magma is the name for molten rock inside the Earth. Once it exits through a volcano onto the surface, it is called lava."},
+      {type:"mcq",ch:"Chapter 10",q:"The outer core is made of:",opts:["Solid iron","Melted metals such as iron and nickel","Liquid water","Rock and soil"],ans:1,exp:"The outer core temperature ranges from 4,000°C to 5,000°C. This layer is made of melted (liquid) metals such as iron and nickel."},
+      {type:"mcq",ch:"Chapter 10",q:"Which layer of the Earth do we live on?",opts:["Mantle","Outer core","Inner core","Crust"],ans:3,exp:"The crust is the Earth's surface — it is the layer we live on. It is the outermost and thinnest layer of the Earth."},
+    ]
+  },
+  {
+    title: "Section B – True or False",
+    badge: "B",
+    typeLabel: "Decide if each statement is True or False",
+    questions: [
+      {type:"tf",ch:"Chapter 4",q:"Animals that live in a habitat are suited to that habitat.",ans:true,exp:"True! Animals have special features called adaptations that help them survive in their particular habitat."},
+      {type:"tf",ch:"Chapter 4",q:"Polar bears and orangutans are found in the same habitat.",ans:false,exp:"False. Polar bears live in cold polar regions while orangutans live in warm, humid tropical rainforests."},
+      {type:"tf",ch:"Chapter 4",q:"A habitat provides an animal with food, water and shelter.",ans:true,exp:"True! A habitat is a place that provides the animal with all it needs: food, water, and shelter."},
+      {type:"tf",ch:"Chapter 4",q:"Deserts have a lot of rainfall.",ans:false,exp:"False. Deserts are hot and have dry soil. There is very little rainfall. Animals there must be suited to the heat."},
+      {type:"tf",ch:"Chapter 4",q:"Grass can survive in environments with much or little rainfall.",ans:true,exp:"True! Grass can be found in areas that have some rainfall. However, it can also survive in environments with much or little rainfall."},
+      {type:"tf",ch:"Chapter 4",q:"An animal can ONLY survive in its own natural habitat.",ans:false,exp:"False. Some animals can survive in other habitats too. For example, deer are best suited to forests but can also survive in grasslands and mountains."},
+      {type:"tf",ch:"Chapter 4",q:"Some animals change their colour over time to blend into a new environment.",ans:true,exp:"True! Some animals can change their structure (including colour) over time to suit the different environment they are in, helping them blend in."},
+      {type:"tf",ch:"Chapter 4",q:"Apple snails are best suited to swamps.",ans:true,exp:"True! Apple snails are best suited to swamps. However, they can also survive in different aquatic habitats like rice fields, ponds and beaches."},
+      {type:"tf",ch:"Chapter 4",q:"Squirrels in cold habitats go into a deep sleep during winter.",ans:true,exp:"True! Squirrels in the desert are active the whole year, but squirrels in cold habitats go into a long deep sleep during winter — this is an example of behavioural change."},
+      {type:"tf",ch:"Chapter 4",q:"Pine trees can only grow in cold mountain environments.",ans:false,exp:"False. Pine trees grow in cold environments but they can also survive in environments with warmer temperatures. They can grow on mountains, in rainforests, and along beaches."},
+      {type:"tf",ch:"Chapter 8",q:"A closed circuit allows electric current to flow.",ans:true,exp:"True! In a closed circuit, there are no breaks, so electric current can flow continuously and devices like lamps will work."},
+      {type:"tf",ch:"Chapter 8",q:"When a switch is turned OFF, the circuit is closed.",ans:false,exp:"False. When the switch is turned OFF, the circuit is OPEN. There is a break in the circuit and electric current CANNOT flow."},
+      {type:"tf",ch:"Chapter 8",q:"Copper is a good electrical conductor.",ans:true,exp:"True! Copper is a metal and is the most common material used for electrical wires because it allows electric current to flow easily."},
+      {type:"tf",ch:"Chapter 8",q:"Electrical wires are made of plastic because plastic conducts electricity.",ans:false,exp:"False. Electrical wires are made of metal (like copper) which conducts electricity. The plastic COVERING is an insulator that protects us from electric shocks."},
+      {type:"tf",ch:"Chapter 8",q:"A lamp in a circuit with longer wires will be less bright than one with shorter wires.",ans:true,exp:"True! Longer wires have more resistance, so less current flows and the lamp will be dimmer compared to a circuit with shorter wires."},
+      {type:"tf",ch:"Chapter 8",q:"Our bodies are good conductors of electricity.",ans:true,exp:"True! Our body is a good conductor of electricity. If electric current flows through our body into the Earth, we will get an electric shock. This is why wires are covered in plastic."},
+      {type:"tf",ch:"Chapter 8",q:"Adding more cells always makes the lamp dimmer.",ans:false,exp:"False. Adding more cells (batteries) makes the lamp BRIGHTER. The more cells in a circuit, the more electrical energy, and the brighter the lamp."},
+      {type:"tf",ch:"Chapter 8",q:"A buzzer can be added to a circuit to produce sound.",ans:true,exp:"True! Circuits can be made in many ways. You can add buzzers or alarms to produce sounds instead of, or alongside, light."},
+      {type:"tf",ch:"Chapter 10",q:"The inner core of the Earth is the hottest layer.",ans:true,exp:"True! The inner core has temperatures ranging from 5,000°C to 6,000°C — making it the hottest layer of the Earth."},
+      {type:"tf",ch:"Chapter 10",q:"The outer core of the Earth is cooler than the mantle.",ans:false,exp:"False. The outer core (4,000°C–5,000°C) is much hotter than the mantle (1,000°C–3,700°C)."},
+      {type:"tf",ch:"Chapter 10",q:"Volcanoes are usually found at breaks in the Earth's crust.",ans:true,exp:"True! Volcanoes are usually found in breaks of the Earth's crust where magma can escape to the surface."},
+      {type:"tf",ch:"Chapter 10",q:"An earthquake occurs ONLY when two tectonic plates crash into each other.",ans:false,exp:"False. Tectonic plates move in different ways. A plate can crash into another, slide past another, or move away from another — all of these can cause earthquakes."},
+      {type:"tf",ch:"Chapter 10",q:"When magma is above the ground, it is known as lava.",ans:true,exp:"True! Magma is the name for molten rock inside the Earth. Once it reaches the surface during a volcanic eruption, it is called lava."},
+      {type:"tf",ch:"Chapter 10",q:"The mantle is found between the crust and the core.",ans:true,exp:"True! The mantle is the layer beneath the crust. Its temperature ranges from 1,000°C to 3,700°C and it contains magma (melted rocks)."},
+      {type:"tf",ch:"Chapter 10",q:"Seismographs can predict earthquakes.",ans:false,exp:"False. Seismographs can RECORD earthquakes by measuring the waves caused by shaking of the ground, but they cannot predict when earthquakes will happen."},
+    ]
+  },
+  {
+    title: "Section C – Fill in the Blanks",
+    badge: "C",
+    typeLabel: "Type the correct word(s) to complete each sentence",
+    questions: [
+      {type:"fill",ch:"Chapter 4",q:"A habitat is a place in which an animal ________, and it provides the animal with food, water and shelter.",ans:"lives",alt:[],exp:"A habitat is a place in which an animal lives. It provides the animal with food, water and shelter."},
+      {type:"fill",ch:"Chapter 4",q:"Animals that live in a habitat are ________ to that habitat.",ans:"suited",alt:[],exp:"Animals that live in a habitat are suited (well-adapted) to that habitat."},
+      {type:"fill",ch:"Chapter 4",q:"The polar regions are ________ and there is ice all around.",ans:"cold",alt:["very cold","freezing","icy"],exp:"Polar regions are cold with ice all around. Animals there are suited to live in very low temperatures."},
+      {type:"fill",ch:"Chapter 4",q:"Tropical rainforests are warm, very ________ and wet.",ans:"humid",alt:[],exp:"Tropical rainforests are usually warm, very humid (moist) and wet. Humidity means there is a lot of water vapour in the air."},
+      {type:"fill",ch:"Chapter 4",q:"Grasslands are ________ open areas where mostly grass and flowers grow.",ans:"wide",alt:["large","big"],exp:"Grasslands are wide, open areas where mostly grass and flowers grow. Animals there are suited to live in the large open spaces."},
+      {type:"fill",ch:"Chapter 4",q:"Desert rats, camels, fennec foxes, tarantulas and rattlesnakes live in ________.",ans:"deserts",alt:["desert","the desert"],exp:"These animals are all suited to the desert environment — hot temperatures, dry soil, and very little rainfall."},
+      {type:"fill",ch:"Chapter 4",q:"Some animals move to a different ________ when their habitat changes.",ans:"environment",alt:["place","area","habitat"],exp:"Some animals move to a different place/environment when their habitat changes, for example when it gets too cold or there is no food."},
+      {type:"fill",ch:"Chapter 4",q:"Some animals can change their ________ to suit the different environment they are in.",ans:"structure",alt:["body","colour","color"],exp:"Some animals can change their structure (body features or colour) over time to help them blend into a new environment."},
+      {type:"fill",ch:"Chapter 4",q:"Plants that live in a rainforest where the environment is wet generally have ________ leaves.",ans:"large",alt:["big","wide"],exp:"Plants in wet rainforest environments generally have large leaves to absorb the abundant sunlight through the forest canopy."},
+      {type:"fill",ch:"Chapter 4",q:"Cacti are usually found in hot and ________ environments.",ans:"dry",alt:[],exp:"Cacti are usually found in hot and dry environments such as deserts. However, they can also survive in environments that are humid."},
+      {type:"fill",ch:"Chapter 8",q:"Electricity travels from a power source around the circuit through ________.",ans:"wires",alt:["wire"],exp:"Electric current flows through the wires around the circuit and back to the cell (battery)."},
+      {type:"fill",ch:"Chapter 8",q:"A ________ is used to control the flow of electric current in a circuit.",ans:"switch",alt:[],exp:"A switch is used to control the flow of electric current. It can be used to turn an electrical device on or off."},
+      {type:"fill",ch:"Chapter 8",q:"When we turn the switch ON, the circuit is ________ and the lamp lights up.",ans:"closed",alt:[],exp:"When the switch is ON, the circuit is closed — there are no breaks and electric current can flow, so the lamp lights up."},
+      {type:"fill",ch:"Chapter 8",q:"The more cells in a circuit, the ________ the lamp will be.",ans:"brighter",alt:["more bright"],exp:"More cells provide more electrical energy, which makes the lamp glow brighter."},
+      {type:"fill",ch:"Chapter 8",q:"Copper is usually used to make wires because it is a good electrical ________.",ans:"conductor",alt:[],exp:"Copper is a good electrical conductor — it allows electric current to flow easily, making it ideal for electrical wires."},
+      {type:"fill",ch:"Chapter 8",q:"Electrical ________ are materials that do not allow electric current to flow easily.",ans:"insulators",alt:["insulator"],exp:"Electrical insulators do not allow electric current to flow easily. Non-metals such as plastic, rubber and wood are good insulators."},
+      {type:"fill",ch:"Chapter 8",q:"We use ________ to cover wires so we do not get electric shocks.",ans:"plastic",alt:["rubber"],exp:"Plastic is a good electrical insulator that protects us from electric shocks. That is why electrical wires are covered in plastic."},
+      {type:"fill",ch:"Chapter 10",q:"The Earth is made up of ________ different layers.",ans:"four",alt:["4"],exp:"The Earth has four layers: the crust, the mantle, the outer core, and the inner core."},
+      {type:"fill",ch:"Chapter 10",q:"The ________ is the thinnest and outermost layer of the Earth.",ans:"crust",alt:[],exp:"The crust is the Earth's surface — it is the outermost and thinnest layer. It is the layer we live on."},
+      {type:"fill",ch:"Chapter 10",q:"The mantle contains ________, which is made of melted rocks.",ans:"magma",alt:["lava"],exp:"The mantle contains magma — melted (molten) rock. When this magma escapes through a volcano, it is called lava."},
+      {type:"fill",ch:"Chapter 10",q:"The movement of ________ plates can cause the ground to shake, which is known as an earthquake.",ans:"tectonic",alt:[],exp:"Tectonic plates are large pieces of the Earth's crust. Their movement causes the ground to shake — this is an earthquake."},
+      {type:"fill",ch:"Chapter 10",q:"A volcano is a mountain with an opening called a ________, through which magma escapes.",ans:"vent",alt:[],exp:"Magma shoots out of the vent and is released through the crater at the top of the volcano during an eruption."},
+      {type:"fill",ch:"Chapter 10",q:"A ________ is an instrument that measures movements caused by earthquakes.",ans:"seismograph",alt:["seismometer"],exp:"A seismograph records waves caused by the movement or shaking of the ground, especially earthquakes and volcanoes."},
+      {type:"fill",ch:"Chapter 10",q:"The inner core is a huge metal ball made up mainly of ________.",ans:"iron",alt:[],exp:"The centre of the Earth (inner core) is a huge metal ball made up mainly of iron. It has the highest temperature of all layers."},
+      {type:"fill",ch:"Chapter 10",q:"When magma reaches the surface of the Earth, it is called ________.",ans:"lava",alt:[],exp:"Magma is the name for molten rock inside the Earth. Once it reaches the surface through a volcanic eruption, it is called lava."},
+    ]
+  },
+  {
+    title: "Section D – Match the Columns",
+    badge: "D",
+    typeLabel: "Match each item on the left with the correct answer on the right",
+    questions: [
+      {type:"match",ch:"Chapter 4",q:"Match each animal to its correct habitat.",
+       pairs:[["Polar bear","Polar region"],["Camel","Desert"],["Tiger","Rainforest"],["Dolphin","Ocean"]],
+       exp:"Polar bears → polar regions (cold/ice). Camels → deserts (hot/dry). Tigers → rainforests (warm/humid). Dolphins → oceans (saltwater)."},
+      {type:"match",ch:"Chapter 4",q:"Match each habitat to its correct description.",
+       pairs:[["Desert","Hot and dry with very little rainfall"],["Grassland","Wide open areas where grass and flowers grow"],["Polar region","Very cold with ice all around"],["Ocean","Salty water habitat"]],
+       exp:"Deserts: hot & dry. Grasslands: wide open grassy areas. Polar: cold & icy. Oceans: saltwater aquatic habitat."},
+      {type:"match",ch:"Chapter 8",q:"Match each circuit term to its correct definition.",
+       pairs:[["Switch","Opens or closes the circuit"],["Cell","Provides electrical energy"],["Conductor","Allows current to flow easily"],["Insulator","Does not allow current to flow"]],
+       exp:"Switch controls circuit. Cell (battery) powers it. Conductor (metal) lets current flow. Insulator (plastic/rubber) blocks current."},
+      {type:"match",ch:"Chapter 10",q:"Match each Earth layer to its correct description.",
+       pairs:[["Crust","Thinnest outer layer where we live"],["Mantle","Contains magma, between crust and core"],["Outer core","Made of liquid iron and nickel"],["Inner core","Hottest solid layer at the centre"]],
+       exp:"Crust = surface. Mantle = magma layer. Outer core = liquid metals. Inner core = solid, hottest layer (5000-6000°C)."},
+      {type:"match",ch:"Chapter 10",q:"Match each volcano feature to its description.",
+       pairs:[["Vent","Opening through which magma shoots out"],["Crater","Opening at the top of the volcano"],["Magma chamber","Underground pool of melted rock"],["Lava","Magma that has reached the Earth's surface"]],
+       exp:"Vent: passage for magma. Crater: top opening. Magma chamber: underground magma reservoir. Lava: magma after reaching the surface."},
+    ]
+  },
+  {
+    title: "Section E – Sequence & Order",
+    badge: "E",
+    typeLabel: "Put the steps in the correct order by selecting 1st, 2nd, 3rd...",
+    questions: [
+      {type:"order",ch:"Chapter 10",q:"Put the steps of a volcanic eruption in the correct order.",
+       items:["Magma cools and forms new rock","Pressure builds up underground","Magma rises through cracks in the crust","Lava and ash are released through the crater"],
+       correctOrder:[4,1,2,3],
+       exp:"Correct order: (1) Pressure builds underground → (2) Magma rises through cracks → (3) Lava and ash released through crater → (4) Magma cools and forms new rock."},
+      {type:"order",ch:"Chapter 10",q:"Arrange the Earth's layers from the OUTERMOST to the INNERMOST.",
+       items:["Inner core","Outer core","Crust","Mantle"],
+       correctOrder:[4,3,1,2],
+       exp:"From outermost to innermost: (1) Crust → (2) Mantle → (3) Outer core → (4) Inner core."},
+      {type:"order",ch:"Chapter 8",q:"Put these steps in order to describe how a circuit works when a switch is turned ON.",
+       items:["The lamp lights up","Electric current flows through the wires","The switch is turned on","The circuit is complete/closed"],
+       correctOrder:[4,3,1,2],
+       exp:"Correct order: (1) Switch is turned on → (2) Circuit is complete/closed → (3) Electric current flows through wires → (4) Lamp lights up."},
+      {type:"order",ch:"Chapter 4",q:"Arrange these habitats from COLDEST to HOTTEST.",
+       items:["Tropical rainforest","Desert","Polar region","Grassland"],
+       correctOrder:[3,4,1,2],
+       exp:"Coldest to hottest: (1) Polar region → (2) Grassland → (3) Tropical rainforest → (4) Desert."},
+      {type:"order",ch:"Chapter 10",q:"Order the Earth's layers from the COOLEST to the HOTTEST.",
+       items:["Outer core (4,000–5,000°C)","Crust (cool surface)","Inner core (5,000–6,000°C)","Mantle (1,000–3,700°C)"],
+       correctOrder:[3,1,4,2],
+       exp:"Coolest to hottest: (1) Crust → (2) Mantle → (3) Outer core → (4) Inner core."},
+    ]
+  },
+  {
+    title: "Section F – Connect the Table",
+    badge: "F",
+    typeLabel: "Match each item on the left with the correct description on the right",
+    questions: [
+      {type:"match",ch:"Chapter 4",q:"Match each animal to the key feature that helps it survive in its habitat.",
+       pairs:[["Camel","Can go long periods without water; suited to heat"],["Polar bear","Thick fur to survive freezing temperatures"],["Tiger","Striped coat for camouflage in rainforest undergrowth"],["Dolphin","Streamlined body and fins for moving through saltwater"]],
+       exp:"Camel → water storage. Polar bear → thick insulating fur. Tiger → camouflage stripes. Dolphin → streamlined for aquatic life."},
+      {type:"match",ch:"Chapter 4",q:"Match each habitat to an animal AND a plant found there.",
+       pairs:[["Desert","Camel and cactus"],["Polar region","Polar bear and Arctic moss"],["Tropical rainforest","Orangutan and giant fern"],["Ocean","Dolphin and seaweed"]],
+       exp:"Desert → camel + cactus. Polar → polar bear + Arctic moss. Rainforest → orangutan + giant fern. Ocean → dolphin + seaweed."},
+      {type:"match",ch:"Chapter 4",q:"Match each animal behaviour to the reason for it.",
+       pairs:[["Moving to a new habitat","Food or water has run out, or it has become too cold"],["Changing body colour over time","To blend into a different environment"],["Going into a deep sleep in winter","To conserve energy when food is scarce in cold weather"],["Changing body structure","To become better suited to a new environment"]],
+       exp:"Migration → resource loss. Colour change → camouflage. Deep sleep (hibernation) → energy conservation. Structure change → better adaptation."},
+      {type:"match",ch:"Chapter 8",q:"Match each circuit component to what it does.",
+       pairs:[["Cell (battery)","Provides electrical energy to the circuit"],["Switch","Opens or closes the circuit to turn devices on or off"],["Lamp","Converts electrical energy into light"],["Wire","Carries electric current around the circuit"]],
+       exp:"Cell → energy source. Switch → on/off control. Lamp → light output. Wire → current carrier."},
+      {type:"match",ch:"Chapter 8",q:"Match each material to whether it is a conductor or insulator, and an example use.",
+       pairs:[["Copper","Conductor — used to make electrical wires"],["Rubber","Insulator — used to coat the handle of tools"],["Plastic","Insulator — used to cover electrical wires"],["Iron","Conductor — used in electrical components"]],
+       exp:"Copper & iron → conductors (let current flow). Rubber & plastic → insulators (block current, protect from shocks)."},
+      {type:"match",ch:"Chapter 8",q:"Match each circuit change to its effect on lamp brightness.",
+       pairs:[["Adding more cells (batteries)","Lamp gets brighter"],["Adding more lamps to the circuit","All lamps get dimmer"],["Using longer wires","Lamp gets slightly dimmer"],["Closing the switch","Lamp turns on"]],
+       exp:"More cells → brighter. More lamps → each dimmer (energy shared). Longer wires → more resistance, slightly dimmer. Closed switch → circuit complete, lamp on."},
+      {type:"match",ch:"Chapter 10",q:"Match each Earth layer to its temperature range and key feature.",
+       pairs:[["Crust","Coolest layer; the surface we live on"],["Mantle","1,000°C–3,700°C; contains magma"],["Outer core","4,000°C–5,000°C; liquid iron and nickel"],["Inner core","5,000°C–6,000°C; solid metal ball, hottest layer"]],
+       exp:"Crust = surface. Mantle = magma. Outer core = liquid metals. Inner core = solid, hottest (5000–6000°C)."},
+      {type:"match",ch:"Chapter 10",q:"Match each geological event or instrument to its correct description.",
+       pairs:[["Earthquake","Sudden violent shaking of the ground caused by moving tectonic plates"],["Volcano","A mountain with an opening through which magma, gas and ash escape"],["Seismograph","Instrument that measures the movements caused by earthquakes"],["Tectonic plates","Large pieces of the Earth's crust that move slowly over time"]],
+       exp:"Earthquake → plate movement shakes ground. Volcano → magma escape point. Seismograph → measures ground movement. Tectonic plates → giant moving crust pieces."},
+      {type:"match",ch:"Chapter 4",q:"Match each statement about habitat change to the correct animal response.",
+       pairs:[["Habitat gets too cold","Some animals migrate to a warmer place"],["Food and water run out","Animals move to find a new food source"],["Environment changes slowly over generations","Animals may change their body structure to adapt"],["Winter arrives in a cold habitat","Some animals go into a deep sleep to save energy"]],
+       exp:"Cold → migration. No food/water → find new area. Slow change → structural adaptation. Cold winter → hibernation (deep sleep)."},
+      {type:"match",ch:"Chapter 8",q:"Match each safety fact about electricity to its explanation.",
+       pairs:[["Never touch a socket with wet hands","Water conducts electricity and can cause a shock"],["Wires are covered in plastic","Plastic is an insulator that prevents electric shocks"],["Our bodies conduct electricity","If current flows through us into the ground, we get a shock"],["Only use the correct voltage","Too much voltage can damage devices and cause fires"]],
+       exp:"Wet hands + socket = shock risk. Plastic insulates wires. Body conducts → shock danger. Wrong voltage → damage or fire."},
+    ]
+  }
+];
+
+const userAnswers = {};
+let allReviews = [];
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  let globalQ = 0;
+
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-badge">${sec.badge}</div>
+        <h2>${sec.title}</h2>
+        <span class="type-tag">${sec.questions.length} questions</span>
+      </div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;font-style:italic;">${sec.typeLabel}</p>
+      <div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const div = document.createElement('div');
+      div.className = 'q-block';
+      const qLabel = `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; ${q.ch}</div>`;
+      let inner = '';
+
+      if (q.type === 'mcq') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="options" id="opts-${id}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="selectMCQ('${id}',${j},'${si}-${qi}')"><span class="option-letter">${String.fromCharCode(65+j)}</span>${o}</button>`).join('')}</div>`;
+      } else if (q.type === 'tf') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="tf-row"><button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ True</button><button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ False</button></div>`;
+      } else if (q.type === 'fill') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><input class="fill-input" type="text" placeholder="Type your answer..." id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+      } else if (q.type === 'match') {
+        const opts = q.pairs.map(p=>p[1]);
+        const shuffled = [...opts].sort(()=>Math.random()-.5);
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="match-grid" id="match-${id}">` +
+          q.pairs.map((p,j)=>`<div class="match-left">${p[0]}</div><select class="match-select" id="match-sel-${id}-${j}" onchange="updateMatch('${id}',${q.pairs.length})"><option value="">-- Select --</option>${shuffled.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`).join('') +
+          `</div>`;
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items];
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="sort-container">` +
+          shuffled.map((item,j)=>`<div class="sort-item"><select class="sort-select" id="order-${id}-${j}" onchange="updateOrder('${id}',${q.items.length})"><option value="">--</option>${q.items.map((_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select><span style="font-size:.9rem;color:#374151;flex:1;padding-left:8px;">${item}</span></div>`).join('') +
+          `</div>`;
+        q._shuffled = shuffled;
+      } else if (q.type === 'error') {
+        inner = `${qLabel}<div class="q-text" style="white-space:pre-line;">${q.q}</div><input class="fill-input" type="text" placeholder="Type the CORRECT word to replace the wrong one..." id="err-${id}" oninput="userAnswers['${id}']=this.value">`;
+      }
+
+      div.innerHTML = inner;
+      qContainer.appendChild(div);
+    });
+  });
+}
+
+function selectMCQ(id, oi) {
+  userAnswers[id] = oi;
+  document.querySelectorAll(`#opts-${id} .option-btn`).forEach((b,j)=>b.classList.toggle('selected',j===oi));
+}
+function selectTF(id, val) {
+  userAnswers[id] = val;
+  document.getElementById(`tf-t-${id}`).className='tf-btn'+(val===true?' sel-t':'');
+  document.getElementById(`tf-f-${id}`).className='tf-btn'+(val===false?' sel-f':'');
+}
+function updateMatch(id, len) {
+  const vals = [];
+  for(let j=0;j<len;j++) vals.push(document.getElementById(`match-sel-${id}-${j}`)?.value||'');
+  userAnswers[id] = vals;
+}
+function updateOrder(id, len) {
+  const vals = [];
+  for(let j=0;j<len;j++) vals.push(parseInt(document.getElementById(`order-${id}-${j}`)?.value)||0);
+  userAnswers[id] = vals;
+}
+
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim()||'Student';
+  let correct=0,wrong=0,skip=0;
+  allReviews = [];
+  let globalQ=0;
+
+  sections.forEach((sec,si)=>{
+    sec.questions.forEach((q,qi)=>{
+      globalQ++;
+      const id=`${si}-${qi}`;
+      const ua=userAnswers[id];
+      let status,yourStr,correctStr;
+
+      if(q.type==='mcq'){
+        if(ua===undefined||ua===null){skip++;status='skip';yourStr='Not answered';correctStr=q.opts[q.ans];}
+        else if(ua===q.ans){correct++;status='correct';yourStr=q.opts[ua];correctStr=q.opts[q.ans];}
+        else{wrong++;status='wrong';yourStr=q.opts[ua];correctStr=q.opts[q.ans];}
+      } else if(q.type==='tf'){
+        if(ua===undefined||ua===null){skip++;status='skip';yourStr='Not answered';correctStr=q.ans?'True':'False';}
+        else if(ua===q.ans){correct++;status='correct';yourStr=ua?'True':'False';correctStr=q.ans?'True':'False';}
+        else{wrong++;status='wrong';yourStr=ua?'True':'False';correctStr=q.ans?'True':'False';}
+      } else if(q.type==='fill'||q.type==='error'){
+        const raw=(ua||'').trim().toLowerCase();
+        const corrects=[q.ans.toLowerCase(),...(q.alt||[]).map(a=>a.toLowerCase())];
+        if(!raw){skip++;status='skip';yourStr='Not answered';correctStr=q.ans;}
+        else if(corrects.includes(raw)){correct++;status='correct';yourStr=ua;correctStr=q.ans;}
+        else{wrong++;status='wrong';yourStr=ua;correctStr=q.ans;}
+      } else if(q.type==='match'){
+        const vals=ua||[];
+        let allRight=vals.length===q.pairs.length && vals.every((v,j)=>v===q.pairs[j][1]) && vals.every(v=>v);
+        if(!ua||vals.every(v=>!v)){skip++;status='skip';yourStr='Not answered';correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+        else if(allRight){correct++;status='correct';yourStr=q.pairs.map((p,j)=>p[0]+' → '+(vals[j]||'?')).join(', ');correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+        else{wrong++;status='wrong';yourStr=q.pairs.map((p,j)=>p[0]+' → '+(vals[j]||'?')).join(', ');correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+      } else if(q.type==='order'){
+        const vals=ua||[];
+        const shuffled=q._shuffled||q.items;
+        let allRight=vals.length===q.items.length && vals.every((v,j)=>v===q.correctOrder[j]) && vals.every(v=>v>0);
+        const correctLabels=q.items.map((item,j)=>[q.correctOrder[j],item]).sort((a,b)=>a[0]-b[0]).map(([pos,item])=>`${pos}. ${item}`).join(' → ');
+        if(!ua||vals.every(v=>!v)){skip++;status='skip';yourStr='Not answered';correctStr=correctLabels;}
+        else if(allRight){correct++;status='correct';yourStr=shuffled.map((item,j)=>`${vals[j]}. ${item}`).join(', ');correctStr=correctLabels;}
+        else{wrong++;status='wrong';yourStr=shuffled.map((item,j)=>`${vals[j]||'?'}. ${item}`).join(', ');correctStr=correctLabels;}
+      }
+
+      allReviews.push({status,qNum:globalQ,qText:q.q,ch:q.ch,type:q.type,your:yourStr,correct:correctStr,exp:q.exp});
+    });
+  });
+
+  const pct=correct;
+  let grade=pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=50?'D':'F';
+  let msg=pct>=90?"🏆 Outstanding! You're a science superstar!":pct>=70?"🌟 Great job! Keep studying!":pct>=50?"👍 Good effort! Review and try again!":"💪 Keep studying — you'll improve!";
+
+  document.getElementById('res-pct').textContent=correct+'%';
+  document.getElementById('res-grade').textContent='Grade: '+grade;
+  document.getElementById('res-score').textContent=correct;
+  document.getElementById('res-name').textContent=name+(document.getElementById('student-class').value.trim()?' · '+document.getElementById('student-class').value.trim():'');
+  document.getElementById('res-msg').textContent=msg;
+  document.getElementById('res-correct').textContent=correct;
+  document.getElementById('res-wrong').textContent=wrong;
+  document.getElementById('res-skip').textContent=skip;
+
+  renderReviews('all');
+
+  document.getElementById('test-form').style.display='none';
+  document.getElementById('results').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderReviews(filter) {
+  const rc=document.getElementById('review-container');
+  rc.innerHTML='';
+  const icons={correct:'✅',wrong:'❌',skip:'⏭'};
+  const typeLabels={mcq:'MCQ',tf:'True/False',fill:'Fill Blank',match:'Matching',order:'Sequence'};
+  allReviews.filter(r=>filter==='all'||r.status===filter).forEach(r=>{
+    rc.innerHTML+=`<div class="review-card review-${r.status}">
+      <div class="review-header">
+        <span style="font-size:1rem;">${icons[r.status]}</span>
+        <span class="review-q">Q${r.qNum}: ${r.qText.length>90?r.qText.substring(0,90)+'…':r.qText}</span>
+        <span class="type-chip">${typeLabels[r.type]||r.type}</span>
+      </div>
+      <div class="review-body">
+        ${r.status!=='correct'?`<div class="your-ans">Your answer: ${r.your}</div>`:''}
+        <div class="correct-ans">Correct: ${r.correct}</div>
+        <div class="explanation">💡 ${r.exp}</div>
+      </div>
+    </div>`;
+  });
+  if(rc.innerHTML==='') rc.innerHTML='<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+function retryTest() {
+  Object.keys(userAnswers).forEach(k=>delete userAnswers[k]);
+  allReviews=[];
+  buildAll();
+  document.getElementById('results').style.display='none';
+  document.getElementById('test-form').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+buildAll();
+</script>
+</body>
+</html>
