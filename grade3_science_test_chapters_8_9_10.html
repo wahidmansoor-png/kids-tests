@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 3 Science – Chapters 8, 9 & 10 Test</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#059669 0%,#0d9488 100%);color:white;padding:2rem 1rem 3rem;text-align:center;}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;}
+.hero p{font-size:.95rem;opacity:.85;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;}
+.hero-badge{background:rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:600;}
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem;margin-bottom:1.5rem;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#059669;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{background:#059669;color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.chapter-tag{background:#d1fae5;color:#065f46;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:all .2s;background:white;font-size:.93rem;color:#374151;text-align:left;}
+.option-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.option-btn.selected{border-color:#059669;background:#d1fae5;color:#065f46;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#059669;}
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#059669;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;cursor:pointer;width:100%;background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#059669;}
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-label{font-size:.85rem;color:#6b7280;font-weight:600;min-width:60px;}
+.sort-select{flex:1;padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;background:white;cursor:pointer;}
+.sort-select:focus{border-color:#059669;}
+.error-text{font-style:italic;color:#374151;background:#fef9c3;padding:10px 14px;border-radius:8px;border-left:4px solid #f59e0b;margin-bottom:8px;font-size:.95rem;line-height:1.5;}
+.submit-area{text-align:center;}
+.submit-btn{background:linear-gradient(135deg,#059669,#0d9488);color:white;border:none;padding:14px 44px;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(5,150,105,.4);transition:transform .15s,box-shadow .15s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(5,150,105,.5);}
+#results{display:none;}
+.score-hero{background:linear-gradient(135deg,#059669,#0d9488);color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#059669;}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#059669;background:#d1fae5;color:#059669;}
+.review-card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong .review-header{background:#fef2f2;}
+.review-skip .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #6ee7b7;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#d1fae5;color:#059669;flex-shrink:0;}
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;border:2px solid #059669;color:#059669;padding:12px 36px;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#d1fae5;}
+.chapter-section-label{font-size:.8rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid #d1fae5;}
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;">🧲 🪨 🌕</div>
+  <h1>Grade 3 Science – Test</h1>
+  <p>Cambridge Primary Science · Chapters 8, 9 &amp; 10</p>
+  <div class="hero-badges">
+    <span class="hero-badge">100 Questions</span>
+    <span class="hero-badge">6 Question Types</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div><label>Your Name</label><input type="text" id="student-name" placeholder="e.g. Sara Ahmed"></div>
+    <div><label>Class / Section</label><input type="text" id="student-class" placeholder="e.g. Grade 3 – Green"></div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">Answer all 100 questions then submit to see your results!</p>
+    <button class="submit-btn" onclick="submitTest()"><i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test</button>
+  </div>
+</div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total">/100</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat">100</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All (100)</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+  <button class="retry-btn" onclick="retryTest()"><i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again</button>
+</div>
+</div>
+
+<script>
+const sections = [
+  {
+    title: "Section A – Multiple Choice",
+    badge: "A",
+    typeLabel: "Choose the best answer",
+    questions: [
+      // CHAPTER 8 – Properties of Magnets
+      {type:"mcq",ch:"Chapter 8",q:"What are the ends of a magnet called?",opts:["Sides","Poles","Edges","Tips"],ans:1,exp:"The ends of a magnet are known as its poles. One end is the north pole (N) and the other is the south pole (S)."},
+      {type:"mcq",ch:"Chapter 8",q:"Which label marks the south pole of a magnet?",opts:["P","E","S","M"],ans:2,exp:"The poles of a magnet are often marked as 'N' for north pole and 'S' for south pole."},
+      {type:"mcq",ch:"Chapter 8",q:"What happens when two LIKE poles of magnets are brought close together?",opts:["They attract each other","They repel (push away) each other","Nothing happens","They stick together"],ans:1,exp:"Like poles are two poles that are the same, e.g. north + north or south + south. Like poles repel (push away) each other."},
+      {type:"mcq",ch:"Chapter 8",q:"What happens when UNLIKE poles of magnets are brought close together?",opts:["They repel each other","They both fall to the ground","They attract (pull) each other","They break apart"],ans:2,exp:"Unlike poles are a north pole and a south pole together. Unlike poles attract (pull toward) each other."},
+      {type:"mcq",ch:"Chapter 8",q:"How many poles does every magnet have?",opts:["One","Two","Three","Four"],ans:1,exp:"All magnets, no matter their shape, have exactly two poles: a north pole and a south pole."},
+      {type:"mcq",ch:"Chapter 8",q:"Where do most paper clips attach when a bar magnet is dipped into them?",opts:["In the middle of the magnet","Equally all over","At the poles (ends) of the magnet","On the flat sides"],ans:2,exp:"The poles (ends) of a magnet are the strongest parts. Most paper clips cluster at the poles when a magnet is dipped into them."},
+      {type:"mcq",ch:"Chapter 8",q:"Which of these is a magnetic material?",opts:["Plastic","Glass","Iron","Rubber"],ans:2,exp:"Iron is a magnetic material — it is attracted to a magnet. Plastic, glass and rubber are non-magnetic."},
+      {type:"mcq",ch:"Chapter 8",q:"Which of these metals is NON-magnetic?",opts:["Iron","Steel","Cobalt","Gold"],ans:3,exp:"Gold, silver, aluminium and copper are non-magnetic metals. They are not attracted to a magnet. Iron, steel, nickel and cobalt are magnetic."},
+      {type:"mcq",ch:"Chapter 8",q:"A student tests a plastic ruler with a magnet. What will happen?",opts:["The ruler is attracted to the magnet","The ruler repels the magnet","Nothing — the ruler is non-magnetic","The ruler becomes a magnet"],ans:2,exp:"Plastic is a non-magnetic material, so it is neither attracted to nor repelled by a magnet."},
+      {type:"mcq",ch:"Chapter 8",q:"Which statement about magnetic materials is TRUE?",opts:["All metals are magnetic","All magnetic materials are metals","All non-metals are magnetic","Magnets attract all materials"],ans:1,exp:"All magnetic materials (iron, steel, nickel, cobalt) are metals — but NOT all metals are magnetic. Gold, copper and aluminium are non-magnetic metals."},
+      // CHAPTER 9 – Rocks and Fossils
+      {type:"mcq",ch:"Chapter 9",q:"What is the source of all the materials we use on Earth?",opts:["The sky","The ocean","The Earth itself","Rainwater"],ans:2,exp:"The Earth is the source of all the materials we use. Rocks, oil, natural gas, and metals all come from the Earth."},
+      {type:"mcq",ch:"Chapter 9",q:"Oil is found:",opts:["On the surface of the ground","Under the Earth's surface","In the sky","In rivers"],ans:1,exp:"Oil is a liquid found under the Earth's surface. It can be extracted by drilling deep holes into the Earth."},
+      {type:"mcq",ch:"Chapter 9",q:"What can oil be made into to make vehicles move?",opts:["Salt and sugar","Petrol and diesel","Water and gas","Steel and iron"],ans:1,exp:"Oil can be made into petrol and diesel, which are used as fuel to make vehicles move."},
+      {type:"mcq",ch:"Chapter 9",q:"Natural gas can be used to produce:",opts:["Petrol","Plastic only","Electricity","Fossils"],ans:2,exp:"Natural gas found under the Earth's surface can be used to produce electricity."},
+      {type:"mcq",ch:"Chapter 9",q:"Where are metals such as gold, iron and copper found?",opts:["In the air","In rocks called ores","In rivers","In animals"],ans:1,exp:"Metals can be found in rocks known as ores. The metals are extracted by heating the ore to separate the metal from other materials."},
+      {type:"mcq",ch:"Chapter 9",q:"Which of these materials is made from oil or natural gas?",opts:["Metal","Glass","Plastic","Stone"],ans:2,exp:"Plastic, rubber and fabric are among the many materials made from oil and natural gas."},
+      {type:"mcq",ch:"Chapter 9",q:"What are fossils?",opts:["Types of rocks with bright colours","Traces or remains of animals or plants that lived long ago","Metals found in rocks","Types of natural gas"],ans:1,exp:"Fossils are traces or remains of animals or plants that lived millions of years ago, preserved in rock."},
+      {type:"mcq",ch:"Chapter 9",q:"How are most fossils formed?",opts:["By drying in the sun","By floating in water","When remains are buried under layers of rock, sand and mud which turn to stone","By mixing with oil"],ans:2,exp:"Most fossils form when remains of animals or plants are buried under many layers of rock, sand and mud. Water seeps in and turns the remains to stone over a very long time."},
+      {type:"mcq",ch:"Chapter 9",q:"Why do scientists study fossils?",opts:["To find gold","To make petrol","To learn about plants and animals that lived millions of years ago","To produce electricity"],ans:2,exp:"Scientists study fossils to learn about animals or plants that lived millions of years ago — what they looked like, what they ate, and how they moved."},
+      {type:"mcq",ch:"Chapter 9",q:"Why should we not use oil and natural gas too quickly?",opts:["They make bad smells","They are easy to find","They take millions of years to form and we will run out of them","They are not useful"],ans:2,exp:"Oil and natural gas take millions of years to form. If we use them too quickly we will run out of them, so we must use them carefully."},
+      // CHAPTER 10 – Earth, the Sun and the Moon
+      {type:"mcq",ch:"Chapter 10",q:"What shape are Earth, the Sun and the Moon?",opts:["Flat like a plate","Cube-shaped","Almost spherical (ball-shaped)","Cone-shaped"],ans:2,exp:"Scientists have studied Earth, the Sun and the Moon carefully. They found that all three are almost spherical (ball-shaped)."},
+      {type:"mcq",ch:"Chapter 10",q:"What do we call a human-made object that goes around Earth?",opts:["Telescope","Globe","Fossil","Satellite"],ans:3,exp:"A satellite is a human-made object that orbits (goes around) Earth. Satellites take pictures of space and help scientists predict weather."},
+      {type:"mcq",ch:"Chapter 10",q:"What is a globe?",opts:["A type of telescope","A physical model of Earth that is spherical in shape","A picture of the Moon","A type of satellite"],ans:1,exp:"A globe is a physical model of Earth. It is spherical in shape and shows where countries, seas and oceans are found."},
+      {type:"mcq",ch:"Chapter 10",q:"What instrument helps scientists observe the Sun, Moon and stars closely?",opts:["Thermometer","Ruler","Telescope","Microscope"],ans:2,exp:"A telescope is a scientific instrument used to observe objects in space. It allows scientists to get a much closer look at the Sun, other stars and the Moon."},
+      {type:"mcq",ch:"Chapter 10",q:"How does the Moon move?",opts:["The Moon stays still","The Moon orbits (moves around) Earth","The Moon orbits the Sun directly","The Moon moves in a straight line"],ans:1,exp:"The Moon orbits Earth — it moves in a regular, repeating path around Earth, completing one orbit in about 27 days."},
+      {type:"mcq",ch:"Chapter 10",q:"Why does the Moon appear to change shape at different times?",opts:["The Moon actually changes its shape","The Sun covers part of the Moon","The Moon orbits Earth and different amounts of its lit side face us","The Moon rotates away from us"],ans:2,exp:"As the Moon orbits Earth, the part facing the Sun appears bright. We see different amounts of the bright side, which makes the Moon appear to change shape. These are called phases."},
+      {type:"mcq",ch:"Chapter 10",q:"What are the different shapes of the Moon during the month called?",opts:["Orbits","Satellites","Phases","Spheres"],ans:2,exp:"The different apparent shapes of the Moon during the month are called phases of the Moon. They repeat in a regular cycle."},
+      {type:"mcq",ch:"Chapter 10",q:"Why does the Moon appear to move across the sky at night?",opts:["The Moon is moving very fast","Because Earth is spinning","Because the Sun pushes the Moon","The Moon drifts in space"],ans:1,exp:"The Moon's apparent rising in the east and setting in the west each day is due to Earth spinning on its axis, not the Moon's own movement."},
+      {type:"mcq",ch:"Chapter 10",q:"Approximately how many days does the Moon take to complete one orbit around Earth?",opts:["7 days","14 days","27 days","365 days"],ans:2,exp:"The Moon takes approximately 27 days to complete one full orbit around Earth."},
+      {type:"mcq",ch:"Chapter 10",q:"Evidence that Earth is spherical in shape includes:",opts:["The sky appears blue","When a ship moves toward the horizon, only the top can be seen while the bottom disappears","The Moon has phases","Stars appear at night"],ans:1,exp:"When a ship moves toward the horizon, after some time only the top of the ship is visible — the bottom disappears first. This shows that Earth is curved (spherical)."},
+    ]
+  },
+  {
+    title: "Section B – True or False",
+    badge: "B",
+    typeLabel: "Decide if each statement is True or False",
+    questions: [
+      // CH8
+      {type:"tf",ch:"Chapter 8",q:"All magnets have a north pole and a south pole.",ans:true,exp:"True! Every magnet, regardless of its shape (bar, ring, horseshoe, button, rod), has exactly two poles: a north pole and a south pole."},
+      {type:"tf",ch:"Chapter 8",q:"Like poles of magnets attract each other.",ans:false,exp:"False. Like poles (e.g. north + north) REPEL (push away) each other. It is UNLIKE poles (north + south) that attract each other."},
+      {type:"tf",ch:"Chapter 8",q:"Iron and steel are examples of magnetic materials.",ans:true,exp:"True! Iron, steel, nickel and cobalt are all magnetic materials — they are attracted to a magnet."},
+      {type:"tf",ch:"Chapter 8",q:"All metals are attracted to magnets.",ans:false,exp:"False. Not all metals are magnetic. Gold, silver, aluminium and copper are non-magnetic metals that are NOT attracted to magnets."},
+      {type:"tf",ch:"Chapter 8",q:"Plastic, glass, and rubber are non-magnetic materials.",ans:true,exp:"True! Plastic, glass, wood, cloth, paper and rubber are non-magnetic — they are not attracted to a magnet."},
+      {type:"tf",ch:"Chapter 8",q:"A magnet's north pole can attract another magnet's north pole.",ans:false,exp:"False. Two north poles are LIKE poles — they repel each other. A north pole attracts a SOUTH pole (unlike poles attract)."},
+      {type:"tf",ch:"Chapter 8",q:"Nickel and cobalt are magnetic materials.",ans:true,exp:"True! Iron, steel, nickel and cobalt are all magnetic materials that are attracted by a magnet."},
+      {type:"tf",ch:"Chapter 8",q:"A magnet attracts all objects placed near it.",ans:false,exp:"False. Magnets only attract magnetic materials (like iron and steel). Non-magnetic materials like plastic, wood and rubber are not attracted."},
+      // CH9
+      {type:"tf",ch:"Chapter 9",q:"Oil and natural gas are found under the Earth's surface.",ans:true,exp:"True! Both oil (a liquid) and natural gas are found under the Earth's surface. They can be extracted by drilling deep holes."},
+      {type:"tf",ch:"Chapter 9",q:"Plastic is a natural material.",ans:false,exp:"False. Plastic is a human-made material. However, it is made from oil and natural gas, which are natural materials from the Earth."},
+      {type:"tf",ch:"Chapter 9",q:"Fossils are formed quickly — in just a few years.",ans:false,exp:"False. It takes a very long time for fossils to form — millions of years. Remains must be buried and slowly turn to stone."},
+      {type:"tf",ch:"Chapter 9",q:"Footprints left in mud can become fossils over time.",ans:true,exp:"True! Impressions like footprints left in soft mud or sand can harden over time as the soil turns to rock, preserving the impression as a fossil."},
+      {type:"tf",ch:"Chapter 9",q:"Fossils can only be formed from animals, not plants.",ans:false,exp:"False. Fossils can be formed from both animals AND plants. Fossils of dinosaurs, insects and plants have all been found."},
+      {type:"tf",ch:"Chapter 9",q:"Scientists can learn what extinct animals looked like by studying their fossils.",ans:true,exp:"True! Even though animals like dinosaurs are extinct, fossils help scientists find out how they looked, what they ate and how they moved."},
+      {type:"tf",ch:"Chapter 9",q:"Oil takes millions of years to form.",ans:true,exp:"True! Oil takes millions of years to form, which is why it is so important not to waste it. Once it is used up, we cannot replace it quickly."},
+      {type:"tf",ch:"Chapter 9",q:"Metals come from rocks known as ores.",ans:true,exp:"True! Metals such as gold, iron and copper are found in rocks called ores. The metal is extracted by heating the ore."},
+      // CH10
+      {type:"tf",ch:"Chapter 10",q:"Earth, the Sun and the Moon are all spherical in shape.",ans:true,exp:"True! Scientists have confirmed through observation and satellites that Earth, the Sun and the Moon are all almost spherical (ball-shaped)."},
+      {type:"tf",ch:"Chapter 10",q:"Earth moves around the Moon.",ans:false,exp:"False. It is the MOON that moves around (orbits) Earth. Earth orbits the Sun, not the Moon."},
+      {type:"tf",ch:"Chapter 10",q:"The Moon gives out its own light.",ans:false,exp:"False. The Moon does not give out its own light. It reflects light from the Sun. The part facing the Sun appears bright from Earth."},
+      {type:"tf",ch:"Chapter 10",q:"A telescope helps scientists observe objects in space.",ans:true,exp:"True! A telescope is a scientific instrument that helps scientists get a close look at the Sun, Moon, stars and other objects in space."},
+      {type:"tf",ch:"Chapter 10",q:"The phases of the Moon repeat in a regular cycle.",ans:true,exp:"True! The Moon's phases — the different shapes we see — repeat in a regular cycle as the Moon orbits Earth. The same pattern repeats month after month."},
+      {type:"tf",ch:"Chapter 10",q:"A satellite is a natural object found only in forests.",ans:false,exp:"False. A satellite is a human-made object that goes around Earth in space. Satellites collect information and take pictures of space and Earth."},
+      {type:"tf",ch:"Chapter 10",q:"The Moon appears to rise in the east and set in the west because Earth is spinning.",ans:true,exp:"True! Just as the Sun appears to move across the sky, the Moon's apparent east-to-west motion each day is caused by Earth spinning on its own axis."},
+      {type:"tf",ch:"Chapter 10",q:"Thousands of years ago, people correctly believed that Earth moves around the Sun.",ans:false,exp:"False. Thousands of years ago, most people believed the Sun, planets and stars moved around Earth. Over time, astronomers using telescopes collected data and changed this belief."},
+    ]
+  },
+  {
+    title: "Section C – Fill in the Blanks",
+    badge: "C",
+    typeLabel: "Type the correct word(s) to complete each sentence",
+    questions: [
+      // CH8
+      {type:"fill",ch:"Chapter 8",q:"The ends of a magnet are called its ________.",ans:"poles",alt:[],exp:"The ends of a magnet are its poles. One is the north pole (N) and the other is the south pole (S)."},
+      {type:"fill",ch:"Chapter 8",q:"Like poles of two magnets will ________ each other.",ans:"repel",alt:["push away"],exp:"Like poles (north+north or south+south) repel (push away) each other."},
+      {type:"fill",ch:"Chapter 8",q:"Unlike poles of two magnets will ________ each other.",ans:"attract",alt:["pull"],exp:"Unlike poles (north+south) attract (pull toward) each other."},
+      {type:"fill",ch:"Chapter 8",q:"Iron, steel, nickel and cobalt are examples of ________ materials.",ans:"magnetic",alt:[],exp:"These four metals — iron, steel, nickel and cobalt — are magnetic materials that are attracted by a magnet."},
+      {type:"fill",ch:"Chapter 8",q:"Aluminium, gold, silver and copper are non-________ metals.",ans:"magnetic",alt:[],exp:"Aluminium, gold, silver and copper are non-magnetic metals. They are NOT attracted to a magnet."},
+      {type:"fill",ch:"Chapter 8",q:"Plastic, glass, wood and rubber are examples of non-magnetic ________.",ans:"materials",alt:["material"],exp:"Plastic, glass, wood, cloth, paper and rubber are all non-magnetic materials — they are not attracted by a magnet."},
+      {type:"fill",ch:"Chapter 8",q:"The pole at one end of a bar magnet labelled 'N' is the ________ pole.",ans:"north",alt:[],exp:"'N' stands for north pole. 'S' stands for south pole. Every magnet has both a north and a south pole."},
+      {type:"fill",ch:"Chapter 8",q:"The poles of a magnet attract the ________ number of paper clips.",ans:"most",alt:["greatest","largest"],exp:"The poles are the strongest parts of a magnet, so the most paper clips cluster at the poles (ends) of the magnet."},
+      // CH9
+      {type:"fill",ch:"Chapter 9",q:"Oil and natural gas can be extracted from rocks by ________ deep holes in the Earth's surface.",ans:"drilling",alt:["drill"],exp:"To extract oil and natural gas from underground, we drill deep holes into the Earth's surface and under the sea."},
+      {type:"fill",ch:"Chapter 9",q:"Oil can be made into ________ and diesel to fuel vehicles.",ans:"petrol",alt:["gasoline"],exp:"Oil is refined to make petrol and diesel, which are used as fuel to make vehicles move."},
+      {type:"fill",ch:"Chapter 9",q:"Metals can be found in rocks known as ________.",ans:"ores",alt:["ore"],exp:"Metals such as gold, iron and copper are found in rocks called ores. Metals are extracted by heating the ore."},
+      {type:"fill",ch:"Chapter 9",q:"Fossils are remains or ________ of animals or plants that lived long ago.",ans:"traces",alt:["impressions"],exp:"Fossils are traces or remains of animals or plants that lived millions of years ago, preserved in rock."},
+      {type:"fill",ch:"Chapter 9",q:"Most fossils form when remains are buried under layers of rock, sand and ________.",ans:"mud",alt:["clay"],exp:"When remains are buried under many layers of small rocks, sand and mud, water seeps in and slowly turns them to stone — forming a fossil."},
+      {type:"fill",ch:"Chapter 9",q:"Scientists who study rocks and find out what they are made of are called ________.",ans:"petrologists",alt:["geologists"],exp:"Petrologists study rocks and find out what they are made of. They also work on finding the best ways to extract natural materials from rocks."},
+      {type:"fill",ch:"Chapter 9",q:"Insects trapped in hardened tree ________ can be preserved as fossils.",ans:"resin",alt:[],exp:"Sometimes small animals like insects get trapped in resin, a substance released by trees. The resin hardens over time, preserving the insect as a fossil."},
+      {type:"fill",ch:"Chapter 9",q:"Dinosaurs are ________, which means there are none alive today.",ans:"extinct",alt:[],exp:"Extinct means an animal or plant species no longer exists. Even though dinosaurs are extinct, their fossils tell us a lot about how they lived."},
+      // CH10
+      {type:"fill",ch:"Chapter 10",q:"Earth, the Sun and the Moon are all almost ________ in shape.",ans:"spherical",alt:["ball-shaped","sphere"],exp:"Scientists have confirmed through observation that Earth, the Sun and the Moon are all almost spherical — shaped like a ball."},
+      {type:"fill",ch:"Chapter 10",q:"A ________ is a physical model of Earth that shows countries, seas and oceans.",ans:"globe",alt:[],exp:"A globe is a spherical physical model of Earth. It shows where countries, seas and oceans are found on our planet."},
+      {type:"fill",ch:"Chapter 10",q:"A ________ is a human-made object that goes around Earth and gives us information about space.",ans:"satellite",alt:[],exp:"A satellite is a human-made object that orbits Earth. It collects information and can take pictures of space objects such as the Sun, Moon and Earth itself."},
+      {type:"fill",ch:"Chapter 10",q:"A ________ is a scientific instrument used to observe objects in space.",ans:"telescope",alt:[],exp:"A telescope is used by astronomers to observe distant objects in space such as the Moon, stars and planets."},
+      {type:"fill",ch:"Chapter 10",q:"The Moon takes about 27 ________ to complete one orbit around Earth.",ans:"days",alt:[],exp:"The Moon orbits Earth in approximately 27 days — this is roughly one month, which is why we have monthly phases."},
+      {type:"fill",ch:"Chapter 10",q:"The different apparent shapes of the Moon during the month are called ________ of the Moon.",ans:"phases",alt:["phase"],exp:"As the Moon orbits Earth, we see different amounts of its lit side, creating the phases (different apparent shapes) of the Moon."},
+      {type:"fill",ch:"Chapter 10",q:"The Moon's apparent movement from east to west across the sky is due to ________ spinning.",ans:"Earth",alt:["the Earth","earth"],exp:"Earth spinning on its axis makes the Moon appear to rise in the east and set in the west each day, just like the Sun."},
+      {type:"fill",ch:"Chapter 10",q:"Scientists called ________ use telescopes to study objects in the sky.",ans:"astronomers",alt:["astronomer"],exp:"Astronomers are scientists who use telescopes and other instruments to collect data about objects in the sky, including the Sun, Moon, planets and stars."},
+    ]
+  },
+  {
+    title: "Section D – Match the Columns",
+    badge: "D",
+    typeLabel: "Match each item on the left with the correct answer on the right",
+    questions: [
+      {type:"match",ch:"Chapter 8",q:"Match each magnet term to its correct meaning.",
+       pairs:[["North pole","One end of a magnet, labelled N"],["Like poles","Two poles that are the same (e.g. N+N)"],["Unlike poles","A north pole and a south pole together"],["Repel","To push away"]],
+       exp:"North pole = N end of magnet. Like poles = same (N+N or S+S) → repel. Unlike poles = N+S → attract. Repel = push away."},
+      {type:"match",ch:"Chapter 8",q:"Match each material to whether it is magnetic or non-magnetic.",
+       pairs:[["Iron","Magnetic"],["Copper","Non-magnetic"],["Steel","Magnetic"],["Plastic","Non-magnetic"]],
+       exp:"Iron and steel are magnetic metals. Copper and plastic are non-magnetic. Remember: all magnetic materials are metals, but not all metals are magnetic."},
+      {type:"match",ch:"Chapter 9",q:"Match each natural resource to where it is found or what it makes.",
+       pairs:[["Oil","Found under the Earth's surface; makes petrol and diesel"],["Natural gas","Found underground; used to produce electricity"],["Metals","Found in rocks called ores"],["Fossils","Remains of plants or animals from millions of years ago"]],
+       exp:"Oil → found underground, makes petrol/diesel. Natural gas → underground, makes electricity. Metals → from ores in rocks. Fossils → ancient plant/animal remains."},
+      {type:"match",ch:"Chapter 10",q:"Match each space science term to its correct description.",
+       pairs:[["Satellite","Human-made object that orbits Earth"],["Globe","Physical spherical model of Earth"],["Telescope","Instrument used to observe objects in space"],["Orbit","Regular repeating path around another object in space"]],
+       exp:"Satellite = human-made object orbiting Earth. Globe = physical model of Earth. Telescope = instrument for observing space. Orbit = repeating path around another object."},
+      {type:"match",ch:"Chapter 10",q:"Match each statement about the Moon to the correct explanation.",
+       pairs:[["Moon changes appearance","Because it orbits Earth and we see different amounts of its lit side"],["Moon appears to move across sky","Because Earth is spinning"],["Moon looks bright","It reflects light from the Sun"],["Moon phases repeat","Because the Moon orbits Earth in a regular cycle"]],
+       exp:"Moon phases → orbit + lit side visible. Apparent sky movement → Earth spinning. Brightness → reflects sunlight. Phases repeat → regular monthly orbit."},
+    ]
+  },
+  {
+    title: "Section E – Sequence / Order",
+    badge: "E",
+    typeLabel: "Number the steps in the correct order (1 = first, last number = last)",
+    questions: [
+      {type:"order",ch:"Chapter 9",q:"Put these steps in the correct order to show how a fossil forms.",
+       items:["The remains slowly turn to stone as water seeps in","An animal or plant dies","The remains are buried under layers of rock, sand and mud","A fossil is formed after millions of years"],
+       correctOrder:[3,1,2,4],
+       exp:"1. Animal/plant dies → 2. Remains are buried under layers of rock, sand and mud → 3. Water seeps in and slowly turns remains to stone → 4. A fossil is formed after millions of years."},
+      {type:"order",ch:"Chapter 10",q:"Arrange these events to show why we see phases of the Moon.",
+       items:["The bright part of the Moon that we see from Earth has a different shape each day","The Moon orbits around Earth","These different shapes are called phases of the Moon","The Sun shines on the Moon, making the side facing the Sun appear bright"],
+       correctOrder:[3,1,4,2],
+       exp:"1. The Moon orbits Earth → 2. The Sun shines on the Moon, making the side facing the Sun bright → 3. The bright part seen from Earth has different shapes each day → 4. These are called phases of the Moon."},
+      {type:"order",ch:"Chapter 8",q:"Put these steps in order to show how to test if an object is magnetic.",
+       items:["Observe whether the object moves toward the magnet","Hold a bar magnet near the object","Record your result in a table","Choose an object to test"],
+       correctOrder:[3,2,4,1],
+       exp:"1. Choose an object to test → 2. Hold a bar magnet near the object → 3. Observe whether the object is attracted to (moves toward) the magnet → 4. Record your result in a table."},
+      {type:"order",ch:"Chapter 9",q:"Order these steps to show how oil is used to make petrol.",
+       items:["Petrol is used to make vehicles move","Oil is extracted from underground by drilling","Oil is refined (processed) to make petrol","Oil is found under the Earth's surface"],
+       correctOrder:[4,2,3,1],
+       exp:"1. Oil is found under the Earth's surface → 2. Oil is extracted from underground by drilling → 3. Oil is refined/processed to make petrol → 4. Petrol is used to make vehicles move."},
+      {type:"order",ch:"Chapter 10",q:"Arrange these events in the correct order to show one full cycle of the Moon.",
+       items:["We see a full Moon (fully lit side facing Earth)","We see a new Moon (dark side facing Earth)","The lit part grows (waxing) to a half Moon","The lit part shrinks (waning) back to a new Moon"],
+       correctOrder:[3,1,2,4],
+       exp:"1. New Moon (dark side faces Earth) → 2. Waxing phase — lit part grows to half Moon → 3. Full Moon (fully lit side faces Earth) → 4. Waning phase — lit part shrinks back to new Moon. Then the cycle repeats."},
+    ]
+  },
+  {
+    title: "Section F – Connect the Table",
+    badge: "F",
+    typeLabel: "Match each item on the left with the correct description on the right",
+    questions: [
+      {type:"match",ch:"Chapter 8",q:"Match each magnetic pole rule to what it means.",
+       pairs:[["Like poles (N+N or S+S)","Repel (push away) each other"],["Unlike poles (N+S)","Attract (pull toward) each other"],["North pole","End of magnet labelled N"],["South pole","End of magnet labelled S"]],
+       exp:"Like poles repel. Unlike poles attract. N = north pole end, S = south pole end. Every magnet has both poles."},
+      {type:"match",ch:"Chapter 8",q:"Match each material to the correct group.",
+       pairs:[["Iron","Magnetic material"],["Gold","Non-magnetic metal"],["Steel","Magnetic material"],["Glass","Non-magnetic, non-metal"]],
+       exp:"Iron and steel are magnetic. Gold is a non-magnetic metal. Glass is non-magnetic and not a metal."},
+      {type:"match",ch:"Chapter 8",q:"Match each statement about magnets to the correct explanation.",
+       pairs:[["Paper clips cluster at the poles","The poles are the strongest parts of the magnet"],["Plastic is not attracted to a magnet","Plastic is a non-magnetic material"],["Cobalt is attracted to a magnet","Cobalt is a magnetic metal"],["Aluminium is not attracted to a magnet","Aluminium is a non-magnetic metal"]],
+       exp:"Poles are strongest → most clips attach there. Plastic is non-magnetic. Cobalt is one of the four magnetic metals. Aluminium is non-magnetic even though it is a metal."},
+      {type:"match",ch:"Chapter 9",q:"Match each Earth material to its correct description.",
+       pairs:[["Oil","A liquid found under the Earth's surface; refined into petrol and diesel"],["Natural gas","Found underground; used to produce electricity"],["Ores","Rocks that contain metals such as gold or iron"],["Fossils","Preserved remains or traces of plants or animals from millions of years ago"]],
+       exp:"Oil → liquid underground → petrol/diesel. Natural gas → underground → electricity. Ores → metal-containing rocks. Fossils → ancient preserved remains."},
+      {type:"match",ch:"Chapter 9",q:"Match each fossil fact to the correct explanation.",
+       pairs:[["Fossils take millions of years to form","Remains must be buried and very slowly turn to stone"],["Dinosaurs are studied through fossils","Dinosaurs are extinct — fossils are the only evidence left"],["Insects in tree resin become fossils","The resin hardens around the insect, preserving it"],["Footprints in mud can become fossils","Mud hardens over time into rock, preserving the print"]],
+       exp:"Fossil formation is very slow. Extinct animals are known only from fossils. Resin hardening and mud-to-rock are two ways fossils are preserved."},
+      {type:"match",ch:"Chapter 10",q:"Match each space science term to its description.",
+       pairs:[["Globe","Spherical physical model of Earth showing countries and seas"],["Telescope","Instrument scientists use to observe the Moon, stars and planets"],["Satellite","Human-made object that orbits Earth and collects information"],["Orbit","The regular repeating path one object takes around another in space"]],
+       exp:"Globe = model of Earth. Telescope = space observation tool. Satellite = human-made orbiting object. Orbit = the repeating path around another body."},
+      {type:"match",ch:"Chapter 10",q:"Match each Moon fact to its correct explanation.",
+       pairs:[["Moon appears to change shape","Different amounts of its lit side face Earth as it orbits"],["Moon appears to rise in the east","Earth is spinning on its axis"],["Moon looks bright at night","It reflects light from the Sun"],["Moon phases repeat monthly","The Moon completes one orbit around Earth roughly every 27 days"]],
+       exp:"Phases → orbit + lit side. Apparent east-west motion → Earth's spin. Brightness → reflected sunlight. Monthly repeat → ~27-day orbital period."},
+      {type:"match",ch:"Chapter 10",q:"Match each piece of evidence to the conclusion it supports.",
+       pairs:[["A ship disappears hull-first at the horizon","Earth is spherical (has a curved surface)"],["Satellite photos taken from space","Earth is almost spherical in shape"],["The Moon takes 27 days to orbit Earth","The Moon moves in a regular repeating cycle"],["Long ago people thought the Sun moved around Earth","Scientific understanding changes with new evidence"]],
+       exp:"Hull-first disappearance proves curvature. Satellite images confirm Earth's shape. 27-day orbit → regular cycle. Historical belief change → science evolves with evidence."},
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+// ENGINE (same as Grade 4 template)
+// ═══════════════════════════════════════════════════════
+const userAnswers = {};
+let allReviews = [];
+
+function buildAll() {
+  const sc = document.getElementById('sections-container');
+  sc.innerHTML = '';
+  let globalQ = 0;
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    let html = `<div class="section-header"><div class="section-badge">${sec.badge}</div><h2>${sec.title}</h2><span class="type-tag">${sec.typeLabel}</span></div>`;
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const key = `q${globalQ}`;
+      html += `<div class="q-block">`;
+      html += `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; <span class="chapter-tag">${q.ch}</span></div>`;
+      const qText = q.q.replace(/\n/g, '<br>');
+      html += `<div class="q-text">${qText}</div>`;
+      if (q.type === 'mcq') {
+        html += `<div class="options">`;
+        const letters = ['A','B','C','D'];
+        q.opts.forEach((opt, oi) => {
+          html += `<button class="option-btn" id="${key}_${oi}" onclick="selectMCQ('${key}',${oi},${q.opts.length})"><span class="option-letter">${letters[oi]}</span>${opt}</button>`;
+        });
+        html += `</div>`;
+      } else if (q.type === 'tf') {
+        html += `<div class="tf-row"><button class="tf-btn" id="${key}_t" onclick="selectTF('${key}',true)">✅ True</button><button class="tf-btn" id="${key}_f" onclick="selectTF('${key}',false)">❌ False</button></div>`;
+      } else if (q.type === 'fill' || q.type === 'error') {
+        html += `<input class="fill-input" id="${key}" placeholder="Type your answer here..." oninput="userAnswers['${key}']=this.value">`;
+      } else if (q.type === 'match') {
+        const allRights = q.pairs.map(p => p[1]);
+        html += `<div class="match-grid">`;
+        q.pairs.forEach((pair, pi) => {
+          html += `<div class="match-left">${pair[0]}</div><select class="match-select" id="${key}_${pi}" onchange="setMatch('${key}',${pi})"><option value="">– Choose –</option>`;
+          allRights.forEach(r => { html += `<option value="${r}">${r}</option>`; });
+          html += `</select>`;
+        });
+        html += `</div>`;
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items];
+        q._shuffled = shuffled;
+        html += `<div class="sort-container">`;
+        shuffled.forEach((item, si2) => {
+          html += `<div class="sort-item"><span class="sort-label">Step:</span><select class="sort-select" id="${key}_${si2}" onchange="setOrder('${key}',${si2},${q.items.length})"><option value="0">– #? –</option>`;
+          for (let n = 1; n <= q.items.length; n++) html += `<option value="${n}">${n}</option>`;
+          html += `</select><span style="font-size:.88rem;color:#374151;flex:1;padding:0 8px;">${item}</span></div>`;
+        });
+        html += `</div>`;
+      }
+      html += `</div>`;
+    });
+    card.innerHTML = html;
+    sc.appendChild(card);
+  });
+}
+
+function selectMCQ(key, idx, total) {
+  userAnswers[key] = idx;
+  for (let i = 0; i < total; i++) {
+    const el = document.getElementById(`${key}_${i}`);
+    if (el) el.classList.toggle('selected', i === idx);
+  }
+}
+function selectTF(key, val) {
+  userAnswers[key] = val;
+  const t = document.getElementById(`${key}_t`);
+  const f = document.getElementById(`${key}_f`);
+  if (t) { t.className = 'tf-btn' + (val ? ' sel-t' : ''); }
+  if (f) { f.className = 'tf-btn' + (!val ? ' sel-f' : ''); }
+}
+function setMatch(key, idx) {
+  if (!userAnswers[key]) userAnswers[key] = [];
+  userAnswers[key][idx] = document.getElementById(`${key}_${idx}`).value;
+}
+function setOrder(key, idx, total) {
+  if (!userAnswers[key]) userAnswers[key] = new Array(total).fill(0);
+  userAnswers[key][idx] = parseInt(document.getElementById(`${key}_${idx}`).value);
+}
+
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'Student';
+  let correct = 0, wrong = 0, skip = 0;
+  allReviews = [];
+  let globalQ = 0;
+  sections.forEach(sec => {
+    sec.questions.forEach(q => {
+      globalQ++;
+      const key = `q${globalQ}`;
+      const ua = userAnswers[key];
+      let status, yourStr, correctStr;
+      if (q.type === 'mcq') {
+        if (ua === undefined || ua === null) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.opts[q.ans]; }
+        else if (ua === q.ans) { correct++; status = 'correct'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans]; }
+        else { wrong++; status = 'wrong'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans]; }
+      } else if (q.type === 'tf') {
+        if (ua === undefined || ua === null) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans ? 'True' : 'False'; }
+        else if (ua === q.ans) { correct++; status = 'correct'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False'; }
+        else { wrong++; status = 'wrong'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False'; }
+      } else if (q.type === 'fill' || q.type === 'error') {
+        const raw = (ua || '').trim().toLowerCase();
+        const corrects = [q.ans.toLowerCase(), ...(q.alt || []).map(a => a.toLowerCase())];
+        if (!raw) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans; }
+        else if (corrects.includes(raw)) { correct++; status = 'correct'; yourStr = ua; correctStr = q.ans; }
+        else { wrong++; status = 'wrong'; yourStr = ua; correctStr = q.ans; }
+      } else if (q.type === 'match') {
+        const vals = ua || [];
+        let allRight = vals.length === q.pairs.length && vals.every((v, j) => v === q.pairs[j][1]) && vals.every(v => v);
+        if (!ua || vals.every(v => !v)) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+        else if (allRight) { correct++; status = 'correct'; yourStr = q.pairs.map((p, j) => p[0] + ' → ' + (vals[j] || '?')).join(', '); correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+        else { wrong++; status = 'wrong'; yourStr = q.pairs.map((p, j) => p[0] + ' → ' + (vals[j] || '?')).join(', '); correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+      } else if (q.type === 'order') {
+        const vals = ua || [];
+        let allRight = vals.length === q.items.length && vals.every((v, j) => v === q.correctOrder[j]) && vals.every(v => v > 0);
+        // Build correct label: sort items by their assigned position
+        const correctLabels = q.items.map((item, j) => [q.correctOrder[j], item]).sort((a,b)=>a[0]-b[0]).map(([pos, item]) => `${pos}. ${item}`).join(' → ');
+        const shuffled = q._shuffled || q.items;
+        if (!ua || vals.every(v => !v)) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctLabels; }
+        else if (allRight) { correct++; status = 'correct'; yourStr = shuffled.map((item, j) => `${vals[j]}. ${item}`).join(', '); correctStr = correctLabels; }
+        else { wrong++; status = 'wrong'; yourStr = shuffled.map((item, j) => `${vals[j] || '?'}. ${item}`).join(', '); correctStr = correctLabels; }
+      }
+      allReviews.push({ status, qNum: globalQ, qText: q.q, ch: q.ch, type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+
+  const pct = correct;
+  let grade = pct >= 90 ? 'A+' : pct >= 80 ? 'A' : pct >= 70 ? 'B' : pct >= 60 ? 'C' : pct >= 50 ? 'D' : 'F';
+  let msg = pct >= 90 ? "🏆 Outstanding! You're a science superstar!" : pct >= 70 ? "🌟 Great job! Keep studying!" : pct >= 50 ? "👍 Good effort! Review and try again!" : "💪 Keep studying — you'll improve!";
+
+  document.getElementById('res-pct').textContent = correct + '%';
+  document.getElementById('res-grade').textContent = 'Grade: ' + grade;
+  document.getElementById('res-score').textContent = correct;
+  document.getElementById('res-name').textContent = name + (document.getElementById('student-class').value.trim() ? ' · ' + document.getElementById('student-class').value.trim() : '');
+  document.getElementById('res-msg').textContent = msg;
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
+  document.getElementById('res-skip').textContent = skip;
+
+  renderReviews('all');
+  document.getElementById('test-form').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  const icons = { correct: '✅', wrong: '❌', skip: '⏭' };
+  const typeLabels = { mcq: 'MCQ', tf: 'True/False', fill: 'Fill Blank', match: 'Matching', order: 'Sequence' };
+  allReviews.filter(r => filter === 'all' || r.status === filter).forEach(r => {
+    rc.innerHTML += `<div class="review-card review-${r.status}">
+      <div class="review-header">
+        <span style="font-size:1rem;">${icons[r.status]}</span>
+        <span class="review-q">Q${r.qNum}: ${r.qText.length > 90 ? r.qText.substring(0, 90) + '…' : r.qText}</span>
+        <span class="type-chip">${typeLabels[r.type] || r.type}</span>
+      </div>
+      <div class="review-body">
+        ${r.status !== 'correct' ? `<div class="your-ans">Your answer: ${r.your}</div>` : ''}
+        <div class="correct-ans">Correct: ${r.correct}</div>
+        <div class="explanation">💡 ${r.exp}</div>
+      </div>
+    </div>`;
+  });
+  if (rc.innerHTML === '') rc.innerHTML = '<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+function retryTest() {
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  allReviews = [];
+  buildAll();
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildAll();
+</script>
+</body>
+</html>
