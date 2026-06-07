@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 8 Computer Science – 100 Question Test</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e40af 60%,#0369a1 100%);color:white;padding:2rem 1rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;position:relative;}
+.hero p{font-size:.95rem;opacity:.85;position:relative;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.hero-badge{background:rgba(255,255,255,.15);padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.2);}
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem;margin-bottom:1.5rem;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#1e40af;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{background:linear-gradient(135deg,#1e40af,#0369a1);color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.chapter-tag{background:#dbeafe;color:#1e40af;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:all .2s;background:white;font-size:.93rem;color:#374151;text-align:left;}
+.option-btn:hover{border-color:#93c5fd;background:#eff6ff;}
+.option-btn.selected{border-color:#1e40af;background:#dbeafe;color:#1e3a8a;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#1e40af;}
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#93c5fd;background:#eff6ff;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#1e40af;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;cursor:pointer;width:100%;background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#1e40af;}
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-label{font-size:.85rem;color:#6b7280;font-weight:600;min-width:60px;}
+.sort-select{flex:1;padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;background:white;cursor:pointer;}
+.sort-select:focus{border-color:#1e40af;}
+.submit-area{text-align:center;}
+.submit-btn{background:linear-gradient(135deg,#1e40af,#0369a1);color:white;border:none;padding:14px 44px;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(30,64,175,.4);transition:transform .15s,box-shadow .15s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,64,175,.5);}
+#results{display:none;}
+.score-hero{background:linear-gradient(135deg,#0f172a,#1e40af);color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#1e40af;}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#1e40af;background:#dbeafe;color:#1e40af;}
+.review-card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong .review-header{background:#fef2f2;}
+.review-skip .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #93c5fd;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#dbeafe;color:#1e40af;flex-shrink:0;}
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;border:2px solid #1e40af;color:#1e40af;padding:12px 36px;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#dbeafe;}
+.progress-note{text-align:center;font-size:.85rem;color:#6b7280;margin-bottom:1rem;}
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;position:relative;">💻 🌐 🔌</div>
+  <h1>Grade 8 Computer Science – Mega Test</h1>
+  <p>Cambridge IGCSE Computer Science · Data Transmission &amp; Hardware</p>
+  <div class="hero-badges">
+    <span class="hero-badge">100 Questions</span>
+    <span class="hero-badge">5 Question Types</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div><label>Your Name</label><input type="text" id="student-name" placeholder="e.g. Ahmed Al-Rashid"></div>
+    <div><label>Class / Section</label><input type="text" id="student-class" placeholder="e.g. Grade 8 – A"></div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">Answer all 100 questions then submit to see your results!</p>
+    <button class="submit-btn" onclick="submitTest()"><i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test</button>
+  </div>
+</div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total">/100</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat">100</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All (100)</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+  <button class="retry-btn" onclick="retryTest()"><i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again</button>
+</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// ALL 100 QUESTIONS — Grade 8 CS
+// Chapters: Data Transmission (Ch.2) + Hardware (Ch.3)
+// Types: mcq | tf | fill | match | order
+// ═══════════════════════════════════════════════════════
+
+const sections = [
+  {
+    title: "Section A – Multiple Choice",
+    badge: "A",
+    typeLabel: "Choose the best answer for each question",
+    questions: [
+      // --- Data Transmission (Ch.2) ---
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Data sent over long distances is usually broken up into smaller units called:",opts:["Files","Packets","Frames","Segments"],ans:1,exp:"Data is broken up into data packets (also called datagrams) before transmission. Packets are usually about 64 KiB each, making them easier to control than one continuous stream."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Which part of a data packet contains the IP addresses of the sender and receiver?",opts:["The payload","The trailer","The header","The checksum"],ans:2,exp:"The packet header contains the IP address of the sending device, the IP address of the receiving device, the sequence number, and the packet size."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"The actual data being carried in a data packet is called the:",opts:["Header","Trailer","Node","Payload"],ans:3,exp:"The payload is the actual data being sent in the packet. It is typically about 64 KiB in size."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Which part of a data packet contains the error-checking information?",opts:["Header","Payload","Trailer","Sequence number"],ans:2,exp:"The packet trailer contains an end-of-packet identifier and an error checking method such as a Cyclic Redundancy Check (CRC)."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"In packet switching, which device decides the route each packet takes?",opts:["Switch","Hub","Router","Modem"],ans:2,exp:"A router receives a data packet and, based on the information in the header, decides where to send it next. Routers are nodes in the network."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"What is the main benefit of packet switching over a single dedicated connection?",opts:["It is always faster","It can re-route packets around busy or faulty lines","It uses less memory","It encrypts data automatically"],ans:1,exp:"Packet switching allows packets to be re-routed if a particular line is busy or faulty, making the network more resilient and efficient."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"In serial data transmission, data is sent:",opts:["Several bits at a time across multiple wires","One bit at a time over a single wire","In both directions simultaneously","Only in one direction using parallel channels"],ans:1,exp:"Serial data transmission sends one bit at a time over a single wire/channel. Bits are sent one after the other as a single stream."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Which transmission mode allows data to travel in BOTH directions but NOT at the same time?",opts:["Simplex","Half-duplex","Full-duplex","Parallel"],ans:1,exp:"Half-duplex allows data to travel in both directions but not simultaneously — like a walkie-talkie. Full-duplex allows simultaneous two-way communication."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"A broadband internet connection is an example of which type of data transmission?",opts:["Simplex","Half-duplex","Serial simplex","Full-duplex"],ans:3,exp:"Full-duplex transmission allows data to be sent in both directions simultaneously. A broadband internet connection is a typical example of full-duplex."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Parallel data transmission sends data:",opts:["One bit at a time along one wire","Several bits simultaneously along several wires","In one direction only","Only over short distances using encryption"],ans:1,exp:"Parallel data transmission sends several bits (usually one byte) down several channels/wires all at the same time. It is faster but works best over short distances."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Why does parallel data transmission become less reliable over long distances?",opts:["The wires use too much electricity","Bits can become skewed (arrive out of synchronisation)","The packets get too large","Routers cannot handle parallel data"],ans:1,exp:"Over longer distances (e.g. over 20 metres), data can become skewed — bits arrive out of order or unsynchronised — making parallel unreliable for long-distance use."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"USB stands for:",opts:["Universal System Bus","Unified Serial Board","Universal Serial Bus","Unidirectional Signal Board"],ans:2,exp:"USB stands for Universal Serial Bus. It is a form of serial data transmission and has become the most common type of input/output port found on computers."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"In parity checking with EVEN parity, what does the parity bit ensure?",opts:["There is always an odd number of 1-bits in the byte","The byte contains exactly eight 1-bits","There is an even number of 1-bits in the byte including the parity bit","The byte is transmitted in parallel"],ans:2,exp:"In even parity, the parity bit is set so that the total number of 1-bits in the byte (including the parity bit) is even. An odd count at the receiver flags an error."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"A Cyclic Redundancy Check (CRC) works by:",opts:["Sending data back to the sender for comparison","Adding up all the 1-bits in the payload and storing the total in the trailer","Encrypting the payload with a public key","Counting the number of bytes in the packet"],ans:1,exp:"CRC involves the sending computer adding up all the 1-bits in the payload and storing this as a hex value in the trailer. The receiver recalculates and compares — mismatches indicate errors."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"In an Automatic Repeat Request (ARQ), what happens if an error is detected?",opts:["The packet is deleted permanently","The receiver sends a negative acknowledgement and requests re-transmission","The router automatically corrects the error","The sender increases the packet size"],ans:1,exp:"ARQ: if an error is detected, the receiving device sends a negative acknowledgement to the sender, which then re-transmits the data. If no acknowledgement is received within a timeout, data is also re-sent."},
+      // --- Hardware — CPU & Architecture (Ch.3) ---
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"The component of the CPU that carries out all arithmetic and logical operations is the:",opts:["Control Unit (CU)","Program Counter (PC)","Arithmetic and Logic Unit (ALU)","Memory Data Register (MDR)"],ans:2,exp:"The ALU (Arithmetic and Logic Unit) performs all arithmetic operations (+, -, shifting) and logic operations (AND, OR) while a program is running."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Which register stores the address of the NEXT instruction to be fetched from memory?",opts:["Accumulator (ACC)","Memory Data Register (MDR)","Current Instruction Register (CIR)","Program Counter (PC)"],ans:3,exp:"The Program Counter (PC) stores the address of the next instruction to be fetched. After each fetch, the PC is incremented by 1 to point to the next instruction."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Which system bus carries addresses from the CPU to memory?",opts:["Data bus","Control bus","Address bus","System clock"],ans:2,exp:"The address bus carries addresses throughout the computer system. It is unidirectional between the CPU and memory — addresses travel from CPU to memory only, not back."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"The data bus is described as bidirectional because:",opts:["It can carry more data than the address bus","Data can travel in both directions — from CPU to memory and from memory to CPU","It connects to all devices simultaneously","It carries control signals as well as data"],ans:1,exp:"The data bus is bidirectional — data can be sent from the CPU to memory and from memory to the CPU. It also connects to input/output devices."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"What is the purpose of cache memory in a CPU?",opts:["To permanently store the operating system","To store frequently used data/instructions for faster CPU access","To replace RAM when it runs out","To connect the CPU to the internet"],ans:1,exp:"Cache memory is fast SRAM located within the CPU that stores frequently used instructions and data. The CPU checks cache first before accessing the slower main RAM."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Increasing the number of cores in a CPU:",opts:["Always doubles the computer's processing speed","Can improve performance but communication overhead between cores reduces the benefit","Replaces the need for RAM","Makes the address bus wider"],ans:1,exp:"More cores can improve performance, but the CPU must communicate with each core through channels. For example, a quad-core has 6 communication channels, reducing the potential performance gain."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Overclocking a CPU means:",opts:["Adding more RAM to the system","Running the system clock faster than its recommended design limit","Installing a second CPU","Increasing the data bus width"],ans:1,exp:"Overclocking sets the system clock speed higher than the factory design limit. This can improve speed but risks unsynchronised operations (crashes) and overheating."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"In the Fetch-Decode-Execute cycle, what happens during the EXECUTE stage?",opts:["The PC is incremented by 1","The instruction is stored in the CIR","Decoded signals are sent to appropriate components to carry out the instruction","The instruction is read from memory into the MDR"],ans:2,exp:"During Execute, the CPU sends decoded control signals to the appropriate components (ALU, memory, I/O) to carry out the instruction in its logical sequence."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"An embedded system is best described as:",opts:["A general-purpose computer running many applications","A combination of hardware and software designed to perform a specific set of functions","A type of server used in cloud computing","A programming language used for AI"],ans:1,exp:"An embedded system is hardware and software combined to carry out a specific set of functions — such as a washing machine controller or GPS system. Computers are NOT embedded systems because they are multi-functional."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Which type of RAM needs to be constantly refreshed to maintain its data?",opts:["SRAM (Static RAM)","PROM","DRAM (Dynamic RAM)","ROM"],ans:2,exp:"DRAM uses capacitors that leak charge and must be refreshed every 15 microseconds. SRAM uses flip-flops and does not need refreshing — it is faster but more expensive."},
+      // --- Hardware — Storage & Network (Ch.3) ---
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"Which type of secondary storage has NO moving parts?",opts:["HDD (Hard Disk Drive)","CD-ROM","DVD","SSD (Solid State Drive)"],ans:3,exp:"SSDs (Solid State Drives) have no moving parts. They store data using NAND/NOR chips with floating gate and control gate transistors, making them faster, lighter, and more reliable than HDDs."},
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"What is the main difference between RAM and ROM?",opts:["RAM is faster than ROM","ROM can be written to but RAM cannot","RAM is volatile and loses data when power is off; ROM is non-volatile and retains data","RAM is used to store the BIOS; ROM stores user files"],ans:2,exp:"RAM is volatile — data is lost when the computer powers off. ROM is non-volatile — contents are permanent and cannot be changed by the user. ROM typically stores the BIOS (start-up instructions)."},
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"Virtual memory works by:",opts:["Adding more physical RAM chips to the motherboard","Using space on HDD/SSD as an extension of RAM when RAM is full","Compressing all files to reduce memory usage","Splitting RAM between multiple cores"],ans:1,exp:"Virtual memory uses swap space on the HDD or SSD alongside physical RAM. When RAM is full, the oldest data is moved to the HDD to free RAM for new processes — giving the illusion of more memory."},
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"Blu-ray discs use a blue laser instead of a red laser because:",opts:["Blue lasers are cheaper to manufacture","Blue light has a shorter wavelength, allowing smaller pits and greater storage capacity","Blue lasers read faster on spinning discs","Red lasers cannot read dual-layer discs"],ans:1,exp:"Blue laser light has a wavelength of only 405 nm (vs 650 nm for red). This shorter wavelength allows much smaller pits and lands on the disc, increasing storage capacity by up to 5× compared to DVD."},
+      {type:"mcq",ch:"Ch.3 Hardware – Network",q:"A MAC address is:",opts:["A software address assigned by the router when a device connects to the internet","A unique 48-bit hardware identifier embedded in the network interface card at manufacture","An IP address used only on Apple Mac computers","A temporary address that changes each time a device restarts"],ans:1,exp:"A MAC (Media Access Control) address is a unique 48-bit identifier assigned to a NIC at manufacture. It is in the format NN-NN-NN-DD-DD-DD, where NN identifies the manufacturer and DD is the device serial number."},
+      {type:"mcq",ch:"Ch.3 Hardware – Network",q:"What does DHCP stand for and what does it do?",opts:["Dynamic Hardware Control Protocol — controls hardware settings","Dynamic Host Configuration Protocol — automatically assigns IP addresses to devices","Dedicated Host Connection Protocol — creates a fixed internet connection","Distributed Hub Control Protocol — manages network hubs"],ans:1,exp:"DHCP (Dynamic Host Configuration Protocol) is used by ISPs to automatically assign a temporary IP address to a device each time it connects to the internet. This is called a dynamic IP address."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"What is a 'hop number' added to a packet header used for?",opts:["To count how many bytes are in the payload","To prevent lost packets from clogging the network by deleting packets that never reach their destination","To encrypt the packet for security","To identify the type of data in the payload"],ans:1,exp:"A hop number is added to each packet header and is reduced by 1 every time the packet leaves a router. When it reaches zero and the destination hasn't been reached, the packet is deleted, preventing lost packets from clogging the network."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Which of the following is a drawback of packet switching for real-time applications such as live video streaming?",opts:["Packets are always delivered in the correct order","It requires a dedicated communication line","Packets can arrive out of order and cause delays, making it prone to errors for real-time streaming","It is too slow for any internet application"],ans:2,exp:"A key drawback of packet switching is that packets can arrive out of order and there is a delay while they are re-assembled. This makes it more prone to errors in real-time streaming applications like live sports broadcasts."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"An instruction in a CPU is made up of an opcode and an operand. What does the opcode specify?",opts:["The data to be processed","What operation the CPU must perform (e.g. ADD, LOAD)","The address of the next instruction","The size of the data bus"],ans:1,exp:"The opcode (operation code) tells the CPU what operation to carry out (e.g. ADD, JMP, LDA). The operand specifies the data to act on or the memory address of that data."},
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"What is 'latency' in the context of a hard disk drive (HDD)?",opts:["The time it takes for data to travel across a network","The time it takes for the correct block of data on a disk track to rotate around to the read-write head","The time the CPU takes to decode an instruction","The delay caused by virtual memory paging"],ans:1,exp:"Latency in an HDD is the time for the desired data on a spinning platter to rotate around to the read-write head. This mechanical delay makes HDDs much slower than SSDs, which have no moving parts."},
+      {type:"mcq",ch:"Ch.3 Hardware – CPU",q:"Von Neumann architecture introduced which key concept that changed computing?",opts:["The idea of using multiple cores","The concept of a stored program — where programs are stored in memory alongside data","The use of solid state storage","The use of wireless data buses"],ans:1,exp:"Von Neumann (mid-1940s) introduced the stored program concept: programs could be stored in the computer's memory alongside data and executed sequentially. This became the foundation of all modern computer architecture."},
+      {type:"mcq",ch:"Ch.3 Hardware – Storage",q:"What is cloud storage's 'data redundancy' feature?",opts:["Deleting duplicate files to save space","Storing the same data on more than one server so it is always available even if one server fails","Compressing data to reduce file size","Encrypting data to prevent unauthorised access"],ans:1,exp:"Cloud storage providers store the same data on multiple servers in different locations. This data redundancy ensures clients can always access their data even if one server goes down for maintenance or repair."},
+      {type:"mcq",ch:"Ch.2 Data Transmission",q:"Which type of check uses an agreed algorithm to produce a value from a block of data, which is then sent with the data for comparison at the receiver?",opts:["Parity check","Echo check","Checksum","ARQ"],ans:2,exp:"A checksum is calculated from the block of data using an agreed algorithm. This value is transmitted with the data. The receiver applies the same algorithm and compares results — a mismatch indicates a transmission error."},
+    ]
+  },
+  {
+    title: "Section B – True or False",
+    badge: "B",
+    typeLabel: "Decide if each statement is True or False",
+    questions: [
+      // Data Transmission
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Data packets from the same message always travel along the same route through the network.",ans:false,exp:"False. In packet switching, each packet can take a different route. Routers choose the best available path based on network conditions, which means packets may arrive at the destination in a different order."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"A packet's sequence number is stored in the header and is used to reassemble packets in the correct order.",ans:true,exp:"True! The header contains the sequence number of the packet, which allows the receiving station to reassemble all packets into the correct order once they arrive."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Simplex transmission allows data to flow in both directions at the same time.",ans:false,exp:"False. Simplex transmission allows data to flow in ONE direction only (e.g. from a computer to a printer). Full-duplex allows simultaneous two-way communication."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Parallel data transmission is more suitable than serial for long-distance communication.",ans:false,exp:"False. Parallel transmission is best for short distances (e.g. internal computer circuits). Over long distances, bits become skewed (out of synchronisation). Serial is preferred for long-distance communication."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"USB uses serial data transmission.",ans:true,exp:"True! As the name 'Universal Serial Bus' suggests, USB is a form of serial data transmission. It sends data one bit at a time and supports both half-duplex and full-duplex modes."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"A USB cable consists of six wires: four for data and two for power.",ans:false,exp:"False. A USB cable has FOUR wires: two for power (red +5V and black ground) and two for data transmission (white and green)."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Parity checking can always detect errors when two bits change during transmission.",ans:false,exp:"False. If two bits change, the parity may remain the same (e.g. both change from 0→1 and 1→0), so no error is flagged even though data has been corrupted. Parity only reliably detects single-bit errors."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"In echo checking, data is sent back to the sender to be compared with the original.",ans:true,exp:"True! In echo checking, when data is sent to a device, the device sends it back to the sender. The sender's computer then compares the received copy with the original to check for errors."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"A checksum is calculated at the sending end and also recalculated at the receiving end for comparison.",ans:true,exp:"True! The sender calculates the checksum using an agreed algorithm and sends it with the data. The receiver recalculates it using the same algorithm and compares — if they differ, an error has occurred."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Check digits are used to detect transmission errors after data is sent over a network.",ans:false,exp:"False. Check digits are used to detect DATA ENTRY errors (mis-typing or mis-scanning), not transmission errors. They are calculated from the other digits in a code (e.g. ISBN, barcode)."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"Asymmetric encryption uses the same key for both encrypting and decrypting a message.",ans:false,exp:"False. That describes SYMMETRIC encryption. Asymmetric encryption uses two different mathematically linked keys: a public key (shared with everyone) and a private key (kept secret by the recipient)."},
+      {type:"tf",ch:"Ch.2 Data Transmission",q:"In asymmetric encryption, the sender uses the receiver's public key to encrypt a message.",ans:true,exp:"True! In asymmetric encryption, the sender encrypts the message using the receiver's public key. Only the receiver's matching private key can decrypt it, ensuring secure communication."},
+      // Hardware
+      {type:"tf",ch:"Ch.3 Hardware – CPU",q:"The ALU performs operations such as addition, subtraction, and logical comparisons.",ans:true,exp:"True! The ALU (Arithmetic and Logic Unit) handles all arithmetic (add, subtract, shift) and logic (AND, OR) operations required while a program executes."},
+      {type:"tf",ch:"Ch.3 Hardware – CPU",q:"The address bus is bidirectional, allowing addresses to flow both from and to the CPU.",ans:false,exp:"False. The address bus is UNIDIRECTIONAL between the CPU and memory. Addresses travel FROM the CPU TO memory only. This prevents addresses being incorrectly sent back to the CPU."},
+      {type:"tf",ch:"Ch.3 Hardware – CPU",q:"A wider data bus allows larger word lengths to be transported, improving performance.",ans:true,exp:"True! A wider data bus can carry more bits in one transfer (e.g. 32-bit or 64-bit word lengths). Larger word lengths allow more data to move at once, improving the computer's overall performance."},
+      {type:"tf",ch:"Ch.3 Hardware – CPU",q:"SRAM is cheaper and has higher capacity than DRAM, making it ideal for main memory.",ans:false,exp:"False. It is DRAM that is cheaper and has higher capacity. SRAM is faster and used in cache memory, but it is more expensive and has lower capacity than DRAM."},
+      {type:"tf",ch:"Ch.3 Hardware – CPU",q:"ROM is a volatile memory — its contents are lost when the computer is powered off.",ans:false,exp:"False. ROM is NON-VOLATILE — its contents are retained even when power is off. ROM stores the BIOS (boot-up instructions). It is RAM that is volatile and loses data on power-off."},
+      {type:"tf",ch:"Ch.3 Hardware – Storage",q:"SSDs are more suitable than HDDs for use in laptops because they are lighter, use less power and have no moving parts.",ans:true,exp:"True! SSDs have no moving parts, are considerably lighter, run cooler, consume less power, and access data faster than HDDs — all highly desirable features for portable laptop computers."},
+      {type:"tf",ch:"Ch.3 Hardware – Storage",q:"Disk thrashing occurs when the CPU is overwhelmed by too many arithmetic operations.",ans:false,exp:"False. Disk thrashing is when the HDD is so busy moving data in and out of virtual memory (swap space) that the system spends more time managing memory than actually executing programs."},
+      {type:"tf",ch:"Ch.3 Hardware – Storage",q:"A DVD always has more storage capacity than a CD because it uses a shorter wavelength laser.",ans:true,exp:"True! DVDs use a 650 nm red laser (vs 780 nm for CDs), allowing smaller pits and tracks, resulting in much greater storage capacity. DVDs also support dual-layering, doubling capacity further."},
+      {type:"tf",ch:"Ch.3 Hardware – Network",q:"A MAC address is assigned by the ISP each time a device connects to the internet.",ans:false,exp:"False. A MAC address is assigned by the MANUFACTURER at the factory and is embedded in the NIC. It is the IP address that can be dynamically assigned by the ISP (via DHCP) each time a device connects."},
+      {type:"tf",ch:"Ch.3 Hardware – Network",q:"Static IP addresses are more suitable than dynamic IP addresses for web servers that need a consistent, always-available address.",ans:true,exp:"True! Web servers, FTP servers and online databases need static IP addresses so clients can always find them at the same address. Dynamic addresses change each session, making them unreliable for hosting."},
+      {type:"tf",ch:"Ch.3 Hardware – Storage",q:"SSD endurance refers to the guaranteed maximum number of write operations over the device's usable life, and is a limitation not shared by HDDs.",ans:true,exp:"True! SSDs have a rated endurance (e.g. 20 GB of writes per day over 3 years). After exceeding this limit, the NAND cells degrade. HDDs use magnetic heads rather than NAND cells, so they do not have the same write-cycle endurance limitation."},
+    ]
+  },
+  {
+    title: "Section C – Fill in the Blanks",
+    badge: "C",
+    typeLabel: "Type the correct word(s) to complete each sentence",
+    questions: [
+      // Data Transmission
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"Data sent over long distances is usually broken up into data ________ before transmission.",ans:"packets",alt:["packet"],exp:"Data packets (also called datagrams) are typically 64 KiB in size. Breaking data into packets allows each one to travel independently along the best available route."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"The ________ of a data packet contains the IP addresses of both the sender and the receiver.",ans:"header",alt:["packet header"],exp:"The header contains the sender's IP address, the receiver's IP address, the sequence number and the packet size. This information is used to route and reassemble packets correctly."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"In packet switching, ________ determine the best route for each packet to take through the network.",ans:"routers",alt:["router"],exp:"Routers are nodes in the network that receive data packets and, using the destination IP address in the header, decide which next hop is best."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"Sending data in ONE direction only (e.g. from a computer to a printer) is called ________ transmission.",ans:"simplex",alt:[],exp:"Simplex transmission allows data flow in one direction only. Half-duplex allows both directions but not simultaneously; full-duplex allows both directions at the same time."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"USB is a form of ________ data transmission, meaning data is sent one bit at a time along a single channel.",ans:"serial",alt:[],exp:"USB stands for Universal Serial Bus. Serial transmission sends one bit at a time. Because only one channel is used, bits always arrive in synchronisation."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"When the receiver's parity count disagrees with the agreed parity protocol, a ________ error is flagged.",ans:"transmission",alt:["parity","data"],exp:"A change in parity from the agreed protocol (e.g. even parity becomes odd at the receiver) indicates a transmission error has occurred — a bit was flipped during transfer."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"Encryption converts plaintext into ________, which is unreadable to anyone without the correct decryption key.",ans:"ciphertext",alt:[],exp:"Encryption uses an algorithm and a key to transform readable plaintext into unreadable ciphertext. Only someone with the correct decryption key can reverse the process."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"In symmetric encryption, the same ________ is used for both encrypting and decrypting the message.",ans:"key",alt:["encryption key","decryption key"],exp:"Symmetric encryption uses a single shared key for both encryption and decryption. The main weakness is securely transmitting this key to the recipient — it can be intercepted."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"In asymmetric encryption, the sender encrypts the message using the receiver's ________ key.",ans:"public",alt:[],exp:"The receiver shares their public key openly. The sender uses it to encrypt the message. Only the receiver's private key can decrypt it — so even if the public key is intercepted, the message stays secure."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"A check ________ is the final digit in a code, calculated from all the other digits, used to detect data entry errors.",ans:"digit",alt:[],exp:"Check digits are used to detect errors caused by mis-typing or mis-scanning (e.g. transposed digits or wrong digits). They are used in ISBNs, barcodes, and VINs."},
+      // Hardware
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"The ________ unit of the CPU ensures synchronisation of data flow by sending control signals along the control bus.",ans:"control",alt:["control unit","CU"],exp:"The Control Unit (CU) reads and interprets instructions, then sends signals along the control bus to direct all other components. Without the system clock's timing signals, the computer would crash."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"The Memory ________ Register (MAR) stores the address of the memory location currently being read from or written to.",ans:"Address",alt:["address"],exp:"The MAR holds the address of the memory location the CPU needs to access. The MDR (Memory Data Register) then holds the actual data at that address after a read, or the data to be stored during a write."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"In the Fetch-Decode-Execute cycle, after fetching an instruction, the Program Counter is ________ by 1 so it points to the next instruction.",ans:"incremented",alt:["increased","incremented by 1"],exp:"After fetching an instruction from the memory address stored in the MAR, the PC is incremented by 1. This ensures the CPU always fetches instructions sequentially unless a jump instruction changes it."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"Cache memory uses ________ RAM, which is faster than the DRAM used in main memory.",ans:"static",alt:["SRAM","Static"],exp:"SRAM (Static RAM) does not need to be refreshed and has a faster access time (~25 ns) compared to DRAM (~60 ns). This speed advantage makes it ideal for CPU cache memory."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"A ________ core CPU contains two processing cores, each with its own ALU, Control Unit, and registers.",ans:"dual",alt:["dual-core","dual core"],exp:"A dual-core CPU has two cores on one chip. Each core can process instructions independently, potentially doubling throughput — though communication overhead between cores reduces the actual performance gain."},
+      {type:"fill",ch:"Ch.3 Hardware – Storage",q:"Virtual memory uses free space on the ________ or SSD as an extension of RAM.",ans:"HDD",alt:["hard disk","hard disk drive","hard drive"],exp:"When RAM is full, the OS moves the oldest data (pages) to swap space on the HDD or SSD. This gives the illusion of more RAM but is slower, and excessive use causes disk thrashing."},
+      {type:"fill",ch:"Ch.3 Hardware – Storage",q:"In an SSD, data is stored by controlling the movement of ________ within NAND chips.",ans:"electrons",alt:["electron"],exp:"SSDs use floating gate and control gate transistors. A voltage applied to the control gate attracts electrons from the electron source, trapping them in the floating gate to represent stored data."},
+      {type:"fill",ch:"Ch.3 Hardware – Storage",q:"Cloud storage uses ________ to allow users to access their files from any device anywhere in the world.",ans:"internet",alt:["the internet","internet connectivity","network"],exp:"Cloud storage keeps data on remote servers managed by a hosting company. Users access their files via the internet from any device, eliminating the need to carry physical storage media."},
+      {type:"fill",ch:"Ch.3 Hardware – Network",q:"A Network Interface Card (NIC) contains a ________ address, which uniquely identifies the device on a network.",ans:"MAC",alt:["mac","Media Access Control"],exp:"The MAC (Media Access Control) address is a unique 48-bit identifier embedded in the NIC by the manufacturer. It takes the form NN-NN-NN-DD-DD-DD and never changes (unless the NIC is replaced)."},
+      {type:"fill",ch:"Ch.3 Hardware – Network",q:"IPv6 uses ________ -bit addresses, compared to the 32-bit addresses used by IPv4.",ans:"128",alt:[],exp:"IPv6 was developed to overcome the address shortage of IPv4. Its 128-bit addresses written as eight groups of hex digits provide vastly more unique addresses to support the growing number of internet-connected devices."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"In packet switching, a ________ number in the packet header is reduced by 1 each time the packet leaves a router, and the packet is deleted when this reaches zero.",ans:"hop",alt:["hop number"],exp:"The hop number prevents lost packets from clogging the network forever. Each router reduces it by 1, and when it hits zero without reaching the destination, the packet is deleted and the receiver requests re-transmission."},
+      {type:"fill",ch:"Ch.2 Data Transmission",q:"USB-C is a ________ -pin symmetrical connector that can carry data at 10 Gbps and supply up to 100 watts of power.",ans:"24",alt:["twenty-four"],exp:"USB-C is a 24-pin symmetrical connector, meaning it fits into the port either way round. It is thinner than older USB types, supports 10 Gbps data transfer, up to 100W power delivery, and 4K video output."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"The ________ stores the BIOS (Basic Input/Output System), which contains the start-up instructions used every time the computer powers on.",ans:"ROM",alt:["Read-Only Memory","read only memory"],exp:"ROM (Read-Only Memory) is non-volatile primary memory. It permanently stores the BIOS — the start-up routines that run before the OS loads. Its contents cannot be changed by the user."},
+      {type:"fill",ch:"Ch.3 Hardware – Storage",q:"When a HDD is so busy swapping data in and out of virtual memory that program execution halts, this is known as the ________ point.",ans:"thrash",alt:["thrashing","thrash point"],exp:"The thrash point is when the HDD is so occupied moving pages between RAM and virtual memory swap space that no actual program execution takes place. Installing more RAM or using an SSD reduces thrashing."},
+      {type:"fill",ch:"Ch.3 Hardware – Network",q:"A router inspects each data packet and forwards it to the correct destination using the ________ address in the packet header.",ans:"IP",alt:["IP address","internet protocol"],exp:"The router uses the destination IP address stored in the packet header to determine which next hop to send the packet to. MAC addresses are used for final delivery within the local network via switches."},
+      {type:"fill",ch:"Ch.3 Hardware – CPU",q:"The ________ bus carries control signals from the Control Unit to all other components in the computer, and is typically 8 bits wide.",ans:"control",alt:["control bus"],exp:"The control bus is bidirectional and carries control signals (e.g. read/write signals, interrupt requests) from the Control Unit to all computer components. It is typically 8 bits wide since it only carries control signals, not data."},
+    ]
+  },
+  {
+    title: "Section D – Match the Columns",
+    badge: "D",
+    typeLabel: "Match each item on the left with the correct answer on the right",
+    questions: [
+      {type:"match",ch:"Ch.2 Data Transmission",q:"Match each part of a data packet to its correct description.",
+       pairs:[["Header","Contains IP addresses, sequence number and packet size"],["Payload","The actual data being carried in the packet"],["Trailer","Contains end-of-packet marker and CRC error check"],["Router","Device that decides the route for each packet"]],
+       exp:"Header = addressing/sequencing info. Payload = the real data (~64KiB). Trailer = end marker + CRC check. Router = network node that routes packets using header info."},
+      {type:"match",ch:"Ch.2 Data Transmission",q:"Match each transmission mode to its correct description.",
+       pairs:[["Simplex","Data travels in ONE direction only"],["Half-duplex","Data travels in both directions but NOT simultaneously"],["Full-duplex","Data travels in both directions simultaneously"],["Parallel","Several bits sent at the same time along multiple wires"]],
+       exp:"Simplex = one-way (printer). Half-duplex = walkie-talkie. Full-duplex = broadband. Parallel = multiple simultaneous bits (internal CPU buses)."},
+      {type:"match",ch:"Ch.2 Data Transmission",q:"Match each error detection method to how it works.",
+       pairs:[["Parity check","An extra bit is added to ensure the byte has an even or odd number of 1-bits"],["Checksum","A calculated value is sent with the data and recalculated at the receiver"],["Echo check","Data is sent back to the sender for comparison with the original"],["ARQ","Uses acknowledgements and timeouts to request re-transmission of corrupt data"]],
+       exp:"Parity = parity bit counts 1s. Checksum = algorithmic value compared. Echo = data bounced back. ARQ = ACK/NACK with timeout re-send."},
+      {type:"match",ch:"Ch.2 Data Transmission",q:"Match each encryption term to its correct definition.",
+       pairs:[["Plaintext","The original, unencrypted message"],["Ciphertext","The scrambled, encrypted message"],["Public key","An encryption key shared with everyone"],["Private key","A decryption key known only to the recipient"]],
+       exp:"Plaintext = readable original. Ciphertext = encrypted output. Public key = shared openly for encryption. Private key = kept secret for decryption."},
+      {type:"match",ch:"Ch.3 Hardware – CPU",q:"Match each CPU register to its purpose.",
+       pairs:[["Program Counter (PC)","Stores the address of the next instruction to fetch"],["Memory Address Register (MAR)","Stores the address of the memory location being accessed"],["Memory Data Register (MDR)","Stores data just read from or about to be written to memory"],["Accumulator (ACC)","Temporarily stores results during ALU calculations"]],
+       exp:"PC = next instruction address. MAR = current memory address. MDR = data buffer for reads/writes. ACC = calculation scratch pad in the ALU."},
+      {type:"match",ch:"Ch.3 Hardware – CPU",q:"Match each system bus to its characteristics.",
+       pairs:[["Address bus","Unidirectional; carries memory addresses from CPU to memory"],["Data bus","Bidirectional; carries data between CPU, memory and I/O"],["Control bus","Bidirectional; carries control signals from CU to all components"],["Clock","Generates timing signals that synchronise all CPU operations"]],
+       exp:"Address bus = unidirectional addresses. Data bus = bidirectional data. Control bus = bidirectional control signals. Clock = synchronisation heartbeat."},
+      {type:"match",ch:"Ch.3 Hardware – Storage",q:"Match each storage technology to its key characteristic.",
+       pairs:[["HDD","Uses magnetic read-write heads on spinning platters; can suffer from latency"],["SSD","No moving parts; stores data using floating/control gate transistors in NAND chips"],["Blu-ray","Uses a 405 nm blue laser; holds up to 50 GB on a dual-layer disc"],["ROM","Non-volatile primary memory; stores BIOS and cannot be written to by the user"]],
+       exp:"HDD = magnetic spinning plates. SSD = solid state NAND. Blu-ray = blue laser optical. ROM = non-volatile permanent startup memory."},
+      {type:"match",ch:"Ch.3 Hardware – Network",q:"Match each network term to its correct description.",
+       pairs:[["NIC","Hardware that allows a device to connect to a network; contains the MAC address"],["MAC address","Unique 48-bit hardware identifier assigned at manufacture"],["IP address","Logical address used to identify a device on the internet (32-bit IPv4 or 128-bit IPv6)"],["DHCP","Protocol that automatically assigns dynamic IP addresses to devices"]],
+       exp:"NIC = network hardware. MAC = permanent hardware ID. IP = logical internet address. DHCP = dynamic IP assignment service."},
+    ]
+  },
+  {
+    title: "Section E – Sequence & Order",
+    badge: "E",
+    typeLabel: "Put the steps in the correct order by selecting 1st, 2nd, 3rd...",
+    questions: [
+      {type:"order",ch:"Ch.2 Data Transmission",q:"Put the steps of sending an image using packet switching in the correct order.",
+       items:["Packets are reassembled into the correct order at the destination","The image is split into a number of packets","Each router determines the best route for each packet","Each packet travels independently through the network"],
+       correctOrder:[4,1,2,3],
+       exp:"Order: (1) Image split into packets → (2) Each router determines the route → (3) Packets travel independently → (4) Reassembled at destination."},
+      {type:"order",ch:"Ch.2 Data Transmission",q:"Put the stages of the Automatic Repeat Request (ARQ) error detection process in the correct order.",
+       items:["A timeout occurs and the data is automatically re-sent","The sending computer transmits a block of data","The sending computer waits for an acknowledgement","The receiving computer detects an error and sends a negative acknowledgement"],
+       correctOrder:[3,1,4,2],
+       exp:"Order: (1) Sender transmits data → (2) Sender waits for ACK → (3) Receiver detects error, sends NACK → (4) Timeout triggers automatic re-send."},
+      {type:"order",ch:"Ch.2 Data Transmission",q:"Arrange these steps to verify an ISBN-13 check digit.",
+       items:["If remainder is 0, the number is correct","Add all odd-positioned digits together","Add results from step 1 and step 2, then divide by 10","Add all even-positioned digits and multiply by 3"],
+       correctOrder:[2,4,3,1],
+       exp:"Order: (1) Add odd digits → (2) Add even digits × 3 → (3) Add both totals, divide by 10 → (4) If remainder is 0, the ISBN is valid."},
+      {type:"order",ch:"Ch.3 Hardware – CPU",q:"Arrange the steps of the Fetch-Decode-Execute cycle in the correct order.",
+       items:["The instruction is decoded","The Program Counter is incremented by 1","The instruction is executed by sending control signals","The instruction address in the PC is copied to the MAR and the instruction is fetched into the MDR then CIR"],
+       correctOrder:[4,3,1,2],
+       exp:"Order: (1) Fetch: PC→MAR, memory→MDR→CIR → (2) PC incremented → (3) Instruction decoded → (4) Instruction executed via control signals."},
+      {type:"order",ch:"Ch.3 Hardware – Storage",q:"Put these storage types in order from FASTEST data access to SLOWEST.",
+       items:["HDD (Hard Disk Drive)","Cache memory (SRAM)","SSD (Solid State Drive)","RAM (DRAM)"],
+       correctOrder:[4,3,2,1],
+       exp:"Fastest to slowest: (1) Cache/SRAM (nanoseconds, in CPU) → (2) RAM/DRAM → (3) SSD (no moving parts) → (4) HDD (mechanical, affected by latency)."},
+    ]
+  }
+];
+
+const userAnswers = {};
+let allReviews = [];
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  let globalQ = 0;
+
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-badge">${sec.badge}</div>
+        <h2>${sec.title}</h2>
+        <span class="type-tag">${sec.questions.length} questions</span>
+      </div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;font-style:italic;">${sec.typeLabel}</p>
+      <div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const div = document.createElement('div');
+      div.className = 'q-block';
+      const qLabel = `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; ${q.ch}</div>`;
+      let inner = '';
+
+      if (q.type === 'mcq') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="options" id="opts-${id}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="selectMCQ('${id}',${j})"><span class="option-letter">${String.fromCharCode(65+j)}</span>${o}</button>`).join('')}</div>`;
+      } else if (q.type === 'tf') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="tf-row"><button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ True</button><button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ False</button></div>`;
+      } else if (q.type === 'fill') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div><input class="fill-input" type="text" placeholder="Type your answer..." id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+      } else if (q.type === 'match') {
+        const opts = q.pairs.map(p=>p[1]);
+        const shuffled = [...opts].sort(()=>Math.random()-.5);
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="match-grid" id="match-${id}">` +
+          q.pairs.map((p,j)=>`<div class="match-left">${p[0]}</div><select class="match-select" id="match-sel-${id}-${j}" onchange="updateMatch('${id}',${q.pairs.length})"><option value="">-- Select --</option>${shuffled.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`).join('') +
+          `</div>`;
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items];
+        inner = `${qLabel}<div class="q-text">${q.q}</div><div class="sort-container">` +
+          shuffled.map((item,j)=>`<div class="sort-item"><select class="sort-select" id="order-${id}-${j}" onchange="updateOrder('${id}',${q.items.length})"><option value="">--</option>${q.items.map((_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select><span style="font-size:.9rem;color:#374151;flex:1;padding-left:8px;">${item}</span></div>`).join('') +
+          `</div>`;
+        q._shuffled = shuffled;
+      }
+
+      div.innerHTML = inner;
+      qContainer.appendChild(div);
+    });
+  });
+}
+
+function selectMCQ(id, oi) {
+  userAnswers[id] = oi;
+  document.querySelectorAll(`#opts-${id} .option-btn`).forEach((b,j)=>b.classList.toggle('selected',j===oi));
+}
+function selectTF(id, val) {
+  userAnswers[id] = val;
+  document.getElementById(`tf-t-${id}`).className='tf-btn'+(val===true?' sel-t':'');
+  document.getElementById(`tf-f-${id}`).className='tf-btn'+(val===false?' sel-f':'');
+}
+function updateMatch(id, len) {
+  const vals = [];
+  for(let j=0;j<len;j++) vals.push(document.getElementById(`match-sel-${id}-${j}`)?.value||'');
+  userAnswers[id] = vals;
+}
+function updateOrder(id, len) {
+  const vals = [];
+  for(let j=0;j<len;j++) vals.push(parseInt(document.getElementById(`order-${id}-${j}`)?.value)||0);
+  userAnswers[id] = vals;
+}
+
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim()||'Student';
+  let correct=0,wrong=0,skip=0;
+  allReviews = [];
+  let globalQ=0;
+
+  sections.forEach((sec,si)=>{
+    sec.questions.forEach((q,qi)=>{
+      globalQ++;
+      const id=`${si}-${qi}`;
+      const ua=userAnswers[id];
+      let status,yourStr,correctStr;
+
+      if(q.type==='mcq'){
+        if(ua===undefined||ua===null){skip++;status='skip';yourStr='Not answered';correctStr=q.opts[q.ans];}
+        else if(ua===q.ans){correct++;status='correct';yourStr=q.opts[ua];correctStr=q.opts[q.ans];}
+        else{wrong++;status='wrong';yourStr=q.opts[ua];correctStr=q.opts[q.ans];}
+      } else if(q.type==='tf'){
+        if(ua===undefined||ua===null){skip++;status='skip';yourStr='Not answered';correctStr=q.ans?'True':'False';}
+        else if(ua===q.ans){correct++;status='correct';yourStr=ua?'True':'False';correctStr=q.ans?'True':'False';}
+        else{wrong++;status='wrong';yourStr=ua?'True':'False';correctStr=q.ans?'True':'False';}
+      } else if(q.type==='fill'){
+        const raw=(ua||'').trim().toLowerCase();
+        const corrects=[q.ans.toLowerCase(),...(q.alt||[]).map(a=>a.toLowerCase())];
+        if(!raw){skip++;status='skip';yourStr='Not answered';correctStr=q.ans;}
+        else if(corrects.includes(raw)){correct++;status='correct';yourStr=ua;correctStr=q.ans;}
+        else{wrong++;status='wrong';yourStr=ua;correctStr=q.ans;}
+      } else if(q.type==='match'){
+        const vals=ua||[];
+        let allRight=vals.length===q.pairs.length && vals.every((v,j)=>v===q.pairs[j][1]) && vals.every(v=>v);
+        if(!ua||vals.every(v=>!v)){skip++;status='skip';yourStr='Not answered';correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+        else if(allRight){correct++;status='correct';yourStr=q.pairs.map((p,j)=>p[0]+' → '+(vals[j]||'?')).join(', ');correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+        else{wrong++;status='wrong';yourStr=q.pairs.map((p,j)=>p[0]+' → '+(vals[j]||'?')).join(', ');correctStr=q.pairs.map(p=>p[0]+' → '+p[1]).join(', ');}
+      } else if(q.type==='order'){
+        const vals=ua||[];
+        const shuffled=q._shuffled||q.items;
+        let allRight=vals.length===q.items.length && vals.every((v,j)=>v===q.correctOrder[j]) && vals.every(v=>v>0);
+        const correctLabels=q.items.map((item,j)=>[q.correctOrder[j],item]).sort((a,b)=>a[0]-b[0]).map(([pos,item])=>`${pos}. ${item}`).join(' → ');
+        if(!ua||vals.every(v=>!v)){skip++;status='skip';yourStr='Not answered';correctStr=correctLabels;}
+        else if(allRight){correct++;status='correct';yourStr=shuffled.map((item,j)=>`${vals[j]}. ${item}`).join(', ');correctStr=correctLabels;}
+        else{wrong++;status='wrong';yourStr=shuffled.map((item,j)=>`${vals[j]||'?'}. ${item}`).join(', ');correctStr=correctLabels;}
+      }
+
+      allReviews.push({status,qNum:globalQ,qText:q.q,ch:q.ch,type:q.type,your:yourStr,correct:correctStr,exp:q.exp});
+    });
+  });
+
+  const pct=correct;
+  let grade=pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=50?'D':'F';
+  let msg=pct>=90?"🏆 Outstanding! You're a Computer Science master!":pct>=70?"🌟 Great job! Keep reviewing the concepts!":pct>=50?"👍 Good effort! Focus on the areas you found tricky!":"💪 Keep studying — revisit the chapter notes and try again!";
+
+  document.getElementById('res-pct').textContent=correct+'%';
+  document.getElementById('res-grade').textContent='Grade: '+grade;
+  document.getElementById('res-score').textContent=correct;
+  document.getElementById('res-name').textContent=name+(document.getElementById('student-class').value.trim()?' · '+document.getElementById('student-class').value.trim():'');
+  document.getElementById('res-msg').textContent=msg;
+  document.getElementById('res-correct').textContent=correct;
+  document.getElementById('res-wrong').textContent=wrong;
+  document.getElementById('res-skip').textContent=skip;
+
+  renderReviews('all');
+
+  document.getElementById('test-form').style.display='none';
+  document.getElementById('results').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderReviews(filter) {
+  const rc=document.getElementById('review-container');
+  rc.innerHTML='';
+  const icons={correct:'✅',wrong:'❌',skip:'⏭'};
+  const typeLabels={mcq:'MCQ',tf:'True/False',fill:'Fill Blank',match:'Matching',order:'Sequence'};
+  allReviews.filter(r=>filter==='all'||r.status===filter).forEach(r=>{
+    rc.innerHTML+=`<div class="review-card review-${r.status}">
+      <div class="review-header">
+        <span style="font-size:1rem;">${icons[r.status]}</span>
+        <span class="review-q">Q${r.qNum}: ${r.qText.length>90?r.qText.substring(0,90)+'…':r.qText}</span>
+        <span class="type-chip">${typeLabels[r.type]||r.type}</span>
+      </div>
+      <div class="review-body">
+        ${r.status!=='correct'?`<div class="your-ans">Your answer: ${r.your}</div>`:''}
+        <div class="correct-ans">Correct: ${r.correct}</div>
+        <div class="explanation">💡 ${r.exp}</div>
+      </div>
+    </div>`;
+  });
+  if(rc.innerHTML==='') rc.innerHTML='<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+function retryTest() {
+  Object.keys(userAnswers).forEach(k=>delete userAnswers[k]);
+  allReviews=[];
+  buildAll();
+  document.getElementById('results').style.display='none';
+  document.getElementById('test-form').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+buildAll();
+</script>
+</body>
+</html>
