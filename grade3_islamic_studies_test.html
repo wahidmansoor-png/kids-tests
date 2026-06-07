@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 3 Islamic Studies – Test</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#fdf8f0;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#1a6b3c 0%,#2d8f56 60%,#b8860b 100%);color:white;padding:2rem 1rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;position:relative;}
+.hero p{font-size:.95rem;opacity:.9;position:relative;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.hero-badge{background:rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.3);}
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem;margin-bottom:1.5rem;border-top:3px solid #1a6b3c;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#1a6b3c;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{background:linear-gradient(135deg,#1a6b3c,#2d8f56);color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.chapter-tag{background:#d1fae5;color:#065f46;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:700;}
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:all .2s;background:white;font-size:.93rem;color:#374151;text-align:left;}
+.option-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.option-btn.selected{border-color:#1a6b3c;background:#d1fae5;color:#065f46;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#1a6b3c;}
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.tf-btn.sel-t{border-color:#1a6b3c;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#1a6b3c;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;cursor:pointer;width:100%;background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#1a6b3c;}
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-label{font-size:.85rem;color:#6b7280;font-weight:600;min-width:60px;}
+.sort-select{flex:1;padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;font-size:.88rem;outline:none;background:white;cursor:pointer;}
+.sort-select:focus{border-color:#1a6b3c;}
+.submit-area{text-align:center;}
+.submit-btn{background:linear-gradient(135deg,#1a6b3c,#2d8f56);color:white;border:none;padding:14px 44px;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(26,107,60,.4);transition:transform .15s,box-shadow .15s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,107,60,.5);}
+#results{display:none;}
+.score-hero{background:linear-gradient(135deg,#1a6b3c,#2d8f56);color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#1a6b3c;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#1a6b3c;}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;font-size:.8rem;font-weight:700;cursor:pointer;background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#1a6b3c;background:#d1fae5;color:#1a6b3c;}
+.review-card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong .review-header{background:#fef2f2;}
+.review-skip .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#1a6b3c;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #6ee7b7;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#d1fae5;color:#1a6b3c;flex-shrink:0;}
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;border:2px solid #1a6b3c;color:#1a6b3c;padding:12px 36px;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#d1fae5;}
+.chapter-section-label{font-size:.8rem;font-weight:700;color:#1a6b3c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid #d1fae5;}
+.ayah-box{background:linear-gradient(135deg,#fef9e7,#fdf3d0);border:1px solid #f0d060;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-style:italic;color:#5a3e00;font-size:.93rem;line-height:1.6;}
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:2rem;margin-bottom:.5rem;">☪️ 📖 🕌</div>
+  <h1>Grade 3 Islamic Studies – Test</h1>
+  <p>Prophet Muhammad ﷺ · Ali ibn Abi Talib · Jaffar ibn Abi Talib</p>
+  <div class="hero-badges">
+    <span class="hero-badge">60 Questions</span>
+    <span class="hero-badge">6 Sections</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div><label>Your Name</label><input type="text" id="student-name" placeholder="e.g. Ahmed Ali"></div>
+    <div><label>Class / Section</label><input type="text" id="student-class" placeholder="e.g. Grade 3 – A"></div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">Answer all 60 questions then submit to see your results!</p>
+    <button class="submit-btn" onclick="submitTest()"><i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test</button>
+  </div>
+</div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total">/60</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat">60</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All (60)</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+  <button class="retry-btn" onclick="retryTest()"><i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again</button>
+</div>
+</div>
+
+<script>
+const sections = [
+  {
+    title: "Section A – Multiple Choice",
+    badge: "A",
+    typeLabel: "Choose the best answer",
+    questions: [
+      // Prophet SAW Part 1
+      {type:"mcq",ch:"Prophet SAW",q:"Why was Prophet Muhammad ﷺ popular in Arabia?",opts:["Because he was very rich","Because of his wisdom, honesty and trustworthiness","Because he was a great warrior","Because of his family name"],ans:1,exp:"Prophet Muhammad ﷺ was popular in Arabia because of his wisdom, honesty and trustworthiness. People trusted him deeply."},
+      {type:"mcq",ch:"Prophet SAW",q:"What was the profession of Prophet Muhammad ﷺ?",opts:["Farmer","Soldier","Trader","Teacher"],ans:2,exp:"Prophet Muhammad ﷺ was a trader by profession. He was well known in Arabia for his honesty in business."},
+      {type:"mcq",ch:"Prophet SAW",q:"Who supported Prophet Muhammad ﷺ morally when no one else did?",opts:["Abu Talib","Al-Abbas","Khadijah RA","Waraqah ibn Nawfal"],ans:2,exp:"Khadijah RA supported the Prophet ﷺ morally, and because of her support he was able to live in ease after their marriage."},
+      {type:"mcq",ch:"Prophet SAW",q:"Who took care of Ali ibn Abi Talib?",opts:["Al-Abbas","Abu Bakr","Prophet Muhammad ﷺ","Jaffar"],ans:2,exp:"Prophet Muhammad ﷺ took care of Ali, while Al-Abbas took care of Jaffar, because Abu Talib was unable to support his large family."},
+      {type:"mcq",ch:"Prophet SAW",q:"Who took care of Jaffar ibn Abi Talib?",opts:["Prophet Muhammad ﷺ","Al-Abbas","Abu Talib","Khadijah RA"],ans:1,exp:"Al-Abbas (the Prophet's uncle) took care of Jaffar, while the Prophet ﷺ himself took care of Ali."},
+      // Prophet SAW Part 2
+      {type:"mcq",ch:"Prophet SAW",q:"Who was Khadijah's nephew?",opts:["Zayd ibn Harithah","Waraqah ibn Nawfal","Hakeem ibn Haram","Harithah"],ans:2,exp:"Hakeem ibn Haram was Khadijah's nephew. He was the one who bought Zayd as a slave and offered him to Khadijah."},
+      {type:"mcq",ch:"Prophet SAW",q:"How did Zayd come to Prophet Muhammad ﷺ?",opts:["He was given as a gift by his father","He was taken during a raid and sold as a slave, then offered to the Prophet","He came on his own seeking shelter","He was brought by Abu Talib"],ans:1,exp:"Zayd was taken during a raid and sold as a slave. Hakeem bought him, offered him to Khadijah RA, and she then offered him to Prophet Muhammad ﷺ."},
+      {type:"mcq",ch:"Prophet SAW",q:"Why did Zayd refuse to go back with his father?",opts:["He was afraid of his father","He said the Prophet ﷺ treated him harshly","He had seen such wonderful qualities in Muhammad ﷺ that he preferred no one over him","He did not recognise his father"],ans:2,exp:"Zayd said he had seen in Muhammad ﷺ such wonderful qualities that he could prefer no one else over him. He chose to stay."},
+      {type:"mcq",ch:"Prophet SAW",q:"What was Zayd's father's name?",opts:["Hakeem","Harithah","Haram","Nawfal"],ans:1,exp:"Zayd's father's name was Harithah. He came looking for Zayd and was happy to find him in the care of the Prophet ﷺ."},
+      {type:"mcq",ch:"Prophet SAW",q:"Why was Harithah happy that his son stayed with the Prophet ﷺ?",opts:["Because Zayd became rich","Because Muhammad ﷺ set Zayd free and took him as his own son","Because Zayd was given a house","Because Zayd became a trader"],ans:1,exp:"Harithah was happy because Prophet Muhammad ﷺ set Zayd free and treated him as his own son, showing great kindness and generosity."},
+      // Prophet SAW Part 3 & 4
+      {type:"mcq",ch:"Cave of Hira",q:"Where is the Cave of Hira located?",opts:["On the outskirts of Madinah","In Mount An-Noor, two miles north of Makkah","Inside Makkah city","On the coast of Arabia"],ans:1,exp:"The Cave of Hira is in Mount An-Noor (Mount of Light), which is two miles away from Makkah towards the north on the way to Mina."},
+      {type:"mcq",ch:"Cave of Hira",q:"How old was Prophet Muhammad ﷺ when he received his first revelation?",opts:["Thirty years old","Thirty-five years old","Forty years old","Forty-five years old"],ans:2,exp:"Prophet Muhammad ﷺ was forty years old when he received his first revelation from Angel Jibreel AS in the Cave of Hira."},
+      {type:"mcq",ch:"Cave of Hira",q:"How many verses were revealed to Prophet Muhammad ﷺ in the first revelation?",opts:["Three verses","Five verses","Seven verses","Ten verses"],ans:1,exp:"The first five verses of Surah Al-Alaq were revealed to Prophet Muhammad ﷺ as the first revelation."},
+      {type:"mcq",ch:"Cave of Hira",q:"What was the name of the Angel who came to Prophet Muhammad ﷺ with the first revelation?",opts:["Angel Mikail","Angel Israfil","Angel Jibreel AS","Angel Azrael"],ans:2,exp:"Angel Jibreel AS (Gabriel) came to Prophet Muhammad ﷺ in the Cave of Hira and brought him the first revelation from Allah."},
+      {type:"mcq",ch:"Cave of Hira",q:"What was the reaction of Prophet Muhammad ﷺ after the first revelation?",opts:["He was very happy and celebrated","He went to preach immediately","He got frightened and went home to Khadijah RA","He returned to the cave again"],ans:2,exp:"The Prophet ﷺ got frightened by the experience and came back home. Khadijah RA wrapped him in a blanket and he told her what had happened."},
+      // Prophet SAW Part 5
+      {type:"mcq",ch:"Prophet SAW",q:"Who was Waraqah ibn Nawfal?",opts:["Khadijah's nephew","Khadijah's uncle","Khadijah's cousin who was a scholar","A companion of the Prophet"],ans:2,exp:"Waraqah ibn Nawfal was Khadijah's cousin (not her uncle). He was a learned scholar who confirmed that Muhammad ﷺ was a true prophet."},
+      {type:"mcq",ch:"Prophet SAW",q:"What did Waraqah ibn Nawfal tell Prophet Muhammad ﷺ?",opts:["That he should go back to the cave","That he was the prophet of this nation and his people would drive him out","That he should leave Arabia","That the revelation was just a dream"],ans:1,exp:"Waraqah told the Prophet ﷺ that he was the prophet of this nation and that there would be a time when his people would drive him out."},
+      // Ali ibn Abi Talib
+      {type:"mcq",ch:"Ali ibn Abi Talib",q:"How old was Ali when he accepted Islam?",opts:["Eight years old","Nine years old","Ten years old","Twelve years old"],ans:2,exp:"Ali ibn Abi Talib was ten years old when he accepted Islam, making him one of the earliest people to embrace the faith."},
+      {type:"mcq",ch:"Ali ibn Abi Talib",q:"Who were the grandsons of Prophet Muhammad ﷺ from his daughter Fatimah?",opts:["Ali and Jaffar","Zayd and Hakeem","Al-Hasan and Al-Husayn","Abdullah and Ibrahim"],ans:2,exp:"Al-Hasan and Al-Husayn were the sons of Fatimah RA (daughter of the Prophet ﷺ) and Ali ibn Abi Talib, making them the grandsons of the Prophet ﷺ."},
+      // Jaffar
+      {type:"mcq",ch:"Jaffar ibn Abi Talib",q:"What does the title 'At-Tayyaar' mean?",opts:["The brave","The flyer","The scholar","The generous"],ans:1,exp:"At-Tayyaar means 'the flyer'. Prophet Muhammad ﷺ gave Jaffar this title because Allah would give him two wings in Paradise in place of his lost arms."},
+    ]
+  },
+  {
+    title: "Section B – True or False",
+    badge: "B",
+    typeLabel: "Decide if each statement is True or False",
+    questions: [
+      {type:"tf",ch:"Prophet SAW",q:"Abu Talib and Al-Abbas were brothers.",ans:true,exp:"True! Abu Talib and Al-Abbas were both brothers and uncles of Prophet Muhammad ﷺ. They came from the same family."},
+      {type:"tf",ch:"Prophet SAW",q:"Al-Abbas took care of Ali ibn Abi Talib.",ans:false,exp:"False. Al-Abbas took care of Jaffar, not Ali. It was Prophet Muhammad ﷺ who took care of Ali when Abu Talib could not support his family."},
+      {type:"tf",ch:"Prophet SAW",q:"Prophet Muhammad ﷺ supported the poor and kept good relations with his relatives.",ans:true,exp:"True! This is why Khadijah RA said Allah would never disgrace the Prophet — he kept good relations with relatives, supported the weak, and entertained his guests."},
+      {type:"tf",ch:"Prophet SAW",q:"Zayd was offered to the Prophet ﷺ by his father Harithah.",ans:false,exp:"False. Zayd was offered to the Prophet ﷺ by Khadijah RA. Before that, Hakeem ibn Haram bought Zayd and offered him to Khadijah RA."},
+      {type:"tf",ch:"Prophet SAW",q:"Zayd chose to stay with Prophet Muhammad ﷺ rather than return with his father.",ans:true,exp:"True! Zayd said he had seen such wonderful qualities in Muhammad ﷺ that he preferred no one else over him, so he chose to stay."},
+      {type:"tf",ch:"Prophet SAW",q:"Harithah was unhappy that his son stayed with the Prophet ﷺ.",ans:false,exp:"False. Harithah was actually happy because the Prophet ﷺ set Zayd free and treated him as his own son, which was a great honour."},
+      {type:"tf",ch:"Cave of Hira",q:"The Cave of Hira is four yards long and about three quarters of a yard wide.",ans:true,exp:"True! The Cave of Hira is described as four yards long and about three quarters of a yard wide — it is a small, narrow cave."},
+      {type:"tf",ch:"Cave of Hira",q:"In the Cave of Hira, the Prophet ﷺ used to think deeply about Allah's power and glorify Him.",ans:true,exp:"True! In the Cave of Hira, the Prophet ﷺ would deeply think about Allah's powers and would glorify and praise Him."},
+      {type:"tf",ch:"Cave of Hira",q:"The Prophet ﷺ was happy that his people worshipped idols.",ans:false,exp:"False. The Prophet ﷺ was NOT happy that his people worshipped idols. This was one of the reasons he used to retreat to the Cave of Hira to worship only Allah."},
+      {type:"tf",ch:"Prophet SAW",q:"The first revelation was from Surah Al-Mudassir.",ans:false,exp:"False. The first revelation was from Surah Al-Alaq (the first five verses). Surah Al-Mudassir came later with the command to 'arise and warn'."},
+      {type:"tf",ch:"Prophet SAW",q:"Khadijah RA gave Prophet Muhammad ﷺ a lot of support.",ans:true,exp:"True! Khadijah RA supported the Prophet ﷺ greatly — she was intelligent, aware of his noble qualities, and stood by him at the most difficult times."},
+      {type:"tf",ch:"Prophet SAW",q:"Waraqah ibn Nawfal was Khadijah's uncle.",ans:false,exp:"False. Waraqah ibn Nawfal was Khadijah's COUSIN, not her uncle. He was a learned scholar who confirmed the Prophet's mission."},
+      {type:"tf",ch:"Ali ibn Abi Talib",q:"Ali's father was Abu Talib.",ans:true,exp:"True! Ali ibn Abi Talib's father was Abu Talib, who was also the uncle of Prophet Muhammad ﷺ. This makes Ali the cousin of the Prophet ﷺ."},
+      {type:"tf",ch:"Jaffar ibn Abi Talib",q:"Jaffar was the cousin of Ali ibn Abi Talib.",ans:false,exp:"False. Jaffar was the BROTHER of Ali, not his cousin. They were both sons of Abu Talib."},
+      {type:"tf",ch:"Jaffar ibn Abi Talib",q:"Ali was ten years younger than Jaffar.",ans:true,exp:"True! Ali was ten years younger than his brother Jaffar. Jaffar was older and also accepted Islam early."},
+    ]
+  },
+  {
+    title: "Section C – Fill in the Blanks",
+    badge: "C",
+    typeLabel: "Type the correct word(s) to complete each sentence",
+    questions: [
+      {type:"fill",ch:"Prophet SAW",q:"Prophet Muhammad ﷺ was popular in Arabia because of his wisdom, honesty and ________.",ans:"trustworthiness",alt:["trustworthy"],exp:"The three qualities that made the Prophet ﷺ popular were his wisdom, honesty and trustworthiness. People gave him the title Al-Amin (the trustworthy)."},
+      {type:"fill",ch:"Prophet SAW",q:"Khadijah's nephew who bought Zayd was named ________.",ans:"Hakeem ibn Haram",alt:["hakeem","hakeem ibn haram"],exp:"Hakeem ibn Haram was Khadijah's nephew. He bought Zayd from a market and offered him to Khadijah RA."},
+      {type:"fill",ch:"Prophet SAW",q:"Zayd's father came looking for him and his name was ________.",ans:"Harithah",alt:[],exp:"Harithah was Zayd's father. He was relieved and happy to find his son well-cared for and eventually set free by the Prophet ﷺ."},
+      {type:"fill",ch:"Cave of Hira",q:"The Cave of Hira is located in Mount ________, which means the Mount of Light.",ans:"An-Noor",alt:["an noor","annoor"],exp:"Mount An-Noor means 'Mount of Light'. The Cave of Hira is located in this mountain, two miles north of Makkah."},
+      {type:"fill",ch:"Cave of Hira",q:"During his time in the cave, the Prophet ﷺ had true ________.",ans:"dreams",alt:["dream"],exp:"During those days in the Cave of Hira, the Prophet ﷺ had true dreams — this was part of the beginning of prophethood."},
+      {type:"fill",ch:"Cave of Hira",q:"Prophet Muhammad ﷺ was ________ years old when he received his first revelation.",ans:"forty",alt:["40"],exp:"The Prophet ﷺ was forty years old when Angel Jibreel AS came to him in the Cave of Hira with the first revelation."},
+      {type:"fill",ch:"Prophet SAW",q:"After the first revelation, Khadijah RA ________ the Prophet ﷺ in a blanket.",ans:"wrapped",alt:[],exp:"The Prophet ﷺ came home frightened. Khadijah RA wrapped him in a blanket and listened to him as he described what had happened."},
+      {type:"fill",ch:"Prophet SAW",q:"Waraqah ibn Nawfal told the Prophet ﷺ that his people would ________ him out.",ans:"drive",alt:["cast","force","push"],exp:"Waraqah warned the Prophet ﷺ that his own people would one day drive him out — which later came true when the Muslims migrated to Madinah."},
+      {type:"fill",ch:"Ali ibn Abi Talib",q:"Ali ibn Abi Talib accepted Islam when he was ________ years old.",ans:"ten",alt:["10"],exp:"Ali was ten years old when he accepted Islam, making him among the very first to embrace the faith."},
+      {type:"fill",ch:"Jaffar ibn Abi Talib",q:"Prophet Muhammad ﷺ called Jaffar 'At-Tayyaar', which means 'the ________'.",ans:"flyer",alt:["one who flies"],exp:"At-Tayyaar means 'the flyer'. The Prophet ﷺ gave Jaffar this title because Allah would give him two wings in Paradise to replace his arms lost in battle."},
+    ]
+  },
+  {
+    title: "Section D – Match the Columns",
+    badge: "D",
+    typeLabel: "Match each item on the left with the correct answer on the right",
+    questions: [
+      {type:"match",ch:"Prophet SAW",q:"Match each person to their relationship with the Prophet ﷺ or a key fact about them.",
+       pairs:[["Khadijah RA","Wife of the Prophet ﷺ; gave him great moral support"],["Abu Talib","Uncle of the Prophet ﷺ; father of Ali and Jaffar"],["Al-Abbas","Uncle of the Prophet ﷺ; took care of Jaffar"],["Waraqah ibn Nawfal","Khadijah's cousin; confirmed the Prophet's mission"]],
+       exp:"Khadijah = wife and supporter. Abu Talib = uncle, father of Ali/Jaffar. Al-Abbas = uncle who cared for Jaffar. Waraqah = Khadijah's cousin, confirmed prophethood."},
+      {type:"match",ch:"Prophet SAW",q:"Match each person to their connection to Zayd ibn Harithah.",
+       pairs:[["Hakeem ibn Haram","Bought Zayd as a slave and offered him to Khadijah"],["Khadijah RA","Received Zayd from Hakeem and offered him to the Prophet"],["Prophet Muhammad ﷺ","Set Zayd free and treated him as his own son"],["Harithah","Zayd's father who came looking for him"]],
+       exp:"Hakeem bought Zayd. Khadijah received then offered him. Prophet freed and adopted him. Harithah was his birth father."},
+      {type:"match",ch:"Cave of Hira",q:"Match each fact about the Cave of Hira and the first revelation.",
+       pairs:[["Location of the cave","Mount An-Noor, two miles north of Makkah"],["Size of the cave","Four yards long and three quarters of a yard wide"],["The Angel who brought revelation","Angel Jibreel AS"],["Number of verses first revealed","First five verses of Surah Al-Alaq"]],
+       exp:"Cave location: Mount An-Noor, 2 miles from Makkah. Size: 4 yards long, ¾ yard wide. Angel: Jibreel AS. First revelation: 5 verses of Surah Al-Alaq."},
+      {type:"match",ch:"Ali & Jaffar",q:"Match each person to a key fact about them.",
+       pairs:[["Ali ibn Abi Talib","Accepted Islam at age ten"],["Jaffar ibn Abi Talib","Known as At-Tayyaar (the flyer)"],["Al-Hasan & Al-Husayn","Grandsons of the Prophet ﷺ through Fatimah and Ali"],["Fatimah RA","Daughter of the Prophet ﷺ; mother of Hasan and Husayn"]],
+       exp:"Ali → accepted Islam at 10. Jaffar → At-Tayyaar. Hasan & Husayn → grandsons of Prophet. Fatimah → daughter of Prophet, mother of Hasan & Husayn."},
+      {type:"match",ch:"Prophet SAW",q:"Match each Surah to what it taught or commanded.",
+       pairs:[["Surah Al-Alaq (first 5 verses)","'Read in the name of your Lord Who created' — first revelation"],["Surah Al-Mudassir","'Arise and warn; glorify your Lord; purify your clothing'"],["'Read, and your Lord is the Most Generous'","From Surah Al-Alaq — teaching by the pen"],["'Keep away from the idols'","From Surah Al-Mudassir — command to leave idol worship"]],
+       exp:"Alaq: Read in the name of Allah — first revelation. Mudassir: arise and warn, purify. 'Most Generous' → Alaq. 'Away from idols' → Mudassir."},
+    ]
+  },
+  {
+    title: "Section E – Sequence & Order",
+    badge: "E",
+    typeLabel: "Number the steps in the correct order (1 = first, last number = last)",
+    questions: [
+      {type:"order",ch:"Prophet SAW",q:"Put these events in the correct order to show how Zayd came to live with Prophet Muhammad ﷺ.",
+       items:["Khadijah RA offered Zayd to Prophet Muhammad ﷺ","Zayd was taken during a raid and sold as a slave","Hakeem ibn Haram bought Zayd and offered him to Khadijah RA","The Prophet ﷺ set Zayd free and treated him as his son"],
+       correctOrder:[3,1,2,4],
+       exp:"1. Zayd taken in raid and sold → 2. Hakeem bought and offered to Khadijah → 3. Khadijah offered to the Prophet → 4. Prophet freed and adopted Zayd."},
+      {type:"order",ch:"Cave of Hira",q:"Put these events in the correct order to show what happened during and after the first revelation.",
+       items:["Khadijah RA wrapped the Prophet ﷺ in a blanket","Angel Jibreel AS appeared to the Prophet ﷺ in the Cave of Hira","The Prophet ﷺ came home frightened","Khadijah RA took the Prophet ﷺ to Waraqah ibn Nawfal"],
+       correctOrder:[3,1,2,4],
+       exp:"1. Angel Jibreel appeared in the cave → 2. Prophet came home frightened → 3. Khadijah wrapped him in a blanket → 4. Khadijah took him to Waraqah ibn Nawfal."},
+      {type:"order",ch:"Prophet SAW",q:"Arrange these events in the life of Prophet Muhammad ﷺ in the correct order.",
+       items:["He received the first revelation at age forty","He married Khadijah RA and lived in ease","He became popular as a trustworthy trader in Arabia","He took care of Ali when Abu Talib could not support his family"],
+       correctOrder:[2,3,1,4],
+       exp:"1. Became known as a trustworthy trader → 2. Married Khadijah and lived in ease → 3. Took care of Ali (Abu Talib could not) → 4. Received first revelation at forty."},
+      {type:"order",ch:"Ali & Jaffar",q:"Put these facts about Jaffar ibn Abi Talib in the correct order of events.",
+       items:["Prophet Muhammad ﷺ gave him the title At-Tayyaar","Jaffar lost both his arms in battle","Al-Abbas took care of Jaffar as a young boy","Prophet ﷺ said Jaffar would be given two wings in Paradise"],
+       correctOrder:[2,3,1,4],
+       exp:"1. Al-Abbas cared for young Jaffar → 2. Jaffar lost both arms in battle → 3. Prophet gave him the title At-Tayyaar → 4. Prophet said he'd receive two wings in Paradise."},
+      {type:"order",ch:"Prophet SAW",q:"Arrange these facts about Abu Talib and his family in the correct order.",
+       items:["The Prophet ﷺ went to speak to Al-Abbas for help","Abu Talib became unable to support his large family","The Prophet ﷺ took care of Ali","Al-Abbas took care of Jaffar"],
+       correctOrder:[2,1,3,4],
+       exp:"1. Abu Talib became unable to support his family → 2. Prophet went to Al-Abbas for help → 3. Prophet took care of Ali → 4. Al-Abbas took care of Jaffar."},
+    ]
+  },
+  {
+    title: "Section F – Connect the Table",
+    badge: "F",
+    typeLabel: "Match each item on the left with the correct description on the right",
+    questions: [
+      {type:"match",ch:"Prophet SAW",q:"Match each noble quality of Prophet Muhammad ﷺ to the example that shows it.",
+       pairs:[["Honesty","People trusted him to carry goods for trade"],["Trustworthiness","He was given the title Al-Amin"],["Supporting the weak","He helped the poor and those in need"],["Good family relations","Khadijah said Allah would never disgrace him because of this"]],
+       exp:"Honesty → trusted with goods. Trustworthiness → title Al-Amin. Supporting weak → helped poor. Good relations → reason Khadijah was confident Allah would protect him."},
+      {type:"match",ch:"Cave of Hira",q:"Match each activity in the Cave of Hira to its significance.",
+       pairs:[["Thinking about Allah's power","He worshipped Allah in the manner of Prophet Ibrahim AS"],["Having true dreams","A sign of the beginning of prophethood"],["Going into retreat","He felt a unique joy in the solitude away from idol worship"],["Glorifying and praising Allah","He was deeply uncomfortable with his people's idol worship"]],
+       exp:"Thinking of Allah's power → worship like Ibrahim. True dreams → start of prophethood. Retreat → joy in solitude. Glorifying Allah → rejection of idol worship."},
+      {type:"match",ch:"Prophet SAW",q:"Match each statement Khadijah RA made or action she took to the reason behind it.",
+       pairs:[["'Allah will never disgrace you'","Because the Prophet kept good relations, supported the weak and entertained guests"],["Wrapped him in a blanket","He came home frightened after the first revelation"],["Took him to Waraqah ibn Nawfal","To seek explanation from a learned scholar about the revelation"],["Offered Zayd to the Prophet ﷺ","To give the Prophet a helper and companion"]],
+       exp:"Khadijah reassured → his noble qualities. Blanket → frightened after revelation. Waraqah visit → seek scholarly explanation. Gave Zayd → trusted companion."},
+      {type:"match",ch:"Ali & Jaffar",q:"Match each title or description to the correct person.",
+       pairs:[["At-Tayyaar (the flyer)","Jaffar ibn Abi Talib"],["Accepted Islam at age ten","Ali ibn Abi Talib"],["Lost both arms in battle","Jaffar ibn Abi Talib"],["Father of Al-Hasan and Al-Husayn","Ali ibn Abi Talib"]],
+       exp:"At-Tayyaar → Jaffar. Accepted Islam at 10 → Ali. Lost both arms → Jaffar. Father of Hasan & Husayn → Ali."},
+      {type:"match",ch:"Prophet SAW",q:"Match each person to what they said or did when they met the Prophet ﷺ or Khadijah.",
+       pairs:[["Waraqah ibn Nawfal","Said the Prophet is the prophet of this nation and will be driven out"],["Harithah (Zayd's father)","Was happy his son was freed and treated as the Prophet's own son"],["Zayd ibn Harithah","Refused to leave the Prophet ﷺ despite his father's arrival"],["Angel Jibreel AS","Came to the Prophet in the Cave of Hira with the first revelation"]],
+       exp:"Waraqah → confirmed prophethood, warned of exile. Harithah → happy with son's honourable situation. Zayd → chose Prophet over father. Jibreel → brought first revelation."},
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+// ENGINE
+// ═══════════════════════════════════════════════════════
+const userAnswers = {};
+let allReviews = [];
+
+function buildAll() {
+  const sc = document.getElementById('sections-container');
+  sc.innerHTML = '';
+  let globalQ = 0;
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    let html = `<div class="section-header"><div class="section-badge">${sec.badge}</div><h2>${sec.title}</h2><span class="type-tag">${sec.typeLabel}</span></div>`;
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const key = `q${globalQ}`;
+      html += `<div class="q-block">`;
+      html += `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; <span class="chapter-tag">${q.ch}</span></div>`;
+      const qText = q.q.replace(/\n/g, '<br>');
+      html += `<div class="q-text">${qText}</div>`;
+      if (q.type === 'mcq') {
+        html += `<div class="options">`;
+        const letters = ['A','B','C','D'];
+        q.opts.forEach((opt, oi) => {
+          html += `<button class="option-btn" id="${key}_${oi}" onclick="selectMCQ('${key}',${oi},${q.opts.length})"><span class="option-letter">${letters[oi]}</span>${opt}</button>`;
+        });
+        html += `</div>`;
+      } else if (q.type === 'tf') {
+        html += `<div class="tf-row"><button class="tf-btn" id="${key}_t" onclick="selectTF('${key}',true)">✅ True</button><button class="tf-btn" id="${key}_f" onclick="selectTF('${key}',false)">❌ False</button></div>`;
+      } else if (q.type === 'fill') {
+        html += `<input class="fill-input" id="${key}" placeholder="Type your answer here..." oninput="userAnswers['${key}']=this.value">`;
+      } else if (q.type === 'match') {
+        const allRights = q.pairs.map(p => p[1]);
+        const shuffled = [...allRights].sort(() => Math.random() - 0.5);
+        html += `<div class="match-grid">`;
+        q.pairs.forEach((pair, pi) => {
+          html += `<div class="match-left">${pair[0]}</div><select class="match-select" id="${key}_${pi}" onchange="setMatch('${key}',${pi})"><option value="">– Choose –</option>`;
+          shuffled.forEach(r => { html += `<option value="${r}">${r}</option>`; });
+          html += `</select>`;
+        });
+        html += `</div>`;
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items];
+        q._shuffled = shuffled;
+        html += `<div class="sort-container">`;
+        shuffled.forEach((item, si2) => {
+          html += `<div class="sort-item"><span class="sort-label">Step:</span><select class="sort-select" id="${key}_${si2}" onchange="setOrder('${key}',${si2},${q.items.length})"><option value="0">– #? –</option>`;
+          for (let n = 1; n <= q.items.length; n++) html += `<option value="${n}">${n}</option>`;
+          html += `</select><span style="font-size:.88rem;color:#374151;flex:1;padding:0 8px;">${item}</span></div>`;
+        });
+        html += `</div>`;
+      }
+      html += `</div>`;
+    });
+    card.innerHTML = html;
+    sc.appendChild(card);
+  });
+}
+
+function selectMCQ(key, idx, total) {
+  userAnswers[key] = idx;
+  for (let i = 0; i < total; i++) {
+    const el = document.getElementById(`${key}_${i}`);
+    if (el) el.classList.toggle('selected', i === idx);
+  }
+}
+function selectTF(key, val) {
+  userAnswers[key] = val;
+  const t = document.getElementById(`${key}_t`);
+  const f = document.getElementById(`${key}_f`);
+  if (t) { t.className = 'tf-btn' + (val ? ' sel-t' : ''); }
+  if (f) { f.className = 'tf-btn' + (!val ? ' sel-f' : ''); }
+}
+function setMatch(key, idx) {
+  if (!userAnswers[key]) userAnswers[key] = [];
+  userAnswers[key][idx] = document.getElementById(`${key}_${idx}`).value;
+}
+function setOrder(key, idx, total) {
+  if (!userAnswers[key]) userAnswers[key] = new Array(total).fill(0);
+  userAnswers[key][idx] = parseInt(document.getElementById(`${key}_${idx}`).value);
+}
+
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'Student';
+  let correct = 0, wrong = 0, skip = 0;
+  allReviews = [];
+  let globalQ = 0;
+  sections.forEach(sec => {
+    sec.questions.forEach(q => {
+      globalQ++;
+      const key = `q${globalQ}`;
+      const ua = userAnswers[key];
+      let status, yourStr, correctStr;
+      if (q.type === 'mcq') {
+        if (ua === undefined || ua === null) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.opts[q.ans]; }
+        else if (ua === q.ans) { correct++; status = 'correct'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans]; }
+        else { wrong++; status = 'wrong'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans]; }
+      } else if (q.type === 'tf') {
+        if (ua === undefined || ua === null) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans ? 'True' : 'False'; }
+        else if (ua === q.ans) { correct++; status = 'correct'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False'; }
+        else { wrong++; status = 'wrong'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False'; }
+      } else if (q.type === 'fill') {
+        const raw = (ua || '').trim().toLowerCase();
+        const corrects = [q.ans.toLowerCase(), ...(q.alt || []).map(a => a.toLowerCase())];
+        if (!raw) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans; }
+        else if (corrects.includes(raw)) { correct++; status = 'correct'; yourStr = ua; correctStr = q.ans; }
+        else { wrong++; status = 'wrong'; yourStr = ua; correctStr = q.ans; }
+      } else if (q.type === 'match') {
+        const vals = ua || [];
+        let allRight = vals.length === q.pairs.length && vals.every((v, j) => v === q.pairs[j][1]) && vals.every(v => v);
+        if (!ua || vals.every(v => !v)) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+        else if (allRight) { correct++; status = 'correct'; yourStr = q.pairs.map((p, j) => p[0] + ' → ' + (vals[j] || '?')).join(', '); correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+        else { wrong++; status = 'wrong'; yourStr = q.pairs.map((p, j) => p[0] + ' → ' + (vals[j] || '?')).join(', '); correctStr = q.pairs.map(p => p[0] + ' → ' + p[1]).join(', '); }
+      } else if (q.type === 'order') {
+        const vals = ua || [];
+        let allRight = vals.length === q.items.length && vals.every((v, j) => v === q.correctOrder[j]) && vals.every(v => v > 0);
+        const correctLabels = q.items.map((item, j) => [q.correctOrder[j], item]).sort((a, b) => a[0] - b[0]).map(([pos, item]) => `${pos}. ${item}`).join(' → ');
+        const shuffled = q._shuffled || q.items;
+        if (!ua || vals.every(v => !v)) { skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctLabels; }
+        else if (allRight) { correct++; status = 'correct'; yourStr = shuffled.map((item, j) => `${vals[j]}. ${item}`).join(', '); correctStr = correctLabels; }
+        else { wrong++; status = 'wrong'; yourStr = shuffled.map((item, j) => `${vals[j] || '?'}. ${item}`).join(', '); correctStr = correctLabels; }
+      }
+      allReviews.push({ status, qNum: globalQ, qText: q.q, ch: q.ch, type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+
+  const pct = Math.round(correct / 60 * 100);
+  let grade = pct >= 90 ? 'A+' : pct >= 80 ? 'A' : pct >= 70 ? 'B' : pct >= 60 ? 'C' : pct >= 50 ? 'D' : 'F';
+  let msg = pct >= 90 ? "🏆 Outstanding! Masha'Allah — excellent work!" : pct >= 70 ? "🌟 Great job! Keep studying and reviewing!" : pct >= 50 ? "👍 Good effort! Review your notes and try again!" : "💪 Keep studying — you will improve, insha'Allah!";
+
+  document.getElementById('res-pct').textContent = pct + '%';
+  document.getElementById('res-grade').textContent = 'Grade: ' + grade;
+  document.getElementById('res-score').textContent = correct;
+  document.getElementById('res-name').textContent = name + (document.getElementById('student-class').value.trim() ? ' · ' + document.getElementById('student-class').value.trim() : '');
+  document.getElementById('res-msg').textContent = msg;
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
+  document.getElementById('res-skip').textContent = skip;
+
+  renderReviews('all');
+  document.getElementById('test-form').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  const icons = { correct: '✅', wrong: '❌', skip: '⏭' };
+  const typeLabels = { mcq: 'MCQ', tf: 'True/False', fill: 'Fill Blank', match: 'Matching', order: 'Sequence' };
+  allReviews.filter(r => filter === 'all' || r.status === filter).forEach(r => {
+    rc.innerHTML += `<div class="review-card review-${r.status}">
+      <div class="review-header">
+        <span style="font-size:1rem;">${icons[r.status]}</span>
+        <span class="review-q">Q${r.qNum}: ${r.qText.length > 90 ? r.qText.substring(0, 90) + '…' : r.qText}</span>
+        <span class="type-chip">${typeLabels[r.type] || r.type}</span>
+      </div>
+      <div class="review-body">
+        ${r.status !== 'correct' ? `<div class="your-ans">Your answer: ${r.your}</div>` : ''}
+        <div class="correct-ans">Correct: ${r.correct}</div>
+        <div class="explanation">💡 ${r.exp}</div>
+      </div>
+    </div>`;
+  });
+  if (rc.innerHTML === '') rc.innerHTML = '<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+function retryTest() {
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  allReviews = [];
+  buildAll();
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildAll();
+</script>
+</body>
+</html>
