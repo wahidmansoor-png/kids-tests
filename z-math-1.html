@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 3 Maths – 100 Question Mega Test</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Roboto,sans-serif;background:#f0f7fc;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#0b3b3f,#1e6f5c);color:white;padding:1.8rem 1rem;text-align:center;}
+.hero h1{font-size:1.9rem;margin-bottom:0.3rem;}
+.hero-badge{background:rgba(255,255,255,0.2);border-radius:40px;padding:4px 12px;display:inline-block;margin:6px 5px;font-size:0.75rem;}
+.container{max-width:1000px;margin:-1.2rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:28px;box-shadow:0 12px 28px rgba(0,0,0,0.08);padding:1.5rem;margin-bottom:1.5rem;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap;}
+.section-badge{background:linear-gradient(135deg,#1e6f5c,#289672);color:white;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;}
+.section-header h2{font-size:1.3rem;font-weight:800;color:#0f172a;}
+.type-tag{background:#e0f2fe;color:#0c4a6e;padding:4px 10px;border-radius:30px;font-size:0.7rem;font-weight:700;}
+.q-block{border-bottom:1px solid #eef2ff;padding-bottom:1rem;margin-bottom:1rem;}
+.q-num{font-size:0.7rem;color:#4b6b8f;font-weight:700;letter-spacing:0.5px;}
+.q-text{font-weight:600;color:#0f172a;margin:6px 0 10px 0;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:8px 12px;border:2px solid #e2e8f0;border-radius:16px;margin-bottom:6px;cursor:pointer;background:white;width:100%;text-align:left;}
+.option-btn.selected{border-color:#1e6f5c;background:#e6f7f2;}
+.option-letter{font-weight:800;color:#475569;width:24px;}
+.tf-row{display:flex;gap:12px;margin:8px 0;}
+.tf-btn{flex:1;padding:9px;border-radius:40px;border:2px solid #cbd5e1;font-weight:700;cursor:pointer;background:white;}
+.tf-btn.sel-t{border-color:#15803d;background:#dcfce7;color:#14532d;}
+.tf-btn.sel-f{border-color:#b91c1c;background:#fee2e2;color:#7f1d1d;}
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:20px;font-size:0.9rem;}
+.submit-btn{background:linear-gradient(135deg,#1e6f5c,#289672);border:none;color:white;padding:14px 32px;border-radius:60px;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 6px 14px rgba(30,111,92,0.3);}
+.score-hero{background:linear-gradient(135deg,#0b3b3f,#1e6f5c);border-radius:28px;padding:1.8rem;text-align:center;color:white;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:1.2rem 0;}
+.stat-card{background:white;border-radius:20px;padding:1rem;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.05);}
+.stat-num{font-size:1.8rem;font-weight:900;}
+.filter-bar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
+.filter-btn{padding:6px 14px;border-radius:30px;border:2px solid #cbd5e1;background:white;font-weight:700;cursor:pointer;}
+.filter-btn.active{border-color:#1e6f5c;background:#e6f7f2;color:#1e6f5c;}
+.review-card{border-radius:20px;background:white;margin-bottom:12px;overflow:hidden;}
+.review-correct .review-header{background:#dcfce7;}
+.review-wrong .review-header{background:#fee2e2;}
+.review-skip .review-header{background:#fffbeb;}
+.review-header{padding:12px;display:flex;gap:8px;align-items:flex-start;}
+.review-body{padding:12px;font-size:0.88rem;line-height:1.5;}
+.retry-btn{background:white;border:2px solid #1e6f5c;color:#1e6f5c;padding:10px 28px;border-radius:40px;font-weight:800;margin-top:1rem;cursor:pointer;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem;}
+.info-grid input{padding:10px;border-radius:16px;border:2px solid #e2e8f0;width:100%;}
+@media (max-width:600px){.stats-row{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div style="font-size:2rem;">🧮 ✏️ 🏆</div>
+  <h1>Grade 3 Mathematics • 100 Questions</h1>
+  <p>Time | Addition/Subtraction | Complements | Multiplication & Division | Data | Venn/Carroll | Sequences</p>
+  <div><span class="hero-badge">100 Questions</span><span class="hero-badge">Auto‑graded</span><span class="hero-badge">Explanations</span></div>
+</div>
+<div class="container">
+<div id="test-form">
+  <div class="card">
+    <div class="section-header"><div class="section-badge"><i class="ti ti-user"></i></div><h2>Your details</h2></div>
+    <div class="info-grid">
+      <div><label>Your name</label><input type="text" id="student-name" placeholder="e.g., Sara"></div>
+      <div><label>Class</label><input type="text" id="student-class" placeholder="Grade 3 - A"></div>
+    </div>
+  </div>
+  <div id="sections-container"></div>
+  <div class="card" style="text-align:center;"><button class="submit-btn" onclick="submitTest()"><i class="ti ti-send"></i> Submit & Grade</button></div>
+</div>
+<div id="results" style="display:none;">
+  <div class="score-hero">
+    <div id="res-pct" style="font-size:2.5rem;font-weight:900;">0%</div>
+    <div class="grade-badge" id="res-grade" style="background:rgba(255,255,255,0.2);display:inline-block;padding:4px 16px;border-radius:40px;margin:8px 0;">Grade</div>
+    <div><span style="font-size:2rem;font-weight:800;" id="res-score">0</span><span> / </span><span id="res-total">0</span></div>
+    <div id="res-name" style="margin-top:8px;"></div>
+    <div id="res-msg"></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" style="color:#15803d;" id="res-correct">0</div><div>✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#b91c1c;" id="res-wrong">0</div><div>❌ Wrong</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#e68a2e;" id="res-skip">0</div><div>⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#1e6f5c;" id="res-total-stat">0</div><div>📝 Total</div></div>
+  </div>
+  <div class="card">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+  <div style="text-align:center;"><button class="retry-btn" onclick="retryTest()"><i class="ti ti-refresh"></i> Try Again</button></div>
+</div>
+</div>
+
+<script>
+// --------------------------------------------------------------
+// 100 GRADE 3 QUESTIONS – COMPLETE SET
+// --------------------------------------------------------------
+const sections = [];
+
+// 1) TIME (15 questions)
+const timeQs = [
+  {type:"mcq",ch:"Time",q:"Quarter past 7 in digital is:",opts:["7:15","7:45","6:45","7:30"],ans:0,exp:"Quarter past 7 = 7:15."},
+  {type:"mcq",ch:"Time",q:"Half past 9 is:",opts:["9:30","9:15","8:30","10:30"],ans:0,exp:"Half past 9 = 9:30."},
+  {type:"fill",ch:"Time",q:"Twenty minutes to five in digital is ____ (HH:MM)",ans:"4:40",alt:["4:40","04:40"],exp:"60-20=40 minutes past 4 = 4:40."},
+  {type:"tf",ch:"Time",q:"8:05 can be written as five minutes past eight.",ans:true,exp:"8:05 = 5 minutes past eight."},
+  {type:"mcq",ch:"Time",q:"Which shows 10:50?",opts:["Ten to eleven","Ten past ten","Quarter to eleven","Fifty past ten"],ans:0,exp:"10:50 = ten minutes to eleven."},
+  {type:"fill",ch:"Time",q:"Thirty-eight minutes past 2 is written as ____:____",ans:"2:38",alt:["2:38","02:38"],exp:"2:38."},
+  {type:"mcq",ch:"Time",q:"A clock shows 3:45. In words:",opts:["quarter to 4","quarter past 3","half past 3","quarter to 3"],ans:0,exp:"3:45 = quarter to 4."},
+  {type:"tf",ch:"Time",q:"6:30 is half past six.",ans:true,exp:"6:30 = half past six."},
+  {type:"fill",ch:"Time",q:"The time is 9:15. Write in words: quarter ____ nine.",ans:"past",alt:["past"],exp:"9:15 = quarter past nine."},
+  {type:"mcq",ch:"Time",q:"How many minutes in one hour?",opts:["30","60","24","12"],ans:1,exp:"1 hour = 60 minutes."},
+  {type:"fill",ch:"Time",q:"If the time is 2:50, it is ten minutes to ____",ans:"three",alt:["3","three o'clock"],exp:"2:50 is ten minutes to three."},
+  {type:"mcq",ch:"Time",q:"Start 10:15, add 45 minutes = ?",opts:["11:00","10:45","11:15","10:60"],ans:0,exp:"10:15 + 45min = 11:00."},
+  {type:"tf",ch:"Time",q:"12:00 midnight is also called 12 o'clock.",ans:true,exp:"True, 12:00 is 12 o'clock."},
+  {type:"fill",ch:"Time",q:"Minute hand at 12, hour hand at 5. Time = ____:____",ans:"5:00",alt:["5:00","05:00"],exp:"5 o'clock."},
+  {type:"mcq",ch:"Time",q:"Which time is between 8 and 9 o'clock?",opts:["8:45","7:30","9:15","10:00"],ans:0,exp:"8:45 is between 8 and 9."}
+];
+
+// 2) ADDITION & SUBTRACTION (20 questions)
+const addSub20 = [
+  {type:"fill",ch:"Add",q:"43 + 56 = ?",ans:"99",alt:["99"],exp:"43+56=99"},
+  {type:"fill",ch:"Add",q:"64 + 53 = ?",ans:"117",alt:["117"],exp:"64+53=117"},
+  {type:"fill",ch:"Add",q:"129 + 60 = ?",ans:"189",alt:["189"],exp:"129+60=189"},
+  {type:"fill",ch:"Subtract",q:"245 - 82 = ?",ans:"163",alt:["163"],exp:"245-82=163"},
+  {type:"fill",ch:"Subtract",q:"339 - 163 = ?",ans:"176",alt:["176"],exp:"339-163=176"},
+  {type:"fill",ch:"Add",q:"154 + 65 = ?",ans:"219",alt:["219"],exp:"154+65=219"},
+  {type:"fill",ch:"Subtract",q:"326 - 71 = ?",ans:"255",alt:["255"],exp:"326-71=255"},
+  {type:"fill",ch:"Add",q:"473 + 166 = ?",ans:"639",alt:["639"],exp:"473+166=639"},
+  {type:"fill",ch:"Subtract",q:"534 - 93 = ?",ans:"441",alt:["441"],exp:"534-93=441"},
+  {type:"tf",ch:"Regroup",q:"Adding 35 + 48 you need to regroup ones (5+8=13).",ans:true,exp:"True, 5+8=13 → regroup tens."},
+  {type:"fill",ch:"Add",q:"187 + 50 = ?",ans:"237",alt:["237"],exp:"187+50=237"},
+  {type:"fill",ch:"Subtract",q:"148 - 60 = ?",ans:"88",alt:["88"],exp:"148-60=88"},
+  {type:"fill",ch:"Add",q:"571 + 243 = ?",ans:"814",alt:["814"],exp:"571+243=814"},
+  {type:"fill",ch:"Subtract",q:"736 - 472 = ?",ans:"264",alt:["264"],exp:"736-472=264"},
+  {type:"tf",ch:"Subtraction",q:"When subtracting 419-187 you need to regroup tens.",ans:true,exp:"419: 1 ten not enough, regroup 1 hundred."},
+  {type:"fill",ch:"Add",q:"352 + 153 = ?",ans:"505",alt:["505"],exp:"352+153=505"},
+  {type:"fill",ch:"Subtract",q:"257 - 125 = ?",ans:"132",alt:["132"],exp:"257-125=132"},
+  {type:"fill",ch:"Add",q:"375 + 321 + 283 = ?",ans:"979",alt:["979"],exp:"375+321=696, +283=979"},
+  {type:"mcq",ch:"Add",q:"Estimate 263+174:",opts:["430","440","450","420"],ans:0,exp:"260+170=430"},
+  {type:"mcq",ch:"Subtract",q:"Estimate 358-187:",opts:["170","180","190","160"],ans:0,exp:"360-190=170"}
+];
+
+// 3) COMPLEMENTS of 100 & 1000 (12 questions)
+const compQs = [
+  {type:"fill",ch:"Complement",q:"27 + ____ = 100",ans:"73",alt:["73"],exp:"100-27=73"},
+  {type:"fill",ch:"Complement",q:"Complement of 100 for 54 is ____",ans:"46",alt:["46"],exp:"100-54=46"},
+  {type:"fill",ch:"Complement",q:"300 + ____ = 1000",ans:"700",alt:["700"],exp:"1000-300=700"},
+  {type:"mcq",ch:"Complement",q:"Which pair makes 1000?",opts:["450+550","400+500","350+600","200+700"],ans:0,exp:"450+550=1000"},
+  {type:"fill",ch:"Complement",q:"19 + ____ = 100",ans:"81",alt:["81"],exp:"100-19=81"},
+  {type:"fill",ch:"Complement",q:"640 + ____ = 1000",ans:"360",alt:["360"],exp:"1000-640=360"},
+  {type:"mcq",ch:"Word problem",q:"Luiz has $100, spends $38. Left?",opts:["$62","$68","$72","$58"],ans:0,exp:"100-38=62"},
+  {type:"fill",ch:"Complement",q:"Complement of 100 for 83: ____",ans:"17",alt:["17"],exp:"100-83=17"},
+  {type:"fill",ch:"Complement",q:"250 + ____ = 1000",ans:"750",alt:["750"],exp:"1000-250=750"},
+  {type:"tf",ch:"Complement",q:"500 + 500 = 1000",ans:true,exp:"500+500=1000"},
+  {type:"fill",ch:"Complement",q:"1 m = 100 cm. Cut 43 cm, remaining = ____ cm",ans:"57",alt:["57"],exp:"100-43=57"},
+  {type:"mcq",ch:"Complement",q:"Complement of 100 for 66?",opts:["34","44","54","24"],ans:0,exp:"100-66=34"}
+];
+
+// 4) MULTIPLICATION & DIVISION (20 questions)
+const multDivQs = [
+  {type:"fill",ch:"Multiply",q:"8 × 4 = ?",ans:"32",alt:["32"],exp:"8×4=32"},
+  {type:"fill",ch:"Divide",q:"32 ÷ 8 = ?",ans:"4",alt:["4"],exp:"32÷8=4"},
+  {type:"fill",ch:"Multiply",q:"6 × 3 = ?",ans:"18",alt:["18"],exp:"6×3=18"},
+  {type:"mcq",ch:"Remainder",q:"30 ÷ 4 = ?",opts:["7 r2","8 r2","7 r1","7"],ans:0,exp:"4×7=28 remainder 2"},
+  {type:"fill",ch:"Multiply",q:"13 × 3 = ?",ans:"39",alt:["39"],exp:"13×3=39"},
+  {type:"fill",ch:"Division",q:"19 wheels, 2 per bicycle → answer as '9r1'",ans:"9r1",alt:["9 remainder 1"],exp:"19÷2=9 remainder 1"},
+  {type:"mcq",ch:"Word problem",q:"Five children share 36 marbles. Each gets ?",opts:["7 r1","7 r2","8 r1","6 r6"],ans:0,exp:"36÷5=7 remainder 1"},
+  {type:"fill",ch:"Multiply",q:"15 × 4 = ?",ans:"60",alt:["60"],exp:"15×4=60"},
+  {type:"fill",ch:"Division",q:"46 tennis balls, 4 per tube → tubes needed?",ans:"12",alt:["12"],exp:"46÷4=11 r2, need 12 tubes"},
+  {type:"tf",ch:"Property",q:"Multiplication is commutative (order doesn't matter).",ans:true,exp:"2×3 = 3×2"},
+  {type:"fill",ch:"Multiply",q:"7 × 5 = ?",ans:"35",alt:["35"],exp:"35"},
+  {type:"fill",ch:"Divide",q:"63 ÷ 7 = ?",ans:"9",alt:["9"],exp:"63÷7=9"},
+  {type:"mcq",ch:"Remainder",q:"37 ÷ 3 = ?",opts:["12 r1","12","13 r1","11 r2"],ans:0,exp:"3×12=36 remainder 1"},
+  {type:"fill",ch:"Multiply",q:"23 × 4 = ?",ans:"92",alt:["92"],exp:"20×4=80, 3×4=12, total 92"},
+  {type:"fill",ch:"Division",q:"86 ÷ 4 = ? (remainder)",ans:"21r2",alt:["21 remainder 2"],exp:"4×21=84 remainder 2"},
+  {type:"mcq",ch:"Word problem",q:"37 children, 10 per bench. Benches needed?",opts:["3","4","5","6"],ans:1,exp:"37÷10=3 r7, need 4 benches"},
+  {type:"fill",ch:"Multiply",q:"35 × 4 = ?",ans:"140",alt:["140"],exp:"35×4=140"},
+  {type:"fill",ch:"Divide",q:"50 ÷ 6 = ? (remainder)",ans:"8r2",alt:["8 remainder 2"],exp:"6×8=48 remainder 2"},
+  {type:"tf",ch:"Remainder",q:"A remainder must always be smaller than the divisor.",ans:true,exp:"Remainder < divisor"},
+  {type:"fill",ch:"Fact family",q:"4 × 9 = 36, 36 ÷ 4 = ____",ans:"9",alt:["9"],exp:"36÷4=9"}
+];
+
+// 5) DATA: PICTOGRAMS & BAR CHARTS (10 questions)
+const dataQs = [
+  {type:"fill",ch:"Pictogram",q:"Phones sold: Mon6, Tue8, Wed8, Thu10, Fri4. Total = ?",ans:"36",alt:["36"],exp:"6+8+8+10+4=36"},
+  {type:"mcq",ch:"Bar chart",q:"Pet shop: 1 turtle,3 rabbits,6 fish,8 cats,9 guinea pigs. Most popular?",opts:["Guinea pigs","Cats","Fish","Rabbits"],ans:0,exp:"9 guinea pigs highest"},
+  {type:"fill",ch:"Pictogram",q:"Key: 🍎 = 2 votes. If 5 apples shown, votes = ?",ans:"10",alt:["10"],exp:"5×2=10 votes"},
+  {type:"tf",ch:"Bar chart",q:"Bar chart uses pictures to show data.",ans:false,exp:"Bar chart uses bars, pictogram uses pictures"},
+  {type:"mcq",ch:"Pictogram",q:"Families: Saturday15, Sunday10, Friday5. Fewest day?",opts:["Friday","Saturday","Sunday","Monday"],ans:0,exp:"Friday 5"},
+  {type:"fill",ch:"Pictogram",q:"1 picture = 4 phones, 3 pictures = ____ phones",ans:"12",alt:["12"],exp:"3×4=12"},
+  {type:"fill",ch:"Bar chart",q:"Cricket6, golf3, tennis5, football7. Total people = ?",ans:"21",alt:["21"],exp:"6+3+5+7=21"},
+  {type:"mcq",ch:"Interpret",q:"Cats 8, rabbits 3. How many more cats?",opts:["5","4","6","3"],ans:0,exp:"8-3=5"},
+  {type:"tf",ch:"Axes",q:"Bar chart has horizontal and vertical axes.",ans:true,exp:"Yes, two axes"},
+  {type:"fill",ch:"Pictogram",q:"Sunshine: Mon4, Tue6, Wed8. Total = ?",ans:"18",alt:["18"],exp:"4+6+8=18"}
+];
+
+// 6) VENN & CARROLL DIAGRAMS (12 questions)
+const vennQs = [
+  {type:"fill",ch:"Venn",q:"Numbers:12,15,18,20,24. Which are multiples of 3 AND even? (comma)",ans:"12,18,24",alt:["12,18,24","12, 18, 24"],exp:"Multiples of 3:12,15,18,24; even:12,18,24"},
+  {type:"mcq",ch:"Carroll",q:"Number 25: multiple of 5? odd/even? correct box",opts:["Multiple of 5 and odd","Multiple of 5 and even","Not multiple of 5","Not multiple"],ans:0,exp:"25 is multiple of 5 and odd"},
+  {type:"fill",ch:"Venn",q:"Prime numbers less than 10 (list):",ans:"2,3,5,7",alt:["2,3,5,7","2, 3, 5, 7"],exp:"2,3,5,7 are primes under 10"},
+  {type:"tf",ch:"Carroll",q:"14 goes into 'even numbers' box.",ans:true,exp:"14 is even."},
+  {type:"fill",ch:"Venn",q:"Multiples of 2 and 5: 10,15,20,25 → both (list):",ans:"10,20",alt:["10,20","10 and 20"],exp:"10 and 20 are multiples of both 2 and 5."},
+  {type:"mcq",ch:"Carroll",q:"55: less than 50? odd/even? region",opts:["Not less than 50 & odd","Less than 50 & odd","Not less than 50 & even","Less than 50 & even"],ans:0,exp:"55>50 and odd."},
+  {type:"fill",ch:"Venn",q:"Numbers outside circles in Venn diagram satisfy no condition. (true/false)",ans:"true",alt:["true"],exp:"Outside means none of the rules apply."},
+  {type:"fill",ch:"Carroll",q:"From 1,2,5,10,14,15. How many 1-digit numbers?",ans:"3",alt:["3"],exp:"1,2,5 → three 1-digit."},
+  {type:"mcq",ch:"Venn",q:"Monsters: two legs A,B,G. How many have 2 legs?",opts:["3","2","4","5"],ans:0,exp:"A,B,G = 3 monsters."},
+  {type:"tf",ch:"Carroll",q:"Carroll diagram uses overlapping circles.",ans:false,exp:"Carroll uses table/grid; Venn uses circles."},
+  {type:"fill",ch:"Venn",q:"Numbers 5,10,15,20. Multiples of 5 and even: ____",ans:"10,20",alt:["10,20"],exp:"10 and 20 are even multiples of 5."},
+  {type:"mcq",ch:"Carroll",q:"108 in Carroll: 'not 1-digit' and 'even'? correct?",opts:["not 1-digit & even","1-digit & even","not 1-digit & odd","1-digit & odd"],ans:0,exp:"108 is not 1-digit and even."}
+];
+
+// 7) SEQUENCES & PATTERNS (11 questions) -> total 15+20+12+20+10+12+11 = 100
+const seqQs = [
+  {type:"fill",ch:"Sequence",q:"Extend: 4,8,12,16, ____",ans:"20",alt:["20"],exp:"Add 4 each time."},
+  {type:"fill",ch:"Sequence",q:"Rule subtract 9. Start 108, next = ?",ans:"99",alt:["99"],exp:"108-9=99"},
+  {type:"mcq",ch:"Term-to-term",q:"45,36,27,18 rule?",opts:["Subtract 9","Add 9","Subtract 8","Divide 3"],ans:0,exp:"45-9=36, etc."},
+  {type:"fill",ch:"Sequence",q:"5,10,15,20, ____",ans:"25",alt:["25"],exp:"Add 5."},
+  {type:"fill",ch:"Sequence",q:"90,81,72,63, ____",ans:"54",alt:["54"],exp:"Subtract 9."},
+  {type:"tf",ch:"Pattern",q:"Sequence 3,6,9,12 adds 3 each time.",ans:true,exp:"+3 pattern"},
+  {type:"fill",ch:"Sequence",q:"11,22,33,44, ____ , ____",ans:"55,66",alt:["55,66","55 66"],exp:"Add 11."},
+  {type:"mcq",ch:"Times table",q:"Which is from 8 times table?",opts:["8,16,24,32","7,14,21,28","6,12,18,24","9,18,27,36"],ans:0,exp:"Multiples of 8."},
+  {type:"fill",ch:"Sequence",q:"Start 0, add 9: 0,9,18,27, ____",ans:"36",alt:["36"],exp:"27+9=36."},
+  {type:"fill",ch:"Pattern",q:"Subtract 8. Begin 100, next = ?",ans:"92",alt:["92"],exp:"100-8=92"},
+  {type:"mcq",ch:"Square numbers",q:"Square number pattern?",opts:["1,4,9,16","2,4,6,8","3,6,9,12","5,10,15,20"],ans:0,exp:"1²=1,2²=4,3²=9,4²=16"}
+];
+
+// BUILD SECTIONS
+sections.push({ title: "⏰ Time & Clocks", badge: "⏰", typeLabel: "Read clocks, minutes past/to", questions: timeQs });
+sections.push({ title: "➕ Addition & Subtraction", badge: "➕", typeLabel: "Regrouping, estimating, solving", questions: addSub20 });
+sections.push({ title: "🔢 Complements of 100/1000", badge: "🔢", typeLabel: "Find missing number to make 100 or 1000", questions: compQs });
+sections.push({ title: "✖️➗ Multiplication & Division", badge: "✖️", typeLabel: "Facts, remainders, word problems", questions: multDivQs });
+sections.push({ title: "📊 Data: Pictograms & Bar Charts", badge: "📊", typeLabel: "Interpret keys, totals, comparisons", questions: dataQs });
+sections.push({ title: "🔄 Venn & Carroll Diagrams", badge: "🔄", typeLabel: "Sort numbers using rules", questions: vennQs });
+sections.push({ title: "📈 Sequences & Patterns", badge: "📈", typeLabel: "Find term-to-term rule, extend", questions: seqQs });
+
+let userAnswers = {};
+let allReviews = [];
+
+function selectMCQ(id, idx) { userAnswers[id] = idx; document.querySelectorAll(`#opts-${id} .option-btn`).forEach((b,i)=>b.classList.toggle('selected', i===idx)); }
+function selectTF(id, val) { userAnswers[id] = val; document.getElementById(`tf-t-${id}`).className = 'tf-btn'+(val===true?' sel-t':''); document.getElementById(`tf-f-${id}`).className = 'tf-btn'+(val===false?' sel-f':''); }
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  if(!container) return;
+  container.innerHTML = '';
+  let globalQ = 0;
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div class="section-header"><div class="section-badge">${sec.badge}</div><h2>${sec.title}</h2><span class="type-tag">${sec.questions.length} Q</span></div><p style="font-size:0.8rem;color:#475569;margin-bottom:1rem;">${sec.typeLabel}</p><div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const qDiv = document.createElement('div');
+      qDiv.className = 'q-block';
+      let inner = `<div class="q-num">Q${globalQ} · ${q.ch}</div><div class="q-text">${q.q}</div>`;
+      if(q.type === 'mcq') {
+        inner += `<div class="options" id="opts-${id}">` + q.opts.map((opt,j)=>`<button class="option-btn" onclick="selectMCQ('${id}',${j})"><span class="option-letter">${String.fromCharCode(65+j)}</span>${opt}</button>`).join('') + `</div>`;
+      } else if(q.type === 'tf') {
+        inner += `<div class="tf-row"><button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ True</button><button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ False</button></div>`;
+      } else if(q.type === 'fill') {
+        inner += `<input class="fill-input" type="text" placeholder="Type your answer..." id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+      }
+      qDiv.innerHTML = inner;
+      qContainer.appendChild(qDiv);
+    });
+  });
+  const total = sections.reduce((s,sec)=>s+sec.questions.length,0);
+  document.getElementById('res-total').innerText = `/${total}`;
+  document.getElementById('res-total-stat').innerText = total;
+  document.querySelector('.filter-btn').textContent = `All (${total})`;
+}
+
+function submitTest() {
+  let correct=0, wrong=0, skip=0;
+  allReviews = [];
+  let globalQ=0;
+  const totalQ = sections.reduce((s,sec)=>s+sec.questions.length,0);
+  const name = document.getElementById('student-name')?.value.trim() || 'Student';
+  const klass = document.getElementById('student-class')?.value.trim() || '';
+  sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      const ua = userAnswers[id];
+      let status, yourStr, correctStr;
+      if(q.type === 'mcq') {
+        if(ua === undefined){ skip++; status='skip'; yourStr='Not answered'; correctStr=q.opts[q.ans]; }
+        else if(ua === q.ans){ correct++; status='correct'; yourStr=q.opts[ua]; correctStr=q.opts[q.ans]; }
+        else { wrong++; status='wrong'; yourStr=q.opts[ua]; correctStr=q.opts[q.ans]; }
+      } else if(q.type === 'tf') {
+        if(ua === undefined){ skip++; status='skip'; yourStr='Not answered'; correctStr=q.ans?'True':'False'; }
+        else if(ua === q.ans){ correct++; status='correct'; yourStr=ua?'True':'False'; correctStr=q.ans?'True':'False'; }
+        else { wrong++; status='wrong'; yourStr=ua?'True':'False'; correctStr=q.ans?'True':'False'; }
+      } else {
+        const raw = (ua||'').trim().toLowerCase();
+        const alts = [q.ans.toLowerCase(), ...(q.alt||[]).map(a=>a.toLowerCase())];
+        if(!raw){ skip++; status='skip'; yourStr='Not answered'; correctStr=q.ans; }
+        else if(alts.includes(raw)){ correct++; status='correct'; yourStr=ua; correctStr=q.ans; }
+        else { wrong++; status='wrong'; yourStr=ua; correctStr=q.ans; }
+      }
+      allReviews.push({ status, qNum: globalQ, qText: q.q, type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+  const pct = Math.round((correct/totalQ)*100);
+  const grade = pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=50?'D':'F';
+  const msg = pct>=90?'🏆 Excellent maths champion!':pct>=70?'👍 Great job! Keep practicing.':pct>=50?'📚 Good effort, review the explanations.':'💪 Keep going — you will improve!';
+  document.getElementById('res-pct').innerText = pct+'%';
+  document.getElementById('res-grade').innerHTML = `Grade: ${grade}`;
+  document.getElementById('res-score').innerText = correct;
+  document.getElementById('res-total').innerText = `/${totalQ}`;
+  document.getElementById('res-total-stat').innerText = totalQ;
+  document.getElementById('res-name').innerHTML = `${name}${klass?' · '+klass:''}`;
+  document.getElementById('res-msg').innerText = msg;
+  document.getElementById('res-correct').innerText = correct;
+  document.getElementById('res-wrong').innerText = wrong;
+  document.getElementById('res-skip').innerText = skip;
+  renderReviews('all');
+  document.getElementById('test-form').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({top:0});
+}
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  if(!rc) return;
+  rc.innerHTML = '';
+  const filtered = allReviews.filter(r=> filter==='all' || r.status===filter);
+  const icons = {correct:'✅', wrong:'❌', skip:'⏭'};
+  filtered.forEach(r=>{
+    rc.innerHTML += `<div class="review-card review-${r.status}"><div class="review-header"><span>${icons[r.status]}</span><span><strong>Q${r.qNum}:</strong> ${r.qText.substring(0,90)}</span><span style="background:#eef2ff;padding:2px 8px;border-radius:20px;font-size:10px;">${r.type}</span></div><div class="review-body">${r.status!=='correct'?`<div style="color:#b91c1c;">✏️ Your answer: ${r.your}</div>`:''}<div style="color:#15803d;">✔️ Correct: ${r.correct}</div><div>💡 ${r.exp}</div></div></div>`;
+  });
+  if(rc.innerHTML==='') rc.innerHTML='<p style="text-align:center;">No questions in this category</p>';
+}
+function filterReview(f, btn) { document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderReviews(f); }
+function retryTest() { userAnswers={}; allReviews=[]; buildAll(); document.getElementById('results').style.display='none'; document.getElementById('test-form').style.display='block'; window.scrollTo({top:0}); }
+
+window.addEventListener('DOMContentLoaded', buildAll);
+</script>
+</body>
+</html>
