@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>چوتھی جماعت – اردو ٹیسٹ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq','Urdu Typesetting','Segoe UI',sans-serif;
+  background:#f0f4f8;min-height:100vh;direction:rtl;
+}
+
+/* ── HERO BANNER ─────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#7c3aed 60%,#6d28d9 100%);
+  color:white;padding:2rem 1rem 3rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;position:relative;}
+.hero p{font-size:.95rem;opacity:.85;position:relative;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.hero-badge{background:rgba(255,255,255,.15);padding:5px 14px;border-radius:20px;
+            font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.2);}
+
+/* ── LAYOUT ─────────────────────────── */
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);
+      padding:1.5rem;margin-bottom:1.5rem;}
+
+/* ── STUDENT INFO FORM ───────────────── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+                 border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;
+                 direction:rtl;text-align:right;}
+.info-grid input:focus{border-color:#7c3aed;}
+
+/* ── SECTION HEADER ─────────────────── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;
+                flex-direction:row-reverse;}
+.section-badge{
+  background:linear-gradient(135deg,#7c3aed,#6d28d9);
+  color:white;border-radius:50%;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;flex-shrink:0;
+}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;flex:1;text-align:right;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;
+          border-radius:20px;font-weight:700;}
+
+/* ── QUESTION BLOCK ─────────────────── */
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;
+       letter-spacing:.5px;margin-bottom:5px;text-align:right;}
+.q-text{font-size:1.05rem;color:#1f2937;font-weight:500;line-height:2;
+        margin-bottom:10px;text-align:right;direction:rtl;}
+
+/* ── MCQ OPTIONS ────────────────────── */
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;
+            border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;
+            transition:all .2s;background:white;font-size:.97rem;
+            color:#374151;text-align:right;direction:rtl;
+            flex-direction:row-reverse;justify-content:flex-start;width:100%;}
+.option-btn:hover{border-color:#c4b5fd;background:#f5f3ff;}
+.option-btn.selected{border-color:#7c3aed;background:#ede9fe;color:#4c1d95;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:22px;
+               flex-shrink:0;text-align:center;font-family:monospace;}
+.option-btn.selected .option-letter{color:#7c3aed;}
+
+/* ── TRUE / FALSE BUTTONS ──────────── */
+.tf-row{display:flex;gap:12px;flex-direction:row-reverse;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;
+        cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#c4b5fd;background:#f5f3ff;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+
+/* ── FILL IN THE BLANK INPUT ─────────── */
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+            border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;
+            direction:rtl;text-align:right;}
+.fill-input:focus{border-color:#7c3aed;}
+
+/* ── MATCH DROPDOWNS ─────────────────── */
+.match-table{width:100%;border-collapse:collapse;margin-top:6px;}
+.match-table td{padding:6px 8px;vertical-align:middle;}
+.match-left-cell{font-size:.95rem;color:#1f2937;font-weight:500;padding:8px 12px;
+            background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;
+            text-align:right;direction:rtl;width:45%;}
+.match-arrow{text-align:center;color:#9ca3af;font-size:1rem;width:10%;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;
+              font-size:.9rem;outline:none;cursor:pointer;width:100%;
+              background:white;transition:border-color .2s;
+              direction:rtl;text-align:right;}
+.match-select:focus{border-color:#7c3aed;}
+
+/* ── ORDER / SEQUENCE ───────────────── */
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;flex-direction:row-reverse;}
+.sort-select{flex:0 0 70px;padding:8px 6px;border:2px solid #e5e7eb;
+             border-radius:8px;font-size:.88rem;outline:none;
+             background:white;cursor:pointer;}
+.sort-select:focus{border-color:#7c3aed;}
+.sort-item-label{font-size:.97rem;color:#374151;flex:1;
+                 text-align:right;direction:rtl;line-height:1.8;}
+
+/* ── SUBMIT BUTTON ──────────────────── */
+.submit-area{text-align:center;}
+.submit-btn{
+  background:linear-gradient(135deg,#7c3aed,#6d28d9);
+  color:white;border:none;padding:14px 44px;border-radius:12px;
+  font-size:1.1rem;font-weight:800;cursor:pointer;
+  box-shadow:0 4px 14px rgba(124,58,237,.4);transition:transform .15s,box-shadow .15s;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.5);}
+
+/* ── RESULTS PANEL ──────────────────── */
+#results{display:none;}
+.score-hero{
+  background:linear-gradient(135deg,#0f172a,#7c3aed);
+  color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;
+}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);
+              display:flex;flex-direction:column;align-items:center;justify-content:center;
+              margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);
+             padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;
+           box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#7c3aed;}
+
+/* ── REVIEW FILTER BAR ──────────────── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;justify-content:flex-end;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;
+            font-size:.8rem;font-weight:700;cursor:pointer;
+            background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#7c3aed;background:#ede9fe;color:#7c3aed;}
+
+/* ── REVIEW CARDS ───────────────────── */
+.review-card{background:white;border-radius:12px;
+             box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong   .review-header{background:#fef2f2;}
+.review-skip    .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;
+               flex-direction:row-reverse;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.6;
+          text-align:right;direction:rtl;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.8;
+             text-align:right;direction:rtl;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-right:3px solid #c4b5fd;padding-right:8px;
+             border-left:none;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;
+           background:#ede9fe;color:#7c3aed;flex-shrink:0;}
+
+/* ── RETRY BUTTON ───────────────────── */
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;
+           border:2px solid #7c3aed;color:#7c3aed;
+           padding:12px 36px;border-radius:12px;font-size:1rem;
+           font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#ede9fe;}
+
+/* ── RESPONSIVE ─────────────────────── */
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+  .match-table,.match-arrow{font-size:.85rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO BANNER -->
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;position:relative;">📖 ✏️ 🌙</div>
+  <h1>چوتھی جماعت – اردو ٹیسٹ</h1>
+  <p>اقراء ورچوئل اسکول · سبق: نعت، قاضی جی کا اچار، بولنے والی مچھلی</p>
+  <div class="hero-badges">
+    <span class="hero-badge">۳۰ سوالات</span>
+    <span class="hero-badge">۵ اقسامِ سوال</span>
+    <span class="hero-badge">فوری نتیجہ</span>
+    <span class="hero-badge">مکمل جائزہ</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<!-- STUDENT INFO -->
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>طالب علم کی تفصیل</h2>
+  </div>
+  <div class="info-grid">
+    <div>
+      <label>نام</label>
+      <input type="text" id="student-name" placeholder="مثلاً: سارہ احمد">
+    </div>
+    <div>
+      <label>جماعت / سیکشن</label>
+      <input type="text" id="student-class" placeholder="مثلاً: چوتھی – الف">
+    </div>
+  </div>
+</div>
+
+<!-- Sections built by JS -->
+<div id="sections-container"></div>
+
+<!-- SUBMIT -->
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;text-align:right;">
+      تمام سوالوں کے جواب دے کر جمع کریں۔
+    </p>
+    <button class="submit-btn" onclick="submitTest()">
+      <i class="ti ti-send" style="margin-left:8px;"></i>ٹیسٹ جمع کریں
+    </button>
+  </div>
+</div>
+
+</div><!-- end #test-form -->
+
+<!-- RESULTS PANEL -->
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">گریڈ: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total" id="res-total">/0</div>
+    </div>
+    <div class="score-name" id="res-name">شاباش!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ درست</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ غلط</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ نہیں دیا</div></div>
+    <div class="stat-card"><div class="stat-num t-stat" id="res-total-stat">0</div><div class="stat-label">📝 کُل</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;text-align:right;">📋 مکمل جائزہ</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">سب</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ غلط</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ درست</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ چھوڑے</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+
+  <button class="retry-btn" onclick="retryTest()">
+    <i class="ti ti-refresh" style="margin-left:6px;"></i>دوبارہ کوشش کریں
+  </button>
+</div>
+
+</div><!-- end .container -->
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   GRADE 4 URDU QUESTIONS
+   Source: Compiled_work.pdf — Iqra Virtual School
+   Lessons: نعت، قاضی جی کا اچار، بولنے والی مچھلی،
+            مرکب جملہ، اسم ضمیر، حروف عطف، زامانہ
+   ══════════════════════════════════════════════════════════ */
+
+const sections = [
+
+  /* ══ الف — صحیح جواب چُنیں (MCQ) ══════════════════════════════ */
+  {
+    title:     "الف – صحیح جواب چُنیں",
+    badge:     "الف",
+    typeLabel: "ہر سوال کے لیے بہترین جواب کا انتخاب کریں",
+    questions: [
+
+      {
+        type: "mcq",
+        ch:   "نعت",
+        q:    "نعت کس کی تعریف میں لکھی جاتی ہے؟",
+        opts: ["صحابہ کرام", "حضرت محمد صلی اللہ علیہ وسلم", "اللہ تعالیٰ", "والدین"],
+        ans:  1,
+        exp:  "نعت حضرت محمد صلی اللہ علیہ وسلم کی تعریف میں لکھی جاتی ہے۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "نعت",
+        q:    "نعت کے مطابق حضرت محمد صلی اللہ علیہ وسلم حق کے کیا ہیں؟",
+        opts: ["دشمن", "محبوب", "نقاد", "مددگار"],
+        ans:  1,
+        exp:  "نعت میں ہے: 'حق کے ہیں محبوب وہی' — یعنی آپؐ اللہ کے محبوب ہیں۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "نعت",
+        q:    "نعت میں علم و عمل کو کیا کہا گیا ہے؟",
+        opts: ["بوجھ", "دولت", "مصیبت", "فرض"],
+        ans:  1,
+        exp:  "نعت میں ہے: 'علم و عمل وہ دولت ہے جس سے عزت و عظمت ہے۔'"
+      },
+
+      {
+        type: "mcq",
+        ch:   "قاضی جی کا اچار",
+        q:    "سلیم پڑھائی میں کیسا لڑکا تھا؟",
+        opts: ["چالاک", "شرارتی", "ذہین", "سُست"],
+        ans:  2,
+        exp:  "سبق میں لکھا ہے کہ سلیم بہت ذہین لڑکا تھا اور وہ امتحان میں اوّل آتا تھا۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "قاضی جی کا اچار",
+        q:    "نجمہ لیموں اور کیریاں کاٹنے کی کیا تھی؟",
+        opts: ["شوقین", "بے پروا", "ماہر", "لاپروا"],
+        ans:  2,
+        exp:  "سبق میں ہے کہ نجمہ لیموں اور کیریاں کاٹنے کی ماہر تھی۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "قاضی جی کا اچار",
+        q:    "اگلی صبح بازار سے کتنے آم آئے؟",
+        opts: ["تھوڑے", "بہت سے", "صرف ایک", "کوئی نہیں"],
+        ans:  1,
+        exp:  "سبق میں لکھا ہے کہ اگلی صبح سبزی منڈی سے بہت سے آم آئے۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "بولنے والی مچھلی",
+        q:    "سائیں ڈنو نے مچھلی کو نوکری سے کیوں نکالا؟",
+        opts: ["مچھلی لڑ پڑی", "مچھلی کو واپس پانی میں پھینکنے کی وجہ سے", "مچھلی کھو گئی", "مچھلی بیمار تھی"],
+        ans:  1,
+        exp:  "سائیں ڈنو نے مچھلی کو واپس پانی میں پھینکنے پر چَّلے کو نوکری سے نکال دیا۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "بولنے والی مچھلی",
+        q:    "اجنبی آدمی نے چَّلے کو گائے کس شرط پر دی؟",
+        opts: ["مفت میں", "تین سال بعد آنے اور تین سوال کے جواب دینے پر", "دس روپے لے کر", "کام کرنے پر"],
+        ans:  1,
+        exp:  "اجنبی نے کہا: میں تین سال بعد آؤں گا اور تم سے تین سوال پوچھوں گا، صحیح جواب دینے پر گائے تمہاری ہوگی۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "مرکب جملہ",
+        q:    "مرکّب جملہ بنانے کے لیے کون سے حروف استعمال ہوتے ہیں؟",
+        opts: ["اسم اور فعل", "اور، مگر، کیوں کہ", "ضمیر اور فاعل", "فعل ماضی"],
+        ans:  1,
+        exp:  "دو جملوں کو ملانے کے لیے حروفِ ربط جیسے 'اور'، 'مگر'، 'کیوں کہ' استعمال ہوتے ہیں۔"
+      },
+
+      {
+        type: "mcq",
+        ch:   "اسم ضمیر",
+        q:    "اسم ضمیر کسے کہتے ہیں؟",
+        opts: [
+          "کسی جگہ کا نام",
+          "وہ اسم جو کسی شخص، جگہ یا چیز کے نام کی جگہ استعمال ہو",
+          "کسی کام کا نام",
+          "کوئی خاص لقب"
+        ],
+        ans:  1,
+        exp:  "اسم ضمیر وہ اسم ہے جو کسی شخص، جگہ یا چیز کے نام کی جگہ استعمال کیا جاتا ہے جیسے وہ، ہم، تم۔"
+      }
+    ]
+  },
+
+  /* ══ ب — درست یا غلط (True / False) ══════════════════════════ */
+  {
+    title:     "ب – درست یا غلط",
+    badge:     "ب",
+    typeLabel: "ہر بیان کو پڑھ کر درست یا غلط کا فیصلہ کریں",
+    questions: [
+
+      {
+        type: "tf",
+        ch:   "نعت",
+        q:    "نعت میں 'پیارے نبیؐ کا پیارا نام — ہے یہ سلیم حق کا انعام' لکھا ہے۔",
+        ans:  true,
+        exp:  "یہ نعت میں آخری اشعار ہیں۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "نعت",
+        q:    "نعت میں باطل کا بولبالا ہوا بتایا گیا ہے۔",
+        ans:  false,
+        exp:  "نعت میں لکھا ہے کہ 'باطل کو بے نام کیا' — یعنی باطل کو شکست ہوئی، نہ کہ بولبالا۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "قاضی جی کا اچار",
+        q:    "سلیم اور نجمہ کے والدین اپنے بچوں کی عادات سے بہت خوش تھے۔",
+        ans:  true,
+        exp:  "سبق میں ہے کہ والدین اپنے بچوں کی اس عادت سے بہت خوش کرتے تھے۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "قاضی جی کا اچار",
+        q:    "قاضی صاحب نے اعلان کیا کہ 'یہ اچار کسی دکان میں نہیں رکھا جائے گا۔'",
+        ans:  false,
+        exp:  "قاضی صاحب نے اعلان کیا کہ یہ اچار شہر میں فروخت ہوگا — یعنی دکان میں رکھا جائے گا۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "بولنے والی مچھلی",
+        q:    "چَّلا دریائے سندھ کے کنارے ایک گاؤں میں رہتا تھا۔",
+        ans:  true,
+        exp:  "سبق میں ہے: 'دریائے سندھ کے کنارے ایک گاؤں میں ایک آدمی چَّلا نام کا رہتا تھا۔'"
+      },
+
+      {
+        type: "tf",
+        ch:   "بولنے والی مچھلی",
+        q:    "اجنبی آدمی کے سوالوں کا جواب چَّلے نے خود دیا۔",
+        ans:  false,
+        exp:  "سبق میں لکھا ہے کہ اجنبی کے سوالوں کا جواب چَّلے کے گھر آئے مہمان نے دیے تھے۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "مرکب جملہ",
+        q:    "'علی اسکول گیا اور احمد گھر پر رہا' — یہ مرکّب جملہ ہے۔",
+        ans:  true,
+        exp:  "دو جملے 'اور' سے ملائے گئے ہیں اس لیے یہ مرکّب جملہ ہے۔"
+      },
+
+      {
+        type: "tf",
+        ch:   "اسم ضمیر",
+        q:    "اسم ضمیر کی صرف دو حالتیں ہوتی ہیں — فاعلی اور مفعولی۔",
+        ans:  false,
+        exp:  "اسم ضمیر کی تین حالتیں ہیں: فاعلی، مفعولی اور اضافی۔"
+      }
+    ]
+  },
+
+  /* ══ ج — خالی جگہ پُر کریں (Fill) ════════════════════════════ */
+  {
+    title:     "ج – خالی جگہ پُر کریں",
+    badge:     "ج",
+    typeLabel: "مناسب لفظ لکھ کر جملہ مکمل کریں",
+    questions: [
+
+      {
+        type: "fill",
+        ch:   "نعت",
+        q:    "نعت میں لکھا ہے کہ 'سارے عالَم کی زینت __________ ہی رحمت ہیں'۔",
+        ans:  "ہیں وہ",
+        alt:  ["وہ رحمت", "ہیں"],
+        exp:  "مکمل شعر: 'سارے عالَم کی زینت ہیں — ہیں وہ رحمت ہی رحمت ہیں'۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "نعت",
+        q:    "نعت میں علم کو وہ دولت کہا گیا ہے جس سے __________ ملتی ہے۔",
+        ans:  "عزت و عظمت",
+        alt:  ["عزت", "عظمت"],
+        exp:  "شعر: 'علم و عمل وہ دولت ہے — جس سے عزت و عظمت ہے'۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "قاضی جی کا اچار",
+        q:    "سلیم ہر امتحان میں سب سے زیادہ نمبر لے کر __________ میں اوّل آتا تھا۔",
+        ans:  "مقابلوں",
+        alt:  ["تمام مقابلوں", "مقابلے"],
+        exp:  "سبق میں ہے: 'وہ ہر امتحان میں سب سے زیادہ نمبر لے کر اور خوش خطی اور بُنائی اور کڑھائی کے مقابلوں میں اوّل آتی تھی'۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "قاضی جی کا اچار",
+        q:    "نجمہ نے دَھلے ہوئے آموں کو کاٹ کر __________ پر پھیلا دیا۔",
+        ans:  "چادر",
+        alt:  ["ایک چادر"],
+        exp:  "سبق میں ہے: 'نجمہ نے دَھلے ہوئے آموں کو کاٹ کر چادر پر پھیلا دیا'۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "بولنے والی مچھلی",
+        q:    "چَّلا سائیں ڈنو کے لیے __________ پکڑتا تھا۔",
+        ans:  "مچھلیاں",
+        alt:  ["مچھلی"],
+        exp:  "سبق میں ہے کہ چَّلا سائیں ڈنو کے لیے مچھلیاں پکڑتا تھا۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "بولنے والی مچھلی",
+        q:    "'رحمِ دِل اور نیکی کبھی رائیگاں نہیں جاتی' — اس بات کا مطلب ہے کہ نیکی کا بدلہ ایک نہ ایک دن ضرور __________۔",
+        ans:  "ملتا ہے",
+        alt:  ["ملے گا", "ملتا"],
+        exp:  "اس جملے کا مطلب ہے کہ کسی کی نیکی کا بدلہ کبھی نہ کبھی ضرور ملتا ہے۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "قواعد",
+        q:    "جب دو یا دو سے زیادہ جملے مل کر ایک مفہوم ظاہر کریں تو وہ __________ کہلاتا ہے۔",
+        ans:  "مرکّب جملہ",
+        alt:  ["مرکب جملہ"],
+        exp:  "دو یا زیادہ جملوں کو ملانے سے مرکّب جملہ بنتا ہے۔"
+      },
+
+      {
+        type: "fill",
+        ch:   "قواعد",
+        q:    "اسم ضمیر کی فاعلی حالت میں 'وہ، تم، میں، __________, ہم' آتے ہیں۔",
+        ans:  "آپ",
+        alt:  ["آپ"],
+        exp:  "فاعلی ضمائر: وہ، تم، میں، آپ، ہم۔"
+      }
+    ]
+  },
+
+  /* ══ د — ملاپ کریں (Match) ════════════════════════════════════ */
+  {
+    title:     "د – ملاپ کریں",
+    badge:     "د",
+    typeLabel: "بائیں طرف کے لفظ کو دائیں طرف کے مناسب معنی سے ملائیں",
+    questions: [
+
+      {
+        type:  "match",
+        ch:    "اردو الفاظ",
+        q:     "الفاظ کو ان کے جملوں سے ملائیں",
+        pairs: [
+          ["کفایت شعاری",   "بچت کرنا / کم خرچ کرنا"],
+          ["اخسوت",         "ہمدردی اور غریبوں کی مدد"],
+          ["مرتبان",        "اچار رکھنے کا برتن"],
+          ["ارسفدگی",       "اکیلا پن اور اداسی کا احساس"]
+        ],
+        exp:   "کفایت شعاری = بچت، اُخوت = بھائی چارہ، مرتبان = اچار کا برتن، افسردگی = اداسی۔"
+      },
+
+      {
+        type:  "match",
+        ch:    "قواعد",
+        q:     "اسم ضمیر کی حالت کو اس کی مثال سے ملائیں",
+        pairs: [
+          ["فاعلی",   "وہ، تم، میں، آپ"],
+          ["مفعولی",  "اسے، انہیں، ہمیں، آپ کو"],
+          ["اضافی",   "میرا، اس کا، ہمارا، آپ کا"]
+        ],
+        exp:   "فاعلی = وہ / تم، مفعولی = اسے / انہیں، اضافی = میرا / اس کا۔"
+      }
+    ]
+  },
+
+  /* ══ ہ — ترتیب لگائیں (Order) ════════════════════════════════ */
+  {
+    title:     "ہ – درست ترتیب لگائیں",
+    badge:     "ہ",
+    typeLabel: "ہر جملے یا واقعے کو صحیح ترتیب میں لکھیں — پہلے، دوسرے، تیسرے نمبر پر",
+    questions: [
+
+      {
+        type:         "order",
+        ch:           "قاضی جی کا اچار",
+        q:            "اچار بنانے کے مراحل کو صحیح ترتیب میں رکھیں:",
+        items: [
+          "مسالہ تیار کیا",
+          "آموں کو دھو کر کاٹا",
+          "مرتبانوں میں بھرا",
+          "چادر پر پھیلا کر سکھایا"
+        ],
+        correctOrder: [2, 1, 4, 3],
+        exp:   "درست ترتیب: (۱) آموں کو دھو کر کاٹا → (۲) مسالہ تیار کیا → (۳) چادر پر سکھایا → (۴) مرتبانوں میں بھرا۔"
+      },
+
+      {
+        type:         "order",
+        ch:           "بولنے والی مچھلی",
+        q:            "کہانی کے واقعات کو صحیح ترتیب میں لگائیں:",
+        items: [
+          "چَّلے نے مچھلی کو پانی میں پھینکا",
+          "اجنبی آدمی نے گائے دی",
+          "چَّلا بے چارہ گھر چلا",
+          "اجنبی کے سوالوں کا جواب مہمان نے دیا"
+        ],
+        correctOrder: [1, 3, 2, 4],
+        exp:   "درست ترتیب: (۱) چَّلے نے مچھلی کو واپس پانی میں پھینکا → (۲) چَّلا بے چارہ گھر چلا → (۳) اجنبی نے گائے دی → (۴) مہمان نے جوابات دیے۔"
+      }
+
+    ]
+  }
+
+];
+/* ══════════════════════════════════════════════════════════
+   END OF QUESTIONS — ENGINE BELOW (DO NOT EDIT)
+   ══════════════════════════════════════════════════════════ */
+
+const userAnswers = {};
+let allReviews    = [];
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  let globalQ = 0;
+
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-badge">${sec.badge}</div>
+        <h2>${sec.title}</h2>
+        <span class="type-tag">${sec.questions.length} سوال</span>
+      </div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;font-style:italic;text-align:right;">
+        ${sec.typeLabel}
+      </p>
+      <div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id  = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const div = document.createElement('div');
+      div.className = 'q-block';
+      const qLabel = `<div class="q-num">سوال ${toUrduNum(globalQ)} &nbsp;·&nbsp; ${q.ch}</div>`;
+      let inner = '';
+
+      /* MCQ */
+      if (q.type === 'mcq') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="options" id="opts-${id}">
+            ${q.opts.map((o, j) => `
+              <button class="option-btn" onclick="selectMCQ('${id}',${j})">
+                <span class="option-letter">${urduLetter(j)}</span>${o}
+              </button>`).join('')}
+          </div>`;
+
+      /* TRUE / FALSE */
+      } else if (q.type === 'tf') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="tf-row">
+            <button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ درست</button>
+            <button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ غلط</button>
+          </div>`;
+
+      /* FILL */
+      } else if (q.type === 'fill') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <input class="fill-input" type="text" placeholder="جواب یہاں لکھیں…"
+            id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+
+      /* MATCH */
+      } else if (q.type === 'match') {
+        const opts     = q.pairs.map(p => p[1]);
+        const shuffled = [...opts].sort(() => Math.random() - 0.5);
+        let tableRows  = q.pairs.map((p, j) => `
+          <tr>
+            <td style="width:45%;padding:5px;">
+              <div class="match-left-cell">${p[0]}</div>
+            </td>
+            <td class="match-arrow" style="width:10%;padding:5px;">←</td>
+            <td style="width:45%;padding:5px;">
+              <select class="match-select" id="match-sel-${id}-${j}"
+                onchange="updateMatch('${id}',${q.pairs.length})">
+                <option value="">── چُنیں ──</option>
+                ${shuffled.map(o => `<option value="${o}">${o}</option>`).join('')}
+              </select>
+            </td>
+          </tr>`).join('');
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <table class="match-table">${tableRows}</table>`;
+
+      /* ORDER */
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items];
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="sort-container">
+            ${shuffled.map((item, j) => `
+              <div class="sort-item">
+                <span class="sort-item-label">${item}</span>
+                <select class="sort-select" id="order-${id}-${j}"
+                  onchange="updateOrder('${id}',${q.items.length})">
+                  <option value="">--</option>
+                  ${q.items.map((_, n) => `<option value="${n+1}">${n+1}</option>`).join('')}
+                </select>
+              </div>`).join('')}
+          </div>`;
+        q._shuffled = shuffled;
+      }
+
+      div.innerHTML = inner;
+      qContainer.appendChild(div);
+    });
+  });
+
+  /* update dynamic counts */
+  const totalQ = sections.reduce((s, sec) => s + sec.questions.length, 0);
+  const allBtn = document.querySelector('.filter-btn');
+  if (allBtn) allBtn.textContent = `سب (${totalQ})`;
+  document.getElementById('res-total').textContent      = `/${totalQ}`;
+  document.getElementById('res-total-stat').textContent = totalQ;
+}
+
+/* ── Helpers ── */
+function toUrduNum(n) {
+  const digits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+  return String(n).split('').map(d => digits[+d] || d).join('');
+}
+function urduLetter(j) {
+  return ['الف','ب','ج','د'][j] || String.fromCharCode(65+j);
+}
+
+/* ── Interaction ── */
+function selectMCQ(id, oi) {
+  userAnswers[id] = oi;
+  document.querySelectorAll(`#opts-${id} .option-btn`)
+          .forEach((b, j) => b.classList.toggle('selected', j === oi));
+}
+
+function selectTF(id, val) {
+  userAnswers[id] = val;
+  document.getElementById(`tf-t-${id}`).className = 'tf-btn' + (val === true  ? ' sel-t' : '');
+  document.getElementById(`tf-f-${id}`).className = 'tf-btn' + (val === false ? ' sel-f' : '');
+}
+
+function updateMatch(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(document.getElementById(`match-sel-${id}-${j}`)?.value || '');
+  userAnswers[id] = vals;
+}
+
+function updateOrder(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(parseInt(document.getElementById(`order-${id}-${j}`)?.value) || 0);
+  userAnswers[id] = vals;
+}
+
+/* ── Submit & Grade ── */
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'طالب علم';
+  let correct = 0, wrong = 0, skip = 0;
+  allReviews = [];
+  let globalQ = 0;
+  const totalQ = sections.reduce((s, sec) => s + sec.questions.length, 0);
+
+  sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      const ua = userAnswers[id];
+      let status, yourStr, correctStr;
+
+      /* MCQ */
+      if (q.type === 'mcq') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'جواب نہیں دیا'; correctStr = q.opts[q.ans];
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        } else {
+          wrong++; status = 'wrong'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        }
+
+      /* TF */
+      } else if (q.type === 'tf') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'جواب نہیں دیا'; correctStr = q.ans ? 'درست' : 'غلط';
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = ua ? 'درست' : 'غلط'; correctStr = q.ans ? 'درست' : 'غلط';
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua ? 'درست' : 'غلط'; correctStr = q.ans ? 'درست' : 'غلط';
+        }
+
+      /* FILL */
+      } else if (q.type === 'fill') {
+        const raw      = (ua || '').trim().toLowerCase();
+        const corrects = [q.ans.toLowerCase(), ...(q.alt || []).map(a => a.toLowerCase())];
+        if (!raw) {
+          skip++; status = 'skip'; yourStr = 'جواب نہیں دیا'; correctStr = q.ans;
+        } else if (corrects.includes(raw)) {
+          correct++; status = 'correct'; yourStr = ua; correctStr = q.ans;
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua; correctStr = q.ans;
+        }
+
+      /* MATCH */
+      } else if (q.type === 'match') {
+        const vals     = ua || [];
+        const allRight = vals.length === q.pairs.length
+                      && vals.every((v, j) => v === q.pairs[j][1])
+                      && vals.every(v => v);
+        const yourList    = q.pairs.map((p, j) => `${p[0]} ← ${vals[j] || '؟'}`).join('، ');
+        const correctList = q.pairs.map(p => `${p[0]} ← ${p[1]}`).join('، ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'جواب نہیں دیا'; correctStr = correctList;
+        } else if (allRight) {
+          correct++; status = 'correct'; yourStr = yourList; correctStr = correctList;
+        } else {
+          wrong++; status = 'wrong'; yourStr = yourList; correctStr = correctList;
+        }
+
+      /* ORDER */
+      } else if (q.type === 'order') {
+        const vals     = ua || [];
+        const shuffled = q._shuffled || q.items;
+        const allRight = vals.length === q.items.length
+                      && vals.every((v, j) => v === q.correctOrder[j])
+                      && vals.every(v => v > 0);
+        const correctLabels = q.items
+          .map((item, j) => [q.correctOrder[j], item])
+          .sort((a, b) => a[0] - b[0])
+          .map(([pos, item]) => `${pos}. ${item}`)
+          .join(' ← ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'جواب نہیں دیا'; correctStr = correctLabels;
+        } else if (allRight) {
+          correct++; status = 'correct';
+          yourStr    = shuffled.map((item, j) => `${vals[j]}. ${item}`).join('، ');
+          correctStr = correctLabels;
+        } else {
+          wrong++; status = 'wrong';
+          yourStr    = shuffled.map((item, j) => `${vals[j] || '؟'}. ${item}`).join('، ');
+          correctStr = correctLabels;
+        }
+      }
+
+      allReviews.push({ status, qNum: globalQ, qText: q.q, ch: q.ch,
+                        type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+
+  const pct   = Math.round((correct / totalQ) * 100);
+  const grade = pct >= 90 ? 'A+' : pct >= 80 ? 'A' : pct >= 70 ? 'B'
+              : pct >= 60 ? 'C'  : pct >= 50 ? 'D' : 'F';
+  const msg   = pct >= 90 ? "🏆 بہت شاباش! بہترین کارکردگی!"
+              : pct >= 70 ? "🌟 بہت اچھا! مزید محنت کریں!"
+              : pct >= 50 ? "👍 اچھی کوشش! دوبارہ پڑھ کر دیکھیں!"
+              : "💪 ہمت نہ ہاریں — محنت سے ضرور بہتری آئے گی!";
+
+  document.getElementById('res-pct').textContent        = pct + '%';
+  document.getElementById('res-grade').textContent      = 'گریڈ: ' + grade;
+  document.getElementById('res-score').textContent      = correct;
+  document.getElementById('res-total').textContent      = '/' + totalQ;
+  document.getElementById('res-total-stat').textContent = totalQ;
+  document.getElementById('res-name').textContent       =
+    name + (document.getElementById('student-class').value.trim()
+          ? ' · ' + document.getElementById('student-class').value.trim() : '');
+  document.getElementById('res-msg').textContent        = msg;
+  document.getElementById('res-correct').textContent    = correct;
+  document.getElementById('res-wrong').textContent      = wrong;
+  document.getElementById('res-skip').textContent       = skip;
+
+  renderReviews('all');
+  document.getElementById('test-form').style.display  = 'none';
+  document.getElementById('results').style.display    = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Review Panel ── */
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  const icons      = { correct: '✅', wrong: '❌', skip: '⏭' };
+  const typeLabels = { mcq: 'MCQ', tf: 'درست/غلط', fill: 'خالی جگہ',
+                       match: 'ملاپ', order: 'ترتیب' };
+
+  const filtered = allReviews.filter(r => filter === 'all' || r.status === filter);
+  filtered.forEach(r => {
+    const qSnippet = r.qText.length > 80 ? r.qText.substring(0, 80) + '…' : r.qText;
+    rc.innerHTML += `
+      <div class="review-card review-${r.status}">
+        <div class="review-header">
+          <span style="font-size:1rem;">${icons[r.status]}</span>
+          <span class="review-q">س${r.qNum}: ${qSnippet}</span>
+          <span class="type-chip">${typeLabels[r.type] || r.type}</span>
+        </div>
+        <div class="review-body">
+          ${r.status !== 'correct' ? `<div class="your-ans">آپ کا جواب: ${r.your}</div>` : ''}
+          <div class="correct-ans">درست جواب: ${r.correct}</div>
+          <div class="explanation">💡 ${r.exp}</div>
+        </div>
+      </div>`;
+  });
+
+  if (!rc.innerHTML)
+    rc.innerHTML = '<p style="color:#6b7280;text-align:center;padding:1rem;">اس زمرے میں کوئی سوال نہیں۔</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+/* ── Retry ── */
+function retryTest() {
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  allReviews = [];
+  buildAll();
+  document.getElementById('results').style.display   = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Init ── */
+buildAll();
+</script>
+</body>
+</html>
