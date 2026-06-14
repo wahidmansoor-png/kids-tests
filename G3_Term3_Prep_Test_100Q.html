@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<!-- Grade 3 Computer Studies — Term 3 Preparation Test (100 Questions)
+     Built on the reusable interactive test engine.
+     Covers Units: 4.1 Hardware & Software, 4.2 The Role of Robots,
+     4.3 Input & Output Around Us, 1.6 Introducing the Micro:bit -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 3 Computer Studies – Term 3 Prep Test (100 Questions)</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;}
+
+/* ── HERO BANNER ────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#1e40af 60%,#0369a1 100%);
+  color:white;padding:2rem 1rem 3rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;position:relative;}
+.hero p{font-size:.95rem;opacity:.85;position:relative;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.hero-badge{background:rgba(255,255,255,.15);padding:5px 14px;border-radius:20px;
+            font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.2);}
+
+/* ── LAYOUT ─────────────────────────────────────────────── */
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);
+      padding:1.5rem;margin-bottom:1.5rem;}
+
+/* ── STUDENT INFO FORM ──────────────────────────────────── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+                 border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#1e40af;}
+
+/* ── SECTION HEADER ─────────────────────────────────────── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{
+  background:linear-gradient(135deg,#1e40af,#0369a1);
+  color:white;border-radius:50%;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;flex-shrink:0;
+}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.type-tag{background:#fef3c7;color:#92400e;font-size:.72rem;padding:3px 10px;
+          border-radius:20px;font-weight:700;}
+
+/* ── QUESTION BLOCK ─────────────────────────────────────── */
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;
+       text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+
+/* ── MCQ OPTIONS ────────────────────────────────────────── */
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;
+            border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;
+            transition:all .2s;background:white;font-size:.93rem;
+            color:#374151;text-align:left;}
+.option-btn:hover{border-color:#93c5fd;background:#eff6ff;}
+.option-btn.selected{border-color:#1e40af;background:#dbeafe;color:#1e3a8a;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#1e40af;}
+
+/* ── TRUE / FALSE BUTTONS ───────────────────────────────── */
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;
+        cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#93c5fd;background:#eff6ff;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+
+/* ── FILL IN THE BLANK INPUT ────────────────────────────── */
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+            border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#1e40af;}
+
+/* ── MATCH DROPDOWNS ────────────────────────────────────── */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;
+            background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;
+              font-size:.88rem;outline:none;cursor:pointer;width:100%;
+              background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#1e40af;}
+
+/* ── ORDER / SEQUENCE ───────────────────────────────────── */
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-select{flex:1;max-width:80px;padding:8px 10px;border:2px solid #e5e7eb;
+             border-radius:8px;font-size:.88rem;outline:none;
+             background:white;cursor:pointer;}
+.sort-select:focus{border-color:#1e40af;}
+.sort-item-label{font-size:.9rem;color:#374151;flex:1;padding-left:4px;}
+
+/* ── SUBMIT BUTTON ──────────────────────────────────────── */
+.submit-area{text-align:center;}
+.submit-btn{
+  background:linear-gradient(135deg,#1e40af,#0369a1);
+  color:white;border:none;padding:14px 44px;border-radius:12px;
+  font-size:1.1rem;font-weight:800;cursor:pointer;
+  box-shadow:0 4px 14px rgba(30,64,175,.4);transition:transform .15s,box-shadow .15s;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,64,175,.5);}
+
+/* ── RESULTS PANEL ──────────────────────────────────────── */
+#results{display:none;}
+.score-hero{
+  background:linear-gradient(135deg,#0f172a,#1e40af);
+  color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;
+}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);
+              display:flex;flex-direction:column;align-items:center;justify-content:center;
+              margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);
+             padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;
+           box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#1e40af;}
+
+/* ── REVIEW FILTER BAR ──────────────────────────────────── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;
+            font-size:.8rem;font-weight:700;cursor:pointer;
+            background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#1e40af;background:#dbeafe;color:#1e40af;}
+
+/* ── REVIEW CARDS ───────────────────────────────────────── */
+.review-card{background:white;border-radius:12px;
+             box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong   .review-header{background:#fef2f2;}
+.review-skip    .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #93c5fd;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;
+           background:#dbeafe;color:#1e40af;flex-shrink:0;}
+
+/* ── RETRY BUTTON ───────────────────────────────────────── */
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;
+           border:2px solid #1e40af;color:#1e40af;
+           padding:12px 36px;border-radius:12px;font-size:1rem;
+           font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#dbeafe;}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;position:relative;">💻 🤖 🎓</div>
+  <h1>Grade 3 – Computer Studies Prep Test</h1>
+  <p>Term 3 Revision · Hardware &amp; Software · The Role of Robots · Input &amp; Output · Introducing the Micro:bit</p>
+  <div class="hero-badges">
+    <span class="hero-badge">100 Questions</span>
+    <span class="hero-badge">5 Question Types</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div>
+      <label>Your Name</label>
+      <input type="text" id="student-name" placeholder="e.g. Sara Ahmed">
+    </div>
+    <div>
+      <label>Class / Section</label>
+      <input type="text" id="student-class" placeholder="e.g. Grade 3 – A">
+    </div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">
+      Answer all 100 questions then submit to see your results!
+    </p>
+    <button class="submit-btn" onclick="submitTest()">
+      <i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test
+    </button>
+  </div>
+</div>
+
+</div><!-- end #test-form -->
+
+
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total" id="res-total">/0</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat" id="res-total-stat">0</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+
+  <button class="retry-btn" onclick="retryTest()">
+    <i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again
+  </button>
+</div>
+
+</div><!-- end .container -->
+
+
+<script>
+/* ════════════════════════════════════════════════════════════════════════
+   QUESTION DATA — 100 questions across 5 sections (A–E)
+   Sourced from IQRA Virtual School Grade 3 Term-3 worksheets & tests:
+   Unit 4.1 Hardware & Software · Unit 4.2 The Role of Robots ·
+   Unit 4.3 Input & Output Around Us · Unit 1.6 Introducing the Micro:bit
+   ════════════════════════════════════════════════════════════════════════ */
+
+const sections = [
+
+  /* ════ SECTION A — MULTIPLE CHOICE (39 questions) ═══════════════════ */
+  {
+    title:     "Section A – Multiple Choice",
+    badge:     "A",
+    typeLabel: "Choose the best answer (A, B, C or D) for each question",
+    questions: [
+
+      /* ---------- Unit 4.1 Hardware & Software (8) ---------- */
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "Hardware is the parts of a computer system that:",
+        opts: ["We can feel but not see", "See or touch", "Neither see nor touch", "All of the above"],
+        ans:  1,
+        exp:  "Hardware refers to the physical parts of a computer that we can see and touch, such as the keyboard, mouse and monitor."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "What helps the computer to do its job?",
+        opts: ["Software", "Only hardware", "The user", "Both A & C"],
+        ans:  3,
+        exp:  "Both software (the programs) and the user work together to help the computer carry out its tasks."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A computer system consists of:",
+        opts: ["Only a monitor & a keyboard", "A computer & all the software connected to it", "A computer & all the hardware connected to it", "Only a mouse & a printer"],
+        ans:  2,
+        exp:  "A computer system is a computer together with all the hardware (devices) connected to it, such as the mouse, keyboard, monitor and printer."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "The programs that a computer uses are called:",
+        opts: ["User", "Software", "The network cable", "Sound waves"],
+        ans:  1,
+        exp:  "Programs that tell a computer what to do are called software, e.g. Microsoft Word or a web browser."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "It is a piece of software — when you click on its picture (icon), a web page opens on your screen. What is it?",
+        opts: ["Media player", "Operating system", "Web browser", "Calculator"],
+        ans:  2,
+        exp:  "A web browser is the software you open to view web pages, such as Chrome or Edge."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    'According to the lesson, what does the term "download" mean?',
+        opts: ["To delete a program from a computer to make more space", "To move information from one computer to another, often using the internet", "To move information from one computer to another", "To turn off the computer while it is moving information"],
+        ans:  1,
+        exp:  'Downloading means moving information from one computer to another, often using the internet — for example, saving a file from a website onto your own computer.'
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "What should you do if the hard drive is full?",
+        opts: ["Turn off the computer", "Buy a new screen", "Delete some files or use another hard drive", "Press more keys"],
+        ans:  2,
+        exp:  "If a hard drive becomes full, you can free up space by deleting files you no longer need or by using another hard drive."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "Which two things need to work together so that a computer works properly?",
+        opts: ["Hardware & software", "Monitor & keyboard only", "Internet & hard drive", "Mouse & printer only"],
+        ans:  0,
+        exp:  "Hardware (the physical parts) and software (the programs) must work together so that a computer works properly."
+      },
+
+      /* ---------- Unit 4.2 The Role of Robots (6) ---------- */
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "What is a factory?",
+        opts: ["A school", "A place where things are made", "A hospital", "A park"],
+        ans:  1,
+        exp:  "A factory is a place where things (products) are made, often with the help of machines and robots."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "What does a motion sensor detect?",
+        opts: ["Sound", "Heat", "Movement", "Light"],
+        ans:  2,
+        exp:  "A motion sensor detects movement in front of it — for example, when someone walks past."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Which job is better suited for a robot than a human?",
+        opts: ["Understanding feelings", "Making decisions", "Packing chocolates", "Choosing tasty fruit"],
+        ans:  2,
+        exp:  "Robots are good at repetitive jobs like packing chocolates. Tasks like understanding feelings, making decisions, or choosing the tastiest fruit need human judgement."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "What is an automaton?",
+        opts: ["A computer", "An early robot", "A human worker", "A factory"],
+        ans:  1,
+        exp:  "An automaton is an early type of robot — an early mechanical machine built to perform tasks automatically."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "What is a robot?",
+        opts: ["A type of computer virus", "A machine that works without much human help", "A person who repairs computers", "A type of software"],
+        ans:  1,
+        exp:  "A robot is a machine that can work without much help from a human, often by following a program."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Why are robots used in factories?",
+        opts: ["Because they look nice", "Because they are fast and do not get tired", "Because they are cheaper than electricity", "Because they can understand feelings"],
+        ans:  1,
+        exp:  "Robots are used in factories because they work fast, do not get tired, and can repeat tasks accurately without making many mistakes."
+      },
+
+      /* ---------- Unit 4.3 Input & Output Around Us (9) ---------- */
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    'What is the primary job of a "sensor"?',
+        opts: ["To display images on a screen", "To follow a set of instructions or an algorithm", "To delete information from a device", "To check & record data"],
+        ans:  3,
+        exp:  "A sensor's main job is to check and record data from the world around it, such as light, movement or temperature."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    'Which of the following best describes "input"?',
+        opts: ["The physical parts of a computer you can touch", "Information that is sent into a device", "The result of a program after it finishes running", "A device that records data from the environment"],
+        ans:  1,
+        exp:  "Input is information that is sent INTO a device, such as pressing a key or clicking a mouse."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    'What does the word "Manual" mean?',
+        opts: ["Because it connects to the computer with a wire", "Because it has a laser light underneath", "A person controls it using their hand", "Because it shows things on a screen"],
+        ans:  2,
+        exp:  'Manual means that a person controls the device using their hand — they do it themselves, instead of it happening automatically.'
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "Why are street lights considered to have an automatic input device?",
+        opts: ["Because a person has to climb up and turn them on every night", "Because a sensor detects when it is dark & tells the light to turn on", "Because they use a lot of electricity", "Because they have a mouse & keyboard attached to them"],
+        ans:  1,
+        exp:  "A light sensor (an automatic input device) detects when it gets dark and automatically tells the street light to turn on — no person needs to do it."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    'What does "Internet of Things" (IoT) mean?',
+        opts: ["Using the internet only to send emails", "A list of all the things you can buy online", "Connecting everyday devices, like fridges and TVs, to the internet", "A way to fix broken computers using the internet"],
+        ans:  2,
+        exp:  "The Internet of Things (IoT) means connecting everyday devices — like fridges, TVs, doorbells and lights — to the internet so they can send and receive data."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "What is the benefit of a digital device that controls things inside a home?",
+        opts: ["It makes the house look more colorful", "It lets someone control & monitor their home through the internet", "It turns all automatic devices into manual ones", "It prevents the devices from sharing any data"],
+        ans:  1,
+        exp:  "Smart home devices let someone control and monitor things in their home (like lights or blinds) through the internet, even when they are away."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "What kind of data does a smart fridge store?",
+        opts: ["Data about the weather outside", "Data about the person's favorite movies", "Data about the food & drink inside it", "Data about how to fix a broken car"],
+        ans:  2,
+        exp:  "A smart fridge stores data about the food and drink inside it, helping you keep track of what you have and what is running low."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "Why might someone use an automatic input device instead of a manual one?",
+        opts: ["Because it is more expensive", "Because it works by itself, saves time, and gives quick results", "Because it never needs electricity", "Because it always asks the user for permission"],
+        ans:  1,
+        exp:  "Automatic input devices (like sensors) work by themselves, save time, and give quick results without a person needing to do anything."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "How is a smart watch helpful in this era of technology?",
+        opts: ["It only tells the time", "It shows the time, tracks health, and receives calls and messages", "It can cook food", "It connects directly to a printer"],
+        ans:  1,
+        exp:  "A smart watch is helpful because it shows the time, tracks your health (like steps or heart rate), and lets you receive calls and messages."
+      },
+
+      /* ---------- Unit 1.6 Introducing the Micro:bit (16) ---------- */
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "What is a micro:bit?",
+        opts: ["Mobile phone", "Small computer", "TV", "Tablet"],
+        ans:  1,
+        exp:  "A micro:bit is a small computer that can be programmed to do many different things."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Which of these is an input?",
+        opts: ["LED light", "Speaker", "Button press", "Screen"],
+        ans:  2,
+        exp:  "A button press is an input — it is something done TO the device to start an action. LEDs, speakers and screens are outputs."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    'What does "pause 2000 ms" mean?',
+        opts: ["Stop forever", "Wait 2 seconds", "Show icon", "Clear screen"],
+        ans:  1,
+        exp:  '"ms" stands for milliseconds. 2000 ms ÷ 1000 = 2 seconds, so "pause 2000 ms" means wait for 2 seconds.'
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    'What does "clear screen" do?',
+        opts: ["Shows image", "Turns off LEDs", "Makes sound", "Starts program"],
+        ans:  1,
+        exp:  '"Clear screen" turns off all the LEDs on the micro:bit display.'
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Which of these is an input on the micro:bit?",
+        opts: ["Shake", "Light", "Sound", "Screen"],
+        ans:  0,
+        exp:  "Shaking the micro:bit is an input — it can trigger a program to run. The other options are outputs (the LED display and speaker)."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "What is a micro:bit, in your own words?",
+        opts: ["A small computer that we can program", "A type of calculator only", "A remote control for a TV", "A printer attachment"],
+        ans:  0,
+        exp:  "A micro:bit is a small computer that we can program to respond to button presses, shaking, light and more."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "What is an input (on the micro:bit)?",
+        opts: ["The result of a program", "Something we do to start a program", "A small light on the board", "A way to delete a program"],
+        ans:  1,
+        exp:  "An input is something we do (like pressing a button or shaking the board) to start or control a program."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "What is an output (on the micro:bit)?",
+        opts: ["Something we do to start a program", "The result of a program", "A type of sensor", "A way to charge the battery"],
+        ans:  1,
+        exp:  "An output is the result of a program — for example, an icon or number shown on the LED display."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Why do we use a simulator?",
+        opts: ["To make the micro:bit louder", "To test the program before downloading it", "To charge the micro:bit", "To connect to the internet"],
+        ans:  1,
+        exp:  "A simulator lets us test a program on the screen before downloading it onto the real micro:bit."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "What will happen if we remove the pause block from a program?",
+        opts: ["The micro:bit will turn off", "The program will run very fast and we may not see the output clearly", "The program will stop working completely", "The LEDs will become brighter"],
+        ans:  1,
+        exp:  "Without a pause block, the program runs very fast, so the icons or numbers may change too quickly to see clearly."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Why is testing a program important?",
+        opts: ["To make the program look nicer", "To find errors and make sure it works correctly", "To make the program run slower", "To save battery power"],
+        ans:  1,
+        exp:  "Testing a program helps us find errors (mistakes) and check that it works correctly before using it."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    'What will happen if we do not use "clear screen" in a program?',
+        opts: ["The LEDs will stay on", "The micro:bit will restart", "The program will run faster", "Nothing will display at all"],
+        ans:  0,
+        exp:  'Without "clear screen", the LEDs that were turned on will stay on the display.'
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Why do different buttons give different outputs?",
+        opts: ["Because the buttons are different colours", "Because each button has a different instruction", "Because only one button works at a time", "Because the screen changes size"],
+        ans:  1,
+        exp:  "Each button (A, B, or A+B) can be programmed with its own instructions, so pressing different buttons can produce different outputs."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "[on shake] → show string 'Hi'. What will happen?",
+        opts: ["The micro:bit will turn off", "'Hi' will display", "A heart icon will display", "Nothing will happen"],
+        ans:  1,
+        exp:  "When the micro:bit is shaken, this program will display the text 'Hi' on the LED screen."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "[on button B pressed] → show number 5. What will display?",
+        opts: ["The letter B", "A smiley face", "The number 5", "Nothing"],
+        ans:  2,
+        exp:  "When button B is pressed, the program shows the number 5 on the LED display."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Look at this algorithm: (1) Draw a square body, (2) Add three legs to the body, (3) Add a long, twisty tail, (4) Draw a triangle-shaped head on top of the body, (5) Give the creature two floppy ears, (6) Add two circles for its eyes. Which drawing follows ALL these instructions correctly?",
+        opts: ["Drawing A", "Drawing B", "Drawing C"],
+        ans:  1,
+        exp:  "Drawing B follows all 6 steps correctly. Drawing A has 4 legs (not 3) and is missing 2 eyes, with its head on the side. Drawing C has an upside-down triangle head and is missing the floppy ears."
+      }
+
+    ]
+  },
+
+
+  /* ════ SECTION B — TRUE OR FALSE (27 questions) ═══════════════════ */
+  {
+    title:     "Section B – True or False",
+    badge:     "B",
+    typeLabel: "Decide whether each statement is True or False",
+    questions: [
+
+      /* ---------- Unit 4.1 Hardware & Software (8) ---------- */
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "Hardware is something we cannot see or touch.",
+        ans:  false,
+        exp:  "FALSE — hardware IS something we can see and touch, e.g. the keyboard, mouse and monitor."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "Software helps the computer system to perform its tasks.",
+        ans:  true,
+        exp:  "TRUE — software (programs) tells the computer what to do and helps it carry out tasks."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "Applications are also called apps.",
+        ans:  true,
+        exp:  'TRUE — "apps" is short for "applications".'
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A computer system includes only software.",
+        ans:  false,
+        exp:  "FALSE — a computer system includes a computer AND all the hardware connected to it, not just software."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A monitor is used to hear music from the computer.",
+        ans:  false,
+        exp:  "FALSE — a monitor is used to SEE things (it is an output device for images and video). Speakers are used to hear sound."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A program used for writing is a type of software.",
+        ans:  true,
+        exp:  "TRUE — a writing (word-processing) program, like Microsoft Word, is a type of software."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A web browser is used to store all your computer files.",
+        ans:  false,
+        exp:  "FALSE — a web browser is software used to visit websites; it does not store all your computer files."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "The hard drive is the part of a computer where files are erased.",
+        ans:  false,
+        exp:  "FALSE — the hard drive is where files are STORED, not where they are erased."
+      },
+
+      /* ---------- Unit 4.2 The Role of Robots (6) ---------- */
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots always look like humans.",
+        ans:  false,
+        exp:  "FALSE — robots come in many shapes and sizes; not all robots look like humans."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can only do what they are programmed to do.",
+        ans:  true,
+        exp:  "TRUE — robots follow the instructions (program) they have been given."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "A motion sensor is an input device.",
+        ans:  true,
+        exp:  "TRUE — a motion sensor detects (inputs) movement and sends that information to a device."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots are good at repeated tasks.",
+        ans:  true,
+        exp:  "TRUE — robots can repeat the same task over and over again without getting tired or making many mistakes."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can understand human emotions.",
+        ans:  false,
+        exp:  "FALSE — robots cannot understand emotions. Humans can think, make decisions, and understand feelings, which is why humans are better than robots at some jobs."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can work for a long time because they do not get tired.",
+        ans:  true,
+        exp:  "TRUE — unlike humans, robots do not get tired, so they can keep working for a long time."
+      },
+
+      /* ---------- Unit 4.3 Input & Output Around Us (8) ---------- */
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "To input means to send information into a digital device.",
+        ans:  true,
+        exp:  "TRUE — input is information sent INTO a device."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "Sensors are digital devices that can check data and record around them.",
+        ans:  true,
+        exp:  "TRUE — sensors check and record data from the world around them."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "When a device sends out information, this process is called output.",
+        ans:  true,
+        exp:  "TRUE — output is information sent OUT of a device."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    'The word "Manual" means that something is done using your hands.',
+        ans:  true,
+        exp:  'TRUE — "manual" means doing something with your hands, controlled by a person.'
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "A person using their hands to move a controller is providing a manual input.",
+        ans:  true,
+        exp:  "TRUE — using your hands to control something is an example of manual input."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "A sensor is a digital device that checks & records data from the world around it.",
+        ans:  true,
+        exp:  "TRUE — that is the definition of a sensor."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "The smart fridge stores data about the weather outside to help you stay cool.",
+        ans:  false,
+        exp:  "FALSE — a smart fridge stores data about the food & drink inside it, not about the weather outside."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "An output is the result when a program or algorithm is followed by a device.",
+        ans:  true,
+        exp:  "TRUE — an output is the result produced after a device follows a program or algorithm."
+      },
+
+      /* ---------- Unit 1.6 Introducing the Micro:bit (5) ---------- */
+      {
+        type: "tf",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "The micro:bit can only show text.",
+        ans:  false,
+        exp:  "FALSE — the micro:bit can show icons, numbers and animations, not just text."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Pressing a button is an input.",
+        ans:  true,
+        exp:  "TRUE — pressing a button is something done TO the micro:bit, so it is an input."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "The simulator helps us test programs.",
+        ans:  true,
+        exp:  "TRUE — the simulator lets us test a program on screen before downloading it."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    '"Clear screen" turns off LEDs.',
+        ans:  true,
+        exp:  'TRUE — "clear screen" turns off all the LEDs on the display.'
+      },
+      {
+        type: "tf",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "Shaking the micro:bit is an output.",
+        ans:  false,
+        exp:  "FALSE — shaking the micro:bit is an INPUT (it can trigger a program), not an output."
+      }
+
+    ]
+  },
+
+
+  /* ════ SECTION C — FILL IN THE BLANK (27 questions) ═══════════════ */
+  {
+    title:     "Section C – Fill in the Blank",
+    badge:     "C",
+    typeLabel: "Type the correct word or phrase to complete each sentence",
+    questions: [
+
+      /* ---------- Unit 4.1 Hardware & Software (8) ---------- */
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "________ is the parts of a computer system that can be seen or touched.",
+        ans:  "Hardware",
+        alt:  [],
+        exp:  "Hardware means the physical parts of a computer system, e.g. keyboard, mouse, monitor, printer."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A ________ is a computer system & all the hardware connected to it.",
+        ans:  "computer",
+        alt:  [],
+        exp:  "A computer is the computer system together with all the hardware connected to it."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "We store our files on the internet — this is known as ________.",
+        ans:  "cloud storage",
+        alt:  ["the cloud"],
+        exp:  "Storing files on the internet (on other servers) is called cloud storage."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "The programs that a computer uses are called ________.",
+        ans:  "software",
+        alt:  [],
+        exp:  "Programs that a computer uses are called software."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "________ send messages between the hardware & different parts of a computer system.",
+        ans:  "Software",
+        alt:  [],
+        exp:  "Software sends messages between the hardware and different parts of a computer system so they can work together."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "An ________ device is used to enter data into the computer.",
+        ans:  "input",
+        alt:  [],
+        exp:  "An input device (e.g. keyboard, mouse, microphone) is used to enter data into the computer."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "A computer keeps files on its ________.",
+        ans:  "hard drive",
+        alt:  ["harddrive","hard-drive"],
+        exp:  "A computer keeps (stores) its files on its hard drive."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.1 – Hardware & Software",
+        q:    "The ________ is the part of a computer where data is stored.",
+        ans:  "hard drive",
+        alt:  ["harddrive","hard-drive"],
+        exp:  "The hard drive is the part of a computer where data is stored."
+      },
+
+      /* ---------- Unit 4.2 The Role of Robots (7) ---------- */
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "A robot is a type of ________.",
+        ans:  "machine",
+        alt:  ["machines"],
+        exp:  "A robot is a type of machine that can be programmed to do tasks."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "A factory is a place where things are ________.",
+        ans:  "made",
+        alt:  [],
+        exp:  "A factory is a place where things (products) are made."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can work without getting ________.",
+        ans:  "tired",
+        alt:  [],
+        exp:  "Unlike humans, robots can work without getting tired."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "A ________ checks movement in front of it.",
+        ans:  "motion sensor",
+        alt:  [],
+        exp:  "A motion sensor checks for movement in front of it."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can do jobs that are too ________ or difficult for humans.",
+        ans:  "dangerous",
+        alt:  [],
+        exp:  "Robots can safely do jobs that would be too dangerous or difficult for humans."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "Robots can do tasks over and over again without making many ________.",
+        ans:  "mistakes",
+        alt:  ["mistake"],
+        exp:  "Robots can repeat tasks accurately, without making many mistakes."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.2 – The Role of Robots",
+        q:    "A program is a set of ________.",
+        ans:  "instructions",
+        alt:  ["instruction"],
+        exp:  "A program is a set of instructions that tells a computer or robot what to do."
+      },
+
+      /* ---------- Unit 4.3 Input & Output Around Us (7) ---------- */
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "To ________ means to send information to a device.",
+        ans:  "input",
+        alt:  [],
+        exp:  "To input means to send information INTO a device."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "To ________ is when a device sends out information.",
+        ans:  "output",
+        alt:  [],
+        exp:  "To output is when a device sends information OUT."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "________ are digital devices that check & record data around them.",
+        ans:  "Sensors",
+        alt:  ["sensor"],
+        exp:  "Sensors are digital devices that check and record data from the world around them."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "________ means doing something with your hands.",
+        ans:  "Manual",
+        alt:  [],
+        exp:  "Manual means doing something with your hands, controlled by a person."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "________ means that a machine is programmed once & can work by itself without a worker.",
+        ans:  "Automatic",
+        alt:  [],
+        exp:  "Automatic means a machine is programmed once and can then work by itself, without a person controlling it each time."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "A ________ can also check your health.",
+        ans:  "smart watch",
+        alt:  ["smartwatch"],
+        exp:  "A smart watch can check things about your health, such as your heart rate or step count."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 4.3 – Input & Output Around Us",
+        q:    "When food & drinks are put in the fridge, the ________ printed on them is scanned.",
+        ans:  "barcode",
+        alt:  ["bar code"],
+        exp:  "The barcode printed on food and drink packaging can be scanned by a smart fridge to record what is inside."
+      },
+
+      /* ---------- Unit 1.6 Introducing the Micro:bit (5) ---------- */
+      {
+        type: "fill",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "A micro:bit is a small ________.",
+        ans:  "computer",
+        alt:  [],
+        exp:  "A micro:bit is a small computer that can be programmed."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "________ are small lights on the micro:bit.",
+        ans:  "LEDs",
+        alt:  ["led"],
+        exp:  "LEDs (Light Emitting Diodes) are the small lights that make up the micro:bit's display."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "An ________ starts a program.",
+        ans:  "input",
+        alt:  [],
+        exp:  "An input (such as a button press or a shake) starts a program running."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "The result of a program is called ________.",
+        ans:  "output",
+        alt:  [],
+        exp:  "The result of a program — what it shows or does — is called output."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 1.6 – Introducing the Micro:bit",
+        q:    "We use a ________ to test a program.",
+        ans:  "simulator",
+        alt:  [],
+        exp:  "We use a simulator to test a program before downloading it onto the real micro:bit."
+      }
+
+    ]
+  },
+
+
+  /* ════ SECTION D — MATCH THE COLUMNS (4 questions) ═════════════════ */
+  {
+    title:     "Section D – Match the Columns",
+    badge:     "D",
+    typeLabel: "Match each item on the left to its correct meaning on the right",
+    questions: [
+
+      {
+        type:  "match",
+        ch:    "Unit 4.1 – Hardware & Software",
+        q:     "Match each computing term to its correct meaning.",
+        pairs: [
+          ["Hardware",      "Parts of a computer system that can be seen or touched"],
+          ["Software",      "The programs that a computer uses"],
+          ["Cloud storage",  "Storing files on servers connected to the internet"],
+          ["Hard drive",     "The part of a computer where data is stored"],
+          ["Input device",   "Used to enter data into the computer"],
+          ["Download",       "Moving information from one computer to another, often using the internet"]
+        ],
+        exp:   "Hardware = parts you can see/touch. Software = the programs a computer uses. Cloud storage = storing files online. Hard drive = where data is stored. Input device = used to enter data. Download = moving information using the internet."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 4.2 – The Role of Robots",
+        q:     "Match the Following.",
+        pairs: [
+          ["Motion sensor", "Detects movement"],
+          ["Factory",       "A place where things are made"],
+          ["Robot",         "A machine that does jobs"],
+          ["Program",       "A set of instructions"],
+          ["Mars rover",    "Explores Mars"]
+        ],
+        exp:   "Motion sensor → detects movement. Factory → a place where things are made. Robot → a machine that does jobs. Program → a set of instructions. Mars rover → explores Mars."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 4.3 – Input & Output Around Us",
+        q:     "Match the Following.",
+        pairs: [
+          ["Input",        "Sends information into a device"],
+          ["Sensors",      "Detect & record data"],
+          ["Manual",       "Done by your hand"],
+          ["Output",       "Device sends information out"],
+          ["Barcodes",     "Scanner"],
+          ["Street lights","Light sensor"]
+        ],
+        exp:   "Input → sends information into a device. Sensors → detect & record data. Manual → done by your hand. Output → device sends information out. Barcodes → scanner. Street lights → light sensor."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 1.6 – Introducing the Micro:bit",
+        q:     "Match the Following.",
+        pairs: [
+          ["Button press", "Input action"],
+          ["Shake",        "Starts program"],
+          ["LEDs",         "Show output"],
+          ["Pause",        "Wait"],
+          ["Clear screen", "Turn off lights"]
+        ],
+        exp:   "Button press → an input action. Shake → can start a program. LEDs → show the output. Pause → means wait. Clear screen → turns off the lights (LEDs)."
+      }
+
+    ]
+  },
+
+
+  /* ════ SECTION E — SEQUENCE & ORDER (3 questions) ═══════════════════ */
+  {
+    title:     "Section E – Sequence & Order",
+    badge:     "E",
+    typeLabel: "Put the steps in the correct order by selecting 1st, 2nd, 3rd…",
+    questions: [
+
+      {
+        type:         "order",
+        ch:           "Unit 1.6 – Introducing the Micro:bit",
+        q:            "When button A is pressed, a micro:bit program does the following: shows a smiley face icon, waits, shows a heart icon, then clears the screen. Arrange these four steps in the order they actually happen.",
+        items:        ["Clear the screen", "Show a smiley face icon", "Show a heart icon", "Wait (pause) for 2 seconds"],
+        correctOrder: [4, 1, 3, 2],
+        exp:          "Correct order: 1) Show a smiley face icon → 2) Wait for 2 seconds → 3) Show a heart icon → 4) Clear the screen. So pressing button A shows a smiley, then after 2 seconds a heart appears, and then the screen clears."
+      },
+      {
+        type:         "order",
+        ch:           "Unit 1.6 – Introducing the Micro:bit",
+        q:            "Inside a 'forever' loop, a micro:bit program shows a heart icon and then waits 1 second, repeating forever. Arrange these two steps in the order they happen each time the loop runs.",
+        items:        ["Wait (pause) for 1 second", "Show a heart icon"],
+        correctOrder: [2, 1],
+        exp:          "Correct order: 1) Show a heart icon → 2) Wait for 1 second — then the loop repeats, so the heart keeps showing every second, forever."
+      },
+      {
+        type:         "order",
+        ch:           "Unit 1.6 – Introducing the Micro:bit",
+        q:            "Put these steps of the creature-drawing algorithm into the correct order.",
+        items:        ["Draw a triangle-shaped head on top of the body", "Add two circles for its eyes", "Draw a square body", "Give the creature two floppy ears", "Add a long, twisty tail", "Add three legs to the body"],
+        correctOrder: [4, 6, 1, 5, 3, 2],
+        exp:          "Correct order: 1) Draw a square body → 2) Add three legs to the body → 3) Add a long, twisty tail → 4) Draw a triangle-shaped head on top of the body → 5) Give the creature two floppy ears → 6) Add two circles for its eyes. Following these steps correctly produces Drawing B."
+      }
+
+    ]
+  }
+
+];
+/* ════════════════════════════════════════════════════════════════════════
+   END OF QUESTION DATA — do not edit anything below this line
+   ════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── ENGINE ─────────────────────────────────────────────────────────────── */
+const userAnswers = {};
+let allReviews    = [];
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  let globalQ = 0;
+
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-badge">${sec.badge}</div>
+        <h2>${sec.title}</h2>
+        <span class="type-tag">${sec.questions.length} question${sec.questions.length!==1?'s':''}</span>
+      </div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;font-style:italic;">${sec.typeLabel}</p>
+      <div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id  = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const div = document.createElement('div');
+      div.className = 'q-block';
+      const qLabel = `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; ${q.ch}</div>`;
+      let inner = '';
+
+      /* MCQ */
+      if (q.type === 'mcq') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="options" id="opts-${id}">
+            ${q.opts.map((o,j)=>`<button class="option-btn" onclick="selectMCQ('${id}',${j})">
+              <span class="option-letter">${String.fromCharCode(65+j)}</span>${o}
+            </button>`).join('')}
+          </div>`;
+
+      /* TRUE / FALSE */
+      } else if (q.type === 'tf') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="tf-row">
+            <button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ True</button>
+            <button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ False</button>
+          </div>`;
+
+      /* FILL IN THE BLANK */
+      } else if (q.type === 'fill') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <input class="fill-input" type="text" placeholder="Type your answer…"
+            id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+
+      /* MATCH */
+      } else if (q.type === 'match') {
+        const opts     = q.pairs.map(p => p[1]);
+        const shuffled = [...opts].sort(() => Math.random() - 0.5);
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="match-grid" id="match-${id}">
+            ${q.pairs.map((p,j) => `
+              <div class="match-left">${p[0]}</div>
+              <select class="match-select" id="match-sel-${id}-${j}"
+                onchange="updateMatch('${id}',${q.pairs.length})">
+                <option value="">── Select ──</option>
+                ${shuffled.map(o=>`<option value="${o}">${o}</option>`).join('')}
+              </select>`).join('')}
+          </div>`;
+
+      /* ORDER / SEQUENCE */
+      } else if (q.type === 'order') {
+        const shuffled = [...q.items]; /* keeps original order for display */
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="sort-container">
+            ${shuffled.map((item,j) => `
+              <div class="sort-item">
+                <select class="sort-select" id="order-${id}-${j}"
+                  onchange="updateOrder('${id}',${q.items.length})">
+                  <option value="">--</option>
+                  ${q.items.map((_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}
+                </select>
+                <span class="sort-item-label">${item}</span>
+              </div>`).join('')}
+          </div>`;
+        q._shuffled = shuffled;
+      }
+
+      div.innerHTML = inner;
+      qContainer.appendChild(div);
+    });
+  });
+
+  /* update the "All (N)" filter button dynamically */
+  const totalQ = sections.reduce((s,sec) => s + sec.questions.length, 0);
+  const allBtn = document.querySelector('.filter-btn');
+  if (allBtn) allBtn.textContent = `All (${totalQ})`;
+  document.getElementById('res-total').textContent       = `/${totalQ}`;
+  document.getElementById('res-total-stat').textContent  = totalQ;
+}
+
+/* ── INTERACTION HANDLERS ─────────────────────────────────────────────── */
+function selectMCQ(id, oi) {
+  userAnswers[id] = oi;
+  document.querySelectorAll(`#opts-${id} .option-btn`)
+          .forEach((b,j) => b.classList.toggle('selected', j === oi));
+}
+
+function selectTF(id, val) {
+  userAnswers[id] = val;
+  document.getElementById(`tf-t-${id}`).className = 'tf-btn' + (val === true  ? ' sel-t' : '');
+  document.getElementById(`tf-f-${id}`).className = 'tf-btn' + (val === false ? ' sel-f' : '');
+}
+
+function updateMatch(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(document.getElementById(`match-sel-${id}-${j}`)?.value || '');
+  userAnswers[id] = vals;
+}
+
+function updateOrder(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(parseInt(document.getElementById(`order-${id}-${j}`)?.value) || 0);
+  userAnswers[id] = vals;
+}
+
+/* ── SUBMIT & GRADE ───────────────────────────────────────────────────── */
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'Student';
+  let correct = 0, wrong = 0, skip = 0;
+  allReviews = [];
+  let globalQ = 0;
+  const totalQ = sections.reduce((s,sec) => s + sec.questions.length, 0);
+
+  sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      const ua = userAnswers[id];
+      let status, yourStr, correctStr;
+
+      /* ── MCQ grading ── */
+      if (q.type === 'mcq') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.opts[q.ans];
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        } else {
+          wrong++; status = 'wrong'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        }
+
+      /* ── TF grading ── */
+      } else if (q.type === 'tf') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans ? 'True' : 'False';
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False';
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False';
+        }
+
+      /* ── FILL grading (case-insensitive, trims whitespace) ── */
+      } else if (q.type === 'fill') {
+        const raw      = (ua || '').trim().toLowerCase();
+        const corrects = [q.ans.toLowerCase(), ...(q.alt || []).map(a => a.toLowerCase())];
+        if (!raw) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans;
+        } else if (corrects.includes(raw)) {
+          correct++; status = 'correct'; yourStr = ua; correctStr = q.ans;
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua; correctStr = q.ans;
+        }
+
+      /* ── MATCH grading (all pairs must be correct) ── */
+      } else if (q.type === 'match') {
+        const vals     = ua || [];
+        const allRight = vals.length === q.pairs.length
+                      && vals.every((v,j) => v === q.pairs[j][1])
+                      && vals.every(v => v);
+        const yourList    = q.pairs.map((p,j) => `${p[0]} → ${vals[j] || '?'}`).join(', ');
+        const correctList = q.pairs.map(p => `${p[0]} → ${p[1]}`).join(', ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctList;
+        } else if (allRight) {
+          correct++; status = 'correct'; yourStr = yourList; correctStr = correctList;
+        } else {
+          wrong++; status = 'wrong'; yourStr = yourList; correctStr = correctList;
+        }
+
+      /* ── ORDER grading (all positions must be correct) ── */
+      } else if (q.type === 'order') {
+        const vals     = ua || [];
+        const shuffled = q._shuffled || q.items;
+        const allRight = vals.length === q.items.length
+                      && vals.every((v,j) => v === q.correctOrder[j])
+                      && vals.every(v => v > 0);
+        const correctLabels = q.items
+          .map((item,j) => [q.correctOrder[j], item])
+          .sort((a,b) => a[0] - b[0])
+          .map(([pos,item]) => `${pos}. ${item}`)
+          .join(' → ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctLabels;
+        } else if (allRight) {
+          correct++; status = 'correct';
+          yourStr = shuffled.map((item,j) => `${vals[j]}. ${item}`).join(', ');
+          correctStr = correctLabels;
+        } else {
+          wrong++; status = 'wrong';
+          yourStr = shuffled.map((item,j) => `${vals[j] || '?'}. ${item}`).join(', ');
+          correctStr = correctLabels;
+        }
+      }
+
+      allReviews.push({ status, qNum: globalQ, qText: q.q, ch: q.ch,
+                        type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+
+  /* ── compute score and grade ── */
+  const pct = Math.round((correct / totalQ) * 100);
+  const grade = pct >= 90 ? 'A+' : pct >= 80 ? 'A' : pct >= 70 ? 'B'
+              : pct >= 60 ? 'C'  : pct >= 50 ? 'D' : 'F';
+  const msg = pct >= 90 ? "🏆 Outstanding! Excellent work!"
+            : pct >= 70 ? "🌟 Great job! Keep studying!"
+            : pct >= 50 ? "👍 Good effort! Review and try again!"
+            : "💪 Keep going — you'll improve with practice!";
+
+  document.getElementById('res-pct').textContent       = pct + '%';
+  document.getElementById('res-grade').textContent     = 'Grade: ' + grade;
+  document.getElementById('res-score').textContent     = correct;
+  document.getElementById('res-total').textContent     = '/' + totalQ;
+  document.getElementById('res-total-stat').textContent = totalQ;
+  document.getElementById('res-name').textContent      =
+    name + (document.getElementById('student-class').value.trim()
+          ? ' · ' + document.getElementById('student-class').value.trim() : '');
+  document.getElementById('res-msg').textContent       = msg;
+  document.getElementById('res-correct').textContent   = correct;
+  document.getElementById('res-wrong').textContent     = wrong;
+  document.getElementById('res-skip').textContent      = skip;
+
+  renderReviews('all');
+  document.getElementById('test-form').style.display  = 'none';
+  document.getElementById('results').style.display    = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── REVIEW PANEL ─────────────────────────────────────────────────────── */
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  const icons      = { correct: '✅', wrong: '❌', skip: '⏭' };
+  const typeLabels = { mcq: 'MCQ', tf: 'True/False', fill: 'Fill Blank',
+                       match: 'Matching', order: 'Sequence' };
+
+  const filtered = allReviews.filter(r => filter === 'all' || r.status === filter);
+  filtered.forEach(r => {
+    rc.innerHTML += `
+      <div class="review-card review-${r.status}">
+        <div class="review-header">
+          <span style="font-size:1rem;">${icons[r.status]}</span>
+          <span class="review-q">Q${r.qNum}: ${r.qText.length > 90 ? r.qText.substring(0,90) + '…' : r.qText}</span>
+          <span class="type-chip">${typeLabels[r.type] || r.type}</span>
+        </div>
+        <div class="review-body">
+          ${r.status !== 'correct' ? `<div class="your-ans">Your answer: ${r.your}</div>` : ''}
+          <div class="correct-ans">Correct: ${r.correct}</div>
+          <div class="explanation">💡 ${r.exp}</div>
+        </div>
+      </div>`;
+  });
+
+  if (rc.innerHTML === '')
+    rc.innerHTML = '<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+/* ── RETRY ────────────────────────────────────────────────────────────── */
+function retryTest() {
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  allReviews = [];
+  buildAll();
+  document.getElementById('results').style.display   = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── INIT ─────────────────────────────────────────────────────────────── */
+buildAll();
+</script>
+</body>
+</html>
