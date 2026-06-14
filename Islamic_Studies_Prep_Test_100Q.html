@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamic Studies – 3rd Term Preparation Test (100 Questions)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;min-height:100vh;}
+
+/* ── HERO BANNER ── */
+.hero{
+  background:linear-gradient(135deg,#0f172a 0%,#047857 60%,#065f46 100%);
+  color:white;padding:2rem 1rem 3rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:.4rem;position:relative;}
+.hero p{font-size:.95rem;opacity:.85;position:relative;}
+.hero-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.hero-badge{background:rgba(255,255,255,.15);padding:5px 14px;border-radius:20px;
+            font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.2);}
+
+/* ── LAYOUT ── */
+.container{max-width:820px;margin:-1.5rem auto 2rem;padding:0 1rem;}
+.card{background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.09);
+      padding:1.5rem;margin-bottom:1.5rem;}
+
+/* ── STUDENT INFO ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.info-grid label{font-size:.85rem;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;}
+.info-grid input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+                 border-radius:10px;font-size:1rem;outline:none;transition:border-color .2s;}
+.info-grid input:focus{border-color:#047857;}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.section-badge{
+  background:linear-gradient(135deg,#047857,#065f46);
+  color:white;border-radius:50%;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;flex-shrink:0;
+}
+.section-header h2{font-size:1.1rem;font-weight:700;color:#1f2937;}
+.type-tag{background:#d1fae5;color:#065f46;font-size:.72rem;padding:3px 10px;
+          border-radius:20px;font-weight:700;}
+
+/* ── QUESTION BLOCK ── */
+.q-block{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid #f3f4f6;}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:.72rem;font-weight:700;color:#9ca3af;
+       text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.q-text{font-size:.97rem;color:#1f2937;font-weight:500;line-height:1.55;margin-bottom:10px;}
+
+/* ── MCQ OPTIONS ── */
+.options{display:flex;flex-direction:column;gap:7px;}
+.option-btn{display:flex;align-items:center;gap:10px;padding:9px 13px;
+            border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;
+            transition:all .2s;background:white;font-size:.93rem;
+            color:#374151;text-align:left;}
+.option-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.option-btn.selected{border-color:#047857;background:#d1fae5;color:#064e3b;}
+.option-letter{font-weight:700;font-size:.82rem;color:#9ca3af;width:18px;flex-shrink:0;}
+.option-btn.selected .option-letter{color:#047857;}
+
+/* ── TRUE / FALSE ── */
+.tf-row{display:flex;gap:12px;}
+.tf-btn{flex:1;padding:10px;border:2px solid #e5e7eb;border-radius:10px;
+        cursor:pointer;font-weight:700;font-size:.95rem;transition:all .2s;background:white;}
+.tf-btn:hover{border-color:#6ee7b7;background:#f0fdf4;}
+.tf-btn.sel-t{border-color:#059669;background:#ecfdf5;color:#065f46;}
+.tf-btn.sel-f{border-color:#dc2626;background:#fef2f2;color:#7f1d1d;}
+
+/* ── FILL IN THE BLANK ── */
+.fill-input{width:100%;padding:10px 14px;border:2px solid #e5e7eb;
+            border-radius:10px;font-size:.97rem;outline:none;transition:border-color .2s;}
+.fill-input:focus{border-color:#047857;}
+
+/* ── MATCH DROPDOWNS ── */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.match-left{font-size:.9rem;color:#1f2937;font-weight:500;padding:8px 12px;
+            background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;}
+.match-select{padding:8px 10px;border:2px solid #e5e7eb;border-radius:8px;
+              font-size:.88rem;outline:none;cursor:pointer;width:100%;
+              background:white;transition:border-color .2s;}
+.match-select:focus{border-color:#047857;}
+
+/* ── ORDER / SEQUENCE ── */
+.sort-container{display:flex;flex-direction:column;gap:6px;}
+.sort-item{display:flex;align-items:center;gap:8px;}
+.sort-select{flex:1;max-width:80px;padding:8px 10px;border:2px solid #e5e7eb;
+             border-radius:8px;font-size:.88rem;outline:none;background:white;cursor:pointer;}
+.sort-select:focus{border-color:#047857;}
+.sort-item-label{font-size:.9rem;color:#374151;flex:1;padding-left:4px;}
+
+/* ── SUBMIT BUTTON ── */
+.submit-area{text-align:center;}
+.submit-btn{
+  background:linear-gradient(135deg,#047857,#065f46);
+  color:white;border:none;padding:14px 44px;border-radius:12px;
+  font-size:1.1rem;font-weight:800;cursor:pointer;
+  box-shadow:0 4px 14px rgba(4,120,87,.4);transition:transform .15s,box-shadow .15s;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(4,120,87,.5);}
+
+/* ── RESULTS PANEL ── */
+#results{display:none;}
+.score-hero{
+  background:linear-gradient(135deg,#0f172a,#047857);
+  color:white;border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;
+}
+.score-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.2);
+              display:flex;flex-direction:column;align-items:center;justify-content:center;
+              margin:0 auto 1rem;}
+.score-num{font-size:2.2rem;font-weight:900;}
+.score-total{font-size:.85rem;opacity:.8;}
+.score-name{font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.score-pct{font-size:2.5rem;font-weight:900;opacity:.9;}
+.grade-badge{display:inline-block;background:rgba(255,255,255,.25);
+             padding:6px 20px;border-radius:20px;font-size:1rem;font-weight:700;margin-top:.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:white;border-radius:12px;padding:1rem;text-align:center;
+           box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat-num{font-size:1.7rem;font-weight:900;}
+.stat-label{font-size:.75rem;color:#6b7280;font-weight:600;margin-top:2px;}
+.c-stat{color:#059669;}.w-stat{color:#dc2626;}.s-stat{color:#f59e0b;}.t-stat{color:#047857;}
+
+/* ── REVIEW FILTER BAR ── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.filter-btn{padding:6px 14px;border:2px solid #e5e7eb;border-radius:20px;
+            font-size:.8rem;font-weight:700;cursor:pointer;
+            background:white;color:#6b7280;transition:all .2s;}
+.filter-btn.active{border-color:#047857;background:#d1fae5;color:#047857;}
+
+/* ── REVIEW CARDS ── */
+.review-card{background:white;border-radius:12px;
+             box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:.8rem;overflow:hidden;}
+.review-correct .review-header{background:#ecfdf5;}
+.review-wrong   .review-header{background:#fef2f2;}
+.review-skip    .review-header{background:#fffbeb;}
+.review-header{padding:10px 14px;display:flex;align-items:flex-start;gap:8px;}
+.review-q{font-weight:600;font-size:.9rem;color:#1f2937;flex:1;line-height:1.4;}
+.review-body{padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.your-ans{color:#dc2626;margin-bottom:2px;}
+.correct-ans{color:#059669;font-weight:700;margin-bottom:4px;}
+.explanation{color:#6b7280;border-left:3px solid #6ee7b7;padding-left:8px;margin-top:4px;}
+.type-chip{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px;
+           background:#d1fae5;color:#047857;flex-shrink:0;}
+
+/* ── RETRY BUTTON ── */
+.retry-btn{display:block;margin:1rem auto 2rem;background:white;
+           border:2px solid #047857;color:#047857;
+           padding:12px 36px;border-radius:12px;font-size:1rem;
+           font-weight:800;cursor:pointer;transition:all .2s;}
+.retry-btn:hover{background:#d1fae5;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:520px){
+  .info-grid,.stats-row{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="font-size:1.8rem;margin-bottom:.5rem;position:relative;">☪️ 📖 🕌</div>
+  <h1>Islamic Studies – 3rd Term Preparation Test</h1>
+  <p>Iqra Virtual School · Units 2, 6, 8, 13, 14, 19, 42 &amp; Early Muslims</p>
+  <div class="hero-badges">
+    <span class="hero-badge">100 Questions</span>
+    <span class="hero-badge">5 Question Types</span>
+    <span class="hero-badge">Instant Feedback</span>
+    <span class="hero-badge">Detailed Explanations</span>
+  </div>
+</div>
+
+<div class="container">
+<div id="test-form">
+
+<div class="card">
+  <div class="section-header" style="margin-bottom:1rem;">
+    <div class="section-badge"><i class="ti ti-user" style="font-size:.95rem;"></i></div>
+    <h2>Student Details</h2>
+  </div>
+  <div class="info-grid">
+    <div>
+      <label>Your Name</label>
+      <input type="text" id="student-name" placeholder="e.g. Sara Ahmed">
+    </div>
+    <div>
+      <label>Class / Section</label>
+      <input type="text" id="student-class" placeholder="e.g. Grade 4 – A">
+    </div>
+  </div>
+</div>
+
+<div id="sections-container"></div>
+
+<div class="card">
+  <div class="submit-area">
+    <p style="color:#6b7280;font-size:.88rem;margin-bottom:1rem;">
+      Answer all 100 questions then submit to see your results!
+    </p>
+    <button class="submit-btn" onclick="submitTest()">
+      <i class="ti ti-send" style="margin-right:8px;"></i>Submit My Test
+    </button>
+  </div>
+</div>
+
+</div><!-- end #test-form -->
+
+<div id="results">
+  <div class="score-hero">
+    <div class="score-pct" id="res-pct">0%</div>
+    <div class="grade-badge" id="res-grade">Grade: -</div>
+    <div class="score-circle" style="margin-top:1rem;">
+      <div class="score-num" id="res-score">0</div>
+      <div class="score-total" id="res-total">/0</div>
+    </div>
+    <div class="score-name" id="res-name">Well done!</div>
+    <div id="res-msg" style="font-size:.95rem;opacity:.9;margin-top:.3rem;"></div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num c-stat" id="res-correct">0</div><div class="stat-label">✅ Correct</div></div>
+    <div class="stat-card"><div class="stat-num w-stat" id="res-wrong">0</div><div class="stat-label">❌ Incorrect</div></div>
+    <div class="stat-card"><div class="stat-num s-stat" id="res-skip">0</div><div class="stat-label">⏭ Skipped</div></div>
+    <div class="stat-card"><div class="stat-num t-stat" id="res-total-stat">0</div><div class="stat-label">📝 Total</div></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin-bottom:.8rem;">📋 Full Review</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">❌ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✅ Correct</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">⏭ Skipped</button>
+    </div>
+    <div id="review-container"></div>
+  </div>
+
+  <button class="retry-btn" onclick="retryTest()">
+    <i class="ti ti-refresh" style="margin-right:6px;"></i>Try Again
+  </button>
+</div>
+
+</div><!-- end .container -->
+
+<script>
+const sections = [
+
+  /* ════ SECTION A — MULTIPLE CHOICE (25 Questions) ════════════════════ */
+  {
+    title:     "Section A – Multiple Choice",
+    badge:     "A",
+    typeLabel: "Choose the best answer for each question (25 Questions)",
+    questions: [
+      {
+        type: "mcq",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "What does Allah have knowledge of?",
+        opts: ["Only the past", "Only what humans tell Him", "All things", "Only what is in the heavens"],
+        ans:  2,
+        exp:  "Allah has Knowledge of all things — nothing is hidden from Him."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "What did Allah create along with the earth?",
+        opts: ["The mountains", "Heaven", "The oceans", "The animals"],
+        ans:  1,
+        exp:  "Allah created the heaven and the earth."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Which of the following correctly describes Allah's nature?",
+        opts: ["He is the Second and the Last", "He is the First and the Last", "He is the Middle and the Last", "He is the First and the Middle"],
+        ans:  1,
+        exp:  "Allah is the First and the Last — He has no beginning and no end."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Where does Allah provide food and drink from, according to the lesson?",
+        opts: ["From the sea and the rivers", "From the mountains and valleys", "From heaven and the earth", "From plants and animals only"],
+        ans:  2,
+        exp:  "Allah provides food and drink from heaven and the earth."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "Surah Al-Faatihah is divided into how many halves?",
+        opts: ["Three halves", "Four halves", "Two halves", "Five halves"],
+        ans:  2,
+        exp:  "Surah Al-Faatihah is divided into two halves — one between Allah and His servant."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "What does Allah say when a servant recites 'Alhamdulillah'?",
+        opts: ["My servant has obeyed Me", "My servant has praised Me", "My servant has remembered Me", "My servant has asked Me"],
+        ans:  1,
+        exp:  "When the servant says 'Alhamdulillah', Allah says 'My servant has praised Me.'"
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "According to the hadith about Surah Al-Faatihah, the servant will have what?",
+        opts: ["Whatever he dreamed of", "Whatever he worked for", "Whatever he has asked for", "Whatever he deserves"],
+        ans:  2,
+        exp:  "Allah says 'My servant will have what he has asked for' — the servant's supplication is answered."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is one of how many pillars of Islam?",
+        opts: ["Three", "Four", "Six", "Five"],
+        ans:  3,
+        exp:  "Zakah is one of the five pillars of Islam."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "What does the word 'Zakah' mean?",
+        opts: ["Fasting and prayer", "Purity and growth", "Charity and giving", "Wealth and prosperity"],
+        ans:  1,
+        exp:  "The word Zakah means purity and growth."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "What is 'nisaab'?",
+        opts: ["The amount of Zakah to be paid", "The minimum amount of wealth required before Zakah is payable", "The list of people who receive Zakah", "The month when Zakah is collected"],
+        ans:  1,
+        exp:  "Nisaab is the minimum amount of wealth required for Zakah to be compulsory."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "What is the nisaab for gold?",
+        opts: ["595 grams", "100 grams", "85 grams", "250 grams"],
+        ans:  2,
+        exp:  "The nisaab for gold is 85 grams."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "What is the nisaab for silver?",
+        opts: ["85 grams", "595 grams", "200 grams", "100 grams"],
+        ans:  1,
+        exp:  "The nisaab for silver is 595 grams."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "How many categories of people are entitled to receive Zakah?",
+        opts: ["Five", "Six", "Seven", "Eight"],
+        ans:  3,
+        exp:  "There are eight categories of people entitled to receive Zakah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Hajj is performed in which Islamic month?",
+        opts: ["Ramadan", "Dhul Hijjah", "Muharram", "Rajab"],
+        ans:  1,
+        exp:  "Hajj is performed in the Islamic month of Dhul Hijjah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Who built the Ka'bah?",
+        opts: ["Prophet Isa (AS)", "Prophet Musa (AS)", "Prophet Ibrahim (AS) and his son Ismail (AS)", "Prophet Muhammad (PBUH)"],
+        ans:  2,
+        exp:  "The Ka'bah was built by Prophet Ibrahim (AS) and his son Ismail (AS)."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "What do pilgrims wear during Hajj?",
+        opts: ["Any new clothes", "Two white unstitched cloths", "Green robes", "Black clothes"],
+        ans:  1,
+        exp:  "Pilgrims wear Ihram — two white unstitched cloths — showing equality before Allah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Eid ul Adha is celebrated on which day of Dhul Hijjah?",
+        opts: ["1st", "7th", "10th", "30th"],
+        ans:  2,
+        exp:  "Eid ul Adha is celebrated on the 10th day of Dhul Hijjah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "What is 'Sa'ee'?",
+        opts: ["Walking around the Ka'bah seven times", "Walking seven times between the hills of Safa and Marwah", "Throwing stones at the pillars", "Standing at the plain of Arafat"],
+        ans:  1,
+        exp:  "Sa'ee is walking seven times between the hills of Safa and Marwah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "What is 'Tawaf'?",
+        opts: ["Standing at Arafat", "Walking seven times between Safa and Marwah", "Taking seven rounds around the Ka'bah", "Throwing pebbles at the Jamarat"],
+        ans:  2,
+        exp:  "Tawaf is taking seven rounds (circuits) around the Ka'bah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "What does the Arabic word 'Halaal' mean?",
+        opts: ["Forbidden", "Allowed or permitted", "Doubtful", "Disliked"],
+        ans:  1,
+        exp:  "Halaal means allowed, permitted, or lawful in Arabic."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "What does the Arabic word 'Ibaadah' mean?",
+        opts: ["Charity", "Fasting", "Worship", "Prayer"],
+        ans:  2,
+        exp:  "Ibaadah is an Arabic word that means worship."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "At what age must children be ordered to pray Salah?",
+        opts: ["Five years old", "Ten years old", "Seven years old", "Twelve years old"],
+        ans:  2,
+        exp:  "Children should be ordered to pray at the age of seven."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "What is the awrah for men during Salah?",
+        opts: ["From the neck to the ankles", "From the navel to the knees", "The whole body except the face", "Only the private parts"],
+        ans:  1,
+        exp:  "The awrah for men is from the navel to the knees."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "What was Umm Ayman's real name?",
+        opts: ["Fatimah", "Barakah", "Khadijah", "Aisha"],
+        ans:  1,
+        exp:  "Umm Ayman's real name was Barakah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "Who was Umm Ayman's son with Zayd ibn Haarithah?",
+        opts: ["Ayman", "Abdullah", "Usamah ibn Zayd", "Bilal"],
+        ans:  2,
+        exp:  "Umm Ayman's son with Zayd ibn Haarithah was Usamah ibn Zayd."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is due on which of the following items?",
+        opts: ["Gold, silver, and trading goods only", "Gold, silver, produce from earth, trading goods, and certain livestock", "Only gold and silver", "Only livestock"],
+        ans:  1,
+        exp:  "Zakah is due on gold, silver, produce from the earth, trading goods, camels, cows, sheep, and goats."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "On Eid ul Adha, which prophet's obedience do Muslims remember by sacrificing an animal?",
+        opts: ["Prophet Musa (AS)", "Prophet Ibrahim (AS)", "Prophet Yunus (AS)", "Prophet Nuh (AS)"],
+        ans:  1,
+        exp:  "On Eid ul Adha, Muslims sacrifice an animal to remember the obedience of Prophet Ibrahim (AS)."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "What is the most important city for Hajj?",
+        opts: ["Madinah", "Jerusalem", "Makkah", "Cairo"],
+        ans:  2,
+        exp:  "Makkah is the most important destination for Hajj, where the Ka'bah is located."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Which of the following is NOT one of the conditions of Salah?",
+        opts: ["Having the intention in the heart", "Covering the awrah", "Fasting before prayer", "Facing the Qiblah"],
+        ans:  2,
+        exp:  "Fasting before prayer is not a condition of Salah. The conditions include Islam, sanity, puberty, purity, correct time, covering awrah, intention, and facing the Qiblah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "What is the awrah for women during Salah?",
+        opts: ["From the navel to the knees", "Only the face", "The whole body except the face and hands", "The whole body including the face"],
+        ans:  2,
+        exp:  "For women, the awrah is the whole body except the face and hands."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "What did the Prophet (SAW) say about marrying Umm Ayman?",
+        opts: ["He who marries Umm Ayman will have great wealth", "He who would like to marry one of the dwellers of Paradise, let him marry Umm Ayman", "Umm Ayman is the most beautiful woman", "He who marries Umm Ayman will enter Jannah directly"],
+        ans:  1,
+        exp:  "The Prophet (SAW) said: 'He who would like to marry one of the dwellers of Paradise, let him marry Umm Ayman.'"
+      },
+      {
+        type: "mcq",
+        ch:   "Early Muslims – Dar Al-Arqam",
+        q:    "What did Uqbah ibn Abu Mu'ayt put on the Prophet's (SAW) back while he prayed?",
+        opts: ["Stones and rubbish", "Thorns", "Camel intestines", "Sand and dust"],
+        ans:  2,
+        exp:  "Uqbah ibn Abu Mu'ayt placed camel intestines on the Prophet's (SAW) back while he was praying."
+      },
+      {
+        type: "mcq",
+        ch:   "Early Muslims – Dar Al-Arqam",
+        q:    "Who was the first person to die for Islam?",
+        opts: ["Bilal", "Khadijah", "Sumayyah", "Abu Bakr"],
+        ans:  2,
+        exp:  "Sumayyah was the first person to die for Islam. She was a very brave woman."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "What should Muslims do for the provisions given by Allah?",
+        opts: ["Take them for granted", "Share only with friends", "Be thankful and eat only what is halaal", "Ask for more without gratitude"],
+        ans:  2,
+        exp:  "Muslims should be thankful to Allah and eat and drink only that which has been permitted (halaal) by Allah."
+      },
+      {
+        type: "mcq",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "What is the significance of throwing pebbles at the Jamarat?",
+        opts: ["It represents washing away sins", "It reminds Muslims of Prophet Ibrahim's faith when he threw stones at Shaytan", "It is a way of greeting fellow pilgrims", "It marks the start of Tawaf"],
+        ans:  1,
+        exp:  "Throwing pebbles at the Jamarat reminds Muslims of Prophet Ibrahim's faith when he threw stones at Shaytan (Satan)."
+      }
+    ]
+  },
+
+  /* ════ SECTION B — TRUE OR FALSE (20 Questions) ════════════════════════ */
+  {
+    title:     "Section B – True or False",
+    badge:     "B",
+    typeLabel: "Decide if each statement is True or False (20 Questions)",
+    questions: [
+      {
+        type: "tf",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Allah has limited knowledge of things.",
+        ans:  false,
+        exp:  "False. Allah has knowledge of ALL things — nothing is hidden from Him."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Allah only gives life, not death.",
+        ans:  false,
+        exp:  "False. Allah gives life AND causes death."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "Surah Al-Faatihah is the most important Surah in the Quran.",
+        ans:  true,
+        exp:  "True. According to the hadith, Surah Al-Faatihah is the greatest Surah in the Quran."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "The servant's prayer in Surah Al-Faatihah is entirely for himself.",
+        ans:  false,
+        exp:  "False. The prayer (Salah) is divided between Allah and His servant."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is a type of charity that purifies wealth.",
+        ans:  true,
+        exp:  "True. Zakah purifies a Muslim's wealth and makes it clean."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 8 – Zakah",
+        q:    "A poor person who does not have nisaab must also pay Zakah.",
+        ans:  false,
+        exp:  "False. Only Muslims who have wealth above the nisaab (minimum threshold) must pay Zakah."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah helps to reduce selfishness in society.",
+        ans:  true,
+        exp:  "True. By giving Zakah, Muslims share wealth with the needy, reducing selfishness."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 8 – Zakah",
+        q:    "Giving Zakah decreases a person's wealth.",
+        ans:  false,
+        exp:  "False. Giving Zakah actually increases a person's wealth and makes it pure, as Allah blesses it."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The Zamzam water came from a miracle.",
+        ans:  true,
+        exp:  "True. Zamzam water is a famous blessed drink from Makkah that came from a miracle."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Eid ul Adha is also called the Festival of Fasting.",
+        ans:  false,
+        exp:  "False. Eid ul Adha is called the Festival of Sacrifice (Qurbani), not fasting."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The meat of the sacrificed animal on Eid ul Adha is divided among family, friends, and the poor.",
+        ans:  true,
+        exp:  "True. The three parts are for family, friends, and the poor."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Most foods and drinks are halaal.",
+        ans:  true,
+        exp:  "True. Most foods and drinks are permissible (halaal) for Muslims."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Eating and drinking is a form of Ibaadah (worship).",
+        ans:  true,
+        exp:  "True. When we eat and drink halaal food with the intention to please Allah, it becomes Ibaadah."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Allah wants us to eat and drink anything we like.",
+        ans:  false,
+        exp:  "False. Allah wants us to eat and drink only those things which are halaal (permitted)."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Salah is only obligatory for men.",
+        ans:  false,
+        exp:  "False. Salah is obligatory for all Muslim men and women who meet the conditions."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Purity of the body, clothes, and place of prayer is necessary for Salah.",
+        ans:  true,
+        exp:  "True. Ritual purity — of body, clothes, and prayer place — is one of the conditions of Salah."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Salah can be offered before its time starts.",
+        ans:  false,
+        exp:  "False. Salah is only valid when its prescribed time has started."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "Umm Ayman was freed by the Prophet (SAW) on his marriage to Khadijah (RA).",
+        ans:  true,
+        exp:  "True. The Prophet (SAW) freed Umm Ayman on his marriage to Khadijah (RA)."
+      },
+      {
+        type: "tf",
+        ch:   "Early Muslims – Dar Al-Arqam",
+        q:    "The first Islamic school was the house of Al-Arqam.",
+        ans:  true,
+        exp:  "True. Dar Al-Arqam (the house of Al-Arqam) was the first Islamic school."
+      },
+      {
+        type: "tf",
+        ch:   "Early Muslims – Dar Al-Arqam",
+        q:    "Dar Al-Arqam was located at the bottom of Mount Safa.",
+        ans:  true,
+        exp:  "True. Dar Al-Arqam (the first Islamic school) was located at the bottom of Mount Safa."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Salat ul Eid on Eid ul Adha consists of two rakahs.",
+        ans:  true,
+        exp:  "True. Salat ul Eid is a congregational prayer of two rakahs offered on the morning of Eid ul Adha."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "A Muslim who is ill and cannot stand may perform Salah while sitting or lying down.",
+        ans:  true,
+        exp:  "True. If a Muslim is too ill to stand, they can go through the movements of Salah while sitting or lying down — it is a great comfort, not a burden."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is only due on gold and silver, not on livestock.",
+        ans:  false,
+        exp:  "False. Zakah is also payable on camels, cows, sheep, goats, produce from the earth, and trading goods."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "Umm Ayman's first husband was Zayd ibn Haarithah.",
+        ans:  false,
+        exp:  "False. Umm Ayman's FIRST husband was Ubaiyd ibn Zayd. Her second husband was Zayd ibn Haarithah."
+      },
+      {
+        type: "tf",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Allah does not see what we do.",
+        ans:  false,
+        exp:  "False. Allah sees everything we do — He has complete knowledge of all things."
+      }
+    ]
+  },
+
+  /* ════ SECTION C — FILL IN THE BLANK (25 Questions) ══════════════════ */
+  {
+    title:     "Section C – Fill in the Blank",
+    badge:     "C",
+    typeLabel: "Type the correct word to complete each sentence (25 Questions)",
+    questions: [
+      {
+        type: "fill",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Allah has ________ of all things.",
+        ans:  "Knowledge",
+        alt:  ["knowledge"],
+        exp:  "Allah has Knowledge of all things — He is All-Knowing (Al-'Aleem)."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 2 – Allah's Knowledge",
+        q:    "Allah is the ________ and the Last.",
+        ans:  "First",
+        alt:  ["first"],
+        exp:  "Allah is the First and the Last — He has no beginning and no end."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "Surah Al-Faatihah is divided into two halves between Allah and His ________.",
+        ans:  "servant",
+        alt:  ["Servant"],
+        exp:  "The Surah is divided between Allah and His servant — first half is praise of Allah, second half is the servant's supplication."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "When the servant says 'Alhamdulillah', Allah says 'My servant has ________ Me'.",
+        ans:  "praised",
+        alt:  ["Praised"],
+        exp:  "Allah responds to 'Alhamdulillah' by saying 'My servant has praised Me.'"
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is known as the ________ dues.",
+        ans:  "purifying",
+        alt:  ["Purifying"],
+        exp:  "Zakah is known as the purifying dues because it purifies a Muslim's wealth."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "The word Zakah means ________ and growth.",
+        ans:  "purity",
+        alt:  ["Purity"],
+        exp:  "The word Zakah means purity and growth."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah becomes compulsory when wealth reaches a certain amount called ________.",
+        ans:  "nisaab",
+        alt:  ["Nisaab", "nisab", "Nisab"],
+        exp:  "Nisaab is the minimum amount of wealth at which Zakah becomes compulsory."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "Muslims should give a portion of their wealth to the ________ and the poor.",
+        ans:  "needy",
+        alt:  ["Needy"],
+        exp:  "Zakah must be given to the needy and the poor, among other eligible recipients."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "Zakah is due on ________, silver, and trading goods.",
+        ans:  "gold",
+        alt:  ["Gold"],
+        exp:  "Zakah is due on gold, silver, trading goods, produce from the earth, and certain livestock."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "The nisaab for gold is ________ grams.",
+        ans:  "85",
+        alt:  ["eighty-five", "eighty five"],
+        exp:  "The nisaab threshold for gold is 85 grams."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "The nisaab for silver is ________ grams.",
+        ans:  "595",
+        alt:  ["five hundred and ninety five"],
+        exp:  "The nisaab threshold for silver is 595 grams."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The Arabic term ________ means the place from where a pilgrim assumes the state of Ihram.",
+        ans:  "miqaat",
+        alt:  ["Miqaat", "miqat", "Miqat"],
+        exp:  "Miqaat is the designated boundary from which pilgrims must enter the state of Ihram."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The shaving of the head during Hajj is also known as ________.",
+        ans:  "Halq",
+        alt:  ["halq"],
+        exp:  "Halq is the shaving of the head, which is a ritual act performed during Hajj."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The two pillars in Mina where pilgrims throw pebbles are known as ________.",
+        ans:  "Jamraat",
+        alt:  ["jamraat", "jamarat", "Jamarat"],
+        exp:  "The Jamraat are the stone pillars in Mina that symbolise the three places where Shaytan appeared to Prophet Ibrahim (AS)."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Halaal is an Arabic word which means allowed, 'permitted' or '________'.",
+        ans:  "lawful",
+        alt:  ["Lawful"],
+        exp:  "Halaal means allowed, permitted, or lawful."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Some of the halaal foods are fruits, vegetables, eggs, meat, ________, rice, and milk.",
+        ans:  "fish",
+        alt:  ["Fish"],
+        exp:  "Fish is mentioned in the lesson as one of the halaal foods alongside fruits, vegetables, eggs, meat, rice, and milk."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "We must eat to stay alive, and to be ________ and strong so that we can worship Allah better.",
+        ans:  "healthy",
+        alt:  ["Healthy"],
+        exp:  "We eat to be healthy and strong so that we can worship Allah better."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "We must eat to do good ________ and to become strong and fight evil.",
+        ans:  "deeds",
+        alt:  ["Deeds"],
+        exp:  "Eating halaal helps us do good deeds and become strong to fight evil."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 14 – Halaal Foods",
+        q:    "Halaal things are ________ for our health.",
+        ans:  "good",
+        alt:  ["Good"],
+        exp:  "Things that are halaal are good for our health."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Allah does not accept Salah without ________.",
+        ans:  "purity",
+        alt:  ["Purity"],
+        exp:  "Ritual purity — cleanliness of body, clothes, and place — is essential for Salah to be accepted."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Muslims must face the ________ while offering Salah.",
+        ans:  "Qiblah",
+        alt:  ["qiblah", "Qibla", "qibla"],
+        exp:  "The Qiblah is the direction of the Ka'bah in Makkah — Muslims face it during Salah."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Salah becomes obligatory when a person reaches the age of ________.",
+        ans:  "puberty",
+        alt:  ["Puberty"],
+        exp:  "Salah becomes obligatory when a Muslim reaches the age of puberty."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "Umm Ayman's real name was ________.",
+        ans:  "Barakah",
+        alt:  ["barakah"],
+        exp:  "Umm Ayman's real name was Barakah. She was called Umm Ayman after her son Ayman."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 42 – Umm Ayman",
+        q:    "Umm Ayman's son with Zayd ibn Haarithah was ________ ibn Zayd.",
+        ans:  "Usamah",
+        alt:  ["usamah", "Usama", "usama"],
+        exp:  "Usamah ibn Zayd was the son of Umm Ayman and Zayd ibn Haarithah."
+      },
+      {
+        type: "fill",
+        ch:   "Early Muslims – Dar Al-Arqam",
+        q:    "When Bilal (RA) was hurt, he kept saying 'Ahad, Ahad' which means 'Allah is One'.",
+        ans:  "Ahad",
+        alt:  ["ahad"],
+        exp:  "Even under torture, Bilal (RA) kept saying 'Ahad, Ahad' — declaring that Allah is One."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "The final ritual before leaving Hajj is performing a farewell ________ (Tawaf al-Wada) around the Ka'bah.",
+        ans:  "Tawaf",
+        alt:  ["tawaf"],
+        exp:  "The farewell Tawaf (Tawaf al-Wada) is the final ritual of Hajj before pilgrims leave Makkah."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 19 – Conditions of Salah",
+        q:    "Awrah refers to the parts of the body that must be ________ during Salah.",
+        ans:  "covered",
+        alt:  ["Covered"],
+        exp:  "Awrah refers to the specific parts of the body that must be covered during Salah."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 8 – Zakah",
+        q:    "There are ________ categories of people who are entitled to receive Zakah.",
+        ans:  "eight",
+        alt:  ["Eight", "8"],
+        exp:  "There are eight categories of people entitled to receive Zakah, as defined in the Quran."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 6 – Surah Al-Faatihah",
+        q:    "Allah says 'I have divided the prayer between Myself and My ________'.",
+        ans:  "servant",
+        alt:  ["Servant"],
+        exp:  "In the hadith about Surah Al-Faatihah, Allah says He divided the prayer between Himself and His servant."
+      },
+      {
+        type: "fill",
+        ch:   "Unit 13 – Hajj & Eid ul Adha",
+        q:    "Eid ul Adha is also called the Festival of ________.",
+        ans:  "Sacrifice",
+        alt:  ["sacrifice"],
+        exp:  "Eid ul Adha is called the Festival of Sacrifice (Qurbani), commemorating Prophet Ibrahim's obedience to Allah."
+      }
+    ]
+  },
+
+  /* ════ SECTION D — MATCH THE COLUMNS (5 matching questions) ══════════ */
+  {
+    title:     "Section D – Match the Columns",
+    badge:     "D",
+    typeLabel: "Match each item on the left to the correct answer on the right (5 Questions)",
+    questions: [
+      {
+        type:  "match",
+        ch:    "Unit 8 – Zakah",
+        q:     "Match each Zakah term to its correct meaning or value.",
+        pairs: [
+          ["Zakah",    "Purifying dues — one of the five pillars of Islam"],
+          ["Nisaab",   "Minimum amount of wealth before Zakah is due"],
+          ["Purity",   "What the word Zakah means (along with growth)"],
+          ["85 grams", "Nisaab threshold for gold"]
+        ],
+        exp:   "Zakah = purifying dues. Nisaab = minimum wealth threshold. The word Zakah means purity and growth. Nisaab for gold = 85 grams."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 13 – Hajj & Eid ul Adha",
+        q:     "Match each Hajj term to its correct description.",
+        pairs: [
+          ["Ihram",   "Two white unstitched cloths worn by pilgrims"],
+          ["Tawaf",   "Seven circuits around the Ka'bah"],
+          ["Sa'ee",   "Walking seven times between Safa and Marwah"],
+          ["Jamraat", "Stone pillars in Mina where pebbles are thrown"]
+        ],
+        exp:   "Ihram = white pilgrim garment. Tawaf = circling the Ka'bah. Sa'ee = walking between Safa and Marwah. Jamraat = pillars in Mina."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 14 – Halaal Foods",
+        q:     "Match each Arabic term to its correct English meaning.",
+        pairs: [
+          ["Halaal",   "Allowed or permitted"],
+          ["Ibaadah",  "Worship"],
+          ["Haram",    "Forbidden or prohibited"],
+          ["Thoyyib",  "Good and wholesome"]
+        ],
+        exp:   "Halaal = allowed/permitted. Ibaadah = worship. Haram = forbidden. Thoyyib = good and wholesome."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 19 – Conditions of Salah",
+        q:     "Match each condition of Salah to its correct explanation.",
+        pairs: [
+          ["Islam",    "Salah is not accepted from non-Muslims"],
+          ["Sanity",   "One must have a sound mind and intellect"],
+          ["Qiblah",   "Facing the direction of the Ka'bah in Makkah"],
+          ["Awrah",    "Parts of the body that must be covered during Salah"]
+        ],
+        exp:   "Islam = non-Muslims' Salah is not accepted. Sanity = sound mind required. Qiblah = direction of Ka'bah. Awrah = body parts to be covered."
+      },
+      {
+        type:  "match",
+        ch:    "Unit 42 – Umm Ayman",
+        q:     "Match each person to the correct description from the lesson about Umm Ayman.",
+        pairs: [
+          ["Umm Ayman",          "Her real name was Barakah"],
+          ["Zayd ibn Haarithah", "Umm Ayman's second husband"],
+          ["Usamah ibn Zayd",    "Umm Ayman's son with Zayd"],
+          ["Khadijah (RA)",      "Prophet married her, then freed Umm Ayman"]
+        ],
+        exp:   "Umm Ayman = Barakah. Her second husband = Zayd ibn Haarithah. Their son = Usamah ibn Zayd. Prophet freed Umm Ayman on his marriage to Khadijah (RA)."
+      }
+    ]
+  },
+
+  /* ════ SECTION E — SEQUENCE & ORDER (5 ordering questions) ══════════ */
+  {
+    title:     "Section E – Sequence & Order",
+    badge:     "E",
+    typeLabel: "Put the steps in the correct order by selecting 1st, 2nd, 3rd… (5 Questions)",
+    questions: [
+      {
+        type:         "order",
+        ch:           "Unit 13 – Hajj & Eid ul Adha",
+        q:            "Arrange the main rituals of Hajj in the correct order.",
+        items:        [
+          "Stand at the plain of Arafat",
+          "Enter the state of Ihram at the Miqaat",
+          "Perform Tawaf around the Ka'bah (Tawaf al-Wada – farewell)",
+          "Throw pebbles at the Jamraat in Mina"
+        ],
+        correctOrder: [2, 1, 4, 3],
+        exp:   "Correct order: (1) Enter Ihram at Miqaat → (2) Stand at Arafat → (3) Throw pebbles at Jamraat in Mina → (4) Farewell Tawaf."
+      },
+      {
+        type:         "order",
+        ch:           "Unit 19 – Conditions of Salah",
+        q:            "Arrange the following conditions of Salah in the order they are listed in the lesson (1st to 4th).",
+        items:        [
+          "Ritual purity — purity of body, clothes, and place",
+          "Islam — Allah does not accept Salah from non-Muslims",
+          "The time — Salah is due only when its time has started",
+          "Sanity — one must have a sound mind"
+        ],
+        correctOrder: [3, 1, 4, 2],
+        exp:   "Lesson order: (1) Islam → (2) Sanity → (3) Ritual purity → (4) The time."
+      },
+      {
+        type:         "order",
+        ch:           "Unit 8 – Zakah",
+        q:            "Arrange these steps that make Zakah compulsory and complete, in the correct logical order.",
+        items:        [
+          "Give Zakah to the needy and poor",
+          "Wealth reaches the nisaab (minimum threshold)",
+          "One full Islamic year (Hawl) passes on the wealth",
+          "Calculate the amount of Zakah to be paid (2.5%)"
+        ],
+        correctOrder: [3, 1, 2, 4],
+        exp:   "Correct logical order: (1) Wealth reaches nisaab → (2) One year passes → (3) Calculate Zakah (2.5%) → (4) Give Zakah to the needy."
+      },
+      {
+        type:         "order",
+        ch:           "Early Muslims – Dar Al-Arqam",
+        q:            "Arrange these events from the early life of the Prophet (SAW) in Makkah in the correct order.",
+        items:        [
+          "Bilal was tortured but kept saying 'Ahad, Ahad'",
+          "The first Islamic school was set up at Dar Al-Arqam",
+          "Uqbah twisted a cloth around the Prophet's neck",
+          "Abu Bakr (RA) came to save the Prophet (SAW)"
+        ],
+        correctOrder: [3, 1, 4, 2],
+        exp:   "Order: (1) Dar Al-Arqam is established → (2) Uqbah attacks the Prophet → (3) Abu Bakr saves the Prophet → (4) Bilal is tortured."
+      },
+      {
+        type:         "order",
+        ch:           "Unit 14 – Halaal Foods",
+        q:            "Arrange these reasons for eating halaal food in the order they are mentioned in the lesson.",
+        items:        [
+          "To do good deeds and fight evil",
+          "To stay alive",
+          "To worship Allah better",
+          "To be healthy and strong"
+        ],
+        correctOrder: [3, 1, 2, 4],
+        exp:   "Lesson order: (1) To stay alive → (2) To worship Allah better → (3) To be healthy and strong → (4) To do good deeds and fight evil."
+      }
+    ]
+  }
+
+];
+/* ════════════════════════════════════════════════════════════════════════
+   ENGINE — do not edit below this line
+   ════════════════════════════════════════════════════════════════════════ */
+
+const userAnswers = {};
+let allReviews    = [];
+
+function buildAll() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  let globalQ = 0;
+
+  sections.forEach((sec, si) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-badge">${sec.badge}</div>
+        <h2>${sec.title}</h2>
+        <span class="type-tag">${sec.questions.length} question${sec.questions.length!==1?'s':''}</span>
+      </div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;font-style:italic;">${sec.typeLabel}</p>
+      <div id="sec-${si}-qs"></div>`;
+    container.appendChild(card);
+
+    const qContainer = card.querySelector(`#sec-${si}-qs`);
+
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id  = `${si}-${qi}`;
+      userAnswers[id] = undefined;
+      const div = document.createElement('div');
+      div.className = 'q-block';
+      const qLabel = `<div class="q-num">Q${globalQ} &nbsp;·&nbsp; ${q.ch}</div>`;
+      let inner = '';
+
+      /* MCQ */
+      if (q.type === 'mcq') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="options" id="opts-${id}">
+            ${q.opts.map((o,j)=>`<button class="option-btn" onclick="selectMCQ('${id}',${j})">
+              <span class="option-letter">${String.fromCharCode(65+j)}</span>${o}
+            </button>`).join('')}
+          </div>`;
+
+      /* TRUE / FALSE */
+      } else if (q.type === 'tf') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="tf-row">
+            <button class="tf-btn" id="tf-t-${id}" onclick="selectTF('${id}',true)">✅ True</button>
+            <button class="tf-btn" id="tf-f-${id}" onclick="selectTF('${id}',false)">❌ False</button>
+          </div>`;
+
+      /* FILL IN THE BLANK */
+      } else if (q.type === 'fill') {
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <input class="fill-input" type="text" placeholder="Type your answer…"
+            id="fill-${id}" oninput="userAnswers['${id}']=this.value">`;
+
+      /* MATCH */
+      } else if (q.type === 'match') {
+        const opts     = q.pairs.map(p => p[1]);
+        const shuffled = [...opts].sort(() => Math.random() - 0.5);
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="match-grid" id="match-${id}">
+            ${q.pairs.map((p,j) => `
+              <div class="match-left">${p[0]}</div>
+              <select class="match-select" id="match-sel-${id}-${j}"
+                onchange="updateMatch('${id}',${q.pairs.length})">
+                <option value="">── Select ──</option>
+                ${shuffled.map(o=>`<option value="${o}">${o}</option>`).join('')}
+              </select>`).join('')}
+          </div>`;
+
+      /* ORDER / SEQUENCE */
+      } else if (q.type === 'order') {
+        const displayItems = [...q.items];
+        inner = `${qLabel}<div class="q-text">${q.q}</div>
+          <div class="sort-container">
+            ${displayItems.map((item,j) => `
+              <div class="sort-item">
+                <select class="sort-select" id="order-${id}-${j}"
+                  onchange="updateOrder('${id}',${q.items.length})">
+                  <option value="">--</option>
+                  ${q.items.map((_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}
+                </select>
+                <span class="sort-item-label">${item}</span>
+              </div>`).join('')}
+          </div>`;
+        q._shuffled = displayItems;
+      }
+
+      div.innerHTML = inner;
+      qContainer.appendChild(div);
+    });
+  });
+
+  const totalQ = sections.reduce((s,sec) => s + sec.questions.length, 0);
+  const allBtn = document.querySelector('.filter-btn');
+  if (allBtn) allBtn.textContent = `All (${totalQ})`;
+  document.getElementById('res-total').textContent      = `/${totalQ}`;
+  document.getElementById('res-total-stat').textContent = totalQ;
+}
+
+/* ── INTERACTION HANDLERS ── */
+function selectMCQ(id, oi) {
+  userAnswers[id] = oi;
+  document.querySelectorAll(`#opts-${id} .option-btn`)
+          .forEach((b,j) => b.classList.toggle('selected', j === oi));
+}
+
+function selectTF(id, val) {
+  userAnswers[id] = val;
+  document.getElementById(`tf-t-${id}`).className = 'tf-btn' + (val === true  ? ' sel-t' : '');
+  document.getElementById(`tf-f-${id}`).className = 'tf-btn' + (val === false ? ' sel-f' : '');
+}
+
+function updateMatch(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(document.getElementById(`match-sel-${id}-${j}`)?.value || '');
+  userAnswers[id] = vals;
+}
+
+function updateOrder(id, len) {
+  const vals = [];
+  for (let j = 0; j < len; j++)
+    vals.push(parseInt(document.getElementById(`order-${id}-${j}`)?.value) || 0);
+  userAnswers[id] = vals;
+}
+
+/* ── SUBMIT & GRADE ── */
+function submitTest() {
+  const name = document.getElementById('student-name').value.trim() || 'Student';
+  let correct = 0, wrong = 0, skip = 0;
+  allReviews = [];
+  let globalQ = 0;
+  const totalQ = sections.reduce((s,sec) => s + sec.questions.length, 0);
+
+  sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      globalQ++;
+      const id = `${si}-${qi}`;
+      const ua = userAnswers[id];
+      let status, yourStr, correctStr;
+
+      /* MCQ grading */
+      if (q.type === 'mcq') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.opts[q.ans];
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        } else {
+          wrong++; status = 'wrong'; yourStr = q.opts[ua]; correctStr = q.opts[q.ans];
+        }
+
+      /* TF grading */
+      } else if (q.type === 'tf') {
+        if (ua === undefined || ua === null) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans ? 'True' : 'False';
+        } else if (ua === q.ans) {
+          correct++; status = 'correct'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False';
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua ? 'True' : 'False'; correctStr = q.ans ? 'True' : 'False';
+        }
+
+      /* FILL grading — case-insensitive, trimmed */
+      } else if (q.type === 'fill') {
+        const raw      = (ua || '').trim().toLowerCase();
+        const corrects = [q.ans.toLowerCase(), ...(q.alt || []).map(a => a.toLowerCase())];
+        if (!raw) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = q.ans;
+        } else if (corrects.includes(raw)) {
+          correct++; status = 'correct'; yourStr = ua; correctStr = q.ans;
+        } else {
+          wrong++; status = 'wrong'; yourStr = ua; correctStr = q.ans;
+        }
+
+      /* MATCH grading — every pair must match */
+      } else if (q.type === 'match') {
+        const vals     = ua || [];
+        const allRight = vals.length === q.pairs.length
+                      && vals.every((v,j) => v === q.pairs[j][1])
+                      && vals.every(v => v);
+        const yourList    = q.pairs.map((p,j) => `${p[0]} → ${vals[j] || '?'}`).join(', ');
+        const correctList = q.pairs.map(p => `${p[0]} → ${p[1]}`).join(', ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctList;
+        } else if (allRight) {
+          correct++; status = 'correct'; yourStr = yourList; correctStr = correctList;
+        } else {
+          wrong++; status = 'wrong'; yourStr = yourList; correctStr = correctList;
+        }
+
+      /* ORDER grading — every position must be correct */
+      } else if (q.type === 'order') {
+        const vals     = ua || [];
+        const shuffled = q._shuffled || q.items;
+        const allRight = vals.length === q.items.length
+                      && vals.every((v,j) => v === q.correctOrder[j])
+                      && vals.every(v => v > 0);
+        const correctLabels = q.items
+          .map((item,j) => [q.correctOrder[j], item])
+          .sort((a,b) => a[0] - b[0])
+          .map(([pos,item]) => `${pos}. ${item}`)
+          .join(' → ');
+        if (!ua || vals.every(v => !v)) {
+          skip++; status = 'skip'; yourStr = 'Not answered'; correctStr = correctLabels;
+        } else if (allRight) {
+          correct++; status = 'correct';
+          yourStr = shuffled.map((item,j) => `${vals[j]}. ${item}`).join(', ');
+          correctStr = correctLabels;
+        } else {
+          wrong++; status = 'wrong';
+          yourStr = shuffled.map((item,j) => `${vals[j] || '?'}. ${item}`).join(', ');
+          correctStr = correctLabels;
+        }
+      }
+
+      allReviews.push({ status, qNum: globalQ, qText: q.q, ch: q.ch,
+                        type: q.type, your: yourStr, correct: correctStr, exp: q.exp });
+    });
+  });
+
+  const pct   = Math.round((correct / totalQ) * 100);
+  const grade = pct >= 90 ? 'A+' : pct >= 80 ? 'A' : pct >= 70 ? 'B'
+              : pct >= 60 ? 'C'  : pct >= 50 ? 'D' : 'F';
+  const msg   = pct >= 90 ? "🏆 Outstanding! Excellent work!"
+              : pct >= 70 ? "🌟 Great job! Keep studying!"
+              : pct >= 50 ? "👍 Good effort! Review and try again!"
+              : "💪 Keep going — you'll improve with practice!";
+
+  document.getElementById('res-pct').textContent        = pct + '%';
+  document.getElementById('res-grade').textContent      = 'Grade: ' + grade;
+  document.getElementById('res-score').textContent      = correct;
+  document.getElementById('res-total').textContent      = '/' + totalQ;
+  document.getElementById('res-total-stat').textContent = totalQ;
+  document.getElementById('res-name').textContent       =
+    name + (document.getElementById('student-class').value.trim()
+          ? ' · ' + document.getElementById('student-class').value.trim() : '');
+  document.getElementById('res-msg').textContent        = msg;
+  document.getElementById('res-correct').textContent    = correct;
+  document.getElementById('res-wrong').textContent      = wrong;
+  document.getElementById('res-skip').textContent       = skip;
+
+  renderReviews('all');
+  document.getElementById('test-form').style.display  = 'none';
+  document.getElementById('results').style.display    = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── REVIEW PANEL ── */
+function renderReviews(filter) {
+  const rc = document.getElementById('review-container');
+  rc.innerHTML = '';
+  const icons      = { correct: '✅', wrong: '❌', skip: '⏭' };
+  const typeLabels = { mcq: 'MCQ', tf: 'True/False', fill: 'Fill Blank',
+                       match: 'Matching', order: 'Sequence' };
+
+  const filtered = allReviews.filter(r => filter === 'all' || r.status === filter);
+  filtered.forEach(r => {
+    rc.innerHTML += `
+      <div class="review-card review-${r.status}">
+        <div class="review-header">
+          <span style="font-size:1rem;">${icons[r.status]}</span>
+          <span class="review-q">Q${r.qNum}: ${r.qText.length > 90 ? r.qText.substring(0,90) + '…' : r.qText}</span>
+          <span class="type-chip">${typeLabels[r.type] || r.type}</span>
+        </div>
+        <div class="review-body">
+          ${r.status !== 'correct' ? `<div class="your-ans">Your answer: ${r.your}</div>` : ''}
+          <div class="correct-ans">Correct: ${r.correct}</div>
+          <div class="explanation">💡 ${r.exp}</div>
+        </div>
+      </div>`;
+  });
+
+  if (rc.innerHTML === '')
+    rc.innerHTML = '<p style="color:#6b7280;text-align:center;padding:1rem;">No questions in this category.</p>';
+}
+
+function filterReview(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews(f);
+}
+
+/* ── RETRY ── */
+function retryTest() {
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  allReviews = [];
+  buildAll();
+  document.getElementById('results').style.display   = 'none';
+  document.getElementById('test-form').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── INIT ── */
+buildAll();
+</script>
+</body>
+</html>
