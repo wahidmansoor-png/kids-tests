@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<!--
+================================================================================
+  INTERACTIVE TEST ENGINE  ·  v2  ·  Reusable for any subject / grade / language
+================================================================================
+
+  WHAT THIS IS
+  A single self-contained HTML file. No build step, no internet required.
+  Open it in any modern browser and it just works. Distribute the one file.
+
+  HOW TO USE (only two places to edit)
+  1.  CONFIG  — one object near the top of <script>. Title, theme, language,
+      timer, pass mark, grade bands, behaviour toggles. Change values, done.
+  2.  sections / QUESTIONS — the array right under CONFIG. Add your questions
+      using any of the six types below. Old question arrays drop in unchanged.
+
+  SIX QUESTION TYPES
+      mcq    Multiple choice (2–6 options, one correct)
+      tf     True / False
+      fill   Type-in answer (case-insensitive, trims, alternate answers)
+      multi  Multiple-answer (choose all that apply) — NEW
+      match  Match column A to column B (dropdowns, shuffled)
+      order  Arrange items into the correct sequence
+
+  WHAT IT DOES
+      • Live progress bar + per-section progress, "jump to next unanswered"
+      • Optional countdown timer with auto-submit
+      • Auto-saves answers as you go; restores them if the page reloads
+      • Instant grading with partial credit for match / multi / order
+      • Animated score ring, pass/fail, time taken, encouraging message
+      • Per-section AND per-topic breakdown ("what should I study?")
+      • Full review with filter + search and a clear explanation per question
+      • Print / Save-as-PDF result sheet, and Copy-summary for class records
+      • Dark mode, full RTL/Arabic support, keyboard control, screen-reader labels
+      • Safe with any content: <, >, & and quotes in questions never break it
+
+  ACCESSIBILITY & SAFETY built in: visible focus, reduced-motion respected,
+  ARIA roles, HTML-escaped content. No external requests — fully offline.
+================================================================================
+-->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Science Exam – Chapters 4, 8 & 10</title>
+
+    <style>
+        :root {
+            --brand: #4f46e5;
+            --brand-dark: #3730a3;
+            --brand-rgb: 79, 70, 229;
+            --accent: #f59e0b;
+            --accent-rgb: 245, 158, 11;
+            --bg: #f4f6fb;
+            --surface: #ffffff;
+            --surface-2: #f7f8fc;
+            --surface-3: #eef1f7;
+            --border: #e6e9f2;
+            --border-strong: #d4d9e6;
+            --text: #1b2231;
+            --text-muted: #667085;
+            --text-faint: #98a2b3;
+            --ok: #16a34a;
+            --ok-rgb: 22, 163, 74;
+            --bad: #dc2626;
+            --bad-rgb: 220, 38, 38;
+            --warn: #d97706;
+            --warn-rgb: 217, 119, 6;
+            --skip: #64748b;
+            --skip-rgb: 100, 116, 139;
+            --r-sm: 10px;
+            --r: 14px;
+            --r-lg: 20px;
+            --r-pill: 999px;
+            --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .18);
+            --shadow-lg: 0 24px 60px -24px rgba(16, 24, 40, .32);
+            --ring: 0 0 0 4px rgba(var(--brand-rgb), .28);
+            --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            --font-ar: "Segoe UI", "Tahoma", "Noto Naskh Arabic", "Geeza Pro", system-ui, sans-serif;
+            --num: "Inter", system-ui, ui-sans-serif, sans-serif;
+            --maxw: 860px;
+        }
+        :root[data-theme="dark"] {
+            --bg: #0a0d14;
+            --surface: #141925;
+            --surface-2: #1a2030;
+            --surface-3: #222a3c;
+            --border: #283143;
+            --border-strong: #36415a;
+            --text: #e9edf6;
+            --text-muted: #9aa5bc;
+            --text-faint: #6b7589;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 30px -16px rgba(0, 0, 0, .7);
+            --shadow-lg: 0 30px 70px -28px rgba(0, 0, 0, .8);
+        }
+        [lang="ar"],
+        [dir="rtl"] {
+            --font: var(--font-ar);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            transition: background .3s, color .3s;
+        }
+        .num {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1, "lnum" 1;
+        }
+        .bar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px clamp(12px, 4vw, 24px);
+            background: color-mix(in srgb, var(--surface) 86%, transparent);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .bar-title {
+            font-weight: 750;
+            font-size: .92rem;
+            letter-spacing: -.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 34%;
+        }
+        .bar-progress {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        .track {
+            flex: 1;
+            height: 8px;
+            border-radius: var(--r-pill);
+            background: var(--surface-3);
+            overflow: hidden;
+            min-width: 60px;
+        }
+        .track>span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 55%, var(--accent)));
+            border-radius: inherit;
+            transition: width .35s cubic-bezier(.4, 0, .2, 1);
+        }
+        .bar-count {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            border-radius: var(--r-pill);
+            font-size: .78rem;
+            font-weight: 700;
+            white-space: nowrap;
+            background: var(--surface-3);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .chip svg {
+            width: 15px;
+            height: 15px;
+        }
+        .timer-chip.warn {
+            color: var(--warn);
+            background: rgba(var(--warn-rgb), .12);
+            border-color: rgba(var(--warn-rgb), .4);
+        }
+        .timer-chip.danger {
+            color: var(--bad);
+            background: rgba(var(--bad-rgb), .12);
+            border-color: rgba(var(--bad-rgb), .45);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            50% {
+                opacity: .55;
+            }
+        }
+        .icon-btn {
+            display: inline-grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--r-pill);
+            background: var(--surface-3);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform .15s, background .2s, color .2s;
+        }
+        .icon-btn:hover {
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+        .icon-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        .hero {
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            padding: 2.4rem 1rem 3.4rem;
+            background:
+                radial-gradient(120% 140% at 80% -10%, rgba(var(--brand-rgb), .55), transparent 60%),
+                linear-gradient(135deg, #0d1322 0%, var(--brand-dark) 58%, var(--brand) 120%);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: .5;
+            background-image: radial-gradient(rgba(255, 255, 255, .10) 1px, transparent 1.4px);
+            background-size: 22px 22px;
+            -webkit-mask-image: linear-gradient(#000, transparent 85%);
+            mask-image: linear-gradient(#000, transparent 85%);
+        }
+        .hero>* {
+            position: relative;
+        }
+        .hero-emoji {
+            font-size: 1.7rem;
+            letter-spacing: .25em;
+            margin-bottom: .55rem;
+        }
+        .hero h1 {
+            font-size: clamp(1.45rem, 4.6vw, 2.05rem);
+            font-weight: 820;
+            letter-spacing: -.02em;
+        }
+        .hero p {
+            font-size: .95rem;
+            opacity: .82;
+            margin-top: .35rem;
+        }
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 1.1rem;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .22);
+            padding: 5px 13px;
+            border-radius: var(--r-pill);
+            font-size: .78rem;
+            font-weight: 650;
+        }
+        .hero-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+        .container {
+            max-width: var(--maxw);
+            margin: -1.8rem auto 3rem;
+            padding: 0 clamp(12px, 4vw, 20px);
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
+            padding: clamp(1.1rem, 3vw, 1.6rem);
+            margin-bottom: 1.25rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .field label {
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .field input {
+            width: 100%;
+            padding: 11px 14px;
+            font-size: 1rem;
+            color: var(--text);
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-sm);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .field input::placeholder {
+            color: var(--text-faint);
+        }
+        .field input:focus {
+            border-color: var(--brand);
+            box-shadow: var(--ring);
+        }
+        .field.req-missing input {
+            border-color: var(--bad);
+            box-shadow: 0 0 0 4px rgba(var(--bad-rgb), .18);
+        }
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: .35rem;
+            flex-wrap: wrap;
+        }
+        .section-badge {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            color: #fff;
+            font-weight: 820;
+            font-size: .95rem;
+            background: linear-gradient(140deg, var(--brand), var(--brand-dark));
+            box-shadow: 0 4px 12px -4px rgba(var(--brand-rgb), .6);
+        }
+        .section-head h2 {
+            font-size: 1.08rem;
+            font-weight: 760;
+            letter-spacing: -.01em;
+            flex: 1;
+            min-width: 140px;
+        }
+        .section-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .type-tag {
+            font-size: .7rem;
+            font-weight: 750;
+            padding: 3px 10px;
+            border-radius: var(--r-pill);
+            background: rgba(var(--brand-rgb), .1);
+            color: var(--brand);
+        }
+        :root[data-theme="dark"] .type-tag {
+            color: color-mix(in srgb, var(--brand) 60%, #fff);
+        }
+        .sec-prog {
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--text-faint);
+        }
+        .section-instructions {
+            font-size: .86rem;
+            color: var(--text-muted);
+            margin: .1rem 0 1.3rem;
+        }
+        .q-block {
+            position: relative;
+            padding: 1.15rem 0 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .q-block:first-of-type {
+            border-top: none;
+            padding-top: .4rem;
+        }
+        .q-top {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: .55rem;
+        }
+        .q-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--border-strong);
+            transition: .2s;
+        }
+        .q-block[data-state="part"] .q-dot {
+            background: var(--warn);
+            box-shadow: 0 0 0 3px rgba(var(--warn-rgb), .18);
+        }
+        .q-block[data-state="done"] .q-dot {
+            background: var(--brand);
+            box-shadow: 0 0 0 3px rgba(var(--brand-rgb), .18);
+        }
+        .q-num {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+        .q-num b {
+            color: var(--text-muted);
+            font-weight: 800;
+        }
+        .q-points {
+            margin-inline-start: auto;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--text-faint);
+        }
+        .q-text {
+            font-size: 1rem;
+            font-weight: 550;
+            line-height: 1.55;
+            margin-bottom: .7rem;
+        }
+        .q-text code {
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: .92em;
+            background: var(--surface-3);
+            padding: .1em .4em;
+            border-radius: 6px;
+        }
+        .q-img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--r-sm);
+            border: 1px solid var(--border);
+            margin: .2rem 0 .8rem;
+        }
+        .q-hint {
+            font-size: .82rem;
+            color: var(--text-muted);
+            margin-bottom: .6rem;
+            padding-inline-start: .6rem;
+            border-inline-start: 3px solid rgba(var(--accent-rgb), .6);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            width: 100%;
+            text-align: start;
+            padding: 11px 14px;
+            font-size: .95rem;
+            color: var(--text);
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-sm);
+            cursor: pointer;
+            transition: border-color .18s, background .18s, transform .08s;
+        }
+        .option-btn:hover {
+            border-color: rgba(var(--brand-rgb), .5);
+            background: rgba(var(--brand-rgb), .05);
+        }
+        .option-btn:active {
+            transform: scale(.992);
+        }
+        .option-btn:focus-visible {
+            outline: none;
+            box-shadow: var(--ring);
+            border-color: var(--brand);
+        }
+        .option-btn.selected {
+            border-color: var(--brand);
+            background: rgba(var(--brand-rgb), .1);
+        }
+        .option-mark {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            font-weight: 800;
+            font-size: .8rem;
+            background: var(--surface-3);
+            color: var(--text-faint);
+            transition: .18s;
+        }
+        .option-btn.selected .option-mark {
+            background: var(--brand);
+            color: #fff;
+        }
+        .option-btn.multi .option-mark {
+            border-radius: 7px;
+        }
+        .option-btn.multi.selected .option-mark::after {
+            content: '✓';
+        }
+        .option-btn.multi .option-mark span {
+            display: block;
+        }
+        .option-btn.multi.selected .option-mark span {
+            display: none;
+        }
+        .tf-row {
+            display: flex;
+            gap: 11px;
+        }
+        .tf-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--r-sm);
+            font-weight: 760;
+            font-size: .95rem;
+            cursor: pointer;
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            transition: .18s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .tf-btn:hover {
+            border-color: var(--border-strong);
+        }
+        .tf-btn:focus-visible {
+            outline: none;
+            box-shadow: var(--ring);
+        }
+        .tf-btn svg {
+            width: 17px;
+            height: 17px;
+        }
+        .tf-btn.sel-t {
+            border-color: var(--ok);
+            background: rgba(var(--ok-rgb), .1);
+            color: var(--ok);
+        }
+        .tf-btn.sel-f {
+            border-color: var(--bad);
+            background: rgba(var(--bad-rgb), .1);
+            color: var(--bad);
+        }
+        .fill-wrap {
+            position: relative;
+        }
+        .fill-input {
+            width: 100%;
+            padding: 11px 14px;
+            font-size: .97rem;
+            color: var(--text);
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-sm);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .fill-input::placeholder {
+            color: var(--text-faint);
+        }
+        .fill-input:focus {
+            border-color: var(--brand);
+            box-shadow: var(--ring);
+        }
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+        .match-left {
+            font-size: .92rem;
+            font-weight: 550;
+            padding: 10px 12px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .match-left b {
+            color: var(--brand);
+            font-weight: 800;
+        }
+        .sel {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: .9rem;
+            color: var(--text);
+            cursor: pointer;
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-sm);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2398a2b3' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right .7rem center;
+            padding-inline-end: 2rem;
+        }
+        [dir="rtl"] .sel {
+            background-position: left .7rem center;
+        }
+        .sel:focus {
+            border-color: var(--brand);
+            box-shadow: var(--ring);
+        }
+        .sel.dup {
+            border-color: var(--warn);
+            box-shadow: 0 0 0 3px rgba(var(--warn-rgb), .18);
+        }
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 7px 10px;
+        }
+        .order-sel {
+            flex-shrink: 0;
+            width: 64px;
+            text-align: center;
+            font-weight: 800;
+        }
+        .order-label {
+            flex: 1;
+            font-size: .92rem;
+        }
+        .dup-warn {
+            font-size: .76rem;
+            color: var(--warn);
+            font-weight: 650;
+            margin-top: .5rem;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+        .dup-warn.show {
+            display: flex;
+        }
+        .dup-warn svg {
+            width: 14px;
+            height: 14px;
+        }
+        .submit-card {
+            text-align: center;
+        }
+        .submit-hint {
+            font-size: .88rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            font-family: inherit;
+            font-weight: 780;
+            cursor: pointer;
+            border: none;
+            border-radius: var(--r);
+            transition: transform .14s, box-shadow .2s, background .2s;
+        }
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        .btn-primary {
+            padding: 14px 40px;
+            font-size: 1.05rem;
+            color: #fff;
+            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            box-shadow: 0 8px 22px -8px rgba(var(--brand-rgb), .7);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px -10px rgba(var(--brand-rgb), .8);
+        }
+        .btn-primary:focus-visible {
+            outline: none;
+            box-shadow: var(--ring), 0 8px 22px -8px rgba(var(--brand-rgb), .7);
+        }
+        .btn-ghost {
+            padding: 11px 22px;
+            font-size: .92rem;
+            color: var(--brand);
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+        }
+        .btn-ghost:hover {
+            border-color: var(--brand);
+            background: rgba(var(--brand-rgb), .06);
+        }
+        .btn-ghost:focus-visible {
+            outline: none;
+            box-shadow: var(--ring);
+        }
+        .fab {
+            position: fixed;
+            inset-inline-end: 18px;
+            bottom: 18px;
+            z-index: 35;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 16px;
+            border-radius: var(--r-pill);
+            font-size: .85rem;
+            font-weight: 750;
+            color: #fff;
+            background: var(--brand);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: transform .18s, opacity .25s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+        }
+        .fab.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .fab:hover {
+            transform: translateY(-2px);
+        }
+        .fab svg {
+            width: 16px;
+            height: 16px;
+        }
+        .top-btn {
+            inset-inline-end: 18px;
+            bottom: 18px;
+        }
+        #results {
+            display: none;
+        }
+        .score-hero {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+            border-radius: var(--r-lg);
+            padding: 2.2rem 1.2rem 2rem;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, #0d1322 0%, var(--brand-dark) 70%, var(--brand) 130%);
+        }
+        .score-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: .5;
+            background-image: radial-gradient(rgba(255, 255, 255, .09) 1px, transparent 1.4px);
+            background-size: 22px 22px;
+        }
+        .score-hero>* {
+            position: relative;
+        }
+        .ring-wrap {
+            width: 168px;
+            height: 168px;
+            margin: 0 auto .9rem;
+            position: relative;
+        }
+        .ring-wrap svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        .ring-track {
+            fill: none;
+            stroke: rgba(255, 255, 255, .18);
+            stroke-width: 11;
+        }
+        .ring-bar {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 11;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1.1s cubic-bezier(.34, 1.2, .4, 1);
+        }
+        .ring-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
+        }
+        .ring-pct {
+            font-size: 2.7rem;
+            font-weight: 880;
+            letter-spacing: -.03em;
+            line-height: 1;
+        }
+        .ring-grade {
+            font-size: .92rem;
+            font-weight: 700;
+            opacity: .85;
+            margin-top: .2rem;
+        }
+        .passpill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: .2rem;
+            padding: 6px 16px;
+            border-radius: var(--r-pill);
+            font-size: .85rem;
+            font-weight: 780;
+        }
+        .passpill svg {
+            width: 15px;
+            height: 15px;
+        }
+        .passpill.pass {
+            background: rgba(var(--ok-rgb), .22);
+            color: #d9f7e4;
+        }
+        .passpill.fail {
+            background: rgba(var(--bad-rgb), .24);
+            color: #ffe1e1;
+        }
+        .score-name {
+            font-size: 1.18rem;
+            font-weight: 760;
+            margin-top: .9rem;
+        }
+        .score-msg {
+            font-size: .95rem;
+            opacity: .88;
+            margin-top: .25rem;
+        }
+        .score-sub {
+            font-size: .8rem;
+            opacity: .72;
+            margin-top: .5rem;
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .score-sub span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .score-sub svg {
+            width: 13px;
+            height: 13px;
+            opacity: .8;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 11px;
+            margin-bottom: 1.25rem;
+        }
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 1rem .8rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .stat-num {
+            font-size: 1.7rem;
+            font-weight: 860;
+            letter-spacing: -.02em;
+        }
+        .stat-label {
+            font-size: .74rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .stat-label svg {
+            width: 13px;
+            height: 13px;
+        }
+        .s-ok .stat-num {
+            color: var(--ok);
+        }
+        .s-bad .stat-num {
+            color: var(--bad);
+        }
+        .s-warn .stat-num {
+            color: var(--warn);
+        }
+        .s-skip .stat-num {
+            color: var(--skip);
+        }
+        .s-brand .stat-num {
+            color: var(--brand);
+        }
+        .panel-title {
+            font-size: 1.02rem;
+            font-weight: 760;
+            margin-bottom: .9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--brand);
+        }
+        .bd-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 6px 12px;
+            align-items: center;
+            margin-bottom: .85rem;
+        }
+        .bd-row:last-child {
+            margin-bottom: 0;
+        }
+        .bd-name {
+            font-size: .88rem;
+            font-weight: 600;
+        }
+        .bd-name small {
+            color: var(--text-faint);
+            font-weight: 600;
+        }
+        .bd-val {
+            font-size: .82rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+        .bd-bar {
+            grid-column: 1 / -1;
+            height: 8px;
+            border-radius: var(--r-pill);
+            background: var(--surface-3);
+            overflow: hidden;
+        }
+        .bd-bar>span {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: inherit;
+            transition: width .9s cubic-bezier(.4, 0, .2, 1);
+        }
+        .lvl-hi>span {
+            background: var(--ok);
+        }
+        .lvl-mid>span {
+            background: var(--warn);
+        }
+        .lvl-lo>span {
+            background: var(--bad);
+        }
+        .focus-tag {
+            font-size: .72rem;
+            font-weight: 800;
+            padding: 1px 8px;
+            border-radius: var(--r-pill);
+            background: rgba(var(--bad-rgb), .12);
+            color: var(--bad);
+            margin-inline-start: 6px;
+        }
+        .review-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .filter-btn {
+            padding: 7px 14px;
+            border-radius: var(--r-pill);
+            font-size: .79rem;
+            font-weight: 750;
+            cursor: pointer;
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            color: var(--text-muted);
+            transition: .18s;
+        }
+        .filter-btn:hover {
+            border-color: var(--border-strong);
+            color: var(--text);
+        }
+        .filter-btn:focus-visible {
+            outline: none;
+            box-shadow: var(--ring);
+        }
+        .filter-btn.active {
+            border-color: var(--brand);
+            background: rgba(var(--brand-rgb), .1);
+            color: var(--brand);
+        }
+        .search-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .search-wrap svg {
+            position: absolute;
+            inset-inline-start: 11px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            color: var(--text-faint);
+            pointer-events: none;
+        }
+        .search-input {
+            padding: 8px 12px 8px 32px;
+            font-size: .82rem;
+            color: var(--text);
+            width: 180px;
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-pill);
+            outline: none;
+        }
+        [dir="rtl"] .search-input {
+            padding: 8px 32px 8px 12px;
+        }
+        [dir="rtl"] .search-wrap svg {
+            inset-inline-start: auto;
+            inset-inline-end: 11px;
+        }
+        .search-input:focus {
+            border-color: var(--brand);
+            box-shadow: var(--ring);
+        }
+        .review-card {
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            overflow: hidden;
+            margin-bottom: .7rem;
+            background: var(--surface);
+        }
+        .review-head {
+            padding: 11px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .r-correct .review-head {
+            background: rgba(var(--ok-rgb), .08);
+        }
+        .r-partial .review-head {
+            background: rgba(var(--warn-rgb), .1);
+        }
+        .r-wrong .review-head {
+            background: rgba(var(--bad-rgb), .08);
+        }
+        .r-skip .review-head {
+            background: rgba(var(--skip-rgb), .08);
+        }
+        .r-ico {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+        }
+        .r-ico svg {
+            width: 14px;
+            height: 14px;
+        }
+        .r-correct .r-ico {
+            background: var(--ok);
+            color: #fff;
+        }
+        .r-partial .r-ico {
+            background: var(--warn);
+            color: #fff;
+        }
+        .r-wrong .r-ico {
+            background: var(--bad);
+            color: #fff;
+        }
+        .r-skip .r-ico {
+            background: var(--skip);
+            color: #fff;
+        }
+        .r-q {
+            flex: 1;
+            font-size: .9rem;
+            font-weight: 650;
+            line-height: 1.45;
+        }
+        .r-q .r-meta {
+            display: block;
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--text-faint);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .r-chev {
+            flex-shrink: 0;
+            color: var(--text-faint);
+            transition: transform .25s;
+            margin-top: 2px;
+        }
+        .r-chev svg {
+            width: 16px;
+            height: 16px;
+        }
+        .review-card.open .r-chev {
+            transform: rotate(180deg);
+        }
+        .review-body {
+            display: none;
+            padding: 0 14px 13px;
+            font-size: .86rem;
+        }
+        .review-card.open .review-body {
+            display: block;
+        }
+        .ans-line {
+            display: flex;
+            gap: 8px;
+            padding: 6px 0;
+            border-top: 1px dashed var(--border);
+        }
+        .ans-k {
+            flex-shrink: 0;
+            font-weight: 700;
+            color: var(--text-muted);
+            min-width: 96px;
+        }
+        .ans-your.bad .ans-v {
+            color: var(--bad);
+        }
+        .ans-your.ok .ans-v {
+            color: var(--ok);
+        }
+        .ans-correct .ans-v {
+            color: var(--ok);
+            font-weight: 650;
+        }
+        .exp-line {
+            margin-top: 8px;
+            padding: 9px 11px;
+            border-radius: var(--r-sm);
+            font-size: .85rem;
+            line-height: 1.55;
+            background: rgba(var(--brand-rgb), .06);
+            border-inline-start: 3px solid var(--brand);
+            color: var(--text);
+        }
+        .empty-note {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 1.4rem;
+            font-size: .9rem;
+        }
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1.4rem 0 2rem;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: none;
+            place-items: center;
+            padding: 1rem;
+            background: rgba(8, 11, 18, .55);
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+        }
+        .overlay.show {
+            display: grid;
+        }
+        .modal {
+            width: min(420px, 100%);
+            background: var(--surface);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 1.6rem;
+            text-align: center;
+            animation: pop .22s cubic-bezier(.34, 1.3, .5, 1);
+        }
+        @keyframes pop {
+            from {
+                transform: scale(.94);
+                opacity: 0;
+            }
+        }
+        .modal-ico {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 1rem;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(var(--warn-rgb), .14);
+            color: var(--warn);
+        }
+        .modal-ico svg {
+            width: 26px;
+            height: 26px;
+        }
+        .modal h3 {
+            font-size: 1.12rem;
+            font-weight: 780;
+            margin-bottom: .4rem;
+        }
+        .modal p {
+            font-size: .9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.3rem;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+        .modal .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: .94rem;
+        }
+        #confetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 55;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            top: -12px;
+            width: 9px;
+            height: 14px;
+            opacity: .9;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(680deg);
+                opacity: .2;
+            }
+        }
+        @media (max-width:560px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .match-grid {
+                grid-template-columns: 1fr;
+            }
+            .bar-title {
+                display: none;
+            }
+            .search-input {
+                width: 130px;
+            }
+            .hero-emoji {
+                letter-spacing: .18em;
+            }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            #confetti {
+                display: none !important;
+            }
+        }
+        @media print {
+            .bar,
+            .hero,
+            #test-form,
+            .fab,
+            .result-actions,
+            .icon-btn,
+            .overlay,
+            #confetti {
+                display: none !important;
+            }
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .container {
+                margin: 0;
+                max-width: 100%;
+            }
+            #results {
+                display: block !important;
+            }
+            .card,
+            .stat,
+            .review-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                break-inside: avoid;
+            }
+            .score-hero {
+                background: #fff !important;
+                color: #000;
+                border: 1px solid #ccc;
+            }
+            .score-hero::before {
+                display: none;
+            }
+            .ring-track {
+                stroke: #ddd;
+            }
+            .ring-bar {
+                stroke: #444;
+            }
+            .ring-pct,
+            .ring-grade,
+            .score-name,
+            .score-msg,
+            .score-sub {
+                color: #000;
+            }
+            .passpill {
+                border: 1px solid #999;
+                color: #000 !important;
+                background: #fff !important;
+            }
+            .review-body {
+                display: block !important;
+            }
+            .r-chev {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bar" id="cmd-bar">
+        <div class="bar-title" id="bar-title">Science Exam</div>
+        <div class="bar-progress">
+            <div class="track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-track">
+                <span id="bar-fill"></span>
+            </div>
+            <span class="bar-count num" id="bar-count" aria-live="polite">0 / 100</span>
+        </div>
+        <span class="chip timer-chip num" id="timer-chip" hidden></span>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+    </header>
+
+    <div class="hero">
+        <div class="hero-emoji" id="hero-emoji">🔬 🌍 ⚡</div>
+        <h1 id="hero-title">Science Exam Preparation</h1>
+        <p id="hero-subtitle">Chapters 4, 8 &amp; 10 — Habitats · Electrical Circuits · Earth Structure</p>
+        <div class="hero-badges" id="hero-badges"></div>
+    </div>
+
+    <div class="container">
+
+        <div id="test-form">
+
+            <div class="card">
+                <div class="section-head" style="margin-bottom:1.1rem;">
+                    <div class="section-badge" id="ico-student">👤</div>
+                    <h2 id="t-student">Student details</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="field" id="field-name">
+                        <label id="t-name" for="student-name">Your name</label>
+                        <input type="text" id="student-name" autocomplete="name" placeholder="e.g. Sara Ahmed">
+                    </div>
+                    <div class="field">
+                        <label id="t-class" for="student-class">Class / section</label>
+                        <input type="text" id="student-class" placeholder="e.g. Grade 5 – A">
+                    </div>
+                </div>
+            </div>
+
+            <div id="sections-container"></div>
+
+            <div class="card submit-card">
+                <p class="submit-hint" id="t-submit-hint">Answer all 100 questions, then finish to see your results.</p>
+                <button class="btn btn-primary" id="submit-btn" type="button">
+                    <span id="ico-send">📨</span><span id="t-submit">Finish &amp; see results</span>
+                </button>
+            </div>
+
+        </div>
+
+        <div id="results" aria-live="polite">
+            <section class="score-hero">
+                <div class="ring-wrap">
+                    <svg viewBox="0 0 168 168" aria-hidden="true">
+                        <circle class="ring-track" cx="84" cy="84" r="74"></circle>
+                        <circle class="ring-bar" cx="84" cy="84" r="74" id="ring-bar"></circle>
+                    </svg>
+                    <div class="ring-center">
+                        <div class="ring-pct num" id="res-pct">0%</div>
+                        <div class="ring-grade" id="res-grade">—</div>
+                    </div>
+                </div>
+                <div class="passpill" id="res-passpill"></div>
+                <div class="score-name" id="res-name">Well done!</div>
+                <div class="score-msg" id="res-msg"></div>
+                <div class="score-sub num" id="res-sub"></div>
+            </section>
+
+            <div class="stats-row" id="stats-row"></div>
+
+            <div class="card" id="section-breakdown-card">
+                <div class="panel-title"><span id="ico-bars">📊</span><span id="t-section-bd">Performance by section</span></div>
+                <div id="section-breakdown"></div>
+            </div>
+
+            <div class="card" id="topic-breakdown-card">
+                <div class="panel-title"><span id="ico-target">🎯</span><span id="t-topic-bd">Performance by topic</span></div>
+                <div id="topic-breakdown"></div>
+            </div>
+
+            <div class="card">
+                <div class="panel-title"><span id="ico-list">📋</span><span id="t-review">Full review</span></div>
+                <div class="review-tools">
+                    <div class="filter-bar" id="filter-bar"></div>
+                    <div class="search-wrap">
+                        <span id="ico-search">🔍</span>
+                        <input class="search-input" id="review-search" type="search" placeholder="Search review…" aria-label="Search review">
+                    </div>
+                </div>
+                <div id="review-container"></div>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn btn-ghost" id="print-btn" type="button"><span id="ico-print">🖨️</span><span id="t-print">Print / Save PDF</span></button>
+                <button class="btn btn-ghost" id="copy-btn" type="button"><span id="ico-copy">📄</span><span id="t-copy">Copy summary</span></button>
+                <button class="btn btn-primary" id="retry-btn" type="button" style="padding:11px 28px;font-size:.95rem;"><span id="ico-refresh">🔄</span><span id="t-retry">Try again</span></button>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="fab" id="fab" type="button"></button>
+
+    <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal">
+            <div class="modal-ico" id="ico-warn">⚠️</div>
+            <h3 id="modal-title">Unanswered questions</h3>
+            <p id="modal-body"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="modal-submit" type="button"></button>
+                <button class="btn btn-ghost" id="modal-review" type="button"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confetti" aria-hidden="true"></div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════════════
+        //  CONFIG
+        // ═══════════════════════════════════════════════════════════════════════════
+
+        const CONFIG = {
+            title: 'Science Exam – Chapters 4, 8 & 10',
+            subject: 'General Science',
+            grade: 'Grade 5–6',
+            language: 'en',
+            theme: {
+                brand: '#0b8a5e',
+                brandDark: '#065f40',
+                accent: '#f59e0b',
+            },
+            timer: 3600,
+            passMark: 60,
+            gradeBands: [
+                { min: 90, label: '🌟 Excellent' },
+                { min: 75, label: '👍 Good' },
+                { min: 60, label: '📖 Pass' },
+                { min: 0, label: '💪 Keep going' },
+            ],
+            autoSave: true,
+            showConfetti: true,
+            requireName: false,
+            messages: {
+                pass: ['🎉 Great job!', '🌟 Wonderful!', '👏 Fantastic work!'],
+                fail: ['📚 Keep practising!', '💪 You\'ll get it next time!', '🧠 Review and try again!'],
+            },
+            heroEmoji: '🔬 🌍 ⚡',
+            heroSubtitle: 'Chapters 4, 8 & 10 — Habitats · Electrical Circuits · Earth Structure',
+            heroBadges: ['📝 100 questions', '⏱️ 60 min', '🎯 60% pass', '📖 Ch.4, 8 & 10'],
+        };
+
+        // ═══════════════════════════════════════════════════════════════════════════
+        //  SECTIONS & 100 QUESTIONS
+        // ═══════════════════════════════════════════════════════════════════════════
+
+        const sections = [{
+            id: 'sec1',
+            title: '🌍 Ch.4 Topic A – Animals and their Habitat',
+            instructions: 'Questions about habitats, animal adaptations, and where animals live.',
+            topics: ['habitats', 'adaptations'],
+            questions: [
+                // --- MCQ (8) ---
+                { type: 'mcq', points: 1, text: 'What is a habitat?', options: ['The food an animal eats', 'The natural place where a plant or animal lives', 'A type of weather', 'A group of animals'], correct: 1, explanation: 'A habitat is the natural place where a plant or animal lives.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'Which habitat is a desert?', options: ['A place with heavy rain', 'A cold icy place', 'A very dry habitat with little rainfall', 'A freshwater pond'], correct: 2, explanation: 'A desert is a very dry habitat with little rainfall.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'Which animal is adapted to live in the desert?', options: ['Polar bear', 'Camel', 'Penguin', 'Dolphin'], correct: 1, explanation: 'The camel has a hump to store fat for energy in deserts.', topic: 'adaptations' },
+                { type: 'mcq', points: 1, text: 'Which habitat receives heavy rainfall and has dense trees?', options: ['Desert', 'Grassland', 'Rainforest', 'Polar region'], correct: 2, explanation: 'Rainforests receive heavy rainfall and have dense trees.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'Fish, crabs and dolphins all live in which habitat?', options: ['Pond', 'Desert', 'Ocean', 'Rainforest'], correct: 2, explanation: 'Fish, crabs and dolphins live in the ocean (aquatic habitat).', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'Where do polar bears live?', options: ['Rainforest', 'Arctic / Polar region', 'Desert', 'Grassland'], correct: 1, explanation: 'Polar bears live in the Arctic, which is a polar region.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'A pond is an example of which type of habitat?', options: ['Saltwater', 'Freshwater', 'Desert', 'Polar'], correct: 1, explanation: 'A pond is a freshwater habitat.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'What do habitats provide for animals?', options: ['Only food', 'Only water', 'Food, water and shelter', 'Only shelter'], correct: 2, explanation: 'Habitats provide food, water and shelter that animals need.', topic: 'habitats' },
+                // --- TF (4) ---
+                { type: 'tf', points: 1, text: 'A cactus can survive in a desert habitat.', correct: true, explanation: 'Cacti are adapted to survive in dry desert conditions.', topic: 'adaptations' },
+                { type: 'tf', points: 1, text: 'Penguins live in hot rainforests.', correct: false, explanation: 'Penguins live in cold polar regions, not hot rainforests.', topic: 'habitats' },
+                { type: 'tf', points: 1, text: 'Lions commonly live in grasslands.', correct: true, explanation: 'Lions are commonly found in grassland habitats.', topic: 'habitats' },
+                { type: 'tf', points: 1, text: 'Water lilies grow in deserts.', correct: false, explanation: 'Water lilies grow in ponds and freshwater habitats.', topic: 'habitats' },
+                // --- Fill (3) ---
+                { type: 'fill', points: 1, text: 'A very dry habitat with little rainfall is called a __________.', correct: ['desert', 'Desert'], explanation: 'A desert is a very dry habitat with little rainfall.', topic: 'habitats' },
+                { type: 'fill', points: 1, text: 'Animals that live in water belong to the __________ habitat.', correct: ['aquatic', 'Aquatic'], explanation: 'Aquatic means relating to water.', topic: 'habitats' },
+                { type: 'fill', points: 1, text: 'A habitat with lots of trees and heavy rain is called a __________.', correct: ['rainforest', 'Rainforest'], explanation: 'Rainforests have lots of trees and heavy rainfall.', topic: 'habitats' },
+                // --- Multi (2) ---
+                { type: 'multi', points: 2, text: 'Which of these animals live in aquatic habitats? (Choose all that apply)', options: ['Camel', 'Fish', 'Dolphin', 'Crab'], correct: [1, 2, 3], explanation: 'Fish, dolphins, and crabs are all aquatic animals. Camels live in deserts.', topic: 'habitats' },
+                { type: 'multi', points: 2, text: 'Which of these are freshwater habitats? (Choose all that apply)', options: ['Ocean', 'Pond', 'Lake', 'River'], correct: [1, 2, 3], explanation: 'Ponds, lakes, and rivers are freshwater habitats. The ocean is saltwater.', topic: 'habitats' },
+                // --- Match (2) ---
+                { type: 'match', points: 2, text: 'Match each animal to its habitat.', left: ['Camel', 'Polar Bear', 'Monkey', 'Dolphin', 'Frog'], right: ['Desert', 'Polar Region', 'Rainforest', 'Ocean', 'Pond'], correct: [0, 1, 2, 3, 4], explanation: 'Camel→Desert, Polar Bear→Polar Region, Monkey→Rainforest, Dolphin→Ocean, Frog→Pond.', topic: 'habitats' },
+                { type: 'match', points: 2, text: 'Match each animal to its adaptation.', left: ['Polar Bear', 'Camel', 'Penguin', 'Giraffe'], right: ['Thick white fur', 'Hump on back', 'Flippers and feathers', 'Long neck'], correct: [0, 1, 2, 3], explanation: 'Polar Bear→Thick fur, Camel→Hump, Penguin→Flippers, Giraffe→Long neck.', topic: 'adaptations' },
+                // --- Order (1) ---
+                { type: 'order', points: 2, text: 'Arrange these habitats from driest to wettest.', items: ['Desert', 'Grassland', 'Rainforest', 'Pond'], correct: [0, 1, 2, 3], explanation: 'Desert (driest) → Grassland → Rainforest → Pond (wettest).', topic: 'habitats' },
+            ],
+        }, {
+            id: 'sec2',
+            title: '🌿 Ch.4 Topic B – Surviving Habitats',
+            instructions: 'Questions about adaptations, survival, and how animals cope with changing environments.',
+            topics: ['adaptations', 'survival'],
+            questions: [
+                // --- MCQ (6) ---
+                { type: 'mcq', points: 1, text: 'What are adaptations?', options: ['Types of food', 'Special features that help plants and animals survive in their habitat', 'Different weather patterns', 'A kind of shelter'], correct: 1, explanation: 'Adaptations are special features that help living things survive in their habitat.', topic: 'adaptations' },
+                { type: 'mcq', points: 1, text: 'Which desert animals go into deep sleep during winters?', options: ['Camels', 'Squirrels', 'Lizards', 'Snakes'], correct: 1, explanation: 'Squirrels go into deep sleep (hibernate) during winter.', topic: 'survival' },
+                { type: 'mcq', points: 1, text: 'How do birds adapt when their habitat changes?', options: ['They grow thicker fur', 'They hibernate', 'They migrate to different places', 'They change colour'], correct: 2, explanation: 'Birds migrate (move to different places) when their habitat changes.', topic: 'survival' },
+                { type: 'mcq', points: 1, text: 'Which areas are best suited for apple snails?', options: ['Deserts', 'Swamps', 'Mountains', 'Oceans'], correct: 1, explanation: 'Apple snails are best suited to swamps.', topic: 'habitats' },
+                { type: 'mcq', points: 1, text: 'Can plants and animals live in other environments?', options: ['No, never', 'Yes, some can', 'Only plants can', 'Only animals can'], correct: 1, explanation: 'Yes, some plants and animals can live in other environments.', topic: 'survival' },
+                { type: 'mcq', points: 1, text: 'Where can grass be found?', options: ['Only in dry areas', 'Only in wet areas', 'In areas with little or much rainfall', 'Only in deserts'], correct: 2, explanation: 'Grass can be found in areas with little or much rainfall.', topic: 'habitats' },
+                // --- TF (3) ---
+                { type: 'tf', points: 1, text: 'Polar animals have thick fur to keep their bodies warm.', correct: true, explanation: 'Thick fur helps polar animals stay warm in cold climates.', topic: 'adaptations' },
+                { type: 'tf', points: 1, text: 'Fish have gills to breathe and fins to swim.', correct: true, explanation: 'Gills help fish breathe underwater and fins help them swim.', topic: 'adaptations' },
+                { type: 'tf', points: 1, text: 'Habitat destruction helps animals survive better.', correct: false, explanation: 'Habitat destruction removes animal homes and makes survival harder.', topic: 'survival' },
+                // --- Fill (2) ---
+                { type: 'fill', points: 1, text: 'The special features that help living things survive are called __________.', correct: ['adaptations', 'Adaptations'], explanation: 'Adaptations are the special features that help survival.', topic: 'adaptations' },
+                { type: 'fill', points: 1, text: 'Some animals go into deep sleep during winter; this is called __________.', correct: ['hibernating', 'Hibernating', 'hibernation', 'Hibernation'], explanation: 'Hibernation is when animals go into deep sleep during winter.', topic: 'survival' },
+                // --- Multi (1) ---
+                { type: 'multi', points: 2, text: 'Which of these are ways animals adapt to changed habitats? (Choose all that apply)', options: ['Moving to different places', 'Changing body structure', 'Changing behaviour', 'Staying exactly the same'], correct: [0, 1, 2], explanation: 'Animals adapt by moving, changing body structure, or changing behaviour.', topic: 'adaptations' },
+                // --- Match (2) ---
+                { type: 'match', points: 2, text: 'Match each type of adaptation to its example.', left: ['Moving to another place', 'Changing body structure', 'Changing behaviour'], right: ['Birds migrating', 'Growing thicker fur', 'Hibernating'], correct: [0, 1, 2], explanation: 'Moving→Migration, Body structure→Thicker fur, Behaviour→Hibernation.', topic: 'adaptations' },
+                { type: 'match', points: 2, text: 'Match each habitat characteristic to its habitat.', left: ['Very dry, little rainfall', 'Water habitat', 'Heavy rainfall, dense trees', 'Icy and cold', 'Open grassy areas'], right: ['Desert', 'Aquatic', 'Rainforest', 'Polar Region', 'Grassland'], correct: [0, 1, 2, 3, 4], explanation: 'Desert→Dry, Aquatic→Water, Rainforest→Heavy rain, Polar→Icy, Grassland→Open grassy.', topic: 'habitats' },
+                // --- Order (1) ---
+                { type: 'order', points: 2, text: 'Arrange these steps in how an animal adapts to a colder climate.', items: ['Temperature drops', 'Animal grows thicker fur', 'Body stays warm', 'Animal survives winter'], correct: [0, 1, 2, 3], explanation: 'Temperature drops → Animal grows thicker fur → Body stays warm → Animal survives.', topic: 'adaptations' },
+            ],
+        }, {
+            id: 'sec3',
+            title: '⚡ Ch.8 – Electrical Circuits',
+            instructions: 'Questions about simple circuits, brightness of lamps, conductors and insulators.',
+            topics: ['circuits', 'electricity', 'conductors'],
+            questions: [
+                // --- MCQ (12) ---
+                { type: 'mcq', points: 1, text: 'What is a circuit?', options: ['A type of battery', 'A complete path through which electricity flows', 'A kind of wire', 'An electric device'], correct: 1, explanation: 'A circuit is the complete path through which electricity flows.', topic: 'circuits' },
+                { type: 'mcq', points: 1, text: 'Which component is the source of electric current in a circuit?', options: ['Switch', 'Wire', 'Battery', 'Lamp'], correct: 2, explanation: 'The battery is the source of electrical energy in a circuit.', topic: 'circuits' },
+                { type: 'mcq', points: 1, text: 'What does a switch do in a circuit?', options: ['Provides power', 'Carries current', 'Controls the flow of current', 'Uses electricity'], correct: 2, explanation: 'A switch opens or closes the circuit, controlling current flow.', topic: 'circuits' },
+                { type: 'mcq', points: 1, text: 'What happens when a switch is turned off?', options: ['The circuit is closed', 'Current flows faster', 'The circuit is open and the lamp turns off', 'The battery gets stronger'], correct: 2, explanation: 'When the switch is off, the circuit is open and no current flows.', topic: 'circuits' },
+                { type: 'mcq', points: 1, text: 'Where does the word "circuit" come from?', options: ['Square', 'Circle', 'Triangle', 'Line'], correct: 1, explanation: 'The word "circuit" comes from "circle" because electricity travels in a loop.', topic: 'circuits' },
+                { type: 'mcq', points: 1, text: 'What type of energy makes a bulb glow?', options: ['Heat', 'Light', 'Electrical', 'Sound'], correct: 2, explanation: 'Electrical energy makes a bulb glow.', topic: 'electricity' },
+                { type: 'mcq', points: 1, text: 'The flow of electricity in a circuit is called?', options: ['Voltage', 'Current', 'Resistance', 'Power'], correct: 1, explanation: 'Current is the flow of electricity in a circuit.', topic: 'electricity' },
+                { type: 'mcq', points: 1, text: 'What happens to lamp brightness if the wire is very long?', options: ['It becomes brighter', 'It stays the same', 'It becomes dim', 'It turns off completely'], correct: 2, explanation: 'A longer wire makes the lamp dimmer because more energy is lost.', topic: 'electricity' },
+                { type: 'mcq', points: 1, text: 'What are conductors?', options: ['Materials that block electricity', 'Materials that allow electric current to flow easily', 'Materials that store electricity', 'Materials that produce electricity'], correct: 1, explanation: 'Conductors allow electric current to flow easily.', topic: 'conductors' },
+                { type: 'mcq', points: 1, text: 'Which of these is a good conductor of electricity?', options: ['Plastic', 'Rubber', 'Copper', 'Wood'], correct: 2, explanation: 'Copper is a good conductor of electricity.', topic: 'conductors' },
+                { type: 'mcq', points: 1, text: 'Why are wires covered with plastic?', options: ['To make them colourful', 'To prevent electric shocks', 'To make them stronger', 'To help current flow'], correct: 1, explanation: 'Plastic is an insulator that prevents electric shocks.', topic: 'conductors' },
+                { type: 'mcq', points: 1, text: 'Rubber covering on a wire is an example of?', options: ['Conductor', 'Battery', 'Insulator', 'Switch'], correct: 2, explanation: 'Rubber is an insulator — it does not allow electricity to flow.', topic: 'conductors' },
+                // --- TF (6) ---
+                { type: 'tf', points: 1, text: 'A closed circuit allows current to flow and the lamp lights up.', correct: true, explanation: 'In a closed circuit, current flows and the lamp turns ON.', topic: 'circuits' },
+                { type: 'tf', points: 1, text: 'An open circuit allows current to flow.', correct: false, explanation: 'In an open circuit, current stops and the lamp turns OFF.', topic: 'circuits' },
+                { type: 'tf', points: 1, text: 'Adding more batteries makes a lamp glow brighter.', correct: true, explanation: 'More batteries provide more electrical energy, making the lamp brighter.', topic: 'electricity' },
+                { type: 'tf', points: 1, text: 'Plastic is a good conductor of electricity.', correct: false, explanation: 'Plastic is an insulator — it does not allow electricity to pass.', topic: 'conductors' },
+                { type: 'tf', points: 1, text: 'Iron is a conductor of electricity.', correct: true, explanation: 'Iron allows electric current to flow easily.', topic: 'conductors' },
+                { type: 'tf', points: 1, text: 'A longer wire makes a lamp brighter.', correct: false, explanation: 'A longer wire makes the lamp dimmer.', topic: 'electricity' },
+                // --- Fill (5) ---
+                { type: 'fill', points: 1, text: 'The component that controls the flow of current in a circuit is called a __________.', correct: ['switch', 'Switch'], explanation: 'A switch controls current by opening or closing the circuit.', topic: 'circuits' },
+                { type: 'fill', points: 1, text: 'The source of electric current in a circuit is the __________.', correct: ['battery', 'Battery', 'batteries', 'Batteries'], explanation: 'Batteries are the source of electrical energy in a circuit.', topic: 'circuits' },
+                { type: 'fill', points: 1, text: 'Materials that allow electric current to flow easily are called __________.', correct: ['conductors', 'Conductors'], explanation: 'Conductors allow electricity to pass through them.', topic: 'conductors' },
+                { type: 'fill', points: 1, text: 'Materials that do not allow electric current to flow are called __________.', correct: ['insulators', 'Insulators'], explanation: 'Insulators block the flow of electricity.', topic: 'conductors' },
+                { type: 'fill', points: 1, text: 'The flow of electricity in a circuit is called __________.', correct: ['current', 'Current'], explanation: 'Current is the flow of electric charge.', topic: 'electricity' },
+                // --- Multi (4) ---
+                { type: 'multi', points: 2, text: 'Which of these are basic components of a circuit? (Choose all that apply)', options: ['Battery', 'Wires', 'Device', 'Switch'], correct: [0, 1, 2, 3], explanation: 'All four are basic components: battery, wires, device, and switch.', topic: 'circuits' },
+                { type: 'multi', points: 2, text: 'Which of these are good conductors of electricity? (Choose all that apply)', options: ['Copper', 'Plastic', 'Iron', 'Aluminum'], correct: [0, 2, 3], explanation: 'Copper, iron, and aluminum are conductors. Plastic is an insulator.', topic: 'conductors' },
+                { type: 'multi', points: 2, text: 'Which of these are insulators? (Choose all that apply)', options: ['Rubber', 'Copper', 'Wood', 'Glass'], correct: [0, 2, 3], explanation: 'Rubber, wood, and glass are insulators. Copper is a conductor.', topic: 'conductors' },
+                { type: 'multi', points: 2, text: 'What factors affect the brightness of a lamp? (Choose all that apply)', options: ['Number of batteries', 'Length of wire', 'Colour of the bulb', 'Type of switch'], correct: [0, 1], explanation: 'More batteries = brighter; longer wire = dimmer.', topic: 'electricity' },
+                // --- Match (5) ---
+                { type: 'match', points: 2, text: 'Match each circuit component to its function.', left: ['Battery', 'Wires', 'Device', 'Switch'], right: ['Source of electrical energy', 'Carry current through the circuit', 'Uses electricity (e.g. lamp)', 'Opens or closes the circuit'], correct: [0, 1, 2, 3], explanation: 'Battery→Source, Wires→Carry current, Device→Uses electricity, Switch→Opens/closes.', topic: 'circuits' },
+                { type: 'match', points: 2, text: 'Match the number of batteries to the brightness.', left: ['1 battery', '2 batteries', '3 batteries'], right: ['Dim', 'Brighter', 'Brightest'], correct: [0, 1, 2], explanation: '1 battery→Dim, 2 batteries→Brighter, 3 batteries→Brightest.', topic: 'electricity' },
+                { type: 'match', points: 2, text: 'Match each material to its type.', left: ['Copper', 'Plastic', 'Iron', 'Rubber', 'Aluminum'], right: ['Conductor', 'Insulator', 'Conductor', 'Insulator', 'Conductor'], correct: [0, 1, 0, 1, 0], explanation: 'Copper, Iron, Aluminum→Conductors; Plastic, Rubber→Insulators.', topic: 'conductors' },
+                { type: 'match', points: 2, text: 'Match the circuit status to what happens.', left: ['Closed Circuit', 'Open Circuit'], right: ['Current flows, lamp ON', 'Current stops, lamp OFF'], correct: [0, 1], explanation: 'Closed→Lamp ON, Open→Lamp OFF.', topic: 'circuits' },
+                { type: 'match', points: 2, text: 'Match each term to its definition.', left: ['Circuit', 'Current', 'Conductor', 'Insulator'], right: ['Complete path for electricity', 'Flow of electricity', 'Allows electricity through', 'Stops electricity'], correct: [0, 1, 2, 3], explanation: 'Circuit→Complete path, Current→Flow, Conductor→Allows, Insulator→Stops.', topic: 'electricity' },
+                // --- Order (3) ---
+                { type: 'order', points: 2, text: 'Arrange the steps of electricity flowing in a closed circuit.', items: ['Battery provides energy', 'Current flows through wires', 'Device uses electricity', 'Lamp lights up'], correct: [0, 1, 2, 3], explanation: 'Battery→Current flows→Device uses→Lamp lights.', topic: 'circuits' },
+                { type: 'order', points: 2, text: 'Arrange these from dimmest to brightest lamp.', items: ['1 battery', '2 batteries', '3 batteries', '4 batteries'], correct: [0, 1, 2, 3], explanation: 'More batteries = brighter lamp.', topic: 'electricity' },
+                { type: 'order', points: 2, text: 'Arrange the steps when a switch is turned OFF.', items: ['Switch is opened', 'Circuit becomes broken', 'Current stops flowing', 'Lamp turns off'], correct: [0, 1, 2, 3], explanation: 'Switch opens→Circuit broken→Current stops→Lamp off.', topic: 'circuits' },
+            ],
+        }, {
+            id: 'sec4',
+            title: '🌋 Ch.10 – Structure of Earth',
+            instructions: 'Questions about Earth\'s layers, volcanoes, and earthquakes.',
+            topics: ['earth_structure', 'volcanoes', 'earthquakes'],
+            questions: [
+                // --- MCQ (10) ---
+                { type: 'mcq', points: 1, text: 'What is the central part of the Earth called?', options: ['Crust', 'Mantle', 'Core', 'Surface'], correct: 2, explanation: 'The core is the central part of the Earth.', topic: 'earth_structure' },
+                { type: 'mcq', points: 1, text: 'Which metal is mainly found in the inner core?', options: ['Copper', 'Aluminum', 'Iron', 'Gold'], correct: 2, explanation: 'The inner core is made mostly of iron.', topic: 'earth_structure' },
+                { type: 'mcq', points: 1, text: 'Which is the thickest layer of the Earth?', options: ['Crust', 'Mantle', 'Outer core', 'Inner core'], correct: 1, explanation: 'The mantle is the thickest layer of the Earth.', topic: 'earth_structure' },
+                { type: 'mcq', points: 1, text: 'What is the crust?', options: ['The hottest part', 'The thickest layer', 'The thin outer layer where we live', 'The liquid metal layer'], correct: 2, explanation: 'The crust is the thin outer layer of the Earth where we live.', topic: 'earth_structure' },
+                { type: 'mcq', points: 1, text: 'What is magma?', options: ['Solid rock on the surface', 'Melted rock inside the Earth', 'A type of earthquake', 'The outer layer of Earth'], correct: 1, explanation: 'Magma is melted rock inside the Earth.', topic: 'volcanoes' },
+                { type: 'mcq', points: 1, text: 'When molten rock is outside the Earth, what is it called?', options: ['Magma', 'Crust', 'Lava', 'Ash'], correct: 2, explanation: 'When magma reaches the surface, it is called lava.', topic: 'volcanoes' },
+                { type: 'mcq', points: 1, text: 'Which instrument is used to measure earthquakes?', options: ['Thermometer', 'Barometer', 'Seismograph', 'Speedometer'], correct: 2, explanation: 'A seismograph measures earthquakes.', topic: 'earthquakes' },
+                { type: 'mcq', points: 1, text: 'What causes an earthquake?', options: ['Heavy rain', 'Movement of tectonic plates', 'Volcanic ash', 'Strong winds'], correct: 1, explanation: 'Earthquakes are caused by the movement of tectonic plates.', topic: 'earthquakes' },
+                { type: 'mcq', points: 1, text: 'What happens during a volcanic eruption?', options: ['Only ash comes out', 'Only gas comes out', 'Hot lava, gases, and ash come out', 'Only water comes out'], correct: 2, explanation: 'During an eruption, hot lava, gases, and ash come out.', topic: 'volcanoes' },
+                { type: 'mcq', points: 1, text: 'Where do volcanoes usually form?', options: ['In oceans only', 'In breaks in the Earth\'s crust', 'On flat plains', 'In deserts only'], correct: 1, explanation: 'Volcanoes usually form in breaks in the Earth\'s crust.', topic: 'volcanoes' },
+                // --- TF (5) ---
+                { type: 'tf', points: 1, text: 'The inner core is the hottest part of the Earth.', correct: true, explanation: 'The inner core is the hottest part of the Earth.', topic: 'earth_structure' },
+                { type: 'tf', points: 1, text: 'The outer core is made of solid iron.', correct: false, explanation: 'The outer core is made of liquid metals (iron and nickel).', topic: 'earth_structure' },
+                { type: 'tf', points: 1, text: 'Magma and lava are the same thing.', correct: false, explanation: 'Magma is melted rock inside the Earth; lava is melted rock outside.', topic: 'volcanoes' },
+                { type: 'tf', points: 1, text: 'Earthquakes can cause tsunamis.', correct: true, explanation: 'Earthquakes can trigger tsunamis.', topic: 'earthquakes' },
+                { type: 'tf', points: 1, text: 'The mantle is the thinnest layer of the Earth.', correct: false, explanation: 'The mantle is the thickest layer. The crust is the thinnest.', topic: 'earth_structure' },
+                // --- Fill (5) ---
+                { type: 'fill', points: 1, text: 'The thin outer layer of the Earth is called the __________.', correct: ['crust', 'Crust'], explanation: 'The crust is the thin outer layer where we live.', topic: 'earth_structure' },
+                { type: 'fill', points: 1, text: 'Melted rock inside the Earth is called __________.', correct: ['magma', 'Magma'], explanation: 'Magma is melted rock inside the Earth.', topic: 'volcanoes' },
+                { type: 'fill', points: 1, text: 'Melted rock outside the Earth is called __________.', correct: ['lava', 'Lava'], explanation: 'Lava is magma that has reached the surface.', topic: 'volcanoes' },
+                { type: 'fill', points: 1, text: 'Sudden shaking of the Earth is called an __________.', correct: ['earthquake', 'Earthquake'], explanation: 'An earthquake is a sudden shaking of the Earth.', topic: 'earthquakes' },
+                { type: 'fill', points: 1, text: 'The instrument used to measure earthquakes is a __________.', correct: ['seismograph', 'Seismograph'], explanation: 'A seismograph measures earthquakes.', topic: 'earthquakes' },
+                // --- Multi (3) ---
+                { type: 'multi', points: 2, text: 'Which of these are layers of the Earth? (Choose all that apply)', options: ['Crust', 'Mantle', 'Outer Core', 'Inner Core'], correct: [0, 1, 2, 3], explanation: 'All four are layers of the Earth.', topic: 'earth_structure' },
+                { type: 'multi', points: 2, text: 'What can earthquakes cause? (Choose all that apply)', options: ['Damage to buildings', 'Tsunamis', 'Landslides', 'Volcanic eruption'], correct: [0, 1, 2], explanation: 'Earthquakes can damage buildings, cause tsunamis, and trigger landslides.', topic: 'earthquakes' },
+                { type: 'multi', points: 2, text: 'What comes out during a volcanic eruption? (Choose all that apply)', options: ['Lava', 'Gases', 'Ash', 'Ice'], correct: [0, 1, 2], explanation: 'Lava, gases, and ash come out during a volcanic eruption.', topic: 'volcanoes' },
+                // --- Match (4) ---
+                { type: 'match', points: 2, text: 'Match each Earth layer to its feature.', left: ['Crust', 'Mantle', 'Outer Core', 'Inner Core'], right: ['Thin outer layer', 'Thickest layer', 'Liquid metals', 'Solid ball of iron'], correct: [0, 1, 2, 3], explanation: 'Crust→Thin outer, Mantle→Thickest, Outer Core→Liquid, Inner Core→Solid iron.', topic: 'earth_structure' },
+                { type: 'match', points: 2, text: 'Match each layer to its state.', left: ['Crust', 'Mantle', 'Outer Core', 'Inner Core'], right: ['Solid', 'Semi-solid', 'Liquid', 'Solid'], correct: [0, 1, 2, 3], explanation: 'Crust→Solid, Mantle→Semi-solid, Outer Core→Liquid, Inner Core→Solid.', topic: 'earth_structure' },
+                { type: 'match', points: 2, text: 'Match the term to its correct description.', left: ['Magma', 'Lava', 'Vent', 'Eruption'], right: ['Melted rock inside Earth', 'Melted rock outside Earth', 'Opening through which lava comes out', 'Process of lava coming out'], correct: [0, 1, 2, 3], explanation: 'Magma→Inside, Lava→Outside, Vent→Opening, Eruption→Process.', topic: 'volcanoes' },
+                { type: 'match', points: 2, text: 'Match each feature to volcano or earthquake.', left: ['Magma', 'Tectonic plates', 'Lava flow', 'Seismograph'], right: ['Volcano', 'Earthquake', 'Volcano', 'Earthquake'], correct: [0, 1, 0, 1], explanation: 'Magma & Lava→Volcano, Tectonic plates & Seismograph→Earthquake.', topic: 'earthquakes' },
+                // --- Order (3) ---
+                { type: 'order', points: 2, text: 'Arrange the Earth\'s layers from outermost to innermost.', items: ['Crust', 'Mantle', 'Outer Core', 'Inner Core'], correct: [0, 1, 2, 3], explanation: 'Crust (outermost) → Mantle → Outer Core → Inner Core (innermost).', topic: 'earth_structure' },
+                { type: 'order', points: 2, text: 'Arrange the steps of a volcanic eruption.', items: ['Magma forms deep inside', 'Pressure builds up', 'Magma rises through cracks', 'Lava comes out through vent'], correct: [0, 1, 2, 3], explanation: 'Magma forms→Pressure builds→Rises→Erupts.', topic: 'volcanoes' },
+                { type: 'order', points: 2, text: 'Arrange these Earth layers from thinnest to thickest.', items: ['Crust', 'Inner Core', 'Outer Core', 'Mantle'], correct: [0, 1, 2, 3], explanation: 'Crust (thinnest) → Inner Core → Outer Core → Mantle (thickest).', topic: 'earth_structure' },
+            ],
+        }];
+
+        // ─── end of CONFIG & sections ──────────────────────────────────────────
+
+        (function() {
+            'use strict';
+
+            function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+
+            function $$(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+
+            function esc(str) {
+                if (!str) return '';
+                const d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+
+            function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+            function shuffle(a) {
+                for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]]; }
+                return a;
+            }
+
+            function flatten(arr) { return arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []); }
+
+            function qsKey(q, secId) { return `ans_${secId}_${q.idx}`; }
+
+            function getAnswers() {
+                try { return JSON.parse(localStorage.getItem('test_answers')) || {}; } catch (_) { return {}; }
+            }
+
+            function setAnswers(a) {
+                if (CONFIG.autoSave) {
+                    try { localStorage.setItem('test_answers', JSON.stringify(a)); } catch (_) {}
+                }
+            }
+
+            let state = {
+                answers: {},
+                started: false,
+                startTime: null,
+                timerRemaining: CONFIG.timer || 0,
+                timerInterval: null,
+                submitted: false,
+                results: null,
+                dark: false,
+            };
+
+            function applyTheme() {
+                const t = CONFIG.theme;
+                const root = document.documentElement;
+                root.style.setProperty('--brand', t.brand);
+                root.style.setProperty('--brand-dark', t.brandDark);
+                root.style.setProperty('--accent', t.accent);
+                const rgb = hexToRgb(t.brand);
+                if (rgb) root.style.setProperty('--brand-rgb', rgb);
+                const acc = hexToRgb(t.accent);
+                if (acc) root.style.setProperty('--accent-rgb', acc);
+            }
+
+            function hexToRgb(hex) {
+                const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+                if (!m) return null;
+                return parseInt(m[1], 16) + ',' + parseInt(m[2], 16) + ',' + parseInt(m[3], 16);
+            }
+
+            function toggleDark() {
+                state.dark = !state.dark;
+                document.documentElement.setAttribute('data-theme', state.dark ? 'dark' : 'light');
+                updateThemeIcon();
+                try { localStorage.setItem('test_dark', state.dark ? '1' : '0'); } catch (_) {}
+            }
+
+            function updateThemeIcon() {
+                const btn = $('#theme-toggle');
+                if (!btn) return;
+                btn.innerHTML = state.dark ?
+                    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>` :
+                    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+            }
+
+            let allQuestions = [];
+            let qIdMap = {};
+
+            function buildQuestionIndex() {
+                allQuestions = [];
+                qIdMap = {};
+                sections.forEach((sec, si) => {
+                    sec.questions.forEach((q, qi) => {
+                        const idx = allQuestions.length;
+                        q.idx = idx;
+                        q.sectionIdx = si;
+                        q.sectionId = sec.id;
+                        q._idxInSec = qi;
+                        q._uid = 'q-' + sec.id + '-' + qi;
+                        allQuestions.push(q);
+                        qIdMap[q._uid] = q;
+                    });
+                });
+            }
+
+            function renderAll() {
+                buildQuestionIndex();
+                renderSections();
+                updateProgress();
+                restoreAnswers();
+                updateTimerUI();
+                applyTheme();
+                try { state.dark = localStorage.getItem('test_dark') === '1'; } catch (_) {}
+                if (state.dark) document.documentElement.setAttribute('data-theme', 'dark');
+                updateThemeIcon();
+                $('#hero-emoji').textContent = CONFIG.heroEmoji || '📚 ✏️ 🎓';
+                $('#hero-title').textContent = CONFIG.title || 'Interactive Test';
+                $('#hero-subtitle').textContent = CONFIG.heroSubtitle || 'Curriculum · Topics covered';
+                const badges = CONFIG.heroBadges || [];
+                const hb = $('#hero-badges');
+                hb.innerHTML = badges.map(b => `<span class="hero-badge">${b}</span>`).join('');
+                $('#bar-title').textContent = CONFIG.title || 'Test';
+                if (CONFIG.language === 'ar') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.documentElement.setAttribute('lang', 'ar');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.documentElement.setAttribute('lang', 'en');
+                }
+                if (CONFIG.timer && CONFIG.timer > 0) {
+                    $('#timer-chip').hidden = false;
+                    state.timerRemaining = CONFIG.timer;
+                    updateTimerUI();
+                    if (!state.timerInterval) startTimer();
+                } else {
+                    $('#timer-chip').hidden = true;
+                }
+                try {
+                    const n = localStorage.getItem('test_student_name');
+                    if (n) $('#student-name').value = n;
+                    const c = localStorage.getItem('test_student_class');
+                    if (c) $('#student-class').value = c;
+                } catch (_) {}
+            }
+
+            function renderSections() {
+                const container = $('#sections-container');
+                container.innerHTML = '';
+                sections.forEach((sec, si) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.dataset.section = sec.id;
+                    const head = document.createElement('div');
+                    head.className = 'section-head';
+                    head.innerHTML = `
+                <div class="section-badge">${String.fromCharCode(65 + si)}</div>
+                <h2>${esc(sec.title)}</h2>
+                <div class="section-meta">
+                  <span class="type-tag">${sec.questions.length} Q</span>
+                  <span class="sec-prog num" id="sec-prog-${sec.id}">0 / ${sec.questions.length}</span>
+                </div>
+              `;
+                    card.appendChild(head);
+                    if (sec.instructions) {
+                        const inst = document.createElement('div');
+                        inst.className = 'section-instructions';
+                        inst.textContent = sec.instructions;
+                        card.appendChild(inst);
+                    }
+                    sec.questions.forEach((q, qi) => {
+                        const block = document.createElement('div');
+                        block.className = 'q-block';
+                        block.id = q._uid;
+                        block.dataset.qidx = q.idx;
+                        block.dataset.state = 'todo';
+                        const top = document.createElement('div');
+                        top.className = 'q-top';
+                        const dot = document.createElement('span');
+                        dot.className = 'q-dot';
+                        top.appendChild(dot);
+                        const num = document.createElement('span');
+                        num.className = 'q-num';
+                        num.innerHTML = `<b>Q${q.idx + 1}</b> · ${q.type.toUpperCase()}`;
+                        top.appendChild(num);
+                        const pts = document.createElement('span');
+                        pts.className = 'q-points';
+                        pts.textContent = q.points + ' pts';
+                        top.appendChild(pts);
+                        block.appendChild(top);
+                        const txt = document.createElement('div');
+                        txt.className = 'q-text';
+                        txt.innerHTML = esc(q.text);
+                        block.appendChild(txt);
+                        if (q.hint) {
+                            const hint = document.createElement('div');
+                            hint.className = 'q-hint';
+                            hint.textContent = '💡 ' + q.hint;
+                            block.appendChild(hint);
+                        }
+                        const inputArea = document.createElement('div');
+                        inputArea.className = 'q-input';
+                        renderQuestionInput(inputArea, q, sec.id);
+                        block.appendChild(inputArea);
+                        card.appendChild(block);
+                    });
+                    container.appendChild(card);
+                });
+                wireEvents();
+            }
+
+            function renderQuestionInput(container, q, secId) {
+                const uid = q._uid;
+                const ans = state.answers[qsKey(q, secId)];
+                switch (q.type) {
+                    case 'mcq': {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'options';
+                        q.options.forEach((opt, oi) => {
+                            const btn = document.createElement('button');
+                            btn.className = 'option-btn' + (ans === oi ? ' selected' : '');
+                            btn.type = 'button';
+                            btn.dataset.opt = oi;
+                            const mark = document.createElement('span');
+                            mark.className = 'option-mark';
+                            mark.textContent = String.fromCharCode(65 + oi);
+                            btn.appendChild(mark);
+                            const label = document.createElement('span');
+                            label.textContent = opt;
+                            btn.appendChild(label);
+                            btn.addEventListener('click', () => { selectMCQ(q, secId, oi); });
+                            wrap.appendChild(btn);
+                        });
+                        container.appendChild(wrap);
+                        break;
+                    }
+                    case 'tf': {
+                        const row = document.createElement('div');
+                        row.className = 'tf-row';
+                        const tBtn = document.createElement('button');
+                        tBtn.className = 'tf-btn' + (ans === true ? ' sel-t' : '');
+                        tBtn.type = 'button';
+                        tBtn.dataset.val = 'true';
+                        tBtn.innerHTML = '✅ True';
+                        tBtn.addEventListener('click', () => selectTF(q, secId, true));
+                        const fBtn = document.createElement('button');
+                        fBtn.className = 'tf-btn' + (ans === false ? ' sel-f' : '');
+                        fBtn.type = 'button';
+                        fBtn.dataset.val = 'false';
+                        fBtn.innerHTML = '❌ False';
+                        fBtn.addEventListener('click', () => selectTF(q, secId, false));
+                        row.appendChild(tBtn);
+                        row.appendChild(fBtn);
+                        container.appendChild(row);
+                        break;
+                    }
+                    case 'fill': {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'fill-wrap';
+                        const inp = document.createElement('input');
+                        inp.className = 'fill-input';
+                        inp.type = 'text';
+                        inp.placeholder = 'Type your answer…';
+                        inp.value = ans || '';
+                        inp.addEventListener('input', () => {
+                            state.answers[qsKey(q, secId)] = inp.value.trim();
+                            setAnswers(state.answers);
+                            updateProgress();
+                            updateQuestionState(q, secId);
+                        });
+                        wrap.appendChild(inp);
+                        container.appendChild(wrap);
+                        break;
+                    }
+                    case 'multi': {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'options';
+                        const selected = Array.isArray(ans) ? ans : [];
+                        q.options.forEach((opt, oi) => {
+                            const btn = document.createElement('button');
+                            btn.className = 'option-btn multi' + (selected.includes(oi) ? ' selected' : '');
+                            btn.type = 'button';
+                            btn.dataset.opt = oi;
+                            const mark = document.createElement('span');
+                            mark.className = 'option-mark';
+                            const sp = document.createElement('span');
+                            sp.textContent = String.fromCharCode(65 + oi);
+                            mark.appendChild(sp);
+                            btn.appendChild(mark);
+                            const label = document.createElement('span');
+                            label.textContent = opt;
+                            btn.appendChild(label);
+                            btn.addEventListener('click', () => toggleMulti(q, secId, oi));
+                            wrap.appendChild(btn);
+                        });
+                        container.appendChild(wrap);
+                        break;
+                    }
+                    case 'match': {
+                        const grid = document.createElement('div');
+                        grid.className = 'match-grid';
+                        const saved = Array.isArray(ans) ? ans : [];
+                        const rightShuffled = shuffle([...q.right]);
+                        q.left.forEach((left, li) => {
+                            const leftDiv = document.createElement('div');
+                            leftDiv.className = 'match-left';
+                            leftDiv.innerHTML = `<b>${String.fromCharCode(65 + li)}.</b> ${esc(left)}`;
+                            grid.appendChild(leftDiv);
+                            const sel = document.createElement('select');
+                            sel.className = 'sel';
+                            sel.dataset.matchIdx = li;
+                            const blank = document.createElement('option');
+                            blank.value = '';
+                            blank.textContent = '— choose —';
+                            sel.appendChild(blank);
+                            rightShuffled.forEach((r, ri) => {
+                                const opt = document.createElement('option');
+                                opt.value = ri;
+                                opt.textContent = r;
+                                sel.appendChild(opt);
+                            });
+                            if (saved[li] !== undefined && saved[li] !== null && saved[li] !== '') {
+                                const v = saved[li];
+                                if (v >= 0 && v < rightShuffled.length) sel.value = v;
+                            }
+                            sel.addEventListener('change', () => {
+                                const val = sel.value === '' ? null : parseInt(sel.value, 10);
+                                const current = state.answers[qsKey(q, secId)] || [];
+                                current[li] = val;
+                                state.answers[qsKey(q, secId)] = current;
+                                setAnswers(state.answers);
+                                updateProgress();
+                                updateQuestionState(q, secId);
+                            });
+                            grid.appendChild(sel);
+                        });
+                        container.appendChild(grid);
+                        break;
+                    }
+                    case 'order': {
+                        const wrap = document.createElement('div');
+                        const list = document.createElement('div');
+                        list.className = 'order-list';
+                        const saved = Array.isArray(ans) ? ans : [];
+                        const items = q.items.map((it, i) => ({ label: it, idx: i }));
+                        let displayOrder = [];
+                        if (saved.length === q.items.length) {
+                            displayOrder = saved.map(i => items[i]);
+                        } else {
+                            displayOrder = [...items];
+                        }
+                        displayOrder.forEach((item, di) => {
+                            const row = document.createElement('div');
+                            row.className = 'order-item';
+                            const sel = document.createElement('select');
+                            sel.className = 'order-sel';
+                            sel.dataset.orderIdx = di;
+                            for (let i = 1; i <= q.items.length; i++) {
+                                const opt = document.createElement('option');
+                                opt.value = i;
+                                opt.textContent = i;
+                                sel.appendChild(opt);
+                            }
+                            const savedPos = saved.indexOf(item.idx);
+                            if (savedPos !== -1) { sel.value = savedPos + 1; } else { sel.value = di + 1; }
+                            const label = document.createElement('span');
+                            label.className = 'order-label';
+                            label.textContent = esc(item.label);
+                            row.appendChild(sel);
+                            row.appendChild(label);
+                            list.appendChild(row);
+                        });
+                        wrap.appendChild(list);
+                        const warn = document.createElement('div');
+                        warn.className = 'dup-warn';
+                        warn.innerHTML = '⚠️ Each position must be unique.';
+                        wrap.appendChild(warn);
+
+                        function checkOrderDupes() {
+                            const selects = $$('.order-sel', wrap);
+                            const vals = selects.map(s => parseInt(s.value, 10));
+                            const uniq = new Set(vals);
+                            warn.classList.toggle('show', uniq.size !== vals.length);
+                            return uniq.size === vals.length;
+                        }
+
+                        function saveOrder() {
+                            const selects = $$('.order-sel', wrap);
+                            const vals = selects.map(s => parseInt(s.value, 10));
+                            const displayItems = [];
+                            $$('.order-item', wrap).forEach((row) => {
+                                const labelEl = row.querySelector('.order-label');
+                                const idx = q.items.findIndex(it => it === labelEl.textContent);
+                                displayItems.push(idx);
+                            });
+                            if (new Set(vals).size === vals.length) {
+                                state.answers[qsKey(q, secId)] = displayItems;
+                                setAnswers(state.answers);
+                                updateProgress();
+                                updateQuestionState(q, secId);
+                            }
+                        }
+                        $$('.order-sel', wrap).forEach(sel => {
+                            sel.addEventListener('change', () => {
+                                checkOrderDupes();
+                                if (checkOrderDupes()) { saveOrder(); } else {
+                                    state.answers[qsKey(q, secId)] = null;
+                                    setAnswers(state.answers);
+                                    updateProgress();
+                                    updateQuestionState(q, secId);
+                                }
+                            });
+                        });
+                        container.appendChild(wrap);
+                        setTimeout(() => { checkOrderDupes();
+                            if (checkOrderDupes()) saveOrder(); }, 50);
+                        break;
+                    }
+                }
+            }
+
+            function selectMCQ(q, secId, opt) {
+                state.answers[qsKey(q, secId)] = opt;
+                setAnswers(state.answers);
+                const block = $('#' + q._uid);
+                if (block) { $$('.option-btn', block).forEach((btn, i) => { btn.classList.toggle('selected', i === opt); }); }
+                updateProgress();
+                updateQuestionState(q, secId);
+            }
+
+            function selectTF(q, secId, val) {
+                state.answers[qsKey(q, secId)] = val;
+                setAnswers(state.answers);
+                const block = $('#' + q._uid);
+                if (block) {
+                    $$('.tf-btn', block).forEach(btn => {
+                        const bv = btn.dataset.val === 'true';
+                        btn.classList.toggle('sel-t', bv && val === true);
+                        btn.classList.toggle('sel-f', !bv && val === false);
+                    });
+                }
+                updateProgress();
+                updateQuestionState(q, secId);
+            }
+
+            function toggleMulti(q, secId, opt) {
+                const key = qsKey(q, secId);
+                let current = state.answers[key] || [];
+                if (!Array.isArray(current)) current = [];
+                const idx = current.indexOf(opt);
+                if (idx >= 0) current.splice(idx, 1);
+                else current.push(opt);
+                current.sort((a, b) => a - b);
+                state.answers[key] = current;
+                setAnswers(state.answers);
+                const block = $('#' + q._uid);
+                if (block) { $$('.option-btn.multi', block).forEach((btn, i) => { btn.classList.toggle('selected', current
+                            .includes(i)); }); }
+                updateProgress();
+                updateQuestionState(q, secId);
+            }
+
+            function updateQuestionState(q, secId) {
+                const key = qsKey(q, secId);
+                const val = state.answers[key];
+                const block = $('#' + q._uid);
+                if (!block) return;
+                let stateVal = 'todo';
+                if (val !== undefined && val !== null && val !== '' && !(Array.isArray(val) && val.length === 0)) {
+                    if (q.type === 'match' && Array.isArray(val)) {
+                        if (val.every(v => v === null || v === undefined || v === '')) stateVal = 'todo';
+                        else stateVal = 'done';
+                    } else if (q.type === 'order' && Array.isArray(val)) {
+                        if (val.every(v => v === undefined)) stateVal = 'todo';
+                        else stateVal = 'done';
+                    } else { stateVal = 'done'; }
+                }
+                block.dataset.state = stateVal;
+                updateSectionProgress(secId);
+            }
+
+            function updateSectionProgress(secId) {
+                const sec = sections.find(s => s.id === secId);
+                if (!sec) return;
+                let done = 0;
+                sec.questions.forEach(q => {
+                    const key = qsKey(q, secId);
+                    const val = state.answers[key];
+                    if (val !== undefined && val !== null && val !== '' && !(Array.isArray(val) && val.length === 0)) {
+                        if (q.type === 'match' && Array.isArray(val)) { if (val.some(v => v !== null && v !== undefined &&
+                                v !== '')) done++; } else if (q.type === 'order' && Array.isArray(val)) { if (val.some(
+                                v => v !== undefined)) done++; } else done++;
+                    }
+                });
+                const prog = $('#sec-prog-' + secId);
+                if (prog) prog.textContent = done + ' / ' + sec.questions.length;
+            }
+
+            function updateProgress() {
+                const total = allQuestions.length;
+                let done = 0;
+                allQuestions.forEach(q => {
+                    const key = qsKey(q, q.sectionId);
+                    const val = state.answers[key];
+                    if (val !== undefined && val !== null && val !== '' && !(Array.isArray(val) && val.length === 0)) {
+                        if (q.type === 'match' && Array.isArray(val)) { if (val.some(v => v !== null && v !== undefined &&
+                                v !== '')) done++; } else if (q.type === 'order' && Array.isArray(val)) { if (val.some(
+                                v => v !== undefined)) done++; } else done++;
+                    }
+                });
+                const pct = total ? Math.round((done / total) * 100) : 0;
+                const fill = $('#bar-fill');
+                if (fill) fill.style.width = pct + '%';
+                const track = $('#bar-track');
+                if (track) track.setAttribute('aria-valuenow', pct);
+                const count = $('#bar-count');
+                if (count) count.textContent = done + ' / ' + total;
+                updateFab(done, total);
+            }
+
+            function updateFab(done, total) {
+                const fab = $('#fab');
+                if (!fab) return;
+                if (state.submitted || document.getElementById('results').style.display === 'block') { fab.classList.remove(
+                        'show'); return; }
+                const unanswered = allQuestions.filter(q => {
+                    const key = qsKey(q, q.sectionId);
+                    const val = state.answers[key];
+                    return val === undefined || val === null || val === '' || (Array.isArray(val) && val.length === 0);
+                });
+                if (unanswered.length === 0) { fab.classList.remove('show'); return; }
+                fab.classList.add('show');
+                fab.innerHTML = `⬇️ ${unanswered.length} unanswered`;
+                fab.onclick = () => { const first = unanswered[0]; const el = $('#' + first._uid); if (el) el.scrollIntoView(
+                        { behavior: 'smooth', block: 'center' }); };
+            }
+
+            function restoreAnswers() {
+                const saved = getAnswers();
+                Object.keys(saved).forEach(key => { state.answers[key] = saved[key]; });
+                allQuestions.forEach(q => {
+                    const key = qsKey(q, q.sectionId);
+                    const val = state.answers[key];
+                    if (val !== undefined && val !== null) {
+                        const block = $('#' + q._uid);
+                        if (!block) return;
+                        if (q.type === 'mcq') { $$('.option-btn', block).forEach((btn, i) => { btn.classList.toggle(
+                                    'selected', i === val); }); } else if (q.type === 'tf') { $$('.tf-btn', block)
+                                .forEach(btn => { const bv = btn.dataset.val === 'true';
+                                    btn.classList.toggle('sel-t', bv && val === true);
+                                    btn.classList.toggle('sel-f', !bv && val === false); }); } else if (q.type ===
+                            'fill') { const inp = $('.fill-input', block); if (inp) inp.value = val || ''; } else if (
+                            q.type === 'multi') { const selected = Array.isArray(val) ? val : [];
+                            $$('.option-btn.multi', block).forEach((btn, i) => { btn.classList.toggle('selected',
+                                selected.includes(i)); }); } else if (q.type === 'match') { const savedMatch = Array
+                            .isArray(val) ? val : [];
+                            const selects = $$('.sel', block);
+                            selects.forEach((sel, li) => { if (savedMatch[li] !== undefined && savedMatch[li] !==
+                                    null) { const options = $$('option', sel); for (let i = 0; i < options
+                                        .length; i++) { if (parseInt(options[i].value, 10) === savedMatch[
+                                            li]) { sel.value = savedMatch[li]; break; } } } }); } else if (q
+                            .type === 'order') { const savedOrder = Array.isArray(val) ? val : [];
+                            const items = $$('.order-item', block);
+                            items.forEach((row, di) => { const sel = $('.order-sel', row); if (savedOrder[
+                                    di] !== undefined) { const label = $('.order-label', row)
+                                    .textContent;
+                                    const idx = q.items.findIndex(it => it === label);
+                                    const pos = savedOrder.indexOf(idx); if (pos !== -1) sel.value =
+                                        pos + 1; } }); }
+                        updateQuestionState(q, q.sectionId);
+                    }
+                });
+                updateProgress();
+                sections.forEach(sec => updateSectionProgress(sec.id));
+            }
+
+            function startTimer() {
+                if (state.timerInterval) return;
+                state.timerInterval = setInterval(() => {
+                    if (state.submitted) return;
+                    state.timerRemaining--;
+                    updateTimerUI();
+                    if (state.timerRemaining <= 0) { clearInterval(state.timerInterval);
+                        state.timerInterval = null; if (!state.submitted) handleSubmit(); }
+                }, 1000);
+            }
+
+            function updateTimerUI() {
+                const chip = $('#timer-chip');
+                if (!chip || CONFIG.timer <= 0) return;
+                const rem = state.timerRemaining;
+                const mins = Math.floor(rem / 60);
+                const secs = rem % 60;
+                chip.textContent = `⏱️ ${mins}:${String(secs).padStart(2, '0')}`;
+                chip.hidden = false;
+                chip.className = 'chip timer-chip num';
+                if (rem < 300) chip.classList.add('danger');
+                else if (rem < 600) chip.classList.add('warn');
+            }
+
+            function handleSubmit() {
+                if (state.submitted) return;
+                const unanswered = allQuestions.filter(q => {
+                    const key = qsKey(q, q.sectionId);
+                    const val = state.answers[key];
+                    return val === undefined || val === null || val === '' || (Array.isArray(val) && val.length === 0);
+                });
+                if (unanswered.length > 0) {
+                    const overlay = $('#overlay');
+                    overlay.classList.add('show');
+                    $('#modal-body').textContent =
+                        `You have ${unanswered.length} unanswered question${unanswered.length > 1 ? 's' : ''}. Submit anyway?`;
+                    $('#modal-submit').textContent = '✅ Yes, submit';
+                    $('#modal-review').textContent = '📋 Review first';
+                    $('#modal-submit').onclick = () => { overlay.classList.remove('show');
+                        doSubmit(); };
+                    $('#modal-review').onclick = () => { overlay.classList.remove('show'); const first = unanswered[
+                            0]; const el = $('#' + first._uid); if (el) el.scrollIntoView({ behavior: 'smooth',
+                            block: 'center' }); };
+                    return;
+                }
+                doSubmit();
+            }
+
+            function doSubmit() {
+                if (state.submitted) return;
+                state.submitted = true;
+                if (state.timerInterval) { clearInterval(state.timerInterval);
+                    state.timerInterval = null; }
+                const name = $('#student-name').value.trim();
+                const cls = $('#student-class').value.trim();
+                try { localStorage.setItem('test_student_name', name);
+                    localStorage.setItem('test_student_class', cls); } catch (_) {}
+                const results = gradeAll();
+                state.results = results;
+                showResults(results, name, cls);
+                if (CONFIG.showConfetti && results.passed) { launchConfetti(); }
+                $('#test-form').style.display = 'none';
+                $('#results').style.display = 'block';
+                $('#fab').classList.remove('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function gradeAll() {
+                let totalPts = 0;
+                let earnedPts = 0;
+                let correctCount = 0;
+                let totalCount = allQuestions.length;
+                let details = [];
+                allQuestions.forEach((q) => {
+                    const key = qsKey(q, q.sectionId);
+                    const ans = state.answers[key];
+                    const result = gradeQuestion(q, ans);
+                    totalPts += q.points || 1;
+                    if (result.earned !== undefined) earnedPts += result.earned;
+                    if (result.correct) correctCount++;
+                    details.push({ idx: q.idx, q, result, userAnswer: ans });
+                });
+                const pct = totalPts > 0 ? Math.round((earnedPts / totalPts) * 100) : 0;
+                const passed = pct >= CONFIG.passMark;
+                const secBreakdown = sections.map(sec => {
+                    const qs = sec.questions;
+                    let secEarned = 0;
+                    let secTotal = 0;
+                    qs.forEach(q => { const key = qsKey(q, sec.id);
+                        const ans = state.answers[key];
+                        const res = gradeQuestion(q, ans);
+                        secEarned += res.earned || 0;
+                        secTotal += q.points || 1; });
+                    return { id: sec.id, title: sec.title, earned: secEarned, total: secTotal, pct: secTotal > 0 ? Math
+                            .round((secEarned / secTotal) * 100) : 0 };
+                });
+                const topicMap = {};
+                allQuestions.forEach(q => { const topic = q.topic || 'general'; if (!topicMap[topic]) topicMap[topic] = {
+                        earned: 0, total: 0 }; const key = qsKey(q, q.sectionId);
+                    const ans = state.answers[key];
+                    const res = gradeQuestion(q, ans);
+                    topicMap[topic].earned += res.earned || 0;
+                    topicMap[topic].total += q.points || 1; });
+                const topicBreakdown = Object.keys(topicMap).map(t => ({ topic: t, earned: topicMap[t].earned, total: topicMap[
+                        t].total, pct: topicMap[t].total > 0 ? Math.round((topicMap[t].earned / topicMap[t].total) * 100) :
+                        0 }));
+                let gradeLabel = '—';
+                const bands = CONFIG.gradeBands || [];
+                for (const b of bands) { if (pct >= b.min) { gradeLabel = b.label; break; } }
+                let timeTaken = 0;
+                if (state.startTime) { timeTaken = Math.round((Date.now() - state.startTime) / 1000); }
+                const msgs = passed ? CONFIG.messages.pass : CONFIG.messages.fail;
+                const msg = msgs.length ? msgs[Math.floor(Math.random() * msgs.length)] : (passed ? 'Well done!' :
+                    'Keep practising!');
+                return { totalPts, earnedPts, pct, passed, correctCount, totalCount, details, secBreakdown, topicBreakdown,
+                    gradeLabel, msg, timeTaken, name: $('#student-name').value.trim() || 'Student' };
+            }
+
+            function gradeQuestion(q, ans) {
+                const pts = q.points || 1;
+                if (ans === undefined || ans === null || ans === '' || (Array.isArray(ans) && ans.length === 0)) { return {
+                        earned: 0, correct: false, details: 'Not answered' }; }
+                switch (q.type) {
+                    case 'mcq':
+                        return { earned: ans === q.correct ? pts : 0, correct: ans === q.correct };
+                    case 'tf':
+                        return { earned: ans === q.correct ? pts : 0, correct: ans === q.correct };
+                    case 'fill': {
+                        const match = q.correct.some(c => String(ans).trim().toLowerCase() === String(c).trim()
+                            .toLowerCase());
+                        return { earned: match ? pts : 0, correct: match };
+                    }
+                    case 'multi': {
+                        const correct = q.correct || [];
+                        const selected = Array.isArray(ans) ? ans : [];
+                        const allCorrect = correct.every(c => selected.includes(c)) && selected.every(s => correct
+                            .includes(s));
+                        let earned = 0;
+                        if (allCorrect) earned = pts;
+                        else { const hasCorrect = selected.some(s => correct.includes(s));
+                            const hasWrong = selected.some(s => !correct.includes(s)); if (hasCorrect && !hasWrong)
+                                earned = pts * 0.5; else if (hasCorrect && hasWrong) earned = pts * 0.25; else earned =
+                                0; }
+                        return { earned, correct: allCorrect };
+                    }
+                    case 'match': {
+                        const saved = Array.isArray(ans) ? ans : [];
+                        let correct = 0;
+                        const total = q.left.length;
+                        q.correct.forEach((c, i) => { if (saved[i] === c) correct++; });
+                        const earned = pts * (correct / total);
+                        return { earned, correct: earned === pts, details: `${correct}/${total}` };
+                    }
+                    case 'order': {
+                        const saved = Array.isArray(ans) ? ans : [];
+                        let correct = 0;
+                        const total = q.items.length;
+                        q.correct.forEach((c, i) => { if (saved[i] === c) correct++; });
+                        const earned = pts * (correct / total);
+                        return { earned, correct: earned === pts, details: `${correct}/${total}` };
+                    }
+                    default:
+                        return { earned: 0, correct: false };
+                }
+            }
+
+            function showResults(results, name, cls) {
+                const pct = results.pct;
+                const circumference = 2 * Math.PI * 74;
+                const offset = circumference - (pct / 100) * circumference;
+                const ring = $('#ring-bar');
+                if (ring) ring.style.strokeDasharray = circumference + ' ' + circumference;
+                if (ring) ring.style.strokeDashoffset = offset;
+                $('#res-pct').textContent = pct + '%';
+                $('#res-grade').textContent = results.gradeLabel;
+                const pill = $('#res-passpill');
+                pill.className = 'passpill ' + (results.passed ? 'pass' : 'fail');
+                pill.innerHTML = results.passed ? '✅ Pass' : '❌ Fail';
+                const nameEl = $('#res-name');
+                const n = name || 'Student';
+                nameEl.textContent = results.passed ? `🎉 ${n}, you passed!` : `📚 ${n}, keep going!`;
+                $('#res-msg').textContent = results.msg;
+                const sub = $('#res-sub');
+                const mins = Math.floor(results.timeTaken / 60);
+                const secs = results.timeTaken % 60;
+                sub.innerHTML = `
+              <span>📝 ${results.earnedPts} / ${results.totalPts} pts</span>
+              <span>✅ ${results.correctCount} / ${results.totalCount} correct</span>
+              <span>⏱️ ${mins}m ${secs}s</span>
+            `;
+                const stats = $('#stats-row');
+                stats.innerHTML = `
+              <div class="stat s-brand"><div class="stat-num num">${results.pct}%</div><div class="stat-label">Score</div></div>
+              <div class="stat s-ok"><div class="stat-num num">${results.earnedPts}</div><div class="stat-label">Earned</div></div>
+              <div class="stat ${results.passed ? 's-ok' : 's-bad'}"><div class="stat-num num">${results.passed ? '✅' : '❌'}</div><div class="stat-label">${results.passed ? 'Pass' : 'Fail'}</div></div>
+              <div class="stat s-skip"><div class="stat-num num">${results.totalCount - results.correctCount}</div><div class="stat-label">Incorrect</div></div>
+            `;
+                const secBd = $('#section-breakdown');
+                secBd.innerHTML = results.secBreakdown.map(s => {
+                    const lvl = s.pct >= 70 ? 'lvl-hi' : s.pct >= 40 ? 'lvl-mid' : 'lvl-lo';
+                    return `
+                <div class="bd-row">
+                  <div class="bd-name">${esc(s.title)} <small>${s.earned}/${s.total} pts</small></div>
+                  <div class="bd-val num">${s.pct}%</div>
+                  <div class="bd-bar ${lvl}"><span style="width:${s.pct}%"></span></div>
+                </div>
+              `;
+                }).join('');
+                const topicBd = $('#topic-breakdown');
+                topicBd.innerHTML = results.topicBreakdown.map(t => {
+                    const lvl = t.pct >= 70 ? 'lvl-hi' : t.pct >= 40 ? 'lvl-mid' : 'lvl-lo';
+                    const focus = t.pct < 60 ? '<span class="focus-tag">🔴 review</span>' : '';
+                    return `
+                <div class="bd-row">
+                  <div class="bd-name">${esc(t.topic)} <small>${t.earned}/${t.total} pts</small> ${focus}</div>
+                  <div class="bd-val num">${t.pct}%</div>
+                  <div class="bd-bar ${lvl}"><span style="width:${t.pct}%"></span></div>
+                </div>
+              `;
+                }).join('');
+                renderReview(results);
+                setupReviewTools(results);
+            }
+
+            function renderReview(results, filter = 'all', search = '') {
+                const container = $('#review-container');
+                let items = results.details;
+                if (filter === 'correct') items = items.filter(d => d.result.correct);
+                else if (filter === 'wrong') items = items.filter(d => !d.result.correct && d.result.earned !== undefined && d
+                    .result.earned < (d.q.points || 1) && d.result.earned !== 0);
+                else if (filter === 'partial') items = items.filter(d => d.result.earned !== undefined && d.result.earned > 0 &&
+                    d.result.earned < (d.q.points || 1));
+                else if (filter === 'skip') items = items.filter(d => d.userAnswer === undefined || d.userAnswer === null || d
+                    .userAnswer === '' || (Array.isArray(d.userAnswer) && d.userAnswer.length === 0));
+                if (search.trim()) {
+                    const s = search.trim().toLowerCase();
+                    items = items.filter(d => d.q.text.toLowerCase().includes(s) || (d.q.topic || '').toLowerCase()
+                        .includes(s) || (d.q.explanation || '').toLowerCase().includes(s));
+                }
+                if (items.length === 0) { container.innerHTML =
+                    `<div class="empty-note">No questions match your filter.</div>`; return; }
+                container.innerHTML = items.map((d) => {
+                    const q = d.q;
+                    const res = d.result;
+                    const isCorrect = res.correct;
+                    const isPartial = res.earned !== undefined && res.earned > 0 && res.earned < (q.points || 1);
+                    const isSkip = d.userAnswer === undefined || d.userAnswer === null || d.userAnswer === '' || (Array
+                        .isArray(d.userAnswer) && d.userAnswer.length === 0);
+                    let cls = 'r-skip';
+                    let ico = '⏭️';
+                    if (isCorrect) { cls = 'r-correct';
+                        ico = '✅'; } else if (isPartial) { cls = 'r-partial';
+                        ico = '⚠️'; } else if (!isSkip) { cls = 'r-wrong';
+                        ico = '❌'; }
+                    const userDisplay = formatUserAnswer(q, d.userAnswer);
+                    const correctDisplay = formatCorrectAnswer(q);
+                    return `
+                <div class="review-card ${cls}" data-qidx="${d.idx}">
+                  <div class="review-head" onclick="this.closest('.review-card').classList.toggle('open')">
+                    <div class="r-ico">${ico}</div>
+                    <div class="r-q">
+                      <span class="r-meta">Q${d.idx+1} · ${q.type.toUpperCase()} · ${q.points} pts</span>
+                      ${esc(q.text)}
+                    </div>
+                    <div class="r-chev">▼</div>
+                  </div>
+                  <div class="review-body">
+                    <div class="ans-line ans-your ${isCorrect ? 'ok' : (isPartial ? '' : 'bad')}">
+                      <span class="ans-k">Your answer:</span>
+                      <span class="ans-v">${userDisplay}</span>
+                    </div>
+                    ${!isCorrect ? `
+                      <div class="ans-line ans-correct">
+                        <span class="ans-k">Correct:</span>
+                        <span class="ans-v">${correctDisplay}</span>
+                      </div>
+                    ` : ''}
+                    ${q.explanation ? `<div class="exp-line">💡 ${esc(q.explanation)}</div>` : ''}
+                    ${res.details && !isCorrect ? `<div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">${res.details}</div>` : ''}
+                  </div>
+                </div>
+              `;
+                }).join('');
+                if (filter !== 'all' || search.trim()) { const first = container.querySelector('.review-card'); if (first)
+                        first.classList.add('open'); }
+            }
+
+            function formatUserAnswer(q, ans) {
+                if (ans === undefined || ans === null || ans === '' || (Array.isArray(ans) && ans.length === 0)) { return
+                        '— not answered —'; }
+                switch (q.type) {
+                    case 'mcq':
+                        return q.options[ans] || '?';
+                    case 'tf':
+                        return ans ? 'True' : 'False';
+                    case 'fill':
+                        return String(ans);
+                    case 'multi':
+                        return (Array.isArray(ans) ? ans : []).map(i => q.options[i] || '?').join(', ') || '—';
+                    case 'match': { const saved = Array.isArray(ans) ? ans : []; return saved.map((v, i) => { if (v !==
+                                null && v !== undefined && v !== '') { return `${q.left[i]} → ${q.right[v] || '?'}`; }
+                                return `${q.left[i]} → —`; }).join('; '); }
+                    case 'order': { const saved = Array.isArray(ans) ? ans : []; return saved.map(i => q.items[i] || '?')
+                            .join(' → '); }
+                    default:
+                        return String(ans);
+                }
+            }
+
+            function formatCorrectAnswer(q) {
+                switch (q.type) {
+                    case 'mcq':
+                        return q.options[q.correct] || '?';
+                    case 'tf':
+                        return q.correct ? 'True' : 'False';
+                    case 'fill':
+                        return q.correct.join(' / ');
+                    case 'multi':
+                        return (q.correct || []).map(i => q.options[i] || '?').join(', ');
+                    case 'match':
+                        return q.left.map((l, i) => `${l} → ${q.right[q.correct[i]] || '?'}`).join('; ');
+                    case 'order':
+                        return q.correct.map(i => q.items[i] || '?').join(' → ');
+                    default:
+                        return '—';
+                }
+            }
+
+            function setupReviewTools(results) {
+                const filterBar = $('#filter-bar');
+                const filters = [
+                    { id: 'all', label: '📋 All' },
+                    { id: 'correct', label: '✅ Correct' },
+                    { id: 'wrong', label: '❌ Wrong' },
+                    { id: 'partial', label: '⚠️ Partial' },
+                    { id: 'skip', label: '⏭️ Skipped' },
+                ];
+                filterBar.innerHTML = filters.map(f =>
+                    `<button class="filter-btn ${f.id === 'all' ? 'active' : ''}" data-filter="${f.id}">${f.label}</button>`
+                    ).join('');
+                let currentFilter = 'all';
+                let currentSearch = '';
+                filterBar.addEventListener('click', (e) => { const btn = e.target.closest('.filter-btn'); if (!btn)
+                        return;
+                    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    renderReview(results, currentFilter, currentSearch); });
+                const search = $('#review-search');
+                search.addEventListener('input', () => { currentSearch = search.value;
+                    renderReview(results, currentFilter, currentSearch); });
+            }
+
+            function launchConfetti() {
+                const container = $('#confetti');
+                container.innerHTML = '';
+                const colors = ['#f44336', '#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#009688', '#4caf50', '#ffeb3b',
+                    '#ff9800', '#ff5722'
+                ];
+                const count = 180;
+                for (let i = 0; i < count; i++) { const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    const size = 6 + Math.random() * 10;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.cssText = `
+                left: ${Math.random() * 100}%;
+                width: ${size}px;
+                height: ${size * 1.6}px;
+                background: ${color};
+                border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                animation-duration: ${2 + Math.random() * 3}s;
+                animation-delay: ${Math.random() * 2}s;
+                transform: rotate(${Math.random() * 360}deg);
+              `;
+                    container.appendChild(piece); }
+                setTimeout(() => { container.innerHTML = ''; }, 6000);
+            }
+
+            function wireEvents() {
+                $('#submit-btn').addEventListener('click', handleSubmit);
+                $('#overlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) { $('#overlay')
+                        .classList.remove('show'); } });
+                $('#theme-toggle').addEventListener('click', toggleDark);
+                $('#print-btn').addEventListener('click', () => window.print());
+                $('#copy-btn').addEventListener('click', copySummary);
+                $('#retry-btn').addEventListener('click', () => {
+                    if (confirm('Start a new attempt? Your current answers will be cleared.')) {
+                        state.answers = {};
+                        state.submitted = false;
+                        state.results = null;
+                        try { localStorage.removeItem('test_answers'); } catch (_) {}
+                        $('#test-form').style.display = 'block';
+                        $('#results').style.display = 'none';
+                        if (CONFIG.timer > 0) { state.timerRemaining = CONFIG.timer; if (state.timerInterval) {
+                                clearInterval(state.timerInterval);
+                                state.timerInterval = null; }
+                            startTimer();
+                            updateTimerUI(); }
+                        renderAll();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+                $('#student-name').addEventListener('change', () => { try { localStorage.setItem('test_student_name', $(
+                        '#student-name').value.trim()); } catch (_) {} });
+                $('#student-class').addEventListener('change', () => { try { localStorage.setItem('test_student_class', $(
+                        '#student-class').value.trim()); } catch (_) {} });
+            }
+
+            function copySummary() {
+                const r = state.results;
+                if (!r) return;
+                const name = r.name || 'Student';
+                const lines = [
+                    `📊 Test Summary — ${CONFIG.title}`,
+                    `👤 ${name}`,
+                    `📈 Score: ${r.pct}% (${r.earnedPts}/${r.totalPts} pts)`,
+                    `✅ ${r.passed ? 'Pass' : 'Fail'} (pass mark: ${CONFIG.passMark}%)`,
+                    `📝 ${r.correctCount}/${r.totalCount} correct`,
+                    `⏱️ ${Math.floor(r.timeTaken/60)}m ${r.timeTaken%60}s`,
+                    '',
+                    '📚 Section breakdown:',
+                ];
+                r.secBreakdown.forEach(s => { lines.push(`  ${s.title}: ${s.earned}/${s.total} pts (${s.pct}%)`); });
+                lines.push('', '🎯 Topic breakdown:');
+                r.topicBreakdown.forEach(t => { lines.push(`  ${t.topic}: ${t.earned}/${t.total} pts (${t.pct}%)`); });
+                lines.push('', '📋 Review:');
+                r.details.forEach((d) => { const q = d.q;
+                    const status = d.result.correct ? '✅' : (d.result.earned > 0 ? '⚠️' : '❌');
+                    lines.push(`  Q${d.idx+1} ${status} ${esc(q.text)}`); });
+                const text = lines.join('\n');
+                navigator.clipboard.writeText(text).then(() => { alert('📄 Summary copied to clipboard!'); }).catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    alert('📄 Summary copied to clipboard!');
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                state.startTime = Date.now();
+                renderAll();
+                if (CONFIG.timer > 0) { startTimer(); }
+            });
+        })();
+    </script>
+</body>
+</html>
