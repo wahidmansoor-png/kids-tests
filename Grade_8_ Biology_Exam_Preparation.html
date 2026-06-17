@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  INTERACTIVE TEST TEMPLATE  ·  v2  ·  Reusable for any subject & grade
+═══════════════════════════════════════════════════════════════════════════════
+
+  WORKS 100% OFFLINE · NO INTERNET · NO LIBRARIES · ONE FILE · OPEN IN ANY BROWSER
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f766e">
+<title>Grade 8 – Biology Exam Preparation</title>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEMING — you normally never touch this. Change the colour in CONFIG instead.
+   Every shade below is derived automatically from a single --accent value
+   using color-mix(), so one colour re-themes the whole page.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --accent:#0f766e;                /* overridden by CONFIG.theme at load        */
+  --accent-d:#0b5c55;              /* fallback dark accent (recomputed below)   */
+
+  /* surfaces & text (light) */
+  --bg:#eef1f7; --surface:#ffffff; --surface-2:#f7f8fc;
+  --text:#0f172a; --text-2:#334155; --muted:#64748b; --faint:#94a3b8;
+  --border:#e4e8f0; --border-2:#cbd5e1;
+
+  /* semantic */
+  --ok:#15803d; --ok-bg:#f0fdf4; --ok-bd:#bbf7d0;
+  --bad:#b91c1c; --bad-bg:#fef2f2; --bad-bd:#fecaca;
+  --warn:#b45309; --warn-bg:#fffbeb; --warn-bd:#fde68a;
+
+  /* shape & depth */
+  --r-sm:9px; --r:12px; --r-lg:16px; --r-xl:22px; --r-pill:999px;
+  --sh-1:0 1px 2px rgba(15,23,42,.06),0 4px 14px rgba(15,23,42,.06);
+  --sh-2:0 8px 30px rgba(15,23,42,.12);
+  --ring:0 0 0 4px color-mix(in srgb, var(--accent), transparent 70%);
+
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji",sans-serif;
+
+  /* derived accent shades (fallbacks first, color-mix wins where supported) */
+  --acc-d:var(--accent-d);
+  --acc-d:color-mix(in srgb, var(--accent), #04060f 30%);
+  --acc-weak:#eef1ff; --acc-weak:color-mix(in srgb, var(--accent), var(--surface) 89%);
+  --acc-soft:#e4e8ff; --acc-soft:color-mix(in srgb, var(--accent), var(--surface) 80%);
+  --acc-text:var(--accent); --acc-text:color-mix(in srgb, var(--accent), #04060f 18%);
+  --hero-mid:#0b4a45; --hero-mid:color-mix(in srgb, var(--accent), #0b1222 42%);
+}
+:root[data-theme="dark"]{
+  --bg:#0a0f1d; --surface:#141a2b; --surface-2:#1b2336;
+  --text:#eef2fb; --text-2:#cdd6e6; --muted:#94a3b8; --faint:#5d6b85;
+  --border:#27304a; --border-2:#3a4663;
+  --ok:#5fd28a; --ok-bg:#0e2418; --ok-bd:#1c4a30;
+  --bad:#f78b8b; --bad-bg:#2a1414; --bad-bd:#6e2626;
+  --warn:#fbbf24; --warn-bg:#2a1f07; --warn-bd:#6b4406;
+  --sh-1:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35);
+  --sh-2:0 10px 36px rgba(0,0,0,.5);
+  --acc-text:color-mix(in srgb, var(--accent), white 28%);
+  --acc-weak:color-mix(in srgb, var(--accent), var(--surface) 82%);
+  --acc-soft:color-mix(in srgb, var(--accent), var(--surface) 70%);
+  --hero-mid:color-mix(in srgb, var(--accent), #05080f 35%);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;
+     line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+button{font-family:inherit;}
+.tnum{font-variant-numeric:tabular-nums;}
+
+.skip-link{position:absolute;left:-999px;top:0;z-index:100;background:var(--accent);color:#fff;
+           padding:10px 16px;border-radius:0 0 var(--r) 0;font-weight:700;}
+.skip-link:focus{left:0;}
+
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--r-sm);}
+
+/* ── HERO ──────────────────────────────────────────────────────────────────── */
+.hero{position:relative;overflow:hidden;color:#fff;text-align:center;
+      padding:2.4rem 1rem 3.6rem;
+      background:radial-gradient(120% 120% at 50% -10%, var(--hero-mid) 0%, #0b1222 70%);}
+.hero::before{content:'';position:absolute;inset:0;opacity:.5;
+  background:url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3C/g%3E%3C/svg%3E");}
+.hero::after{content:'';position:absolute;left:50%;top:-40%;width:560px;height:560px;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent), transparent 35%) 0%, transparent 60%);
+  filter:blur(10px);opacity:.55;}
+.hero>*{position:relative;}
+.hero .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+               color:color-mix(in srgb, var(--accent), white 55%);margin-bottom:.7rem;}
+.hero h1{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;}
+.hero h1::after{content:'';display:block;width:56px;height:4px;border-radius:4px;margin:.7rem auto 0;
+  background:linear-gradient(90deg, var(--accent), color-mix(in srgb,var(--accent),white 40%));}
+.hero .sub{font-size:.96rem;opacity:.82;margin-top:.7rem;max-width:42ch;margin-inline:auto;}
+.hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem 1.3rem;margin-top:1.3rem;
+           font-size:.82rem;opacity:.9;}
+.hero-meta span{display:inline-flex;align-items:center;gap:.4rem;}
+.hero-meta svg{width:15px;height:15px;opacity:.85;}
+.theme-toggle{position:absolute;top:1rem;right:1rem;z-index:5;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;}
+.theme-toggle:hover{background:rgba(255,255,255,.2);transform:rotate(-15deg);}
+.theme-toggle svg{width:19px;height:19px;}
+
+/* ── STICKY PROGRESS ───────────────────────────────────────────────────────── */
+.progress{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--surface), transparent 8%);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.progress-inner{max-width:840px;margin:0 auto;padding:.6rem 1rem;display:flex;align-items:center;gap:1rem;}
+.prog-track{flex:1;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;cursor:pointer;
+  box-shadow:inset 0 0 0 1px var(--border);}
+.prog-track:hover{box-shadow:inset 0 0 0 1px var(--border-2);}
+.prog-fill{height:100%;width:0;border-radius:99px;transition:width .35s cubic-bezier(.22,1,.36,1);
+  background:linear-gradient(90deg, var(--accent), color-mix(in srgb,var(--accent),white 28%));}
+.prog-label{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.timer{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:var(--text-2);
+  white-space:nowrap;padding:.25rem .6rem;border-radius:99px;border:1px solid var(--border);}
+.timer svg{width:15px;height:15px;color:var(--muted);}
+.timer.low{color:#fff;background:var(--bad);border-color:var(--bad);animation:pulse 1s infinite;}
+.timer.low svg{color:#fff;}
+@keyframes pulse{50%{opacity:.55;}}
+
+/* ── LAYOUT ────────────────────────────────────────────────────────────────── */
+.wrap{max-width:840px;margin:0 auto;padding:0 1rem 3rem;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+      box-shadow:var(--sh-1);padding:1.5rem;margin-top:1.4rem;}
+.first-card{margin-top:-1.8rem;position:relative;}
+
+/* ── SECTION HEADER ────────────────────────────────────────────────────────── */
+.sec-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+.sec-badge{width:36px;height:36px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:.95rem;color:#fff;
+  background:linear-gradient(135deg, var(--accent), var(--acc-d));box-shadow:var(--sh-1);}
+.sec-badge svg{width:18px;height:18px;}
+.sec-head h2{font-size:1.1rem;font-weight:800;letter-spacing:-.01em;color:var(--text);}
+.count-tag{margin-left:auto;font-size:.72rem;font-weight:700;color:var(--acc-text);
+  background:var(--acc-weak);padding:.25rem .7rem;border-radius:var(--r-pill);white-space:nowrap;}
+.sec-instruction{font-size:.86rem;color:var(--muted);margin-top:.55rem;}
+
+/* ── QUESTION ──────────────────────────────────────────────────────────────── */
+.q-block{padding:1.3rem 0;border-top:1px solid var(--border);}
+.q-list .q-block:first-child{border-top:none;padding-top:1.3rem;}
+.q-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:.45rem;display:flex;align-items:center;gap:.5rem;}
+.q-eyebrow .topic{color:var(--muted);}
+.q-text{font-size:1.02rem;font-weight:600;color:var(--text);line-height:1.55;margin-bottom:.9rem;}
+.q-block.locked .opt,.q-block.locked .tf-btn,.q-block.locked .fill,
+.q-block.locked .m-sel,.q-block.locked .ord-up,.q-block.locked .ord-down{pointer-events:none;opacity:.92;}
+
+/* MCQ */
+.opts{display:flex;flex-direction:column;gap:.5rem;}
+.opt{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;cursor:pointer;
+  background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);
+  padding:.7rem .85rem;font-size:.95rem;color:var(--text-2);transition:border-color .15s,background .15s,transform .08s;}
+.opt:hover{border-color:var(--border-2);background:var(--surface-2);}
+.opt:active{transform:scale(.995);}
+.opt-key{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:.8rem;color:var(--muted);background:var(--surface-2);
+  border:1px solid var(--border);}
+.opt-txt{flex:1;}
+.opt-mark{flex-shrink:0;width:20px;height:20px;color:var(--accent);opacity:0;transform:scale(.6);
+  transition:opacity .15s,transform .15s;}
+.opt-mark svg{width:20px;height:20px;}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--acc-weak);color:var(--acc-text);font-weight:600;}
+.opt[aria-pressed="true"] .opt-key{background:var(--accent);border-color:var(--accent);color:#fff;}
+.opt[aria-pressed="true"] .opt-mark{opacity:1;transform:scale(1);}
+
+/* True / False */
+.tf{display:flex;gap:.7rem;}
+.tf-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;cursor:pointer;
+  background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:.75rem;
+  font-weight:800;font-size:.95rem;color:var(--text-2);transition:all .15s;}
+.tf-btn svg{width:18px;height:18px;}
+.tf-btn:hover{border-color:var(--border-2);background:var(--surface-2);}
+.tf-btn.tf-true[aria-pressed="true"]{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);}
+.tf-btn.tf-false[aria-pressed="true"]{border-color:var(--bad);background:var(--bad-bg);color:var(--bad);}
+
+/* Fill */
+.fill{width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:var(--r);
+  font-size:.97rem;background:var(--surface);color:var(--text);transition:border-color .15s;}
+.fill::placeholder{color:var(--faint);}
+.fill:focus{outline:none;border-color:var(--accent);box-shadow:var(--ring);}
+
+/* Match */
+.match{display:flex;flex-direction:column;gap:.55rem;}
+.m-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;align-items:center;}
+.m-term{font-size:.92rem;font-weight:600;color:var(--text-2);padding:.65rem .8rem;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);}
+.m-sel,.ord-sel{width:100%;padding:.6rem .7rem;border:1.5px solid var(--border);border-radius:var(--r-sm);
+  font-size:.9rem;background:var(--surface);color:var(--text);cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .65rem center;padding-right:1.9rem;}
+.m-sel:focus{outline:none;border-color:var(--accent);box-shadow:var(--ring);}
+
+/* Order */
+.ord-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.ord-row{display:flex;align-items:center;gap:.65rem;background:var(--surface);
+  border:1.5px solid var(--border);border-radius:var(--r);padding:.55rem .7rem;cursor:grab;
+  transition:border-color .15s,box-shadow .15s,transform .12s,opacity .15s;}
+.ord-row:hover{border-color:var(--border-2);}
+.ord-row.dragging{opacity:.5;box-shadow:var(--sh-2);cursor:grabbing;}
+.ord-row.over{border-color:var(--accent);border-style:dashed;}
+.ord-grip{color:var(--faint);display:flex;flex-shrink:0;}
+.ord-grip svg{width:18px;height:18px;}
+.ord-pos{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:.82rem;color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--acc-d));}
+.ord-lbl{flex:1;font-size:.93rem;color:var(--text-2);font-weight:500;}
+.ord-moves{display:flex;flex-direction:column;gap:2px;flex-shrink:0;}
+.ord-up,.ord-down{width:26px;height:20px;border:1px solid var(--border);background:var(--surface-2);
+  border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);}
+.ord-up:hover,.ord-down:hover{border-color:var(--accent);color:var(--accent);}
+.ord-up svg,.ord-down svg{width:14px;height:14px;}
+
+/* Practice-mode check + inline feedback */
+.check-btn{margin-top:.9rem;display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;
+  border:1.5px solid var(--accent);color:var(--acc-text);background:var(--surface);font-weight:700;
+  font-size:.85rem;padding:.5rem 1rem;border-radius:var(--r-pill);transition:background .15s;}
+.check-btn:hover{background:var(--acc-weak);}
+.check-btn svg{width:15px;height:15px;}
+.q-fb{margin-top:.9rem;padding:.8rem 1rem;border-radius:var(--r);font-size:.88rem;line-height:1.55;
+  border:1px solid var(--border);}
+.q-fb.correct{background:var(--ok-bg);border-color:var(--ok-bd);}
+.q-fb.wrong{background:var(--bad-bg);border-color:var(--bad-bd);}
+.q-fb.skip{background:var(--warn-bg);border-color:var(--warn-bd);}
+.q-fb .fb-head{display:flex;align-items:center;gap:.45rem;font-weight:800;margin-bottom:.35rem;}
+.q-fb.correct .fb-head{color:var(--ok);}
+.q-fb.wrong .fb-head{color:var(--bad);}
+.q-fb.skip .fb-head{color:var(--warn);}
+.q-fb svg{width:17px;height:17px;}
+.q-fb .fb-correct{color:var(--text-2);}
+.q-fb .fb-correct b{color:var(--ok);}
+.q-fb .fb-exp{color:var(--muted);margin-top:.35rem;padding-top:.35rem;border-top:1px dashed var(--border-2);}
+
+/* ── SUBMIT ────────────────────────────────────────────────────────────────── */
+.submit-card{text-align:center;}
+.submit-card p{color:var(--muted);font-size:.88rem;margin-bottom:1rem;}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;border:none;color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--acc-d));
+  padding:.85rem 2.4rem;border-radius:var(--r);font-size:1.02rem;font-weight:800;
+  box-shadow:0 6px 18px color-mix(in srgb,var(--accent),transparent 60%);transition:transform .12s,box-shadow .12s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px color-mix(in srgb,var(--accent),transparent 55%);}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary svg{width:18px;height:18px;}
+
+/* ── RESULTS ───────────────────────────────────────────────────────────────── */
+#results-view[hidden]{display:none;}
+.score-panel{position:relative;overflow:hidden;border-radius:var(--r-xl);color:#fff;padding:2.2rem 1.5rem;
+  text-align:center;margin-top:1.4rem;
+  background:radial-gradient(120% 130% at 50% -20%, var(--hero-mid), #0b1222 75%);box-shadow:var(--sh-2);}
+.score-panel::after{content:'';position:absolute;left:50%;top:-50%;width:480px;height:480px;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb,var(--accent),transparent 45%), transparent 60%);}
+.score-panel>*{position:relative;}
+.ring-wrap{width:150px;height:150px;margin:0 auto .6rem;position:relative;}
+.ring-wrap svg{transform:rotate(-90deg);}
+.ring-bg{stroke:rgba(255,255,255,.16);}
+.ring-fg{stroke:url(#ringgrad);stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1);}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-pct{font-size:2.4rem;font-weight:900;letter-spacing:-.03em;line-height:1;}
+.ring-frac{font-size:.8rem;opacity:.8;margin-top:.2rem;}
+.grade-badge{display:inline-block;font-size:1.05rem;font-weight:800;padding:.35rem 1.2rem;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);margin-top:.3rem;}
+.score-name{font-size:1.15rem;font-weight:800;margin-top:1rem;}
+.score-msg{font-size:.94rem;opacity:.9;margin-top:.3rem;}
+.score-meta{display:flex;justify-content:center;gap:1.3rem;margin-top:1rem;font-size:.8rem;opacity:.82;}
+.score-meta>span{display:inline-flex;align-items:center;gap:.4rem;}
+.score-meta svg{width:14px;height:14px;}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:1.4rem;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem .6rem;
+  text-align:center;box-shadow:var(--sh-1);}
+.stat-num{font-size:1.6rem;font-weight:900;line-height:1;}
+.stat-lbl{font-size:.74rem;font-weight:700;color:var(--muted);margin-top:.35rem;display:flex;
+  align-items:center;justify-content:center;gap:.3rem;}
+.stat-lbl svg{width:13px;height:13px;}
+.s-ok .stat-num{color:var(--ok);}
+.s-bad .stat-num{color:var(--bad);}
+.s-skip .stat-num{color:var(--warn);}
+.s-total .stat-num{color:var(--acc-text);}
+
+.breakdown h3,.review-wrap h3{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.5rem;}
+.breakdown h3 svg,.review-wrap h3 svg{width:18px;height:18px;color:var(--accent);}
+.bd-row{margin-bottom:1rem;}
+.bd-row:last-child{margin-bottom:0;}
+.bd-top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.35rem;}
+.bd-name{font-weight:700;color:var(--text-2);}
+.bd-val{font-weight:700;color:var(--muted);}
+.bd-track{height:9px;border-radius:99px;background:var(--surface-2);overflow:hidden;box-shadow:inset 0 0 0 1px var(--border);}
+.bd-fill{height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.22,1,.36,1);}
+
+/* Review */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.filter{display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.8rem;font-weight:700;
+  padding:.4rem .9rem;border-radius:var(--r-pill);border:1.5px solid var(--border);background:var(--surface);
+  color:var(--muted);transition:all .15s;}
+.filter:hover{border-color:var(--border-2);}
+.filter.active{border-color:var(--accent);background:var(--acc-weak);color:var(--acc-text);}
+.filter .cnt{font-variant-numeric:tabular-nums;opacity:.8;}
+.rev{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:.7rem;background:var(--surface);}
+.rev-head{display:flex;align-items:flex-start;gap:.6rem;padding:.7rem .9rem;}
+.rev.correct .rev-head{background:var(--ok-bg);}
+.rev.wrong .rev-head{background:var(--bad-bg);}
+.rev.skip .rev-head{background:var(--warn-bg);}
+.rev-ic{flex-shrink:0;width:18px;height:18px;margin-top:1px;}
+.rev.correct .rev-ic{color:var(--ok);}
+.rev.wrong .rev-ic{color:var(--bad);}
+.rev.skip .rev-ic{color:var(--warn);}
+.rev-ic svg{width:18px;height:18px;}
+.rev-q{flex:1;font-weight:600;font-size:.88rem;color:var(--text);line-height:1.4;}
+.rev-chip{flex-shrink:0;font-size:.66rem;font-weight:700;padding:.15rem .55rem;border-radius:var(--r-pill);
+  background:var(--acc-weak);color:var(--acc-text);}
+.rev-body{padding:.7rem .9rem;font-size:.85rem;line-height:1.6;border-top:1px solid var(--border);}
+.rev-your{color:var(--bad);}
+.rev-your b,.rev-corr b{font-weight:700;}
+.rev-corr{color:var(--ok);}
+.rev-exp{color:var(--muted);margin-top:.5rem;padding-left:.7rem;border-left:3px solid var(--acc-soft);}
+.empty{text-align:center;color:var(--muted);padding:1.5rem;font-size:.9rem;}
+
+/* Action buttons */
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.6rem;}
+.btn-ghost{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;font-size:.9rem;font-weight:700;
+  padding:.7rem 1.4rem;border-radius:var(--r);border:1.5px solid var(--border-2);background:var(--surface);
+  color:var(--text-2);transition:all .15s;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--acc-text);background:var(--acc-weak);}
+.btn-ghost svg{width:16px;height:16px;}
+
+/* ── MODAL ─────────────────────────────────────────────────────────────────── */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(8,12,22,.55);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;
+  transition:opacity .2s;}
+.overlay.show{opacity:1;pointer-events:auto;}
+.modal{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--sh-2);max-width:380px;width:100%;
+  padding:1.5rem;transform:translateY(12px) scale(.97);transition:transform .2s;}
+.overlay.show .modal{transform:none;}
+.modal-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:var(--warn-bg);color:var(--warn);margin-bottom:.9rem;}
+.modal-ic svg{width:24px;height:24px;}
+.modal h3{font-size:1.1rem;font-weight:800;margin-bottom:.4rem;color:var(--text);}
+.modal p{font-size:.9rem;color:var(--muted);margin-bottom:1.3rem;line-height:1.55;}
+.modal-actions{display:flex;gap:.7rem;}
+.modal-actions button{flex:1;padding:.7rem;border-radius:var(--r);font-weight:700;font-size:.9rem;cursor:pointer;}
+.btn-cancel{border:1.5px solid var(--border-2);background:var(--surface);color:var(--text-2);}
+.btn-cancel:hover{background:var(--surface-2);}
+.btn-go{border:none;background:var(--accent);color:#fff;}
+.btn-go:hover{background:var(--acc-d);}
+
+/* Flash highlight when jumping to an unanswered question */
+.flash{animation:flash 1.4s ease;}
+@keyframes flash{0%,100%{box-shadow:none;}20%{box-shadow:var(--ring),0 0 0 6px color-mix(in srgb,var(--accent),transparent 80%);}}
+
+#confetti{position:fixed;inset:0;z-index:50;pointer-events:none;}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr 1fr;}
+  .m-row{grid-template-columns:1fr;gap:.35rem;}
+  .score-meta{flex-direction:column;gap:.4rem;}
+}
+
+/* ── PRINT ─────────────────────────────────────────────────────────────────── */
+@media print{
+  .progress,.theme-toggle,.actions,.filters,.hero::after,.hero::before{display:none!important;}
+  body{background:#fff;color:#000;}
+  .hero{background:#fff;color:#000;padding:1rem 0;border-bottom:2px solid #000;}
+  .hero h1::after,.score-panel::after{display:none;}
+  .score-panel{background:#fff;color:#000;border:2px solid #000;box-shadow:none;margin:1rem 0;}
+  .grade-badge,.ring-pct,.score-name,.score-msg,.score-meta{color:#000;}
+  .ring-bg{stroke:#ccc;}
+  .ring-fg{stroke:#000;}
+  .card,.stat,.rev{box-shadow:none;border:1px solid #999;break-inside:avoid;}
+  .rev .rev-head{background:#f3f3f3!important;}
+}
+
+/* ── REDUCED MOTION ────────────────────────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;
+                       scroll-behavior:auto!important;}
+}
+</style>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ▼▼▼  STEP 1 — CONFIG  ·  edit these values, then add questions further down ▼▼▼
+   ═══════════════════════════════════════════════════════════════════════════ */
+window.CONFIG = {
+
+  /* shown in the header and browser tab */
+  title:      "Grade 8 – Biology Exam Preparation",
+  eyebrow:    "Comprehensive Test",
+  subtitle:   "Osmosis · Active Transport · Enzymes · Plant Nutrition",
+
+  /* ONE colour themes the whole page. Pick a hex, or use a preset below.       */
+  /*   Indigo  #4f46e5   Blue  #1e40af   Emerald #059669   Rose  #be185d        */
+  /*   Amber   #b45309   Violet#7c3aed   Teal    #0f766e   Slate #475569        */
+  theme:      "#0f766e",
+
+  /* "exam"     → student answers everything, then submits to be graded.        */
+  /* "practice" → a "Check answer" button reveals each answer as you go.        */
+  mode:       "exam",
+
+  timeLimitMinutes: 0,      // 0 = no limit (counts up). e.g. 30 = 30-min countdown.
+  passingScore:     50,     // % needed to "pass" (affects the result message).
+  celebrateScore:   90,     // % at which confetti fires.
+  shuffleQuestions: false,  // randomise question order within each section.
+  shuffleOptions:   true,   // randomise the order of MCQ options.
+  showExplanations: true,   // show the explanation under each reviewed question.
+  allowRetry:       true,   // show a "Try again" button on the results screen.
+  saveProgress:     true,   // remember answers in this browser across refreshes.
+};
+
+/* apply theme + accent immediately to avoid any colour flash on load */
+(function(){try{
+  var h=document.documentElement, C=window.CONFIG;
+  var key='qz_theme_'+(C.title||'').replace(/[^a-z0-9]+/gi,'_');
+  var saved=null; try{saved=localStorage.getItem(key);}catch(e){}
+  var dark = saved ? saved==='dark'
+           : (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  h.setAttribute('data-theme', dark?'dark':'light');
+  if(C.theme) h.style.setProperty('--accent', C.theme);
+  if(C.title) document.title = C.title;
+}catch(e){}})();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to the test</a>
+
+<header class="hero">
+  <button class="theme-toggle" id="theme-btn" type="button" aria-label="Toggle dark mode"></button>
+  <div class="eyebrow" id="hero-eyebrow"></div>
+  <h1 id="hero-title">Grade 8 – Biology Exam Preparation</h1>
+  <p class="sub" id="hero-sub"></p>
+  <div class="hero-meta" id="hero-meta"></div>
+</header>
+
+<div class="progress" id="progress">
+  <div class="progress-inner">
+    <div class="prog-track" id="prog-track" title="Jump to first unanswered question" role="progressbar"
+         aria-label="Test progress" aria-valuemin="0" aria-valuenow="0">
+      <div class="prog-fill" id="prog-fill"></div>
+    </div>
+    <div class="prog-label tnum" id="prog-label" aria-live="polite">0 of 0 answered</div>
+    <div class="timer tnum" id="timer-wrap"><span id="timer-icon"></span><span id="timer">0:00</span></div>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+
+  <!-- ░░ TEST ░░ -->
+  <div id="test-view">
+    <section class="card first-card">
+      <div class="sec-head">
+        <div class="sec-badge" id="student-icon"></div>
+        <h2>Your details</h2>
+      </div>
+      <div class="sec-instruction">Enter your name so it appears on your result.</div>
+      <div class="m-row" style="margin-top:1rem;">
+        <div>
+          <label for="student-name" style="font-size:.8rem;font-weight:700;color:var(--muted);display:block;margin-bottom:.3rem;">Name</label>
+          <input class="fill" type="text" id="student-name" placeholder="e.g. Sara Ahmed" autocomplete="name">
+        </div>
+        <div>
+          <label for="student-class" style="font-size:.8rem;font-weight:700;color:var(--muted);display:block;margin-bottom:.3rem;">Class / Section</label>
+          <input class="fill" type="text" id="student-class" placeholder="e.g. Grade 8 – A">
+        </div>
+      </div>
+    </section>
+
+    <div id="sections-container"></div>
+
+    <section class="card submit-card">
+      <p>Answer the questions above, then submit to see your score and a full review.</p>
+      <button class="btn-primary" type="button" id="submit-btn"><span id="submit-icon"></span>Submit test</button>
+    </section>
+  </div>
+
+  <!-- ░░ RESULTS ░░ -->
+  <div id="results-view" hidden>
+    <section class="score-panel">
+      <div class="ring-wrap">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <defs>
+            <linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff"/>
+              <stop offset="100%" stop-color="var(--accent)"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-bg" cx="75" cy="75" r="62" fill="none" stroke-width="12"/>
+          <circle class="ring-fg" id="ring-fg" cx="75" cy="75" r="62" fill="none" stroke-width="12"
+                  stroke-dasharray="389.6" stroke-dashoffset="389.6"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct tnum" id="res-pct">0%</div>
+          <div class="ring-frac tnum" id="res-frac">0 / 0</div>
+        </div>
+      </div>
+      <div class="grade-badge" id="res-grade">–</div>
+      <div class="score-name" id="res-name">Well done!</div>
+      <div class="score-msg" id="res-msg"></div>
+      <div class="score-meta">
+        <span><span id="clock-icon"></span><span class="tnum" id="res-time">0:00</span></span>
+        <span><span id="cal-icon"></span><span id="res-date"></span></span>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat s-ok"><div class="stat-num tnum" id="res-correct">0</div><div class="stat-lbl"><span id="ic-ok"></span>Correct</div></div>
+      <div class="stat s-bad"><div class="stat-num tnum" id="res-wrong">0</div><div class="stat-lbl"><span id="ic-bad"></span>Wrong</div></div>
+      <div class="stat s-skip"><div class="stat-num tnum" id="res-skip">0</div><div class="stat-lbl"><span id="ic-skip"></span>Skipped</div></div>
+      <div class="stat s-total"><div class="stat-num tnum" id="res-total">0</div><div class="stat-lbl"><span id="ic-total"></span>Total</div></div>
+    </div>
+
+    <section class="card breakdown" id="breakdown-card">
+      <h3><span id="ic-chart"></span>Score by section</h3>
+      <div id="breakdown"></div>
+    </section>
+
+    <section class="card review-wrap">
+      <h3><span id="ic-list"></span>Review every question</h3>
+      <div class="filters" id="filters"></div>
+      <div id="review"></div>
+    </section>
+
+    <div class="actions">
+      <button class="btn-ghost" type="button" id="print-btn"><span id="ic-print"></span>Print / Save PDF</button>
+      <button class="btn-ghost" type="button" id="report-btn"><span id="ic-dl"></span>Download report</button>
+      <button class="btn-ghost" type="button" id="retry-btn"><span id="ic-retry"></span>Try again</button>
+    </div>
+  </div>
+</main>
+
+<!-- Unanswered-confirmation modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal">
+    <div class="modal-ic" id="modal-ic"></div>
+    <h3 id="modal-title">Submit now?</h3>
+    <p id="modal-text"></p>
+    <div class="modal-actions">
+      <button class="btn-cancel" type="button" id="modal-review">Review unanswered</button>
+      <button class="btn-go" type="button" id="modal-submit">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confetti" hidden></canvas>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ▼▼▼  STEP 2 — YOUR QUESTIONS  ·  edit the `sections` array below.            ▼▼▼
+   ═══════════════════════════════════════════════════════════════════════════ */
+const sections = [
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SECTION A : Multiple Choice  (50 questions)
+  ────────────────────────────────────────────────────────────────────────── */
+  {
+    title: "Section A – Multiple Choice",
+    badge: "A",
+    instruction: "Choose the best answer for each question.",
+    questions: [
+      { type:"mcq", ch:"Osmosis",
+        q:"Osmosis is defined as the net movement of water molecules from a region of:",
+        opts:["lower water potential to higher water potential","higher water potential to lower water potential","higher solute concentration to lower solute concentration","equal water potential to unequal water potential"],
+        ans:1,
+        exp:"Water moves from a dilute solution (high water potential) to a concentrated solution (low water potential) through a partially permeable membrane." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Which statement best describes a partially permeable membrane?",
+        opts:["It allows all molecules to pass freely.","It allows water molecules to pass more rapidly than dissolved substances.","It only allows dissolved substances to pass.","It stops all movement of molecules."],
+        ans:1,
+        exp:"The membrane lets water through quickly but restricts the passage of larger dissolved molecules." },
+      { type:"mcq", ch:"Osmosis",
+        q:"When an animal cell is placed in pure water, it is likely to:",
+        opts:["shrink because water leaves","stay the same size","swell and possibly burst","lose its nucleus"],
+        ans:2,
+        exp:"Water enters by osmosis; animal cells have no cell wall, so they can burst (hemolysis)." },
+      { type:"mcq", ch:"Osmosis",
+        q:"A plant cell becomes turgid when it is placed in:",
+        opts:["a concentrated sugar solution","pure water or a dilute solution","an isotonic solution","a solution with very low water potential"],
+        ans:1,
+        exp:"Water enters the vacuole by osmosis, pressing the cytoplasm against the cell wall, making the cell firm." },
+      { type:"mcq", ch:"Osmosis",
+        q:"What is turgor pressure?",
+        opts:["Pressure exerted by the cell wall on the cytoplasm","Outward pressure of the cytoplasm pushing against the cell wall","Pressure of soil water on the root","Pressure that causes wilting"],
+        ans:1,
+        exp:"Turgor pressure is the force inside the plant cell that pushes the cell membrane against the inelastic cell wall." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Plasmolysis occurs when a plant cell:",
+        opts:["absorbs too much water","loses water and the cell membrane pulls away from the cell wall","divides rapidly","produces starch"],
+        ans:1,
+        exp:"In a concentrated solution, water leaves the vacuole, the cytoplasm shrinks, and the membrane separates from the cell wall." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Why does a plant wilt?",
+        opts:["Too much sugar in leaves","Cells lose turgor pressure, stems and leaves droop","Excess photosynthesis","Stomata are always open"],
+        ans:1,
+        exp:"When cells become flaccid due to water loss, turgor pressure is lost and the plant can no longer stay upright." },
+      { type:"mcq", ch:"Osmosis",
+        q:"In the Visking tubing experiment, the liquid level in the capillary tube rises because:",
+        opts:["sugar molecules move out of the tubing","water moves from the beaker into the sugar solution by osmosis","dye moves into the beaker","the tubing expands"],
+        ans:1,
+        exp:"The partially permeable tubing allows water to enter the concentrated sugar solution, increasing the volume." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Which substance is used to test for starch?",
+        opts:["Benedict's solution","Iodine solution","Ethanol","Biuret reagent"],
+        ans:1,
+        exp:"Iodine turns blue‑black in the presence of starch." },
+      { type:"mcq", ch:"Osmosis",
+        q:"A potato cylinder placed in a strong sugar solution becomes shorter and flabby. This is because:",
+        opts:["water entered the cells by osmosis","water left the cells by osmosis","starch was converted to sugar","the cells became turgid"],
+        ans:1,
+        exp:"The external solution has lower water potential, so water moves out of the potato cells." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Active transport is the movement of substances:",
+        opts:["from high to low concentration without energy","from low to high concentration using energy from respiration","from high to low concentration using energy","only in non‑living systems"],
+        ans:1,
+        exp:"Active transport moves particles against a concentration gradient and requires energy from ATP." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Which of the following requires energy from respiration?",
+        opts:["Diffusion of oxygen into a cell","Osmosis of water into a root hair","Uptake of mineral ions by root hair cells from dilute soil","Movement of carbon dioxide out of a leaf"],
+        ans:2,
+        exp:"Mineral ions are absorbed against a concentration gradient using active transport." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Which cell structures are essential for active transport?",
+        opts:["Ribosomes","Carrier proteins in the cell membrane","Chloroplasts","Cell wall"],
+        ans:1,
+        exp:"Active transport uses specific carrier proteins that change shape using energy." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Active transport would be slowed or stopped by:",
+        opts:["low temperature","lack of oxygen","high glucose concentration","both A and B"],
+        ans:3,
+        exp:"Oxygen is needed for aerobic respiration, and low temperature reduces respiration rate; both reduce ATP supply." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Enzymes are biological catalysts made of:",
+        opts:["carbohydrates","lipids","proteins","nucleic acids"],
+        ans:2,
+        exp:"All enzymes are proteins, and they speed up metabolic reactions." },
+      { type:"mcq", ch:"Enzymes",
+        q:"The 'lock and key' model explains that:",
+        opts:["enzymes can work on any substrate","the substrate must have a complementary shape to the enzyme's active site","enzymes are changed permanently after a reaction","enzymes work only in the stomach"],
+        ans:1,
+        exp:"The active site has a specific shape; only substrates with a matching shape can bind." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Most human enzymes have an optimum temperature of about:",
+        opts:["10°C","25°C","37°C","60°C"],
+        ans:2,
+        exp:"Body temperature (37°C) is the optimum for many human enzymes." },
+      { type:"mcq", ch:"Enzymes",
+        q:"What happens to an enzyme when it is denatured by high temperature?",
+        opts:["It works faster","It loses its 3D shape and the active site is deformed","It breaks down into amino acids","It becomes a substrate"],
+        ans:1,
+        exp:"Denaturation permanently changes the protein's shape, so the substrate no longer fits." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Pepsin, a stomach enzyme, works best at:",
+        opts:["pH 7","pH 2","pH 12","pH 5"],
+        ans:1,
+        exp:"Pepsin has an optimum pH around 2, matching the acidic environment of the stomach." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Which enzyme breaks down hydrogen peroxide into water and oxygen?",
+        opts:["Amylase","Catalase","Protease","Lipase"],
+        ans:1,
+        exp:"Catalase is found in many living cells and rapidly decomposes hydrogen peroxide." },
+      { type:"mcq", ch:"Enzymes",
+        q:"In the amylase experiment, the disappearance of the blue‑black colour with iodine indicates:",
+        opts:["starch has been produced","starch has been broken down","the enzyme is denatured","the pH is too high"],
+        ans:1,
+        exp:"Amylase digests starch; when starch is gone, iodine stays yellow‑brown." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Photosynthesis converts light energy into:",
+        opts:["heat energy","chemical energy stored in glucose","electrical energy","kinetic energy"],
+        ans:1,
+        exp:"Chlorophyll absorbs light and uses it to synthesise carbohydrates, storing energy in their bonds." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Which gas is produced during photosynthesis?",
+        opts:["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],
+        ans:2,
+        exp:"The splitting of water releases oxygen as a by‑product." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"A leaf appears green because chlorophyll:",
+        opts:["absorbs green light","reflects green light","transmits all colours equally","contains iron"],
+        ans:1,
+        exp:"Chlorophyll absorbs mainly red and blue light; green is reflected, making leaves look green." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Which tissue in the leaf is the main site of photosynthesis?",
+        opts:["Upper epidermis","Palisade mesophyll","Spongy mesophyll","Phloem"],
+        ans:1,
+        exp:"Palisade cells contain many chloroplasts and are positioned near the upper surface to capture light." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Stomata open mainly in response to:",
+        opts:["darkness","high carbon dioxide levels","light","low humidity"],
+        ans:2,
+        exp:"In light, guard cells accumulate potassium ions, water follows by osmosis, and the cells curve to open the pore." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Which mineral ion is needed to make chlorophyll?",
+        opts:["Nitrate","Phosphate","Magnesium","Potassium"],
+        ans:2,
+        exp:"Magnesium is a central component of the chlorophyll molecule; deficiency causes chlorosis." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Yellowing of leaves (chlorosis) is a symptom of:",
+        opts:["nitrate deficiency","magnesium deficiency","excess water","low light"],
+        ans:1,
+        exp:"Without magnesium, plants cannot make enough chlorophyll, so leaves turn yellow." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Why is glucose often converted into starch for storage in plants?",
+        opts:["Starch is more soluble","Starch is insoluble and does not affect osmosis","Starch can be transported easily","Starch provides more energy"],
+        ans:1,
+        exp:"Glucose is soluble and would draw water into cells; starch avoids this osmotic problem." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Which of the following is a limiting factor for photosynthesis?",
+        opts:["Oxygen concentration","Light intensity","Nitrogen gas in the air","Humidity"],
+        ans:1,
+        exp:"Light, carbon dioxide, and temperature are the three main limiting factors." },
+      { type:"mcq", ch:"Osmosis",
+        q:"The water potential of pure water is:",
+        opts:["zero","the highest possible","the lowest possible","equal to a concentrated salt solution"],
+        ans:1,
+        exp:"Pure water has the maximum number of free water molecules, hence the highest water potential." },
+      { type:"mcq", ch:"Osmosis",
+        q:"A single‑celled organism like Amoeba survives in fresh water by using:",
+        opts:["a cell wall","contractile vacuoles","mitochondria","chloroplasts"],
+        ans:1,
+        exp:"Contractile vacuoles collect and expel excess water that enters by osmosis." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Which of the following statements is FALSE?",
+        opts:["Diffusion does not require energy.","Osmosis is a type of diffusion.","Active transport moves substances along the concentration gradient.","Carrier proteins are used in active transport."],
+        ans:2,
+        exp:"Active transport moves substances against the concentration gradient, not along it." },
+      { type:"mcq", ch:"Enzymes",
+        q:"When a boiled enzyme is added to its substrate, no reaction occurs because:",
+        opts:["the enzyme has been denatured","the substrate has evaporated","the pH is too high","the temperature is too low"],
+        ans:0,
+        exp:"Boiling denatures the enzyme, permanently destroying the active site's shape." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"During the starch test on a leaf, why is the leaf boiled in ethanol?",
+        opts:["To kill the cells","To remove chlorophyll","To soften the leaf","To make starch visible"],
+        ans:1,
+        exp:"Ethanol extracts chlorophyll so the colour change with iodine can be seen clearly." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"In an experiment, a destarched plant is kept in the dark with only one leaf exposed to light. After several hours, only the exposed leaf tests positive for starch. This shows that:",
+        opts:["starch is produced from chlorophyll","light is necessary for photosynthesis","carbon dioxide is not needed","stomata must be open"],
+        ans:1,
+        exp:"Without light, photosynthesis cannot occur, so starch is not formed." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Road salt splashed onto roadside plants kills them because it:",
+        opts:["increases the water potential of soil water","draws water out of the roots by osmosis","blocks photosynthesis","adds minerals to the soil"],
+        ans:1,
+        exp:"Salt lowers the water potential of soil water, causing water to leave root cells by osmosis." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"The balanced chemical equation for photosynthesis is:",
+        opts:["6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂","C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O","6CO₂ + 6O₂ → C₆H₁₂O₆ + 6H₂O","C₆H₁₂O₆ + 6CO₂ → 6O₂ + 6H₂O"],
+        ans:0,
+        exp:"Photosynthesis uses carbon dioxide and water to produce glucose and oxygen." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Amylase in saliva breaks down starch into:",
+        opts:["glucose","maltose","amino acids","fatty acids"],
+        ans:1,
+        exp:"Amylase hydrolyses starch into the disaccharide maltose." },
+      { type:"mcq", ch:"Osmosis",
+        q:"A plant cell placed in a solution that has the same water potential as its cell sap will:",
+        opts:["become turgid","become flaccid","show plasmolysis","neither gain nor lose water"],
+        ans:3,
+        exp:"No net water movement occurs when the water potentials are equal." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Why do cells in the small intestine contain many mitochondria?",
+        opts:["To absorb water by osmosis","To provide energy for active transport of glucose","To produce digestive enzymes","To store lipids"],
+        ans:1,
+        exp:"Mitochondria release ATP, which powers the carrier proteins that transport glucose against its gradient." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"In a variegated leaf, the white parts do not contain starch after exposure to light because they lack:",
+        opts:["stomata","chlorophyll","veins","water"],
+        ans:1,
+        exp:"Chlorophyll is necessary for photosynthesis, so no starch is made in the non‑green areas." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Hydrogencarbonate indicator turns purple when:",
+        opts:["carbon dioxide concentration is high","oxygen concentration is low","carbon dioxide concentration is low","water is added"],
+        ans:2,
+        exp:"Purple indicates a decrease in CO₂, as occurs during active photosynthesis." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Excess fertiliser in the soil can cause wilting because:",
+        opts:["it provides too much nitrate","it lowers the water potential of the soil solution","it blocks root hair cells","it stops photosynthesis"],
+        ans:1,
+        exp:"The high solute concentration draws water out of root hairs by osmosis." },
+      { type:"mcq", ch:"Enzymes",
+        q:"Which condition does NOT usually denature an enzyme?",
+        opts:["Very high temperature","Extremely acidic pH","Moderate temperature around the optimum","Boiling"],
+        ans:2,
+        exp:"Moderate temperatures increase kinetic energy but do not denature the protein." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"The cuticle on a leaf helps to:",
+        opts:["absorb light","reduce water loss","allow gas exchange","transport sugars"],
+        ans:1,
+        exp:"The waxy cuticle is waterproof and minimises evaporation from the leaf surface." },
+      { type:"mcq", ch:"Active Transport",
+        q:"Which process does NOT require energy?",
+        opts:["Active transport","Osmosis","Protein synthesis","Muscle contraction"],
+        ans:1,
+        exp:"Osmosis is a passive movement of water down a water potential gradient." },
+      { type:"mcq", ch:"Photosynthesis",
+        q:"Xylem vessels transport:",
+        opts:["sugars downwards","water and mineral ions upwards","amino acids to the roots","oxygen to the leaves"],
+        ans:1,
+        exp:"Xylem carries water and dissolved minerals from the roots to the leaves." },
+      { type:"mcq", ch:"Osmosis",
+        q:"Dialysis tubing is used in experiments because it is:",
+        opts:["fully permeable","partially permeable","impermeable","transparent"],
+        ans:1,
+        exp:"It acts as a model partially permeable membrane, similar to a cell membrane." },
+      { type:"mcq", ch:"Enzymes",
+        q:"A catalyst differs from an enzyme because:",
+        opts:["it is always a protein","it can be denatured by heat","it may work on many different reactions","it is used up in the reaction"],
+        ans:2,
+        exp:"Many inorganic catalysts are not specific; enzymes are highly specific to one substrate." }
+    ]
+  },
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SECTION B : True or False  (20 questions)
+  ────────────────────────────────────────────────────────────────────────── */
+  {
+    title: "Section B – True or False",
+    badge: "B",
+    instruction: "Decide whether each statement is true or false.",
+    questions: [
+      { type:"tf", ch:"Osmosis", q:"Osmosis requires energy from respiration.", ans:false,
+        exp:"Osmosis is a passive process; it does not need energy." },
+      { type:"tf", ch:"Osmosis", q:"A red blood cell placed in pure water will swell and may burst.", ans:true,
+        exp:"Animal cells lack a cell wall; water enters by osmosis and can cause haemolysis." },
+      { type:"tf", ch:"Osmosis", q:"In plant cells, turgor pressure helps support stems and leaves.", ans:true,
+        exp:"Turgid cells push against the cell wall, keeping the plant upright." },
+      { type:"tf", ch:"Active Transport", q:"Active transport moves substances from a region of higher concentration to a region of lower concentration.", ans:false,
+        exp:"It moves substances against the concentration gradient, from low to high concentration." },
+      { type:"tf", ch:"Active Transport", q:"Carrier proteins change shape during active transport.", ans:true,
+        exp:"Energy from ATP causes a conformational change in the carrier protein." },
+      { type:"tf", ch:"Enzymes", q:"Enzymes are changed permanently after catalysing a reaction.", ans:false,
+        exp:"Enzymes are not used up; they can be reused." },
+      { type:"tf", ch:"Enzymes", q:"The active site of an enzyme is a specific region that binds to the substrate.", ans:true,
+        exp:"The active site has a shape complementary to the substrate." },
+      { type:"tf", ch:"Enzymes", q:"Boiling an enzyme usually denatures it irreversibly.", ans:true,
+        exp:"High temperatures break bonds that maintain the protein's 3D structure." },
+      { type:"tf", ch:"Photosynthesis", q:"Photosynthesis produces carbon dioxide and water.", ans:false,
+        exp:"It uses carbon dioxide and water to produce glucose and oxygen." },
+      { type:"tf", ch:"Photosynthesis", q:"Chlorophyll is essential for photosynthesis.", ans:true,
+        exp:"Chlorophyll absorbs light energy and converts it to chemical energy." },
+      { type:"tf", ch:"Photosynthesis", q:"Stomata are usually open at night.", ans:false,
+        exp:"They typically close at night to reduce water loss when photosynthesis is not occurring." },
+      { type:"tf", ch:"Osmosis", q:"Plasmolysis occurs when a plant cell loses water in a concentrated solution.", ans:true,
+        exp:"Water leaves the vacuole, and the cell membrane pulls away from the cell wall." },
+      { type:"tf", ch:"Active Transport", q:"Root hair cells absorb mineral ions mainly by diffusion.", ans:false,
+        exp:"They use active transport because the mineral concentration in the soil is often lower than inside the cell." },
+      { type:"tf", ch:"Enzymes", q:"Pepsin works best at a neutral pH.", ans:false,
+        exp:"Pepsin has an optimum pH around 2, which is highly acidic." },
+      { type:"tf", ch:"Photosynthesis", q:"Nitrate ions are needed for making amino acids and proteins.", ans:true,
+        exp:"Plants use nitrates to synthesise nitrogen‑containing compounds like proteins." },
+      { type:"tf", ch:"Photosynthesis", q:"A plant destarched by keeping it in darkness for 2–3 days will still contain starch.", ans:false,
+        exp:"During darkness, starch is converted to sugars and transported away." },
+      { type:"tf", ch:"Osmosis", q:"Water moves from a region of low water potential to high water potential.", ans:false,
+        exp:"Water moves from high water potential (dilute) to low water potential (concentrated)." },
+      { type:"tf", ch:"Enzymes", q:"A very high pH can denature an enzyme.", ans:true,
+        exp:"Extreme pH alters the charges and shape of the active site, often permanently." },
+      { type:"tf", ch:"Photosynthesis", q:"The spongy mesophyll contains many chloroplasts and is the main site of photosynthesis.", ans:false,
+        exp:"The palisade mesophyll has more chloroplasts and is the primary photosynthetic tissue." },
+      { type:"tf", ch:"Active Transport", q:"Active transport can be inhibited by respiratory poisons.", ans:true,
+        exp:"Poisons like cyanide block ATP production, stopping active transport." }
+    ]
+  },
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SECTION C : Fill in the Blanks  (15 questions)
+  ────────────────────────────────────────────────────────────────────────── */
+  {
+    title: "Section C – Fill in the Blank",
+    badge: "C",
+    instruction: "Type the word or phrase that completes each sentence correctly.",
+    questions: [
+      { type:"fill", ch:"Osmosis", q:"The net movement of water through a partially permeable membrane is called ______.",
+        ans:"osmosis", alt:[],
+        exp:"Osmosis is the specific term for water movement down a water potential gradient." },
+      { type:"fill", ch:"Osmosis", q:"A plant cell that is swollen and rigid due to water uptake is said to be ______.",
+        ans:"turgid", alt:[],
+        exp:"Turgid cells are full of water and press against the cell wall." },
+      { type:"fill", ch:"Osmosis", q:"The pressure exerted by the cytoplasm against the plant cell wall is known as ______ pressure.",
+        ans:"turgor", alt:[],
+        exp:"Turgor pressure provides structural support." },
+      { type:"fill", ch:"Active Transport", q:"Active transport moves substances ______ a concentration gradient.",
+        ans:"against", alt:[],
+        exp:"It uses energy to pump substances from low to high concentration." },
+      { type:"fill", ch:"Active Transport", q:"The energy for active transport comes from the molecule ______.",
+        ans:"ATP", alt:["adenosine triphosphate","adenosine tri-phosphate"],
+        exp:"ATP, produced during respiration, supplies the necessary energy." },
+      { type:"fill", ch:"Enzymes", q:"Biological catalysts made of protein are called ______.",
+        ans:"enzymes", alt:[],
+        exp:"Enzymes speed up metabolic reactions without being used up." },
+      { type:"fill", ch:"Enzymes", q:"The substance on which an enzyme acts is called the ______.",
+        ans:"substrate", alt:[],
+        exp:"The substrate fits into the enzyme's active site." },
+      { type:"fill", ch:"Enzymes", q:"The enzyme ______ breaks down hydrogen peroxide into water and oxygen.",
+        ans:"catalase", alt:[],
+        exp:"Catalase is found in liver and many other tissues." },
+      { type:"fill", ch:"Photosynthesis", q:"The green pigment that absorbs light energy is ______.",
+        ans:"chlorophyll", alt:[],
+        exp:"Chlorophyll is located in chloroplasts." },
+      { type:"fill", ch:"Photosynthesis", q:"Photosynthesis produces ______ as a by‑product.",
+        ans:"oxygen", alt:["O2","O₂"],
+        exp:"Oxygen is released when water molecules are split." },
+      { type:"fill", ch:"Photosynthesis", q:"The main photosynthetic tissue in a leaf is the ______ mesophyll.",
+        ans:"palisade", alt:["palisade mesophyll"],
+        exp:"Palisade cells are packed with chloroplasts and located near the upper epidermis." },
+      { type:"fill", ch:"Photosynthesis", q:"Mineral ions needed to make chlorophyll are ______ ions.",
+        ans:"magnesium", alt:["Mg²⁺","Mg2+","magnesium ions"],
+        exp:"Magnesium deficiency causes chlorosis (yellowing of leaves)." },
+      { type:"fill", ch:"Osmosis", q:"When a plant cell loses water and its membrane pulls away from the wall, the process is called ______.",
+        ans:"plasmolysis", alt:[],
+        exp:"Plasmolysis occurs in a concentrated solution." },
+      { type:"fill", ch:"Enzymes", q:"An enzyme’s ______ site has a specific shape complementary to its substrate.",
+        ans:"active", alt:["active site"],
+        exp:"The active site is where the substrate binds." },
+      { type:"fill", ch:"Photosynthesis", q:"Pores in the leaf epidermis that allow gas exchange are called ______.",
+        ans:"stomata", alt:["stoma"],
+        exp:"Guard cells control the opening and closing of stomata." }
+    ]
+  },
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SECTION D : Match the Columns  (5 questions)
+  ────────────────────────────────────────────────────────────────────────── */
+  {
+    title: "Section D – Match the Columns",
+    badge: "D",
+    instruction: "Match each term on the left to the correct description on the right.",
+    questions: [
+      { type:"match", ch:"Osmosis & Plant Cells",
+        q:"Match each term to its definition.",
+        pairs:[ ["Turgid","Cell swollen with water, pressing against the cell wall"],
+                ["Flaccid","Cell that is limp and lacks water pressure"],
+                ["Plasmolysis","Process where cell membrane separates from the cell wall"],
+                ["Wilting","Plant droops due to loss of turgor pressure"],
+                ["Osmosis","Net movement of water through a partially permeable membrane"] ],
+        exp:"Turgid → swollen; Flaccid → limp; Plasmolysis → membrane pulls away; Wilting → drooping; Osmosis → water movement." },
+      { type:"match", ch:"Enzyme Examples",
+        q:"Match each enzyme to the substance it breaks down.",
+        pairs:[ ["Amylase","Starch"],
+                ["Catalase","Hydrogen peroxide"],
+                ["Protease","Proteins"],
+                ["Pepsin","Proteins in the stomach"],
+                ["Lipase","Fats"] ],
+        exp:"Amylase → starch; Catalase → H₂O₂; Protease/pepsin → proteins; Lipase → fats." },
+      { type:"match", ch:"Photosynthesis Experiments",
+        q:"Match the experiment step to its purpose in the starch test.",
+        pairs:[ ["Boil leaf in water","Kill cells and stop chemical reactions"],
+                ["Boil in ethanol","Remove chlorophyll"],
+                ["Dip in hot water","Soften the leaf"],
+                ["Add iodine solution","Test for starch (blue‑black)"] ],
+        exp:"These steps prepare the leaf so that any starch present can be detected." },
+      { type:"match", ch:"Mineral Deficiencies",
+        q:"Match the mineral ion to its role or deficiency symptom.",
+        pairs:[ ["Nitrate (NO₃⁻)","Needed for amino acids and proteins"],
+                ["Magnesium (Mg²⁺)","Needed to make chlorophyll"],
+                ["Nitrate deficiency","Stunted growth and yellow older leaves"],
+                ["Magnesium deficiency","Chlorosis (yellowing between veins)"] ],
+        exp:"Nitrate → proteins; Magnesium → chlorophyll; deficiencies cause stunted growth or chlorosis." },
+      { type:"match", ch:"Cell Transport Processes",
+        q:"Match the transport process to its description.",
+        pairs:[ ["Diffusion","Net movement of particles from high to low concentration"],
+                ["Osmosis","Net movement of water across a partially permeable membrane"],
+                ["Active transport","Movement against a concentration gradient using energy"],
+                ["Bulk flow","Mass movement of water and solutes in xylem or phloem"] ],
+        exp:"Diffusion → passive; Osmosis → water; Active transport → energy‑requiring; Bulk flow → pressure‑driven." }
+    ]
+  },
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SECTION E : Sequence & Order  (10 questions)
+  ────────────────────────────────────────────────────────────────────────── */
+  {
+    title: "Section E – Sequence & Order",
+    badge: "E",
+    instruction: "Drag the items (or use ▲ ▼) into the correct order.",
+    questions: [
+      { type:"order", ch:"Osmosis in Plant Cells",
+        q:"Arrange the steps that happen when a plant cell is placed in pure water.",
+        items:["Water enters the vacuole by osmosis.",
+               "The vacuole expands, pushing the cytoplasm against the cell wall.",
+               "The cell becomes turgid.",
+               "Turgor pressure develops, supporting the plant."],
+        correctOrder:[1,2,3,4],
+        exp:"Water enters → vacuole expands → cell turgid → pressure supports the plant." },
+      { type:"order", ch:"Enzyme Action",
+        q:"Place the stages of an enzyme‑controlled reaction in the correct sequence.",
+        items:["Substrate binds to the active site.",
+               "Enzyme‑substrate complex forms.",
+               "The reaction takes place and products are formed.",
+               "Products are released; enzyme remains unchanged."],
+        correctOrder:[1,2,3,4],
+        exp:"Binding → complex → reaction → products released." },
+      { type:"order", ch:"Starch Test Procedure",
+        q:"Order the steps of testing a leaf for starch.",
+        items:["Boil the leaf in water for 30 seconds.",
+               "Boil the leaf in ethanol in a water bath.",
+               "Dip the leaf in hot water to soften.",
+               "Spread the leaf on a white tile and add iodine solution."],
+        correctOrder:[1,2,3,4],
+        exp:"Kill → remove chlorophyll → soften → test with iodine." },
+      { type:"order", ch:"Photosynthesis Limiting Factors",
+        q:"Arrange the likely limiting factors of photosynthesis in a greenhouse from most likely to least likely on a sunny day.",
+        items:["Carbon dioxide concentration",
+               "Light intensity",
+               "Temperature",
+               "Water availability"],
+        correctOrder:[1,2,3,4],
+        exp:"On a sunny day, light is abundant; CO₂ often limits, then temperature, then water." },
+      { type:"order", ch:"Guard Cell Opening",
+        q:"Put the events of stomata opening in the correct order.",
+        items:["Light strikes the leaf.",
+               "Potassium ions enter guard cells.",
+               "Water enters guard cells by osmosis.",
+               "Guard cells become turgid and curve, opening the stoma."],
+        correctOrder:[1,2,3,4],
+        exp:"Light → K⁺ influx → water enters → turgid guard cells open the pore." },
+      { type:"order", ch:"Active Transport Mechanism",
+        q:"Order the steps of active transport according to the carrier protein model.",
+        items:["Substance binds to the carrier protein on one side.",
+               "Energy from ATP changes the shape of the carrier.",
+               "The substance is released on the other side of the membrane.",
+               "The carrier returns to its original shape."],
+        correctOrder:[1,2,3,4],
+        exp:"Bind → shape change → release → reset." },
+      { type:"order", ch:"Wilting Process",
+        q:"Sequence the events that lead to wilting in a plant on a hot day.",
+        items:["Transpiration exceeds water uptake from soil.",
+               "Cells lose water by osmosis.",
+               "Cells become flaccid.",
+               "Leaves and stems droop."],
+        correctOrder:[1,2,3,4],
+        exp:"Water loss → flaccid cells → loss of turgor → wilting." },
+      { type:"order", ch:"Enzyme Denaturation",
+        q:"Place the steps of enzyme denaturation by high temperature in order.",
+        items:["Temperature rises well above the optimum.",
+               "Bonds in the enzyme molecule break.",
+               "The 3D shape of the enzyme changes.",
+               "The active site is deformed; the substrate no longer fits."],
+        correctOrder:[1,2,3,4],
+        exp:"High temp → bonds break → shape lost → active site deformed." },
+      { type:"order", ch:"Photolysis & Oxygen Release",
+        q:"Arrange the stages of how oxygen is produced during photosynthesis.",
+        items:["Light energy is absorbed by chlorophyll.",
+               "Water molecules are split.",
+               "Oxygen atoms combine to form O₂.",
+               "Oxygen diffuses out of the leaf through stomata."],
+        correctOrder:[1,2,3,4],
+        exp:"Light → photolysis → O₂ forms → released." },
+      { type:"order", ch:"Glucose to Starch Conversion",
+        q:"Put in order the reason why plants convert glucose into starch.",
+        items:["Glucose is soluble and would increase cell sap concentration.",
+               "High glucose concentration would cause water to enter by osmosis.",
+               "This could make cells swell excessively.",
+               "Starch is insoluble and avoids osmotic problems."],
+        correctOrder:[1,2,3,4],
+        exp:"Soluble glucose → osmotic water entry → risk of swelling → starch is safe storage." }
+    ]
+  }
+
+];
+/* ═══════════════════════════════════════════════════════════════════════════
+   END OF QUESTIONS — the engine below is generic; you don't need to edit it.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── tiny SVG icon set (kept inline so the file works fully offline) ───────── */
+const I = {
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  skip:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8z"/><path d="M19 5v14"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>',
+  retry:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  print:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 17h10v4H7z"/></svg>',
+  dl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M5 21h14"/></svg>',
+  sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>',
+  moon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8z"/></svg>',
+  grip:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>',
+  up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l6-6 6 6"/></svg>',
+  down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10l6 6 6-6"/></svg>',
+  chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
+  alert:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 20h20L12 3z"/><path d="M12 9v5M12 17h.01"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4M9 13h6M9 17h6"/></svg>',
+};
+
+/* ── helpers ──────────────────────────────────────────────────────────────── */
+const $ = id => document.getElementById(id);
+const C = window.CONFIG;
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug = s => (String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'test');
+const fmt = s => { s=Math.max(0,s|0); const m=(s/60)|0,x=s%60; return m+':'+String(x).padStart(2,'0'); };
+const shuffle = a => { const r=a.slice(); for(let i=r.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[r[i],r[j]]=[r[j],r[i]];} return r; };
+const letter = i => String.fromCharCode(65+i);
+
+const STORE = 'qz_ans_'+slug(C.title);
+const THEME = 'qz_theme_'+(C.title||'').replace(/[^a-z0-9]+/gi,'_');
+const SHAPE = sections.map(s=>s.questions.length).join('-')+'|'+sections.length;
+const store = {
+  get(k){try{return localStorage.getItem(k);}catch(e){return null;}},
+  set(k,v){try{localStorage.setItem(k,v);}catch(e){}},
+  del(k){try{localStorage.removeItem(k);}catch(e){}}
+};
+
+/* ── state ────────────────────────────────────────────────────────────────── */
+const answers = {};
+const touched = {};
+const checked = {};
+const meta    = {};
+let order = [];
+let totalQ = 0, reviews = [], finished = false;
+let startTime = 0, timerId = null, finalElapsed = 0;
+
+/* ── question type → answered? ────────────────────────────────────────────── */
+function isAnswered(q,qid){
+  const v = answers[qid];
+  switch(q.type){
+    case 'mcq':  return typeof v==='number';
+    case 'tf':   return typeof v==='boolean';
+    case 'fill': return typeof v==='string' && v.trim()!=='';
+    case 'match':return Array.isArray(v) && v.some(x=>x);
+    case 'order':return !!touched[qid] && Array.isArray(v) && v.length===q.items.length && v.every(x=>x>0);
+  }
+  return false;
+}
+
+/* ── grade a single question → {your,correct,status,exp} ──────────────────── */
+function grade(q,qid){
+  const v = answers[qid];
+  const R = (your,correct,status)=>({your,correct,status,exp:C.showExplanations?(q.exp||''):''});
+  if(q.type==='mcq'){
+    if(typeof v!=='number') return R('Not answered', q.opts[q.ans],'skip');
+    return R(q.opts[v], q.opts[q.ans], v===q.ans?'correct':'wrong');
+  }
+  if(q.type==='tf'){
+    if(typeof v!=='boolean') return R('Not answered', q.ans?'True':'False','skip');
+    return R(v?'True':'False', q.ans?'True':'False', v===q.ans?'correct':'wrong');
+  }
+  if(q.type==='fill'){
+    const raw=(typeof v==='string'?v:'').trim();
+    if(!raw) return R('Not answered', q.ans,'skip');
+    const set=[q.ans].concat(q.alt||[]).map(x=>String(x).trim().toLowerCase());
+    return R(esc(raw), q.ans, set.includes(raw.toLowerCase())?'correct':'wrong');
+  }
+  if(q.type==='match'){
+    const vals=Array.isArray(v)?v:[];
+    const corr=q.pairs.map(p=>p[0]+' → '+p[1]).join('<br>');
+    if(!vals.some(x=>x)) return R('Not answered', corr,'skip');
+    const your=q.pairs.map((p,j)=>p[0]+' → '+(vals[j]||'—')).join('<br>');
+    return R(your, corr, q.pairs.every((p,j)=>vals[j]===p[1])?'correct':'wrong');
+  }
+  if(q.type==='order'){
+    const n=q.items.length, v2=Array.isArray(v)?v:[];
+    const corr=q.items.map((it,k)=>[q.correctOrder[k],it]).sort((a,b)=>a[0]-b[0]).map(([p,it])=>p+'. '+it).join('<br>');
+    if(!(touched[qid] && v2.length===n && v2.every(x=>x>0))) return R('Not answered', corr,'skip');
+    const your=q.items.map((it,k)=>[v2[k],it]).sort((a,b)=>a[0]-b[0]).map(([p,it])=>p+'. '+it).join('<br>');
+    return R(your, corr, q.items.every((it,k)=>v2[k]===q.correctOrder[k])?'correct':'wrong');
+  }
+  return R('—','—','skip');
+}
+
+/* ── build the test ──────────────────────────────────────────────────────── */
+function build(){
+  const cont = $('sections-container');
+  cont.innerHTML=''; order=[]; totalQ=0;
+  Object.keys(meta).forEach(k=>delete meta[k]);
+
+  sections.forEach((sec,si)=>{
+    const card=document.createElement('section'); card.className='card';
+    const qOrder = C.shuffleQuestions ? shuffle(sec.questions.map((_,i)=>i)) : sec.questions.map((_,i)=>i);
+    card.innerHTML =
+      '<div class="sec-head"><div class="sec-badge">'+esc(sec.badge)+'</div><h2>'+sec.title+
+      '</h2><span class="count-tag">'+sec.questions.length+' question'+(sec.questions.length!==1?'s':'')+
+      '</span></div><div class="sec-instruction">'+sec.instruction+'</div><div class="q-list"></div>';
+    const list=card.querySelector('.q-list');
+
+    qOrder.forEach(qi=>{
+      totalQ++;
+      const q=sec.questions[qi], qid='q_'+si+'_'+qi, num=totalQ;
+      order.push({qid,q,num,si});
+      const block=document.createElement('div');
+      block.className='q-block'; block.id='blk-'+qid;
+      block.innerHTML = questionHTML(q,qid,num);
+      list.appendChild(block);
+      if(q.type==='order') wireOrder(qid);
+    });
+    cont.appendChild(card);
+  });
+}
+
+function questionHTML(q,qid,num){
+  const eyebrow='<div class="q-eyebrow">Q'+num+' <span class="topic">· '+esc(q.ch||'')+'</span></div>';
+  const qt='<div class="q-text">'+q.q+'</div>';
+  let body='';
+
+  if(q.type==='mcq'){
+    const ord = C.shuffleOptions ? shuffle(q.opts.map((_,i)=>i)) : q.opts.map((_,i)=>i);
+    meta[qid]={optOrder:ord};
+    body='<div class="opts">'+ord.map((oi,disp)=>
+      '<button type="button" class="opt" id="opt-'+qid+'-'+oi+'" aria-pressed="false" onclick="pickMCQ(\''+qid+'\','+oi+')">'+
+        '<span class="opt-key">'+letter(disp)+'</span><span class="opt-txt">'+q.opts[oi]+'</span>'+
+        '<span class="opt-mark">'+I.check+'</span></button>').join('')+'</div>';
+  }
+  else if(q.type==='tf'){
+    body='<div class="tf">'+
+      '<button type="button" class="tf-btn tf-true"  id="tf-'+qid+'-1" aria-pressed="false" onclick="pickTF(\''+qid+'\',true)">'+I.check+' True</button>'+
+      '<button type="button" class="tf-btn tf-false" id="tf-'+qid+'-0" aria-pressed="false" onclick="pickTF(\''+qid+'\',false)">'+I.x+' False</button></div>';
+  }
+  else if(q.type==='fill'){
+    body='<input class="fill" type="text" id="fill-'+qid+'" autocomplete="off" placeholder="Type your answer"'+
+         ' oninput="setFill(\''+qid+'\',this.value)" onkeydown="if(event.key===\'Enter\'){event.preventDefault();'+
+         (C.mode==='practice'?'checkOne(\''+qid+'\')':'')+'}">';
+  }
+  else if(q.type==='match'){
+    const opts=shuffle(q.pairs.map(p=>p[1]));
+    meta[qid]={matchOpts:opts};
+    body='<div class="match">'+q.pairs.map((p,j)=>
+      '<div class="m-row"><div class="m-term">'+p[0]+'</div>'+
+      '<select class="m-sel" id="m-'+qid+'-'+j+'" aria-label="Match for '+esc(p[0])+'" onchange="setMatch(\''+qid+'\','+q.pairs.length+')">'+
+      '<option value="">Choose…</option>'+opts.map(o=>'<option value="'+esc(o)+'">'+esc(o)+'</option>').join('')+
+      '</select></div>').join('')+'</div>';
+  }
+  else if(q.type==='order'){
+    const init=shuffle(q.items.map((_,i)=>i));
+    meta[qid]={orderInit:init};
+    body='<ol class="ord-list" id="ol-'+qid+'">'+init.map((k,pos)=>
+      '<li class="ord-row" draggable="true" data-k="'+k+'" id="or-'+qid+'-'+k+'">'+
+        '<span class="ord-grip">'+I.grip+'</span><span class="ord-pos tnum">'+(pos+1)+'</span>'+
+        '<span class="ord-lbl">'+q.items[k]+'</span>'+
+        '<span class="ord-moves">'+
+          '<button type="button" class="ord-up" aria-label="Move up" onclick="moveOrd(\''+qid+'\','+k+',-1)">'+I.up+'</button>'+
+          '<button type="button" class="ord-down" aria-label="Move down" onclick="moveOrd(\''+qid+'\','+k+',1)">'+I.down+'</button>'+
+        '</span></li>').join('')+'</ol>';
+  }
+
+  const check = C.mode==='practice'
+    ? '<button type="button" class="check-btn" id="chk-'+qid+'" onclick="checkOne(\''+qid+'\')">'+I.check+' Check answer</button><div class="q-fb" id="fb-'+qid+'" hidden></div>'
+    : '';
+  return eyebrow+qt+body+check;
+}
+
+/* ── answer handlers ─────────────────────────────────────────────────────── */
+function pickMCQ(qid,oi){
+  if(checked[qid]) return;
+  answers[qid]=oi;
+  meta[qid].optOrder.forEach(k=>{
+    const b=$('opt-'+qid+'-'+k); if(b) b.setAttribute('aria-pressed', k===oi?'true':'false');
+  });
+  after();
+}
+function pickTF(qid,val){
+  if(checked[qid]) return;
+  answers[qid]=val;
+  $('tf-'+qid+'-1').setAttribute('aria-pressed', val===true ?'true':'false');
+  $('tf-'+qid+'-0').setAttribute('aria-pressed', val===false?'true':'false');
+  after();
+}
+function setFill(qid,val){ if(checked[qid])return; answers[qid]=val; after(); }
+function setMatch(qid,len){
+  if(checked[qid])return;
+  const v=[]; for(let j=0;j<len;j++) v.push($('m-'+qid+'-'+j).value||'');
+  answers[qid]=v; after();
+}
+function readOrder(qid){
+  const rows=[...$('ol-'+qid).children];
+  const n=rows.length, pos=new Array(n);
+  rows.forEach((row,idx)=>{
+    const k=+row.dataset.k; pos[k]=idx+1;
+    row.querySelector('.ord-pos').textContent=idx+1;
+  });
+  answers[qid]=pos; touched[qid]=true;
+}
+function moveOrd(qid,k,dir){
+  if(checked[qid])return;
+  const ol=$('ol-'+qid), row=$('or-'+qid+'-'+k);
+  if(dir<0 && row.previousElementSibling) ol.insertBefore(row,row.previousElementSibling);
+  if(dir>0 && row.nextElementSibling) ol.insertBefore(row.nextElementSibling,row);
+  readOrder(qid); after();
+}
+function wireOrder(qid){
+  const ol=$('ol-'+qid); let dragEl=null;
+  ol.addEventListener('dragstart',e=>{const li=e.target.closest('.ord-row');if(!li||checked[qid]){e.preventDefault();return;}dragEl=li;li.classList.add('dragging');});
+  ol.addEventListener('dragend',e=>{const li=e.target.closest('.ord-row');if(li)li.classList.remove('dragging');ol.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));dragEl=null;readOrder(qid);after();});
+  ol.addEventListener('dragover',e=>{
+    e.preventDefault(); if(!dragEl)return;
+    const li=e.target.closest('.ord-row'); if(!li||li===dragEl)return;
+    ol.querySelectorAll('.over').forEach(x=>x.classList.remove('over')); li.classList.add('over');
+    const r=li.getBoundingClientRect(), after=(e.clientY-r.top)/r.height>.5;
+    ol.insertBefore(dragEl, after?li.nextElementSibling:li);
+  });
+  ol.addEventListener('drop',e=>{e.preventDefault();ol.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));});
+}
+
+/* runs after any answer changes */
+function after(){ updateProgress(); saveAnswers(); }
+
+/* ── practice-mode: check one question ───────────────────────────────────── */
+function checkOne(qid){
+  if(checked[qid])return;
+  const item=order.find(o=>o.qid===qid); if(!item)return;
+  const q=item.q, r=grade(q,qid);
+  checked[qid]=true;
+  const blk=$('blk-'+qid); blk.classList.add('locked');
+  const chk=$('chk-'+qid); if(chk)chk.style.display='none';
+  const ic = r.status==='correct'?I.check : r.status==='wrong'?I.x : I.skip;
+  const head = r.status==='correct'?'Correct' : r.status==='wrong'?'Not quite' : 'Skipped';
+  const fb=$('fb-'+qid);
+  fb.className='q-fb '+r.status; fb.hidden=false;
+  fb.innerHTML='<div class="fb-head">'+ic+head+'</div>'+
+    (r.status!=='correct'?'<div class="fb-correct">Correct answer: <b>'+r.correct+'</b></div>':'')+
+    (r.exp?'<div class="fb-exp">'+r.exp+'</div>':'');
+  updateProgress(); saveAnswers();
+}
+
+/* ── progress + timer ────────────────────────────────────────────────────── */
+function updateProgress(){
+  let a=0; order.forEach(o=>{ if(isAnswered(o.q,o.qid)) a++; });
+  const pct = totalQ? Math.round(a/totalQ*100):0;
+  const fill=$('prog-fill'); if(fill) fill.style.width=pct+'%';
+  const lbl=$('prog-label'); if(lbl) lbl.textContent=a+' of '+totalQ+' answered';
+  const tr=$('prog-track');
+  if(tr){tr.setAttribute('aria-valuenow',a); tr.setAttribute('aria-valuemax',totalQ);}
+}
+function startTimer(){
+  startTime=Date.now(); if(timerId)clearInterval(timerId); tick(); timerId=setInterval(tick,1000);
+}
+function tick(){
+  const el=Math.floor((Date.now()-startTime)/1000); finalElapsed=el;
+  const w=$('timer-wrap'), t=$('timer');
+  if(C.timeLimitMinutes>0){
+    const rem=C.timeLimitMinutes*60-el;
+    if(rem<=0){ if(t)t.textContent='0:00'; clearInterval(timerId); submit(true); return; }
+    if(t) t.textContent=fmt(rem); if(w) w.classList.toggle('low',rem<=30);
+  } else { if(t) t.textContent=fmt(el); }
+}
+
+/* ── persistence ─────────────────────────────────────────────────────────── */
+function saveAnswers(){
+  if(!C.saveProgress)return;
+  try{
+    store.set(STORE, JSON.stringify({shape:SHAPE, answers, touched, checked}));
+  }catch(e){}
+}
+function loadAnswers(){
+  if(!C.saveProgress)return;
+  let d; try{ d=JSON.parse(store.get(STORE)||'null'); }catch(e){ d=null; }
+  if(!d || d.shape!==SHAPE){ store.del(STORE); return; }
+  Object.assign(answers,d.answers||{});
+  Object.assign(touched,d.touched||{});
+  const savedChecked = d.checked||{};
+  order.forEach(o=>applyRestore(o.q,o.qid));
+  Object.keys(savedChecked).forEach(qid=>{
+    if(savedChecked[qid] && C.mode==='practice' && !checked[qid]) checkOne(qid);
+  });
+}
+function applyRestore(q,qid){
+  const v=answers[qid];
+  if(q.type==='mcq' && typeof v==='number' && meta[qid]){
+    meta[qid].optOrder.forEach(k=>{const b=$('opt-'+qid+'-'+k);if(b)b.setAttribute('aria-pressed',k===v?'true':'false');});
+  } else if(q.type==='tf' && typeof v==='boolean'){
+    $('tf-'+qid+'-1').setAttribute('aria-pressed',v===true?'true':'false');
+    $('tf-'+qid+'-0').setAttribute('aria-pressed',v===false?'true':'false');
+  } else if(q.type==='fill' && typeof v==='string'){
+    const el=$('fill-'+qid); if(el) el.value=v;
+  } else if(q.type==='match' && Array.isArray(v)){
+    v.forEach((val,j)=>{const s=$('m-'+qid+'-'+j);if(s)s.value=val||'';});
+  } else if(q.type==='order' && Array.isArray(v) && v.length===q.items.length && v.every(x=>x>0)){
+    const ol=$('ol-'+qid); if(!ol) return;
+    q.items.map((_,k)=>[v[k],k]).sort((a,b)=>a[0]-b[0]).forEach(([,k])=>{const row=$('or-'+qid+'-'+k);if(row)ol.appendChild(row);});
+    readOrder(qid);
+  }
+}
+
+/* ── submit & grade ──────────────────────────────────────────────────────── */
+function submit(force){
+  if(finished)return;
+  if(!force){
+    let unanswered=0; order.forEach(o=>{ if(!isAnswered(o.q,o.qid)) unanswered++; });
+    if(unanswered>0){ openModal(unanswered); return; }
+  }
+  finished=true; if(timerId)clearInterval(timerId);
+  let correct=0,wrong=0,skip=0; reviews=[];
+  const secScore=sections.map(()=>({c:0,t:0}));
+  order.forEach(o=>{
+    const r=grade(o.q,o.qid);
+    if(r.status==='correct')correct++; else if(r.status==='wrong')wrong++; else skip++;
+    secScore[o.si].t++; if(r.status==='correct')secScore[o.si].c++;
+    reviews.push({num:o.num,type:o.q.type,q:o.q.q,status:r.status,your:r.your,correct:r.correct,exp:r.exp});
+  });
+
+  const pct=totalQ?Math.round(correct/totalQ*100):0;
+  const gr = pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=C.passingScore?'D':'F';
+  const name=($('student-name').value.trim()||'Student');
+  const cls=$('student-class').value.trim();
+  const msg = pct>=C.celebrateScore?'Outstanding work — you\'ve mastered this!'
+            : pct>=70?'Great job. A little review and you\'re set.'
+            : pct>=C.passingScore?'Good effort. Check the review and try again.'
+            : 'Keep going — review the answers below and have another go.';
+
+  $('res-grade').textContent='Grade '+gr;
+  $('res-frac').textContent=correct+' / '+totalQ;
+  $('res-name').textContent=name+(cls?' · '+cls:'');
+  $('res-msg').textContent=msg;
+  $('res-correct').textContent=correct;
+  $('res-wrong').textContent=wrong;
+  $('res-skip').textContent=skip;
+  $('res-total').textContent=totalQ;
+  $('res-time').textContent=fmt(finalElapsed);
+  $('res-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+
+  renderBreakdown(secScore);
+  renderFilters(correct,wrong,skip,totalQ);
+  renderReview('all');
+
+  $('test-view').style.display='none';
+  $('results-view').hidden=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  const RC=389.6, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  requestAnimationFrame(()=>{ $('ring-fg').style.strokeDashoffset=RC*(1-pct/100); });
+  countUp($('res-pct'), pct, '%', reduce);
+  if(pct>=C.celebrateScore && !reduce) confetti();
+}
+
+function countUp(node,target,suffix,instant){
+  if(instant){ node.textContent=target+suffix; return; }
+  const dur=900, t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    node.textContent=Math.round(target*e)+suffix;
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+
+function renderBreakdown(secScore){
+  $('breakdown').innerHTML=sections.map((s,i)=>{
+    const sc=secScore[i], pct=sc.t?Math.round(sc.c/sc.t*100):0;
+    const col=pct>=70?'var(--ok)':pct>=C.passingScore?'var(--accent)':'var(--bad)';
+    return '<div class="bd-row"><div class="bd-top"><span class="bd-name">'+s.title+
+      '</span><span class="bd-val tnum">'+sc.c+'/'+sc.t+' · '+pct+'%</span></div>'+
+      '<div class="bd-track"><div class="bd-fill" style="background:'+col+'" data-w="'+pct+'"></div></div></div>';
+  }).join('');
+  requestAnimationFrame(()=>{ document.querySelectorAll('.bd-fill').forEach(f=>f.style.width=f.dataset.w+'%'); });
+}
+
+function renderFilters(c,w,s,t){
+  const f=[['all','All',t],['correct','Correct',c],['wrong','Wrong',w],['skip','Skipped',s]];
+  $('filters').innerHTML=f.map((x,i)=>
+    '<button type="button" class="filter'+(i===0?' active':'')+'" data-f="'+x[0]+'" onclick="filterReview(\''+x[0]+'\',this)">'+
+    x[1]+' <span class="cnt">'+x[2]+'</span></button>').join('');
+}
+
+function renderReview(filter){
+  const rc=$('review');
+  const icons={correct:I.check,wrong:I.x,skip:I.skip};
+  const labels={mcq:'Multiple choice',tf:'True / False',fill:'Fill blank',match:'Matching',order:'Sequence'};
+  const list=reviews.filter(r=>filter==='all'||r.status===filter);
+  if(!list.length){ rc.innerHTML='<p class="empty">No questions in this category.</p>'; return; }
+  rc.innerHTML=list.map(r=>
+    '<div class="rev '+r.status+'"><div class="rev-head"><span class="rev-ic">'+icons[r.status]+
+    '</span><span class="rev-q">Q'+r.num+'. '+r.q+'</span><span class="rev-chip">'+(labels[r.type]||r.type)+'</span></div>'+
+    '<div class="rev-body">'+
+      (r.status!=='correct'?'<div class="rev-your">Your answer: <b>'+r.your+'</b></div>':'')+
+      '<div class="rev-corr">Correct answer: <b>'+r.correct+'</b></div>'+
+      (r.exp?'<div class="rev-exp">'+r.exp+'</div>':'')+
+    '</div></div>').join('');
+}
+function filterReview(f,btn){
+  document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); renderReview(f);
+}
+
+/* ── unanswered modal ────────────────────────────────────────────────────── */
+let lastFocus=null;
+function openModal(n){
+  $('modal-text').textContent='You haven\'t answered '+n+' question'+(n!==1?'s':'')+' yet. You can review them or submit anyway.';
+  const o=$('overlay'); o.hidden=false; lastFocus=document.activeElement;
+  requestAnimationFrame(()=>{o.classList.add('show'); $('modal-submit').focus();});
+}
+function closeModal(){
+  const o=$('overlay'); o.classList.remove('show');
+  setTimeout(()=>{o.hidden=true; if(lastFocus)lastFocus.focus();},200);
+}
+function jumpUnanswered(){
+  closeModal();
+  const o=order.find(x=>!isAnswered(x.q,x.qid)); if(!o)return;
+  const blk=$('blk-'+o.qid);
+  setTimeout(()=>{ blk.scrollIntoView({behavior:'smooth',block:'center'});
+    blk.classList.remove('flash'); void blk.offsetWidth; blk.classList.add('flash');
+    const ctl=blk.querySelector('button,input,select'); if(ctl)ctl.focus(); },220);
+}
+
+/* ── report download ─────────────────────────────────────────────────────── */
+function downloadReport(){
+  const name=($('student-name').value.trim()||'Student');
+  const cls=$('student-class').value.trim();
+  const L=[]; const line='─'.repeat(60);
+  L.push(C.title); L.push(line);
+  L.push('Student : '+name+(cls?'   ('+cls+')':''));
+  L.push('Date    : '+new Date().toLocaleString());
+  L.push('Score   : '+$('res-correct').textContent+' / '+totalQ+'   ('+$('res-pct').textContent+', '+$('res-grade').textContent+')');
+  L.push('Time    : '+fmt(finalElapsed));
+  L.push('Correct '+$('res-correct').textContent+'  ·  Wrong '+$('res-wrong').textContent+'  ·  Skipped '+$('res-skip').textContent);
+  L.push(line); L.push('');
+  const strip=h=>String(h).replace(/<br\s*\/?>/gi,'; ').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+  reviews.forEach(r=>{
+    const mark=r.status==='correct'?'[OK] ':r.status==='wrong'?'[X ] ':'[-- ] ';
+    L.push(mark+'Q'+r.num+'. '+strip(r.q));
+    if(r.status!=='correct') L.push('     Your answer : '+strip(r.your));
+    L.push('     Correct     : '+strip(r.correct));
+    if(r.exp) L.push('     Why         : '+strip(r.exp));
+    L.push('');
+  });
+  const blob=new Blob([L.join('\n')],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=slug(name)+'-'+slug(C.title)+'-result.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+/* ── confetti ────────────────────────────────────────────────────────────── */
+function confetti(){
+  const cv=$('confetti'); cv.hidden=false;
+  const ctx=cv.getContext('2d'), DPR=window.devicePixelRatio||1;
+  function size(){cv.width=innerWidth*DPR;cv.height=innerHeight*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  size();
+  const acc=getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#0f766e';
+  const cols=[acc,'#22c55e','#f59e0b','#ec4899','#38bdf8','#ffffff'];
+  const P=[]; for(let i=0;i<140;i++)P.push({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.4,
+    s:5+Math.random()*7,vy:2+Math.random()*3.5,vx:-1.5+Math.random()*3,rot:Math.random()*6.28,
+    vr:-.2+Math.random()*.4,c:cols[(Math.random()*cols.length)|0]});
+  const t0=performance.now();
+  (function frame(t){
+    const life=t-t0; ctx.clearRect(0,0,innerWidth,innerHeight);
+    P.forEach(p=>{ p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.rot+=p.vr;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+      ctx.globalAlpha=Math.max(0,1-life/2600);ctx.fillStyle=p.c;
+      ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);ctx.restore(); });
+    if(life<2600)requestAnimationFrame(frame);
+    else{ctx.clearRect(0,0,innerWidth,innerHeight);cv.hidden=true;}
+  })(t0);
+}
+
+/* ── retry ───────────────────────────────────────────────────────────────── */
+function retry(){
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  Object.keys(touched).forEach(k=>delete touched[k]);
+  Object.keys(checked).forEach(k=>delete checked[k]);
+  store.del(STORE); reviews=[]; finished=false;
+  $('ring-fg').style.strokeDashoffset='389.6';
+  build();
+  $('results-view').hidden=true;
+  $('test-view').style.display='block';
+  updateProgress(); startTimer();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── theme toggle ────────────────────────────────────────────────────────── */
+function setThemeIcon(){
+  const btn=$('theme-btn'); if(!btn) return;
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  btn.innerHTML=dark?I.sun:I.moon;
+}
+function toggleTheme(){
+  const h=document.documentElement, dark=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',dark?'light':'dark');
+  store.set(THEME,dark?'light':'dark'); setThemeIcon();
+}
+
+/* ── populate static icons + header from CONFIG (defensive) ──────────────── */
+function setText(id, v){ const el=$(id); if(el) el.textContent=v; else console.warn('[test-template] missing id="'+id+'"'); }
+function setHTML(id, v){ const el=$(id); if(el) el.innerHTML=v; else console.warn('[test-template] missing id="'+id+'"'); }
+function paintChrome(){
+  setText('hero-eyebrow', C.eyebrow||'');
+  setText('hero-title',   C.title||'');
+  setText('hero-sub',     C.subtitle||'');
+  const types=new Set();
+  sections.forEach(s=>s.questions.forEach(q=>types.add(q.type)));
+  const tl=C.timeLimitMinutes>0?(C.timeLimitMinutes+' min limit'):'No time limit';
+  setHTML('hero-meta',
+    '<span>'+I.doc+totalQ+' questions</span>'+
+    '<span>'+I.layers+types.size+' question types</span>'+
+    '<span>'+I.clock+tl+'</span>'+
+    '<span>'+I.check+(C.mode==='practice'?'Practice mode':'Exam mode')+'</span>');
+  setHTML('student-icon', I.user);
+  setHTML('submit-icon',  I.send);
+  setHTML('timer-icon',   I.clock);
+  setHTML('clock-icon',   I.clock);
+  setHTML('cal-icon',     I.cal);
+  setHTML('ic-ok',    I.check);  setHTML('ic-bad',  I.x);
+  setHTML('ic-skip',  I.skip);   setHTML('ic-total',I.doc);
+  setHTML('ic-chart', I.chart);  setHTML('ic-list', I.list);
+  setHTML('ic-print', I.print);  setHTML('ic-dl',   I.dl);
+  setHTML('ic-retry', I.retry);  setHTML('modal-ic',I.alert);
+  const rb=$('retry-btn'); if(rb && !C.allowRetry) rb.style.display='none';
+  setThemeIcon();
+}
+
+/* ── wire events (defensive: never throws if an element is missing) ──────── */
+function on(id, ev, fn){
+  const el = $(id);
+  if(el) el.addEventListener(ev, fn);
+  else console.warn('[test-template] missing element id="'+id+'" — listener skipped');
+}
+
+function init(){
+  on('theme-btn','click',toggleTheme);
+  on('submit-btn','click',()=>submit(false));
+  on('retry-btn','click',retry);
+  on('print-btn','click',()=>window.print());
+  on('report-btn','click',downloadReport);
+  on('prog-track','click',()=>{
+    const o=order.find(x=>!isAnswered(x.q,x.qid));
+    if(o){const b=$('blk-'+o.qid);if(!b)return;b.scrollIntoView({behavior:'smooth',block:'center'});b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');}
+  });
+  on('modal-review','click',jumpUnanswered);
+  on('modal-submit','click',()=>{closeModal();submit(true);});
+  on('overlay','click',e=>{ if(e.target===$('overlay'))closeModal(); });
+  document.addEventListener('keydown',e=>{
+    const ov=$('overlay'); if(e.key==='Escape'&&ov&&ov.classList.contains('show'))closeModal();
+  });
+
+  build();
+  loadAnswers();
+  paintChrome();
+  updateProgress();
+  startTimer();
+}
+
+/* Run after the DOM is fully parsed — works whether the script is in <head>, */
+/* loaded as a module, deferred, or otherwise reordered by an editor.         */
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+</script>
+</body>
+</html>
